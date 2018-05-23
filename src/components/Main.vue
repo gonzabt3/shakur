@@ -6,6 +6,7 @@
                 <settings-wall></settings-wall>
             </b-col>
             <b-col cols="5">
+                <post-new></post-new>
                 <post-user></post-user>
             </b-col>
             <b-col>
@@ -23,10 +24,11 @@ import PostUser from '@/components/PostUser';
 import EventsWall from '@/components/EventsWall';
 import DocWall from '@/components/DocWall';
 import SettingsWall from '@/components/SettingsWall';
+import PostNew from '@/components/PostNew';
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall },
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew },
 };
 </script>
 
