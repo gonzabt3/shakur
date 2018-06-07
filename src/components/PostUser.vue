@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-form-group>
-            <b-card >
+            <b-card class="shadow">
                 <b-row>
                     <b-col cols="3"  class="text-center" id="imagenUser">
                     <b-img rounded="circle" width="75" height="75" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
@@ -48,5 +48,9 @@ export default {
 #nombreUser{
     padding-left:0;
 }
+
+.shadow{
+        box-shadow: 10px 10px grey;
+    }
 
 </style>

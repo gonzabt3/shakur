@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-form-group>
-            <b-card title="Nueva Publicacion">
+            <b-card class="shadow" title="Nueva Publicacion">
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
@@ -24,5 +24,7 @@ export default {
 };
 </script>
 <style scoped>
-
+    .shadow{
+        box-shadow: 10px 10px grey;
+    }
 </style>

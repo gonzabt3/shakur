@@ -21,6 +21,7 @@
                 </b-form-input>
                 </b-form-group>
                 <b-button type="submit" variant="primary">Entrar</b-button>
+                <b-button v-b-modal.newUser variant="secondary">Registrarse</b-button>
                 <b-form-group>
                   <b-link href="#/" disabled>Olvide mi contraseña</b-link>
                 </b-form-group>
@@ -28,13 +29,18 @@
           </b-card>
           </b-col>
         </b-row>
+      <new-user></new-user>
       </b-container>
 </template>
 
 <script>
+
+import newUser from '@/components/NewUser';
+
 export default {
 
   name: 'Inicio',
+  components: { newUser },
   data() {
     return {
       form: {
@@ -52,7 +58,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 body{
     background-image:url('derecho.jpg');
     height: 100%;

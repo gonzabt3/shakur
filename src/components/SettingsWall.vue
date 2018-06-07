@@ -1,6 +1,6 @@
 <template>
     <div >
-        <b-card id="settingsCard" title="Configuracion">
+        <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6>Mi perfil</h6>
         </b-card>
     </div>
@@ -14,4 +14,8 @@ export default {
 #settingsCard{
     height: 100%;
 }
+
+.shadow{
+        box-shadow: 10px 10px grey;
+    }
 </style>

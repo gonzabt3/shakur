@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card title="Proximos Eventos">
+        <b-card class="shadow" title="Proximos Eventos">
                 <p>Parcial de Matematicas -> 20/5</p>
                 <p>Entrega TP -> 31/6</p>
         </b-card>
@@ -14,5 +14,7 @@ export default {
 </script>
 
 <style scoped>
-
+.shadow{
+        box-shadow: 10px 10px grey;
+    }
 </style>
