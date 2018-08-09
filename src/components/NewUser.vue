@@ -35,7 +35,8 @@
                 </b-form-group>
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
-                        <b-form-checkbox required value="checkCondiciones">Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
+                        <b-form-checkbox required value="checkCondiciones">
+                            Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
                     </b-form-checkbox-group>
                 </b-form-group>
             </b-form>
