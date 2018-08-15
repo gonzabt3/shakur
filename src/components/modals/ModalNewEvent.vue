@@ -1,5 +1,5 @@
 <template>
-     <b-modal ref="newEvent" id="newEvent" title="Nuevo evento">
+     <b-modal @hide="cleanModal" ref="newEvent" id="newEvent" title="Nuevo evento">
         <b-container>
             <b-form>
                 <b-form-group label="Nombre:" label-for="nombre">
@@ -24,36 +24,33 @@
 </template>
 <script>
 import Datepicker from 'vuejs-datepicker';
-import {en, es} from 'vuejs-datepicker/dist/locale'
+import { en, es } from 'vuejs-datepicker/dist/locale';
 
 export default {
-    components: {Datepicker},
-    data(){
-        return {
-            data:{
-                nombre:'',
-                temas:'',
-                fecha:''
-            },
-            en: en,
-            es: es
-        }
+  components: { Datepicker },
+  data() {
+    return {
+      data: {
+        nombre: '',
+        temas: '',
+        fecha: '',
+      },
+      en,
+      es,
+    };
+  },
+  methods: {
+    submit() {
+      console.log(this.data);
     },
-    methods:{
-        submit(){
-            console.log(this.data)
-        },
-        cleanModal(){
-            alert("asd")
-            this.data.nombre="";
-            this.data.temas="";
-            this.data.fecha="";
-        }
+    cleanModal() {
+      this.data.nombre = '';
+      this.data.temas = '';
+      this.data.fecha = '';
     },
-     mounted(){
-        (this.$refs.newEvent).on("hidden.bs.modal", this.cleanModal)
-    }
-}
+  },
+
+};
 </script>
 <style scoped>
 
