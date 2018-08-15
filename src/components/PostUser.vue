@@ -4,21 +4,32 @@
             <b-card class="shadow">
                 <b-row>
                     <b-col cols="3"  class="text-center" id="imagenUser">
-                    <b-img rounded="circle" width="75" height="75" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
+                        <b-img rounded="circle" width="75" height="75" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
                     </b-col>
-                    <b-col id="nombreUser">
-                        <h2 class="text-">Chopan Llavi</h2>
-                        <h6>Progress 75%</h6>
+                    <b-col>
+                        <b-row>
+                            <b-col id="nombreUser" cols="7">
+                                <h2 class="text-center">Chopan Llavi</h2>
+                            </b-col>
+                            <b-col>
+                                <label>7 de junio 1996</label>
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="12">
+                                <b-progress :value="progreso" max="100" ></b-progress>
+                            </b-col>
+                        </b-row>
                     </b-col>
                 </b-row>
                 <br>
                 <b-form-group class="text-center">
-                    <p class="card-text">
+                    <p class="card-text text-justify">
                         Revolucion el segundo martes del corriente
                     </p>
                 </b-form-group>
                 <b-row>
-                    <b-col cols="7" class="text-center">
+                    <b-col  class="">
                         <b-button size="sm">
                             <b-img :src="beerIcon" fluid alt="beerLike" /> Like
                         </b-button>
@@ -39,6 +50,7 @@ export default {
     return {
       beerIcon: 'static/image/beer.png',
       commentIcon: 'static/image/comment.png',
+      progreso: 67,
     };
   },
 };
