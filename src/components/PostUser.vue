@@ -31,26 +31,35 @@
                 <b-row>
                     <b-col  class="">
                         <b-button size="sm">
+                            <label class="no-margin-bottom">{{cantLikes}}</label>
                             <b-img :src="beerIcon" fluid alt="beerLike" /> Like
                         </b-button>
                         <b-button size="sm">
+                            <label class="no-margin-bottom">{{cantComentarios}}</label>
                             <b-img :src="commentIcon" fluid alt="comments" /> Comentar
                         </b-button>
                     </b-col>
                 </b-row>
+                <hr />
+                <comentario></comentario>
             </b-card>
         </b-form-group>
     </div>
 </template>
 
 <script>
+import Comentario from '@/components/Comentario';
+
 export default {
   name: 'PostUser',
+  components:{Comentario},
   data() {
     return {
       beerIcon: 'static/image/beer.png',
       commentIcon: 'static/image/comment.png',
       progreso: 67,
+      cantLikes:5,
+      cantComentarios:4
     };
   },
 };
@@ -64,5 +73,9 @@ export default {
 .shadow{
         box-shadow: 10px 10px grey;
     }
+
+.no-margin-bottom{
+    margin-bottom: 0px;
+}
 
 </style>

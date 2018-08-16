@@ -5,7 +5,7 @@
                 <b-col>
                     <b-form inline >
                         <h3><u>Proximos Eventos</u></h3>
-                        <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal"/>
+                        <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
                     </b-form>
                 </b-col>
             </b-row>
