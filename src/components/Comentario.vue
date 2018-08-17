@@ -6,10 +6,10 @@
             </b-col>
             <b-col>
                 <b-row>
-                    <h4>asd</h4>
+                    <h5 class="no-margin-bottom">Gonzalo Muscolo</h5>
                 </b-row>
                 <b-row>
-                    <p>no me simpatizas</p>
+                    <p class="form-control">no me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizas</p>
                 </b-row>
             </b-col>
         </b-row>
@@ -21,5 +21,8 @@ export default {
 }
 </script>
 <style scoped>
+.no-margin-bottom{
+    margin-bottom: 0px;
+}
 
 </style>

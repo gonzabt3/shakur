@@ -1,20 +1,48 @@
 <template>
-    <div>
-        <b-form-group>
-            <br>
-            <b-card class="shadow" title="Documentacion">
-                <p>PDF Integrales</p>
-            </b-card>
-        </b-form-group>
-    </div>
+    <b-container class="form-group">
+        <b-card class="shadow" >
+            <b-row>
+                <b-col>
+                    <b-form inline >
+                        <h3><u>Documentación</u></h3>
+                        <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
+                    </b-form>
+                </b-col>
+            </b-row>
+             <b-row>
+                 <b-col>
+                        <p>PDF Derivadas</p>
+                </b-col>
+            </b-row>
+        </b-card>
+        <modal-new-doc></modal-new-doc>
+    </b-container>
 </template>
+
 <script>
+import ModalNewDoc from '@/components/modals/ModalNewDoc';
+
 export default {
-  name: 'DocWall',
+  name: 'EventsWall',
+  components: { ModalNewDoc },
+  methods:{
+      showModal(){
+          this.$root.$emit('bv::show::modal','newDoc')
+      }
+  }
 };
 </script>
+
 <style scoped>
 .shadow{
         box-shadow: 10px 10px grey;
     }
+.separacionIcon{
+    /* villeriada */
+    margin-bottom: 3%;
+    margin-left: 3%;
+}
+.pointer{
+    cursor: pointer;
+}
 </style>
