@@ -11,6 +11,9 @@
                 <b-row>
                     <p class="form-control">no me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizas</p>
                 </b-row>
+                <b-row>
+                    <a>Like(20)</a>
+                </b-row>
             </b-col>
         </b-row>
     </b-container>

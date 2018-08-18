@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div >
         <topbar></topbar>
-        <b-row>
-            <b-col>
+        <b-row >
+            <b-col cols="3">
                 <settings-wall></settings-wall>
             </b-col>
             <b-col cols="5">
@@ -10,7 +10,7 @@
                 <post-user></post-user>
             </b-col>
             <b-col>
-                <events-wall></events-wall>
+                <events-wall class="form-group"></events-wall>
                 <doc-wall></doc-wall>
             </b-col>
         </b-row>
