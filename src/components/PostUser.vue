@@ -17,7 +17,7 @@
                         </b-row>
                         <b-row>
                             <b-col cols="12">
-                                <b-progress :value="progreso" max="100" ></b-progress>
+                                <b-progress :value="progreso" ></b-progress>
                             </b-col>
                         </b-row>
                     </b-col>
@@ -30,9 +30,9 @@
                 </b-form-group>
                 <b-row>
                     <b-col  class="">
-                        <b-button size="sm">
+                        <b-button size="sm" @click="btnLike">
                             <label class="no-margin-bottom">{{cantLikes}}</label>
-                            <b-img :src="beerIcon" fluid alt="beerLike" /> Like
+                            <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
                         </b-button>
                         <b-button size="sm">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
@@ -59,9 +59,29 @@ export default {
       commentIcon: 'static/image/comment.png',
       progreso: 67,
       cantLikes:5,
-      cantComentarios:4
-    };
+      stringBtnLike:"Like",
+      cantComentarios:4,
+      btnLikeEstado:false
+    }
   },
+  methods:{
+      btnLike(){
+          if(!this.btnLikeEstado){
+              this.btnLikeEstado=true;
+              this.cantLikes+=1;
+          }else{
+              this.btnLikeEstado=false;
+              this.cantLikes-=1;
+          }
+      }
+  },
+  watch:{
+      btnLikeEstado: function (value){
+          this.beerIcon= (value == true ? "static/image/beerVacia.png" : "static/image/beer.png");
+          this.stringBtnLike= (value == true ? "Dislike" : "Like");  
+      }
+
+  }
 };
 </script>
 
