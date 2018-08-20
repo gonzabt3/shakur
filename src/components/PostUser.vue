@@ -34,14 +34,35 @@
                             <label class="no-margin-bottom">{{cantLikes}}</label>
                             <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
                         </b-button>
-                        <b-button size="sm">
+                        <b-button size="sm" @click="showComentarios = !showComentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
                             <b-img :src="commentIcon" fluid alt="comments" /> Comentar
                         </b-button>
                     </b-col>
                 </b-row>
-                <hr />
-                <comentario></comentario>
+                <div v-if="showComentarios">
+                    <div class="strike form-group">
+                        <span><font-awesome-icon  :icon="iconEyeComentarios"   size="sm" @click="showManyComentarios = !showManyComentarios" /></span>
+                    </div>
+                    <div v-if="showManyComentarios">
+                    <comentario></comentario>
+                    <hr />
+                    </div>
+                    <b-row>
+                        <b-col cols="2">
+                            <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
+                        </b-col>
+                        <b-col cols="7">
+                            <b-form-input id="newComent" 
+                            required
+                            placeholder="Comenta algo">
+                            </b-form-input>
+                        </b-col>
+                        <b-col>
+                            <b-button type="submit" variant="primary">Comentar</b-button>
+                        </b-col>
+                    </b-row>
+                </div>
             </b-card>
         </b-form-group>
     </div>
@@ -57,11 +78,14 @@ export default {
     return {
       beerIcon: 'static/image/beer.png',
       commentIcon: 'static/image/comment.png',
-      progreso: 67,
+      progreso: 55,
       cantLikes:5,
       stringBtnLike:"Like",
-      cantComentarios:4,
-      btnLikeEstado:false
+      cantComentarios:1,
+      btnLikeEstado:false,
+      showComentarios:false,
+      showManyComentarios:false,
+      iconEyeComentarios:"eye"
     }
   },
   methods:{
@@ -79,6 +103,9 @@ export default {
       btnLikeEstado: function (value){
           this.beerIcon= (value == true ? "static/image/beerVacia.png" : "static/image/beer.png");
           this.stringBtnLike= (value == true ? "Dislike" : "Like");  
+      },
+      showManyComentarios: function(value){//cambia el icon del ojo de los comentarios
+          this.iconEyeComentarios= (value == true ? "eye-slash" : "eye");
       }
 
   }
@@ -98,4 +125,36 @@ export default {
     margin-bottom: 0px;
 }
 
+/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: grey;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
 </style>
