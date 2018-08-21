@@ -12,16 +12,45 @@
                     <p class="form-control">no me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizas</p>
                 </b-row>
                 <b-row>
-                    <a>Like(20)</a>
+                    <b-button size="sm" @click="btnLike">
+                            <label class="no-margin-bottom">{{cantLikes}}</label>
+                            <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
+                        </b-button>
                 </b-row>
             </b-col>
         </b-row>
     </b-container>
 </template>
 <script>
+
 export default {
-    
-}
+  data() {
+    return {
+      beerIcon: 'static/image/beer.png',
+      cantLikes: 5,
+      btnLikeEstado: false,
+      stringBtnLike: 'Like',
+    };
+  },
+  methods: {
+    btnLike() {
+      if (!this.btnLikeEstado) {
+        this.btnLikeEstado = true;
+        this.cantLikes += 1;
+      } else {
+        this.btnLikeEstado = false;
+        this.cantLikes -= 1;
+      }
+    },
+  },
+  watch: {
+    btnLikeEstado(value) {
+      this.beerIcon = (value == true ? 'static/image/beerVacia.png' : 'static/image/beer.png');
+      this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
+    },
+  },
+
+};
 </script>
 <style scoped>
 .no-margin-bottom{

@@ -53,7 +53,7 @@
                             <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
                         </b-col>
                         <b-col cols="7">
-                            <b-form-input id="newComent" 
+                            <b-form-input id="newComent"
                             required
                             placeholder="Comenta algo">
                             </b-form-input>
@@ -73,42 +73,42 @@ import Comentario from '@/components/Comentario';
 
 export default {
   name: 'PostUser',
-  components:{Comentario},
+  components: { Comentario },
   data() {
     return {
       beerIcon: 'static/image/beer.png',
       commentIcon: 'static/image/comment.png',
       progreso: 55,
-      cantLikes:5,
-      stringBtnLike:"Like",
-      cantComentarios:1,
-      btnLikeEstado:false,
-      showComentarios:false,
-      showManyComentarios:false,
-      iconEyeComentarios:"eye"
-    }
+      cantLikes: 5,
+      stringBtnLike: 'Like',
+      cantComentarios: 1,
+      btnLikeEstado: false,
+      showComentarios: false,
+      showManyComentarios: false,
+      iconEyeComentarios: 'eye',
+    };
   },
-  methods:{
-      btnLike(){
-          if(!this.btnLikeEstado){
-              this.btnLikeEstado=true;
-              this.cantLikes+=1;
-          }else{
-              this.btnLikeEstado=false;
-              this.cantLikes-=1;
-          }
+  methods: {
+    btnLike() {
+      if (!this.btnLikeEstado) {
+        this.btnLikeEstado = true;
+        this.cantLikes += 1;
+      } else {
+        this.btnLikeEstado = false;
+        this.cantLikes -= 1;
       }
+    },
   },
-  watch:{
-      btnLikeEstado: function (value){
-          this.beerIcon= (value == true ? "static/image/beerVacia.png" : "static/image/beer.png");
-          this.stringBtnLike= (value == true ? "Dislike" : "Like");  
-      },
-      showManyComentarios: function(value){//cambia el icon del ojo de los comentarios
-          this.iconEyeComentarios= (value == true ? "eye-slash" : "eye");
-      }
+  watch: {
+    btnLikeEstado(value) {
+      this.beerIcon = (value == true ? 'static/image/beerVacia.png' : 'static/image/beer.png');
+      this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
+    },
+    showManyComentarios(value) { // cambia el icon del ojo de los comentarios
+      this.iconEyeComentarios = (value == true ? 'eye-slash' : 'eye');
+    },
 
-  }
+  },
 };
 </script>
 
@@ -130,7 +130,7 @@ export default {
     display: block;
     text-align: center;
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .strike > span {
