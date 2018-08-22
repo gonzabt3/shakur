@@ -2,6 +2,7 @@
     <div >
         <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6>Mi perfil</h6>
+            <h6>Salir</h6>
         </b-card>
     </div>
 </template>
