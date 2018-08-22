@@ -4,20 +4,20 @@
             <b-card class="shadow">
                 <b-row>
                     <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="75" height="75" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
+                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.imagen" alt="Thumbnail" />
                     </b-col>
                     <b-col>
                         <b-row>
                             <b-col id="nombreUser" cols="7">
-                                <h2 class="text-center">Chopan Llavi</h2>
+                                <h3 class="text-left">{{postData.name}}</h3>
                             </b-col>
                             <b-col>
-                                <label>7 de junio 1996</label>
+                                <label>{{postData.fecha}}</label>
                             </b-col>
                         </b-row>
                         <b-row>
-                            <b-col cols="12">
-                                <b-progress :value="progreso" ></b-progress>
+                            <b-col cols="12" class="no-padding-left">
+                                <b-progress  :value="progreso" ></b-progress>
                             </b-col>
                         </b-row>
                     </b-col>
@@ -25,7 +25,7 @@
                 <br>
                 <b-form-group class="text-center">
                     <p class="card-text text-justify">
-                        Revolucion el segundo martes del corriente
+                        {{postData.comentario}}
                     </p>
                 </b-form-group>
                 <b-row>
@@ -74,12 +74,13 @@ import Comentario from '@/components/Comentario';
 export default {
   name: 'PostUser',
   components: { Comentario },
+  props:['postData'],
   data() {
     return {
       beerIcon: 'static/image/beer.png',
       commentIcon: 'static/image/comment.png',
       progreso: 55,
-      cantLikes: 5,
+      cantLikes: this.postData.likes,
       stringBtnLike: 'Like',
       cantComentarios: 1,
       btnLikeEstado: false,
@@ -123,6 +124,10 @@ export default {
 
 .no-margin-bottom{
     margin-bottom: 0px;
+}
+
+.no-padding-left{
+    padding-left: 0px;
 }
 
 /* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */
