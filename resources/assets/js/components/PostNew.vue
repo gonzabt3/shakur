@@ -5,13 +5,14 @@
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
+                        v-model="post"
                         required
                         placeholder="Publica algo!!">
                         </b-form-input>
                     </b-form-group>
                     <b-form-group class="text-right">
                         <b-button variant="secondary">Adjuntar</b-button>
-                        <b-button type="submit" variant="primary">Publicar</b-button>
+                        <b-button  variant="primary" @click="hacerPost">Publicar</b-button>
                     </b-form-group>
                 </b-form>
             </b-card>
@@ -21,6 +22,22 @@
 <script>
 export default {
   name: 'PostNew',
+    data() {
+    return {
+        post:null
+    };
+  },
+    methods :{
+      hacerPost(){
+            console.log(this.post);
+
+            // axios.post('api/usuarios',this.usuario)
+            //     .then(({data}) => this.setSuccessMessage())
+      },
+      setSuccessMessage(){
+      this.console("volvio");
+    }
+  }
 };
 </script>
 <style scoped>

@@ -39592,7 +39592,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39651,15 +39651,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NewUser',
   data: function data() {
     return {
-      universidades: ['Seleccionar', 'UBA', 'UTN', 'UNLa']
+      universidades: ['Seleccionar', 'UBA', 'UTN', 'UNLa'],
+      usuario: {
+        nombre: null,
+        apellido: null,
+        email: null,
+        universidad: null,
+        carrera: null
+      }
     };
+  },
+
+  methods: {
+    crearUsuario: function crearUsuario() {
+      var _this = this;
+
+      console.log(this.usuario);
+
+      axios.post('api/usuarios', this.usuario).then(function (_ref) {
+        var data = _ref.data;
+        return _this.setSuccessMessage();
+      });
+    },
+    setSuccessMessage: function setSuccessMessage() {
+      this.console("volvio");
+    }
   }
+
 });
 
 /***/ }),
@@ -39689,6 +39718,13 @@ var render = function() {
                       id: "nombre",
                       required: "",
                       placeholder: "Ingresa tu nombre"
+                    },
+                    model: {
+                      value: _vm.usuario.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "name", $$v)
+                      },
+                      expression: "usuario.name"
                     }
                   })
                 ],
@@ -39704,6 +39740,13 @@ var render = function() {
                       id: "apellido",
                       required: "",
                       placeholder: "Ingresa tu apellido"
+                    },
+                    model: {
+                      value: _vm.usuario.apellido,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "apellido", $$v)
+                      },
+                      expression: "usuario.apellido"
                     }
                   })
                 ],
@@ -39719,6 +39762,13 @@ var render = function() {
                       id: "email",
                       required: "",
                       placeholder: "Ingresa tu E-mail"
+                    },
+                    model: {
+                      value: _vm.usuario.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "email", $$v)
+                      },
+                      expression: "usuario.email"
                     }
                   })
                 ],
@@ -39736,6 +39786,13 @@ var render = function() {
                       id: "universidad",
                       required: "",
                       options: _vm.universidades
+                    },
+                    model: {
+                      value: _vm.usuario.universidad,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "universidad", $$v)
+                      },
+                      expression: "usuario.universidad"
                     }
                   })
                 ],
@@ -39747,7 +39804,14 @@ var render = function() {
                 { attrs: { label: "Carrera:", "label-for": "carrera" } },
                 [
                   _c("b-form-select", {
-                    attrs: { id: "carrera", required: "" }
+                    attrs: { id: "carrera", required: "" },
+                    model: {
+                      value: _vm.usuario.carrera,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "carrera", $$v)
+                      },
+                      expression: "usuario.carrera"
+                    }
                   })
                 ],
                 1
@@ -39788,7 +39852,8 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-success btn-block",
-            attrs: { type: "submit" }
+            attrs: { type: "submit" },
+            on: { click: _vm.crearUsuario }
           },
           [_vm._v("Registrarse")]
         )
@@ -43698,9 +43763,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostNew'
+  name: 'PostNew',
+  data: function data() {
+    return {
+      post: null
+    };
+  },
+
+  methods: {
+    hacerPost: function hacerPost() {
+      console.log(this.post);
+
+      // axios.post('api/usuarios',this.usuario)
+      //     .then(({data}) => this.setSuccessMessage())
+    },
+    setSuccessMessage: function setSuccessMessage() {
+      this.console("volvio");
+    }
+  }
 });
 
 /***/ }),
@@ -43732,6 +43815,13 @@ var render = function() {
                           id: "newPost",
                           required: "",
                           placeholder: "Publica algo!!"
+                        },
+                        model: {
+                          value: _vm.post,
+                          callback: function($$v) {
+                            _vm.post = $$v
+                          },
+                          expression: "post"
                         }
                       })
                     ],
@@ -43748,7 +43838,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-button",
-                        { attrs: { type: "submit", variant: "primary" } },
+                        {
+                          attrs: { variant: "primary" },
+                          on: { click: _vm.hacerPost }
+                        },
                         [_vm._v("Publicar")]
                       )
                     ],
