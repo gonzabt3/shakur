@@ -5,7 +5,7 @@
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
-                        v-model="post"
+                        v-model="object.texto"
                         required
                         placeholder="Publica algo!!">
                         </b-form-input>
@@ -24,15 +24,18 @@ export default {
   name: 'PostNew',
     data() {
     return {
-        post:null
+        object:{
+            texto:null,
+            grupo_id:null,
+            user_id:null
+        }
     };
   },
     methods :{
       hacerPost(){
-            console.log(this.post);
-
-            // axios.post('api/usuarios',this.usuario)
-            //     .then(({data}) => this.setSuccessMessage())
+            console.log(this.object);
+            this.axios.post('api/publicacion',this.object)
+            // .then(({data}) => this.setSuccessMessage())
       },
       setSuccessMessage(){
       this.console("volvio");

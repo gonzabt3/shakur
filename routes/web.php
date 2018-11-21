@@ -16,4 +16,3 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::post('/publicacion','Api\PublicacionesController@store');
