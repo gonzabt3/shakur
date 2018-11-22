@@ -19,4 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/publicacion','Api\PublicacionesController@store');
 
+Route::get('/publicacion','Api\PublicacionesController@index');
+
+
 

@@ -39,6 +39,17 @@ export default {
             likes:7 
             }
       }
+  },
+  mounted(){
+        this.getPosts();
+  },
+  methods:{
+      getPosts(){
+        this.axios.get('api/publicacion')
+                    .then(({data}) => {
+                        console.log(data);
+                    });
+      }
   }
 };
 </script>

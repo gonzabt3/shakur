@@ -20,4 +20,13 @@ class PublicacionesController extends Controller
 
         return new PublicacionResource($publicacion);
     }
+
+
+    public function index(){
+
+        $publicaciones = Publicacion::latest();
+
+        return PublicacionResource::collection($publicaciones);
+
+    }
 }

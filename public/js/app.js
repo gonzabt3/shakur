@@ -41676,7 +41676,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41728,19 +41728,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Main',
-  components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
-  data: function data() {
-    return {
-      objectPost: {
-        name: 'Pepe San martin',
-        comentario: 'la concha del pato',
-        fecha: '20 de agosto 2055',
-        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-        likes: 7
-      }
-    };
-  }
+    name: 'Main',
+    components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
+    data: function data() {
+        return {
+            objectPost: {
+                name: 'Pepe San martin',
+                comentario: 'la concha del pato',
+                fecha: '20 de agosto 2055',
+                imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
+                likes: 7
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.getPosts();
+    },
+
+    methods: {
+        getPosts: function getPosts() {
+            this.axios.get('api/publicacion').then(function (_ref) {
+                var data = _ref.data;
+
+                console.log(data);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -45366,8 +45379,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     hacerPost: function hacerPost() {
       console.log(this.object);
-      this.axios.post('api/publicacion', this.object);
+      this.axios.post('api/publicacion', this.object)
       // .then(({data}) => this.setSuccessMessage())
+      .then(console.log("hola"));
     },
     setSuccessMessage: function setSuccessMessage() {
       this.console("volvio");
