@@ -5,9 +5,10 @@
             <b-col cols="3">
                 <settings-wall></settings-wall>
             </b-col>
-            <b-col cols="5">
+            <b-col cols="5" class="scroll">
                 <post-new></post-new>
-                <post-user v-bind:postData="objectPost"></post-user>
+                <!-- NOSE PORQUE MARCA ERROR PERO ANDA -->
+                <post-user  v-for="item in arrayPosts" :postData="item"></post-user>
             </b-col>
             <b-col>
                 <events-wall class="form-group"></events-wall>
@@ -31,29 +32,42 @@ export default {
   components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew },
   data(){
       return{
-          objectPost:{ 
-            name: 'Pepe San martin',
-            comentario:'la concha del pato',
-            fecha:'20 de agosto 2055',
-            imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-            likes:7 
-            }
+          arrayPosts:[],
       }
   },
   mounted(){
         this.getPosts();
   },
   methods:{
+    //   TRAE TODAS LAS PUBLICACIONES
       getPosts(){
         this.axios.get('api/publicacion')
                     .then(({data}) => {
-                        console.log(data);
+                        data.forEach(post => {
+                            let postAux={
+                                name: 'Pepe San martin',
+                                comentario:'la concha del pato',
+                                fecha:'20 de agosto 2055',
+                                imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
+                                likes:7 
+                            }
+                            postAux.comentario=post.texto,
+                            postAux.fecha=post.created_at
+
+                            this.arrayPosts.push(postAux);
+                        });
                     });
       }
   }
 };
 </script>
 
-<style>
+<style scoped>
+
+.scroll {
+    overflow-y: scroll;
+    /*  ARREGLAR ESTA NEGRDADA */
+    height: 500px;
+}
 
 </style>

@@ -41597,19 +41597,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(239)
+  __webpack_require__(290)
 }
 var normalizeComponent = __webpack_require__(7)
 /* script */
 var __vue_script__ = __webpack_require__(241)
 /* template */
-var __vue_template__ = __webpack_require__(287)
+var __vue_template__ = __webpack_require__(292)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-2e13bc20"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -41642,46 +41642,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 239 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(240);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(10)("6382f793", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e13bc20\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e13bc20\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 240 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 239 */,
+/* 240 */,
 /* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -41718,6 +41680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -41732,13 +41695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
     data: function data() {
         return {
-            objectPost: {
-                name: 'Pepe San martin',
-                comentario: 'la concha del pato',
-                fecha: '20 de agosto 2055',
-                imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                likes: 7
-            }
+            arrayPosts: []
         };
     },
     mounted: function mounted() {
@@ -41746,11 +41703,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        //   TRAE TODAS LAS PUBLICACIONES
         getPosts: function getPosts() {
+            var _this = this;
+
             this.axios.get('api/publicacion').then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
+                data.forEach(function (post) {
+                    var postAux = {
+                        name: 'Pepe San martin',
+                        comentario: 'la concha del pato',
+                        fecha: '20 de agosto 2055',
+                        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
+                        likes: 7
+                    };
+                    postAux.comentario = post.texto, postAux.fecha = post.created_at;
+
+                    _this.arrayPosts.push(postAux);
+                });
             });
         }
     }
@@ -45474,7 +45445,55 @@ if (false) {
 }
 
 /***/ }),
-/* 287 */
+/* 287 */,
+/* 288 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 289 */,
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(291);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(10)("0d9e68aa", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e13bc20\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e13bc20\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.scroll[data-v-2e13bc20] {\n    overflow-y: scroll;\n    /*  ARREGLAR ESTA NEGRDADA */\n    height: 500px;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45493,13 +45512,15 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-col",
-            { attrs: { cols: "5" } },
+            { staticClass: "scroll", attrs: { cols: "5" } },
             [
               _c("post-new"),
               _vm._v(" "),
-              _c("post-user", { attrs: { postData: _vm.objectPost } })
+              _vm._l(_vm.arrayPosts, function(item) {
+                return _c("post-user", { attrs: { postData: item } })
+              })
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c(
@@ -45527,12 +45548,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-2e13bc20", module.exports)
   }
 }
-
-/***/ }),
-/* 288 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

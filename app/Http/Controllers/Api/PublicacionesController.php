@@ -24,9 +24,9 @@ class PublicacionesController extends Controller
 
     public function index(){
 
-        $publicaciones = Publicacion::latest();
-
-        return PublicacionResource::collection($publicaciones);
+        $publicaciones = Publicacion::all();
+        return($publicaciones);
+        // return PublicacionResource::collection($publicaciones);
 
     }
 }
