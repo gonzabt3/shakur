@@ -23,21 +23,27 @@
                                 placeholder="Ingresa tu E-mail">
                     </b-form-input>
                 </b-form-group>
-                <b-form-group label="Universidad:" label-for="universidad">
+                <!-- <b-form-group label="Universidad:" label-for="universidad">
                     <b-form-select id="universidad"
                                 v-model="usuario.universidad"
                                 required
                                 :options="universidades"
                                 >
                     </b-form-select>
-                </b-form-group>
-                <b-form-group label="Carrera:" label-for="carrera">
+                </b-form-group> -->
+                <mp-select 
+                v-model="usuario.universidad"
+                label="Universidad:" 
+                name="state"
+                url="api/universidades"
+                />
+                <!-- <b-form-group label="Carrera:" label-for="carrera">
                     <b-form-select id="carrera"
                         v-model="usuario.carrera"
                         required
                         >
                     </b-form-select>
-                </b-form-group>
+                </b-form-group> -->
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
                         <b-form-checkbox required value="checkCondiciones">
@@ -52,10 +58,12 @@
     </b-modal>
 </template>
 <script>
+import MpSelect from "../components/common/MpSelect";
 
 
 export default {
   name: 'NewUser',
+  components: { MpSelect },
   data() {
     return {
       universidades: [

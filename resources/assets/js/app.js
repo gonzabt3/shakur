@@ -27,7 +27,8 @@ Vue.use(BootstrapVue);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAxios, axios)
 
-
+//pongo lodash
+window._ = require('lodash');
 
 /* eslint-disable no-new */
 new Vue({

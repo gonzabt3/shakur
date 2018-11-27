@@ -21,5 +21,7 @@ Route::post('/publicacion','Api\PublicacionesController@store');
 
 Route::get('/publicacion','Api\PublicacionesController@index');
 
+Route::get('/universidades','Api\UniversidadesController@index');
+
 
 
