@@ -3,7 +3,7 @@
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-  <b-navbar-brand href="#">Shakur</b-navbar-brand>
+  <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
 
   <b-collapse is-nav id="nav_collapse">
 
@@ -31,3 +31,9 @@ export default {
 };
 
 </script>
+
+<style scoped>
+.valentine{
+  font-family:valentine !important;
+}
+</style>

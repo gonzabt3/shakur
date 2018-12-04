@@ -77,7 +77,7 @@ export default {
   props:['postData'],
   data() {
     return {
-      beerIcon: '../../../../public/images/beer.png',
+      beerIcon: '../images/beer.png',
       commentIcon: '../images/comment.png',
       progreso: 55,
       cantLikes: this.postData.likes,
