@@ -1,7 +1,11 @@
 <template>
       <b-container >
         <b-row >
-          <b-col></b-col>
+          <b-col>
+            <h1 class="valentine">Shakur</h1>
+            <h1>Tu lugar para</h1>
+            <h1>{{palabra}}</h1>
+          </b-col>
           <b-col >
           <b-card>
             <h1>Inicio</h1>
@@ -47,23 +51,48 @@ export default {
         user: '',
         pass: '',
       },
-    };
+      palabra:'',
+      arrayPalabras:['estar','estudiar','conocer','leer','matear','pensar','crecer']
+    }
+    
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     },
+    cambiarPalabra(){
+
+          let array=this.arrayPalabras;
+          var i=0
+          this.palabra=setInterval(function(array){
+              if(i>array.length){
+                i=0
+              }else{
+                i=i+1
+              }
+              this.palabra=array[i]
+          }.bind(this),1000,array);
+        }
   },
+  beforeMount(){
+    this.cambiarPalabra();
+  }
 };
 </script>
 
 <style >
 body{
-    background-image:url('derecho.jpg');
+    background-image:url('fadu.jpg');
     height: 100%;
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
     }
+
+    .valentine{
+  font-family:valentine !important;
+  font-size: 750%;
+  color:white;
+  }
 </style>
