@@ -1,5 +1,5 @@
 <template>
-      <b-container >
+      <b-container>
         <b-row >
           <b-col>
             <h1 class="valentine">Shakur</h1>
@@ -51,8 +51,8 @@ export default {
         user: '',
         pass: '',
       },
-      palabra:'',
-      arrayPalabras:['estar','estudiar','conocer','leer','matear','pensar','crecer']
+      palabra:'aprender',
+      arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.']
     }
     
   },
@@ -64,15 +64,14 @@ export default {
     cambiarPalabra(){
           let array=this.arrayPalabras;
           var i=0
-          var y=0
           this.palabra=setInterval(function(array){
-              if(i>array.length){
+              if(i>array.length-1){
                 i=0
-              }else{
-                i=i+1
-              }              
+              }
               this.palabra=array[i]
-          }.bind(this),2000,array);
+              console.log(i);
+              i+=1              
+          }.bind(this),1500,array);
         }
   },
   beforeMount(){
@@ -81,8 +80,8 @@ export default {
 };
 </script>
 
-<style >
-body{
+<style scoped>
+.fondo{
     background-image:url('fadu.jpg');
     height: 100%;
     /* background-position: center; */
@@ -90,14 +89,15 @@ body{
     background-size: cover;
     }
 
-    .valentine{
+  .valentine{
   font-family:valentine !important;
-  font-size: 750%;
+  font-size: 900%;
   color:white;
   }
 
   .roboto{
-     font-family:roboto;
-     /* src: url(""); */
+    font-family:'Roboto:900i', sans-serif;
+    font-size: 400%;
+    color:white;
   }
 </style>

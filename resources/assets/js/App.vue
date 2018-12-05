@@ -13,3 +13,13 @@ export default {
   name: 'App',
 };
 </script>
+
+<style >
+body{
+    background-image:url('../../../public/images/fadu.jpg');
+    height: 100%;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+</style>
