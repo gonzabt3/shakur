@@ -41166,7 +41166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           i = 0;
         }
         this.palabra = array[i];
-        console.log(i);
+        // console.log(i);
         i += 1;
       }.bind(this), 1500, array);
     }
@@ -41262,7 +41262,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41275,6 +41275,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41349,7 +41354,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         email: null,
         universidad: null,
         carrera: null
-      }
+      },
+      urlCarrera: ''
     };
   },
 
@@ -41366,6 +41372,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     setSuccessMessage: function setSuccessMessage() {
       this.console("volvio");
+    }
+  },
+  watch: {
+    "usuario.universidad": function usuarioUniversidad(value) {
+      this.urlCarrera = "api/carrera/" + value;
     }
   }
 
@@ -41675,10 +41686,59 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { label: "Contraseña:", "label-for": "password1" } },
+                [
+                  _c("b-form-input", {
+                    attrs: {
+                      id: "password1",
+                      required: "",
+                      placeholder: "Ingresa tu Contraseña"
+                    },
+                    model: {
+                      value: _vm.usuario.password1,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "password1", $$v)
+                      },
+                      expression: "usuario.password1"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    label: "Confirmar contraseña:",
+                    "label-for": "password2"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: {
+                      id: "password2",
+                      required: "",
+                      placeholder: "Confirma tu Contraseña"
+                    },
+                    model: {
+                      value: _vm.usuario.password2,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "password2", $$v)
+                      },
+                      expression: "usuario.password2"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("mp-select", {
                 attrs: {
                   label: "Universidad:",
-                  name: "state",
+                  name: "universidad",
                   url: "api/universidades"
                 },
                 model: {
@@ -41687,6 +41747,21 @@ var render = function() {
                     _vm.$set(_vm.usuario, "universidad", $$v)
                   },
                   expression: "usuario.universidad"
+                }
+              }),
+              _vm._v(" "),
+              _c("mp-select", {
+                attrs: {
+                  label: "Carrera:",
+                  name: "cerrera",
+                  url: _vm.urlCarrera
+                },
+                model: {
+                  value: _vm.usuario.carrera,
+                  callback: function($$v) {
+                    _vm.$set(_vm.usuario, "carrera", $$v)
+                  },
+                  expression: "usuario.carrera"
                 }
               }),
               _vm._v(" "),

@@ -2,7 +2,7 @@
     <b-modal id="newUser" title="Crear Usuario">
         <b-container>
             <b-form>
-                <b-form-group label="Nombre:" label-for="nombre">
+                <b-form-group  label="Nombre:" label-for="nombre">
                     <b-form-input id="nombre"
                                 v-model="usuario.name"
                                 required
@@ -23,27 +23,32 @@
                                 placeholder="Ingresa tu E-mail">
                     </b-form-input>
                 </b-form-group>
-                <!-- <b-form-group label="Universidad:" label-for="universidad">
-                    <b-form-select id="universidad"
-                                v-model="usuario.universidad"
+                <b-form-group label="Contraseña:" label-for="password1">
+                    <b-form-input id="password1"
+                                v-model="usuario.password1"
                                 required
-                                :options="universidades"
-                                >
-                    </b-form-select>
-                </b-form-group> -->
+                                placeholder="Ingresa tu Contraseña">
+                    </b-form-input>
+                </b-form-group>
+                <b-form-group label="Confirmar contraseña:" label-for="password2">
+                    <b-form-input id="password2"
+                                v-model="usuario.password2"
+                                required
+                                placeholder="Confirma tu Contraseña">
+                    </b-form-input>
+                </b-form-group>
                 <mp-select 
                 v-model="usuario.universidad"
                 label="Universidad:" 
-                name="state"
+                name="universidad"
                 url="api/universidades"
                 />
-                <!-- <b-form-group label="Carrera:" label-for="carrera">
-                    <b-form-select id="carrera"
-                        v-model="usuario.carrera"
-                        required
-                        >
-                    </b-form-select>
-                </b-form-group> -->
+                <mp-select 
+                    v-model="usuario.carrera"
+                    label="Carrera:" 
+                    name="cerrera"
+                    :url="urlCarrera"
+                />
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
                         <b-form-checkbox required value="checkCondiciones">
@@ -75,7 +80,8 @@ export default {
           email:null,
           universidad:null,
           carrera:null   
-      }
+      },
+      urlCarrera:''
     };
   },
   methods :{
@@ -88,6 +94,11 @@ export default {
       setSuccessMessage(){
       this.console("volvio");
     }
+  },
+  watch:{
+     "usuario.universidad": function(value){
+         this.urlCarrera="api/carrera/"+value
+     }  
   }
   
 };

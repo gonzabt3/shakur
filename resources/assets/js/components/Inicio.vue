@@ -69,7 +69,7 @@ export default {
                 i=0
               }
               this.palabra=array[i]
-              console.log(i);
+              // console.log(i);
               i+=1              
           }.bind(this),1500,array);
         }
