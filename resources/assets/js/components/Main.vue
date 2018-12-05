@@ -6,9 +6,14 @@
                 <settings-wall></settings-wall>
             </b-col>
             <b-col cols="5" class="scroll">
-                <post-new></post-new>
-                <!-- NOSE PORQUE MARCA ERROR PERO ANDA -->
-                <post-user  v-for="item in arrayPosts" :postData="item"></post-user>
+                <post-new 
+                @responseGetPosts="getPosts"
+                ></post-new>
+                <!-- tira error por un bug de la verga del eslint -->
+                <post-user  
+                v-for="item in arrayPosts" 
+                :postData="item" 
+                ></post-user>
             </b-col>
             <b-col>
                 <events-wall class="form-group"></events-wall>
@@ -41,6 +46,8 @@ export default {
   methods:{
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(){
+        //vacio el array para que recarle los post
+        this.arrayPosts=[]
         this.axios.get('api/publicacion')
                     .then(({data}) => {
                         data.forEach(post => {

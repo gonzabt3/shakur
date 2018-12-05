@@ -42012,6 +42012,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -42038,6 +42043,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPosts: function getPosts() {
             var _this = this;
 
+            //vacio el array para que recarle los post
+            this.arrayPosts = [];
             this.axios.get('api/publicacion').then(function (_ref) {
                 var data = _ref.data;
 
@@ -45726,13 +45733,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     hacerPost: function hacerPost() {
-      console.log(this.object);
-      this.axios.post('api/publicacion', this.object)
-      // .then(({data}) => this.setSuccessMessage())
-      .then(console.log("hola"));
-    },
-    setSuccessMessage: function setSuccessMessage() {
-      this.console("volvio");
+      // console.log(this.object);
+      this.axios.post('api/publicacion', this.object).then(this.$emit("responseGetPosts"));
     }
   }
 });
@@ -45843,7 +45845,7 @@ var render = function() {
             "b-col",
             { staticClass: "scroll", attrs: { cols: "5" } },
             [
-              _c("post-new"),
+              _c("post-new", { on: { responseGetPosts: _vm.getPosts } }),
               _vm._v(" "),
               _vm._l(_vm.arrayPosts, function(item) {
                 return _c("post-user", { attrs: { postData: item } })

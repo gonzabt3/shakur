@@ -33,14 +33,12 @@ export default {
   },
     methods :{
       hacerPost(){
-            console.log(this.object);
+            // console.log(this.object);
             this.axios.post('api/publicacion',this.object)
-            // .then(({data}) => this.setSuccessMessage())
-            .then(console.log("hola"));
-      },
-      setSuccessMessage(){
-      this.console("volvio");
-    }
+            .then(
+                this.$emit("responseGetPosts")
+                );
+        }
   }
 };
 </script>
