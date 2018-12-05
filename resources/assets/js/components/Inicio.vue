@@ -3,8 +3,8 @@
         <b-row >
           <b-col>
             <h1 class="valentine">Shakur</h1>
-            <h1>Tu lugar para</h1>
-            <h1>{{palabra}}</h1>
+            <h1 class="roboto">Tu lugar para</h1>
+            <h1 class="roboto">{{palabra}}</h1>
           </b-col>
           <b-col >
           <b-card>
@@ -62,17 +62,17 @@ export default {
       alert(JSON.stringify(this.form));
     },
     cambiarPalabra(){
-
           let array=this.arrayPalabras;
           var i=0
+          var y=0
           this.palabra=setInterval(function(array){
               if(i>array.length){
                 i=0
               }else{
                 i=i+1
-              }
+              }              
               this.palabra=array[i]
-          }.bind(this),1000,array);
+          }.bind(this),2000,array);
         }
   },
   beforeMount(){
@@ -94,5 +94,10 @@ body{
   font-family:valentine !important;
   font-size: 750%;
   color:white;
+  }
+
+  .roboto{
+     font-family:roboto;
+     /* src: url(""); */
   }
 </style>
