@@ -46,7 +46,7 @@
                 <mp-select 
                     v-model="usuario.carrera"
                     label="Carrera:" 
-                    name="cerrera"
+                    name="carrera"
                     :url="urlCarrera"
                 />
                 <b-form-group>
@@ -97,7 +97,8 @@ export default {
   },
   watch:{
      "usuario.universidad": function(value){
-         this.urlCarrera="api/carrera/"+value
+         this.urlCarrera="api/carreras/"+value
+        this.$emit("reload")
      }  
   }
   

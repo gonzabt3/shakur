@@ -1,20 +1,21 @@
 <template>
-    <div >
+    <b-container>
         <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6 @click="showModal"><u>Mi perfil</u></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>
-    </div>
+        <modal-config-user></modal-config-user>
+    </b-container>
 </template>
 <script>
 import ModalConfigUser from '../components/modals/ModalConfigUser';
 
-
 export default {
   name: 'SettingsWall',
+  components: { ModalConfigUser },
   methods:{
       showModal(){
-          this.$root.$emit('bv::show::modal','newEvent')
+          this.$root.$emit('bv::show::modal','configUser')
       }
   }
 };

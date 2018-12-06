@@ -23,5 +23,8 @@ Route::get('/publicacion','Api\PublicacionesController@index');
 
 Route::get('/universidades','Api\UniversidadesController@index');
 
+Route::get('/carreras/{id}','Api\CarrerasController@index');
+
+
 
 

@@ -10,9 +10,8 @@
         :disabled="disabled" 
         :name="name" 
         text-field="description" 
-        value-field="id" 
+        value-field="id"
         @change.native="$emit('change', $event.target.value);" />
-     
     </b-form-group>
   </div>
 </template>
@@ -55,9 +54,11 @@ export default {
     },
     methods: {
         getValues() {
+            // console.log(this.url);
             this.axios
                 .get(this.url)
                 .then((response) => {
+                    // console.log(response);
                     let responseOptions = _.map(response.data, option => {
                         return {
                             id: option[this.valueName],
