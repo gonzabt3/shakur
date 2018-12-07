@@ -1,7 +1,7 @@
 <template>
     <b-container>
         <b-card class="shadow" id="settingsCard" title="Configuracion">
-            <h6 @click="showModal"><u>Mi perfil</u></h6>
+            <h6 class="pointer" @click="showModal"><u>Mi perfil</u></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>
         <modal-config-user></modal-config-user>
@@ -28,4 +28,8 @@ export default {
 .shadow{
         box-shadow: 10px 10px grey;
     }
+
+.pointer{
+    cursor: pointer;
+}
 </style>

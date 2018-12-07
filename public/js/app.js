@@ -45720,7 +45720,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n#settingsCard[data-v-577bfbc4]{\n    height: 100%;\n}\n.shadow[data-v-577bfbc4]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n", ""]);
+exports.push([module.i, "\n#settingsCard[data-v-577bfbc4]{\n    height: 100%;\n}\n.shadow[data-v-577bfbc4]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.pointer[data-v-577bfbc4]{\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -45841,7 +45841,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45870,16 +45870,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      data: {
-        nombre: '',
-        temas: ''
-      }
-    };
-  }
+    data: function data() {
+        return {
+            data: {
+                nombre: '',
+                temas: ''
+            },
+            checkedAlias: true
+        };
+    }
 });
 
 /***/ }),
@@ -45894,56 +45933,143 @@ var render = function() {
     "b-modal",
     {
       ref: "configUser",
-      attrs: { id: "configUser", title: "Configuracion usuario" }
+      attrs: { size: "lg", id: "configUser", title: "Configuracion usuario" }
     },
     [
       _c(
         "b-container",
+        { attrs: { fluid: "" } },
         [
           _c(
-            "b-form",
+            "b-row",
             [
               _c(
-                "b-form-group",
-                { attrs: { label: "Nombre:", "label-for": "nombre" } },
+                "b-col",
                 [
-                  _c("b-form-input", {
-                    attrs: {
-                      id: "nombre",
-                      placeholder: "Ingresa nombre del evento"
-                    },
-                    model: {
-                      value: _vm.data.nombre,
-                      callback: function($$v) {
-                        _vm.$set(_vm.data, "nombre", $$v)
-                      },
-                      expression: "data.nombre"
-                    }
-                  })
+                  _c(
+                    "b-row",
+                    [
+                      _c(
+                        "b-col",
+                        { staticClass: "col-2" },
+                        [
+                          _c("b-form-group", {
+                            attrs: {
+                              id: "alias",
+                              label: "Alias:",
+                              "label-for": "alias"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        [
+                          _c("b-form-input", {
+                            attrs: {
+                              id: "alias",
+                              placeholder: "Ingrese alias",
+                              disabled: !_vm.checkedAlias
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        { staticClass: "col-1" },
+                        [
+                          _c("b-form-checkbox", {
+                            model: {
+                              value: _vm.checkedAlias,
+                              callback: function($$v) {
+                                _vm.checkedAlias = $$v
+                              },
+                              expression: "checkedAlias"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-row",
+                    [
+                      _c(
+                        "b-col",
+                        { staticClass: "col-2" },
+                        [
+                          _c("b-form-group", {
+                            attrs: {
+                              id: "nombre",
+                              label: "Nombre:",
+                              "label-for": "nombre"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        [
+                          _c("b-form-input", {
+                            attrs: {
+                              id: "nombre",
+                              placeholder: "Ingrese Nombre"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-row",
+                    [
+                      _c(
+                        "b-col",
+                        { staticClass: "col-2" },
+                        [
+                          _c("b-form-group", {
+                            attrs: {
+                              id: "apellido",
+                              label: "Apellido:",
+                              "label-for": "apellido"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        [
+                          _c("b-form-input", {
+                            attrs: {
+                              id: "apellido",
+                              placeholder: "Ingrese apellido"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { label: "Temas:", "label-for": "temas" } },
-                [
-                  _c("b-form-input", {
-                    attrs: {
-                      id: "temas",
-                      placeholder: "Ingresa los temas del parcial"
-                    },
-                    model: {
-                      value: _vm.data.temas,
-                      callback: function($$v) {
-                        _vm.$set(_vm.data, "temas", $$v)
-                      },
-                      expression: "data.temas"
-                    }
-                  })
-                ],
-                1
-              )
+              _c("b-col", [_vm._v("2 of 3")])
             ],
             1
           )
@@ -45982,7 +46108,7 @@ var render = function() {
           attrs: { id: "settingsCard", title: "Configuracion" }
         },
         [
-          _c("h6", { on: { click: _vm.showModal } }, [
+          _c("h6", { staticClass: "pointer", on: { click: _vm.showModal } }, [
             _c("u", [_vm._v("Mi perfil")])
           ])
         ]
