@@ -11,6 +11,5 @@ class CarrerasController extends Controller
 {
     public function index($id){
         return Universidad::find($id)->carreras;
-        // return response()->json(Universidad::find($id)->carreras());
     }
 }

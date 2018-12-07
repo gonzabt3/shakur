@@ -37,18 +37,41 @@
                                 placeholder="Confirma tu Contraseña">
                     </b-form-input>
                 </b-form-group>
-                <mp-select 
-                v-model="usuario.universidad"
-                label="Universidad:" 
-                name="universidad"
-                url="api/universidades"
-                />
-                <mp-select 
+                
+                <!-- SELECT UNIVERSIDADES -->
+                <b-form-group 
+                label="Universidad" 
+                label-for="universidad">
+                <b-form-select
+                    v-model="usuario.universidad" 
+                    id="universidad" 
+                    :options="optionsUniversidad" 
+                    name="universidad" 
+                    text-field="description" 
+                    value-field="id"
+                        />
+                </b-form-group>
+
+                <!-- SELECT CARRERAS -->
+                <b-form-group 
+                label="Carrera" 
+                label-for="carrera">
+                <b-form-select
+                    v-model="usuario.carrera" 
+                    id="carrera" 
+                    :options="optionsCarrera" 
+                    name="carrera" 
+                    text-field="description" 
+                    value-field="id"
+                        />
+                </b-form-group>
+                
+                <!-- <mp-select 
                     v-model="usuario.carrera"
                     label="Carrera:" 
                     name="carrera"
-                    :url="urlCarrera"
-                />
+                    ref="selectCarrera"
+                /> -->
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
                         <b-form-checkbox required value="checkCondiciones">
@@ -81,24 +104,87 @@ export default {
           universidad:null,
           carrera:null   
       },
-      urlCarrera:''
+      optionsUniversidad: [
+                {
+                    id: null,
+                    description: "Seleccionar una opción",
+                    disabled: true
+                }
+            ],
+        optionsCarrera: [
+        {
+            id: null,
+            description: "Seleccionar una opción",
+            disabled: true
+        }
+        ],
+        urlCarrera:''
     };
   },
   methods :{
-      crearUsuario(){
+        crearUsuario(){
             console.log(this.usuario);
 
             axios.post('api/usuarios',this.usuario)
                 .then(({data}) => this.setSuccessMessage())
-      },
-      setSuccessMessage(){
-      this.console("volvio");
-    }
+        },
+        setSuccessMessage(){
+            this.console("volvio");
+        },
+        // LLENAR SELECT universidades
+        getValuesSelectUniversidad(){
+            this.axios
+                .get("api/universidades")
+                .then((response) => {
+                    let responseOptions = _.map(response.data, option => {
+                        return {
+                            id: option.id,
+                            description: option.nombre
+                        };
+                    });
+                    this.optionsUniversidad = _.union(this.optionsUniversidad, responseOptions);
+                    this.error = "";
+                })
+                .catch(error => {
+                    this.error =
+                        "Ocurrió un error al llenar los valores de este selector";
+                });   
+        },
+        getValuesSelectCarrera(){
+            //villereada para limpiar el array 
+            this.optionsCarrera=[]
+            this.optionsCarrera.push({
+            id: null,
+            description: "Seleccionar una opción",
+            disabled: true
+            })
+            this.usuario.carrera=null
+
+             this.axios
+                .get(this.urlCarrera)
+                .then((response) => {
+                    let responseOptions = _.map(response.data, option => {
+                        return {
+                            id: option.id,
+                            description: option.nombre
+                        };
+                    });
+                    this.optionsCarrera = _.union(this.optionsCarrera, responseOptions);
+                    this.error = "";
+                })
+                .catch(error => {
+                    this.error =
+                        "Ocurrió un error al llenar los valores de este selector";
+                });  
+        }
+  },
+  mounted(){
+      this.getValuesSelectUniversidad()
   },
   watch:{
      "usuario.universidad": function(value){
-         this.urlCarrera="api/carreras/"+value
-        this.$emit("reload")
+        this.urlCarrera="api/carreras/"+value
+        this.getValuesSelectCarrera()
      }  
   }
   

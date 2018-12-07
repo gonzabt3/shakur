@@ -41262,7 +41262,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41339,47 +41339,127 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'NewUser',
-  components: { MpSelect: __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default.a },
-  data: function data() {
-    return {
-      universidades: ['Seleccionar', 'UBA', 'UTN', 'UNLa'],
-      usuario: {
-        nombre: null,
-        apellido: null,
-        email: null,
-        universidad: null,
-        carrera: null
-      },
-      urlCarrera: ''
-    };
-  },
-
-  methods: {
-    crearUsuario: function crearUsuario() {
-      var _this = this;
-
-      console.log(this.usuario);
-
-      axios.post('api/usuarios', this.usuario).then(function (_ref) {
-        var data = _ref.data;
-        return _this.setSuccessMessage();
-      });
+    name: 'NewUser',
+    components: { MpSelect: __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default.a },
+    data: function data() {
+        return {
+            universidades: ['Seleccionar', 'UBA', 'UTN', 'UNLa'],
+            usuario: {
+                nombre: null,
+                apellido: null,
+                email: null,
+                universidad: null,
+                carrera: null
+            },
+            optionsUniversidad: [{
+                id: null,
+                description: "Seleccionar una opción",
+                disabled: true
+            }],
+            optionsCarrera: [{
+                id: null,
+                description: "Seleccionar una opción",
+                disabled: true
+            }],
+            urlCarrera: ''
+        };
     },
-    setSuccessMessage: function setSuccessMessage() {
-      this.console("volvio");
+
+    methods: {
+        crearUsuario: function crearUsuario() {
+            var _this = this;
+
+            console.log(this.usuario);
+
+            axios.post('api/usuarios', this.usuario).then(function (_ref) {
+                var data = _ref.data;
+                return _this.setSuccessMessage();
+            });
+        },
+        setSuccessMessage: function setSuccessMessage() {
+            this.console("volvio");
+        },
+
+        // LLENAR SELECT universidades
+        getValuesSelectUniversidad: function getValuesSelectUniversidad() {
+            var _this2 = this;
+
+            this.axios.get("api/universidades").then(function (response) {
+                var responseOptions = _.map(response.data, function (option) {
+                    return {
+                        id: option.id,
+                        description: option.nombre
+                    };
+                });
+                _this2.optionsUniversidad = _.union(_this2.optionsUniversidad, responseOptions);
+                _this2.error = "";
+            }).catch(function (error) {
+                _this2.error = "Ocurrió un error al llenar los valores de este selector";
+            });
+        },
+        getValuesSelectCarrera: function getValuesSelectCarrera() {
+            var _this3 = this;
+
+            //villereada para limpiar el array 
+            this.optionsCarrera = [];
+            this.optionsCarrera.push({
+                id: null,
+                description: "Seleccionar una opción",
+                disabled: true
+            });
+            this.usuario.carrera = null;
+
+            this.axios.get(this.urlCarrera).then(function (response) {
+                var responseOptions = _.map(response.data, function (option) {
+                    return {
+                        id: option.id,
+                        description: option.nombre
+                    };
+                });
+                _this3.optionsCarrera = _.union(_this3.optionsCarrera, responseOptions);
+                _this3.error = "";
+            }).catch(function (error) {
+                _this3.error = "Ocurrió un error al llenar los valores de este selector";
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getValuesSelectUniversidad();
+    },
+
+    watch: {
+        "usuario.universidad": function usuarioUniversidad(value) {
+            this.urlCarrera = "api/carreras/" + value;
+            this.getValuesSelectCarrera();
+        }
     }
-  },
-  watch: {
-    "usuario.universidad": function usuarioUniversidad(value) {
-      this.urlCarrera = "api/carreras/" + value;
-      this.$emit("reload");
-    }
-  }
 
 });
 
@@ -41469,7 +41549,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41538,7 +41618,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getValues: function getValues() {
             var _this = this;
 
-            // console.log(this.url);
+            console.log("url select:", this.url);
+            // this.options=[]
             this.axios.get(this.url).then(function (response) {
                 // console.log(response);
                 var responseOptions = _.map(response.data, function (option) {
@@ -41737,35 +41818,53 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("mp-select", {
-                attrs: {
-                  label: "Universidad:",
-                  name: "universidad",
-                  url: "api/universidades"
-                },
-                model: {
-                  value: _vm.usuario.universidad,
-                  callback: function($$v) {
-                    _vm.$set(_vm.usuario, "universidad", $$v)
-                  },
-                  expression: "usuario.universidad"
-                }
-              }),
+              _c(
+                "b-form-group",
+                { attrs: { label: "Universidad", "label-for": "universidad" } },
+                [
+                  _c("b-form-select", {
+                    attrs: {
+                      id: "universidad",
+                      options: _vm.optionsUniversidad,
+                      name: "universidad",
+                      "text-field": "description",
+                      "value-field": "id"
+                    },
+                    model: {
+                      value: _vm.usuario.universidad,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "universidad", $$v)
+                      },
+                      expression: "usuario.universidad"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("mp-select", {
-                attrs: {
-                  label: "Carrera:",
-                  name: "carrera",
-                  url: _vm.urlCarrera
-                },
-                model: {
-                  value: _vm.usuario.carrera,
-                  callback: function($$v) {
-                    _vm.$set(_vm.usuario, "carrera", $$v)
-                  },
-                  expression: "usuario.carrera"
-                }
-              }),
+              _c(
+                "b-form-group",
+                { attrs: { label: "Carrera", "label-for": "carrera" } },
+                [
+                  _c("b-form-select", {
+                    attrs: {
+                      id: "carrera",
+                      options: _vm.optionsCarrera,
+                      name: "carrera",
+                      "text-field": "description",
+                      "value-field": "id"
+                    },
+                    model: {
+                      value: _vm.usuario.carrera,
+                      callback: function($$v) {
+                        _vm.$set(_vm.usuario, "carrera", $$v)
+                      },
+                      expression: "usuario.carrera"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "b-form-group",

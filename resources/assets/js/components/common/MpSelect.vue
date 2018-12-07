@@ -54,7 +54,8 @@ export default {
     },
     methods: {
         getValues() {
-            // console.log(this.url);
+            console.log("url select:",this.url);
+            // this.options=[]
             this.axios
                 .get(this.url)
                 .then((response) => {
