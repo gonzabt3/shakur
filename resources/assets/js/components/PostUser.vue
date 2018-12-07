@@ -54,12 +54,13 @@
                         </b-col>
                         <b-col cols="7">
                             <b-form-input id="newComent"
+                            Rv-model="object.texto"
                             required
                             placeholder="Comenta algo">
                             </b-form-input>
                         </b-col>
                         <b-col>
-                            <b-button type="submit" variant="primary">Comentar</b-button>
+                            <b-button @click="submitComentario" type="submit" variant="primary">Comentar</b-button>
                         </b-col>
                     </b-row>
                 </div>
@@ -87,6 +88,11 @@ export default {
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
+      object:{
+          texto:'',
+          user:null,
+          publicacion:null
+      }
     };
   },
   methods: {
@@ -99,6 +105,11 @@ export default {
         this.cantLikes -= 1;
       }
     },
+    submitComentario(){
+        // console.log(this.object);
+        // this.axios.post('api/comentario',this.object)
+
+    }
   },
   watch: {
     btnLikeEstado(value) {

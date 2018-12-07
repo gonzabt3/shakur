@@ -9,7 +9,7 @@
                     <h5 class="no-margin-bottom">Gonzalo Muscolo</h5>
                 </b-row>
                 <b-row>
-                    <p class="form-control">no me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizas</p>
+                    <p class="form-control">no me simpatizasno me simpatizasno </p>
                 </b-row>
                 <b-row>
                     <b-button size="sm" @click="btnLike">
@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      beerIcon: 'static/image/beer.png',
+      beerIcon: '../images/beer.png',
       cantLikes: 5,
       btnLikeEstado: false,
       stringBtnLike: 'Like',
@@ -45,7 +45,7 @@ export default {
   },
   watch: {
     btnLikeEstado(value) {
-      this.beerIcon = (value == true ? 'static/image/beerVacia.png' : 'static/image/beer.png');
+      this.beerIcon = (value == true ? '../images/beerVacia.png' : '../images/beer.png');
       this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
     },
   },

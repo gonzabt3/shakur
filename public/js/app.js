@@ -42616,6 +42616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -42634,7 +42635,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       btnLikeEstado: false,
       showComentarios: false,
       showManyComentarios: false,
-      iconEyeComentarios: 'eye'
+      iconEyeComentarios: 'eye',
+      object: {
+        texto: '',
+        user: null,
+        publicacion: null
+      }
     };
   },
 
@@ -42647,6 +42653,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.btnLikeEstado = false;
         this.cantLikes -= 1;
       }
+    },
+    submitComentario: function submitComentario() {
+      // console.log(this.object);
+      // this.axios.post('api/comentario',this.object)
+
     }
   },
   watch: {
@@ -42786,7 +42797,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      beerIcon: 'static/image/beer.png',
+      beerIcon: '../images/beer.png',
       cantLikes: 5,
       btnLikeEstado: false,
       stringBtnLike: 'Like'
@@ -42806,7 +42817,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   watch: {
     btnLikeEstado: function btnLikeEstado(value) {
-      this.beerIcon = value == true ? 'static/image/beerVacia.png' : 'static/image/beer.png';
+      this.beerIcon = value == true ? '../images/beerVacia.png' : '../images/beer.png';
       this.stringBtnLike = value == true ? 'Dislike' : 'Like';
     }
   }
@@ -42858,9 +42869,7 @@ var render = function() {
               _vm._v(" "),
               _c("b-row", [
                 _c("p", { staticClass: "form-control" }, [
-                  _vm._v(
-                    "no me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizasno me simpatizas"
-                  )
+                  _vm._v("no me simpatizasno me simpatizasno ")
                 ])
               ]),
               _vm._v(" "),
@@ -43139,6 +43148,7 @@ var render = function() {
                               _c("b-form-input", {
                                 attrs: {
                                   id: "newComent",
+                                  "Rv-model": "object.texto",
                                   required: "",
                                   placeholder: "Comenta algo"
                                 }
@@ -43153,7 +43163,8 @@ var render = function() {
                               _c(
                                 "b-button",
                                 {
-                                  attrs: { type: "submit", variant: "primary" }
+                                  attrs: { type: "submit", variant: "primary" },
+                                  on: { click: _vm.submitComentario }
                                 },
                                 [_vm._v("Comentar")]
                               )
