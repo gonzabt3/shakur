@@ -42226,6 +42226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 data.forEach(function (post) {
                     var postAux = {
+                        idPost: post.id,
                         name: 'Pepe San martin',
                         comentario: 'la concha del pato',
                         fecha: '20 de agosto 2055',
@@ -42233,7 +42234,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         likes: 7
                     };
                     postAux.comentario = post.texto, postAux.fecha = post.created_at;
-
                     _this.arrayPosts.push(postAux);
                 });
             });
@@ -42617,13 +42617,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostUser',
   components: { Comentario: __WEBPACK_IMPORTED_MODULE_0__components_Comentario___default.a },
-  props: ['postData'],
+  props: ['postData'], //data entrante
   data: function data() {
     return {
       beerIcon: '../images/beer.png',
@@ -42636,12 +42637,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
-      object: {
+      objectComentario: {
         texto: '',
-        publicacion_id: 5,
-        user_id: 5
+        publicacion_id: this.postData.idPost,
+        user_id: 1
       }
     };
+  },
+  mounted: function mounted() {
+    this.getComentarios();
   },
 
   methods: {
@@ -42655,8 +42659,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     submitComentario: function submitComentario() {
-      console.log(this.object);
-      this.axios.post('api/comentario', this.object);
+      console.log(this.objectComentario);
+      this.axios.post('api/comentario', this.objectComentario);
+    },
+    getComentarios: function getComentarios() {
+      var _this = this;
+
+      this.arrayComentarios = [];
+      this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
+        var data = _ref.data;
+
+        console.log(data);
+        data.forEach(function (comentario) {
+          var comentarioAux = {
+            idPost: comentario.id,
+            name: 'Pepe San martin',
+            comentario: 'la concha del pato',
+            fecha: '20 de agosto 2055',
+            imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
+            likes: 7
+          };
+          comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
+          _this.arrayComentarios.push(comentarioAux);
+        });
+      });
     }
   },
   watch: {
@@ -42794,6 +42820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['comentarioData'], //data entrante
   data: function data() {
     return {
       beerIcon: '../images/beer.png',
@@ -42868,7 +42895,7 @@ var render = function() {
               _vm._v(" "),
               _c("b-row", [
                 _c("p", { staticClass: "form-control" }, [
-                  _vm._v("no me simpatizasno me simpatizasno ")
+                  _vm._v(_vm._s(_vm.comentarioData.comentario))
                 ])
               ]),
               _vm._v(" "),
@@ -42880,7 +42907,7 @@ var render = function() {
                     { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
                     [
                       _c("label", { staticClass: "no-margin-bottom" }, [
-                        _vm._v(_vm._s(_vm.cantLikes))
+                        _vm._v(_vm._s(_vm.comentarioData.likes))
                       ]),
                       _vm._v(" "),
                       _c("b-img", {
@@ -43112,8 +43139,16 @@ var render = function() {
                       _vm.showManyComentarios
                         ? _c(
                             "div",
-                            [_c("comentario"), _vm._v(" "), _c("hr")],
-                            1
+                            [
+                              _vm._l(_vm.arrayComentarios, function(item) {
+                                return _c("comentario", {
+                                  attrs: { comentarioData: item }
+                                })
+                              }),
+                              _vm._v(" "),
+                              _c("hr")
+                            ],
+                            2
                           )
                         : _vm._e(),
                       _vm._v(" "),
@@ -43151,11 +43186,11 @@ var render = function() {
                                   placeholder: "Comenta algo"
                                 },
                                 model: {
-                                  value: _vm.object.texto,
+                                  value: _vm.objectComentario.texto,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.object, "texto", $$v)
+                                    _vm.$set(_vm.objectComentario, "texto", $$v)
                                   },
-                                  expression: "object.texto"
+                                  expression: "objectComentario.texto"
                                 }
                               })
                             ],

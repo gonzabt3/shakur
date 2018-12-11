@@ -45,7 +45,8 @@
                         <span><font-awesome-icon  :icon="iconEyeComentarios"   size="sm" @click="showManyComentarios = !showManyComentarios" /></span>
                     </div>
                     <div v-if="showManyComentarios">
-                    <comentario></comentario>
+                    <comentario v-for="item in arrayComentarios"
+                    :comentarioData="item" ></comentario>
                     <hr />
                     </div>
                     <b-row>
@@ -54,7 +55,7 @@
                         </b-col>
                         <b-col cols="7">
                             <b-form-input id="newComent"
-                            v-model="object.texto"
+                            v-model="objectComentario.texto"
                             required
                             placeholder="Comenta algo">
                             </b-form-input>
@@ -75,7 +76,7 @@ import Comentario from '../components/Comentario';
 export default {
   name: 'PostUser',
   components: { Comentario },
-  props:['postData'],
+  props:['postData'],//data entrante
   data() {
     return {
       beerIcon: '../images/beer.png',
@@ -88,14 +89,17 @@ export default {
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
-      object:{
+      objectComentario:{
           texto:'',
-          publicacion_id:5,
-          user_id:5
+          publicacion_id:this.postData.idPost,
+          user_id:1
       }
     };
   },
-  methods: {
+    mounted(){
+        this.getComentarios();
+    },
+methods: {
     btnLike() {
       if (!this.btnLikeEstado) {
         this.btnLikeEstado = true;
@@ -106,8 +110,28 @@ export default {
       }
     },
     submitComentario(){
-        console.log(this.object);
-        this.axios.post('api/comentario',this.object)
+        console.log(this.objectComentario);
+        this.axios.post('api/comentario',this.objectComentario)
+    },
+    getComentarios(){
+        this.arrayComentarios=[]
+        this.axios.get('api/comentarios/'+this.postData.idPost)
+                    .then(({data}) => {
+                        console.log(data)
+                        data.forEach(comentario => {
+                            let comentarioAux={
+                                idPost:comentario.id,
+                                name: 'Pepe San martin',
+                                comentario:'la concha del pato',
+                                fecha:'20 de agosto 2055',
+                                imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
+                                likes:7 
+                            }
+                            comentarioAux.comentario=comentario.texto,
+                            comentarioAux.fecha=comentario.created_at
+                            this.arrayComentarios.push(comentarioAux);
+                        });
+                    });
     }
   },
   watch: {

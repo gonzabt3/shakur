@@ -27,5 +27,7 @@ Route::get('/carreras/{id}','Api\CarrerasController@index');
 
 Route::post('/comentario','Api\ComentariosController@store');
 
+Route::get('/comentarios/{idPost}','Api\PublicacionesController@comentarios');
+
 
 

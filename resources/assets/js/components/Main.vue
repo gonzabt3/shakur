@@ -11,7 +11,7 @@
                 ></post-new>
                 <!-- tira error por un bug de la verga del eslint -->
                 <post-user  
-                v-for="item in arrayPosts" 
+                v-for="item in arrayPosts"
                 :postData="item" 
                 ></post-user>
             </b-col>
@@ -52,6 +52,7 @@ export default {
                     .then(({data}) => {
                         data.forEach(post => {
                             let postAux={
+                                idPost:post.id,
                                 name: 'Pepe San martin',
                                 comentario:'la concha del pato',
                                 fecha:'20 de agosto 2055',
@@ -60,7 +61,6 @@ export default {
                             }
                             postAux.comentario=post.texto,
                             postAux.fecha=post.created_at
-
                             this.arrayPosts.push(postAux);
                         });
                     });

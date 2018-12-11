@@ -29,4 +29,8 @@ class PublicacionesController extends Controller
         // return PublicacionResource::collection($publicaciones);
 
     }
+
+    public function comentarios($id){
+        return Publicacion::find($id)->comentarios;
+    }
 }

@@ -9,11 +9,11 @@
                     <h5 class="no-margin-bottom">Gonzalo Muscolo</h5>
                 </b-row>
                 <b-row>
-                    <p class="form-control">no me simpatizasno me simpatizasno </p>
+                    <p class="form-control">{{comentarioData.comentario}}</p>
                 </b-row>
                 <b-row>
                     <b-button size="sm" @click="btnLike">
-                            <label class="no-margin-bottom">{{cantLikes}}</label>
+                            <label class="no-margin-bottom">{{comentarioData.likes}}</label>
                             <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
                         </b-button>
                 </b-row>
@@ -24,6 +24,7 @@
 <script>
 
 export default {
+  props:['comentarioData'],//data entrante
   data() {
     return {
       beerIcon: '../images/beer.png',

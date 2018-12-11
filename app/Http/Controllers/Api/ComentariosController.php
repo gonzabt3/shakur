@@ -13,7 +13,9 @@ class ComentariosController extends Controller
 
     public function store(Request $request){
         $comentario = $this->validate($request,[
-            'texto' => 'required'
+            'texto' => 'required',
+            'publicacion_id' => 'required',
+            'user_id' => 'required'
         ]);
 
         $comentario = Comentario::create($comentario);
@@ -27,4 +29,5 @@ class ComentariosController extends Controller
         $comentarios = Comentario::latest('created_at')->get();
         return($comentarios);
     }
+
 }
