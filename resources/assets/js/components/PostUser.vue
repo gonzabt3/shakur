@@ -54,7 +54,7 @@
                         </b-col>
                         <b-col cols="7">
                             <b-form-input id="newComent"
-                            Rv-model="object.texto"
+                            v-model="object.texto"
                             required
                             placeholder="Comenta algo">
                             </b-form-input>
@@ -90,8 +90,8 @@ export default {
       iconEyeComentarios: 'eye',
       object:{
           texto:'',
-          user:null,
-          publicacion:null
+          publicacion_id:5,
+          user_id:5
       }
     };
   },
@@ -106,9 +106,8 @@ export default {
       }
     },
     submitComentario(){
-        // console.log(this.object);
-        // this.axios.post('api/comentario',this.object)
-
+        console.log(this.object);
+        this.axios.post('api/comentario',this.object)
     }
   },
   watch: {

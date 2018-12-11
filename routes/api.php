@@ -25,6 +25,7 @@ Route::get('/universidades','Api\UniversidadesController@index');
 
 Route::get('/carreras/{id}','Api\CarrerasController@index');
 
+Route::post('/comentario','Api\ComentariosController@store');
 
 
 

@@ -42638,8 +42638,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       iconEyeComentarios: 'eye',
       object: {
         texto: '',
-        user: null,
-        publicacion: null
+        publicacion_id: 5,
+        user_id: 5
       }
     };
   },
@@ -42655,9 +42655,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     submitComentario: function submitComentario() {
-      // console.log(this.object);
-      // this.axios.post('api/comentario',this.object)
-
+      console.log(this.object);
+      this.axios.post('api/comentario', this.object);
     }
   },
   watch: {
@@ -43148,9 +43147,15 @@ var render = function() {
                               _c("b-form-input", {
                                 attrs: {
                                   id: "newComent",
-                                  "Rv-model": "object.texto",
                                   required: "",
                                   placeholder: "Comenta algo"
+                                },
+                                model: {
+                                  value: _vm.object.texto,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.object, "texto", $$v)
+                                  },
+                                  expression: "object.texto"
                                 }
                               })
                             ],
