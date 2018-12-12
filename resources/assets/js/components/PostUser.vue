@@ -110,14 +110,16 @@ methods: {
       }
     },
     submitComentario(){
-        console.log(this.objectComentario);
-        this.axios.post('api/comentario',this.objectComentario)
+        // console.log(this.objectComentario);
+        this.axios.post('api/comentario',this.objectComentario)        
+        this.getComentarios(),
+        this.objectComentario.texto=''
     },
     getComentarios(){
         this.arrayComentarios=[]
         this.axios.get('api/comentarios/'+this.postData.idPost)
                     .then(({data}) => {
-                        console.log(data)
+                        // console.log(data)
                         data.forEach(comentario => {
                             let comentarioAux={
                                 idPost:comentario.id,
@@ -131,6 +133,7 @@ methods: {
                             comentarioAux.fecha=comentario.created_at
                             this.arrayComentarios.push(comentarioAux);
                         });
+                        this.cantComentarios=this.arrayComentarios.length
                     });
     }
   },

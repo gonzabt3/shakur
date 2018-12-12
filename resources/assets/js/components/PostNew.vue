@@ -36,6 +36,9 @@ export default {
             // console.log(this.object);
             this.axios.post('api/publicacion',this.object)
             .then(
+                //blaqueo texto
+                
+                this.object.texto='',
                 this.$emit("responseGetPosts")
                 );
         }

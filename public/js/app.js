@@ -42659,8 +42659,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     submitComentario: function submitComentario() {
-      console.log(this.objectComentario);
+      // console.log(this.objectComentario);
       this.axios.post('api/comentario', this.objectComentario);
+      this.getComentarios(), this.objectComentario.texto = '';
     },
     getComentarios: function getComentarios() {
       var _this = this;
@@ -42669,7 +42670,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
         var data = _ref.data;
 
-        console.log(data);
+        // console.log(data)
         data.forEach(function (comentario) {
           var comentarioAux = {
             idPost: comentario.id,
@@ -42682,6 +42683,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
           _this.arrayComentarios.push(comentarioAux);
         });
+        _this.cantComentarios = _this.arrayComentarios.length;
       });
     }
   },
@@ -46314,7 +46316,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     hacerPost: function hacerPost() {
       // console.log(this.object);
-      this.axios.post('api/publicacion', this.object).then(this.$emit("responseGetPosts"));
+      this.axios.post('api/publicacion', this.object).then(
+      //blaqueo texto
+
+      this.object.texto = '', this.$emit("responseGetPosts"));
     }
   }
 });
