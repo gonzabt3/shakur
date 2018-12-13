@@ -35,12 +35,10 @@ export default {
       hacerPost(){
             // console.log(this.object);
             this.axios.post('api/publicacion',this.object)
-            .then(
-                //blaqueo texto
-                
+            .then((response) =>{
                 this.object.texto='',
-                this.$emit("responseGetPosts")
-                );
+                this.$emit("responseGetPosts")            
+            })
         }
   }
 };

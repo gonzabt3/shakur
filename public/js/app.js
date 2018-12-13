@@ -42659,12 +42659,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     submitComentario: function submitComentario() {
+      var _this = this;
+
       // console.log(this.objectComentario);
-      this.axios.post('api/comentario', this.objectComentario);
-      this.getComentarios(), this.objectComentario.texto = '';
+      this.axios.post('api/comentario', this.objectComentario).then(function (response) {
+        _this.objectComentario.texto = '';
+        _this.getComentarios();
+      });
     },
     getComentarios: function getComentarios() {
-      var _this = this;
+      var _this2 = this;
 
       this.arrayComentarios = [];
       this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
@@ -42681,9 +42685,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             likes: 7
           };
           comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
-          _this.arrayComentarios.push(comentarioAux);
+          _this2.arrayComentarios.push(comentarioAux);
         });
-        _this.cantComentarios = _this.arrayComentarios.length;
+        _this2.cantComentarios = _this2.arrayComentarios.length;
       });
     }
   },
@@ -46302,26 +46306,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostNew',
-  data: function data() {
-    return {
-      object: {
-        texto: null,
-        grupo_id: null,
-        user_id: null
-      }
-    };
-  },
+    name: 'PostNew',
+    data: function data() {
+        return {
+            object: {
+                texto: null,
+                grupo_id: null,
+                user_id: null
+            }
+        };
+    },
 
-  methods: {
-    hacerPost: function hacerPost() {
-      // console.log(this.object);
-      this.axios.post('api/publicacion', this.object).then(
-      //blaqueo texto
+    methods: {
+        hacerPost: function hacerPost() {
+            var _this = this;
 
-      this.object.texto = '', this.$emit("responseGetPosts"));
+            // console.log(this.object);
+            this.axios.post('api/publicacion', this.object).then(function (response) {
+                _this.object.texto = '', _this.$emit("responseGetPosts");
+            });
+        }
     }
-  }
 });
 
 /***/ }),

@@ -111,9 +111,11 @@ methods: {
     },
     submitComentario(){
         // console.log(this.objectComentario);
-        this.axios.post('api/comentario',this.objectComentario)        
-        this.getComentarios(),
-        this.objectComentario.texto=''
+        this.axios.post('api/comentario',this.objectComentario)
+        .then((response) =>{
+            this.objectComentario.texto=''
+            this.getComentarios()
+        })        
     },
     getComentarios(){
         this.arrayComentarios=[]
