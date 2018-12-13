@@ -14,8 +14,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    // protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','apellido','carrera_id', 'email', 'password',
     ];
 
     /**
@@ -26,4 +29,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function carrera(){
+        return $this->belongsTo(Carrera::class);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

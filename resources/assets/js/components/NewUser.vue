@@ -23,9 +23,9 @@
                                 placeholder="Ingresa tu E-mail">
                     </b-form-input>
                 </b-form-group>
-                <b-form-group label="Contraseña:" label-for="password1">
-                    <b-form-input id="password1"
-                                v-model="usuario.password1"
+                <b-form-group label="Contraseña:" label-for="password">
+                    <b-form-input id="password"
+                                v-model="usuario.password"
                                 required
                                 placeholder="Ingresa tu Contraseña">
                     </b-form-input>
@@ -57,21 +57,14 @@
                 label="Carrera" 
                 label-for="carrera">
                 <b-form-select
-                    v-model="usuario.carrera" 
-                    id="carrera" 
+                    v-model="usuario.carrera_id" 
+                    id="carrera_id" 
                     :options="optionsCarrera" 
                     name="carrera" 
                     text-field="description" 
                     value-field="id"
                         />
                 </b-form-group>
-                
-                <!-- <mp-select 
-                    v-model="usuario.carrera"
-                    label="Carrera:" 
-                    name="carrera"
-                    ref="selectCarrera"
-                /> -->
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
                         <b-form-checkbox required value="checkCondiciones">
@@ -98,11 +91,13 @@ export default {
         'Seleccionar', 'UBA', 'UTN', 'UNLa',
       ],
       usuario:{
-          nombre:null,
+          name:null,
           apellido:null,
           email:null,
           universidad:null,
-          carrera:null   
+          carrera_id:null,
+          password:null,
+          password2:null   
       },
       optionsUniversidad: [
                 {
@@ -124,8 +119,7 @@ export default {
   methods :{
         crearUsuario(){
             console.log(this.usuario);
-
-            axios.post('api/usuarios',this.usuario)
+            this.axios.post('api/usuario',this.usuario)
                 .then(({data}) => this.setSuccessMessage())
         },
         setSuccessMessage(){
@@ -158,7 +152,7 @@ export default {
             description: "Seleccionar una opción",
             disabled: true
             })
-            this.usuario.carrera=null
+            this.usuario.carrera_id=null
 
              this.axios
                 .get(this.urlCarrera)

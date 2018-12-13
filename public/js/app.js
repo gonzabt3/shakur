@@ -41262,7 +41262,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41355,13 +41355,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -41372,11 +41365,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             universidades: ['Seleccionar', 'UBA', 'UTN', 'UNLa'],
             usuario: {
-                nombre: null,
+                name: null,
                 apellido: null,
                 email: null,
                 universidad: null,
-                carrera: null
+                carrera_id: null,
+                password: null,
+                password2: null
             },
             optionsUniversidad: [{
                 id: null,
@@ -41397,8 +41392,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             console.log(this.usuario);
-
-            axios.post('api/usuarios', this.usuario).then(function (_ref) {
+            this.axios.post('api/usuario', this.usuario).then(function (_ref) {
                 var data = _ref.data;
                 return _this.setSuccessMessage();
             });
@@ -41434,7 +41428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 description: "Seleccionar una opción",
                 disabled: true
             });
-            this.usuario.carrera = null;
+            this.usuario.carrera_id = null;
 
             this.axios.get(this.urlCarrera).then(function (response) {
                 var responseOptions = _.map(response.data, function (option) {
@@ -41771,20 +41765,20 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { label: "Contraseña:", "label-for": "password1" } },
+                { attrs: { label: "Contraseña:", "label-for": "password" } },
                 [
                   _c("b-form-input", {
                     attrs: {
-                      id: "password1",
+                      id: "password",
                       required: "",
                       placeholder: "Ingresa tu Contraseña"
                     },
                     model: {
-                      value: _vm.usuario.password1,
+                      value: _vm.usuario.password,
                       callback: function($$v) {
-                        _vm.$set(_vm.usuario, "password1", $$v)
+                        _vm.$set(_vm.usuario, "password", $$v)
                       },
-                      expression: "usuario.password1"
+                      expression: "usuario.password"
                     }
                   })
                 ],
@@ -41848,18 +41842,18 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     attrs: {
-                      id: "carrera",
+                      id: "carrera_id",
                       options: _vm.optionsCarrera,
                       name: "carrera",
                       "text-field": "description",
                       "value-field": "id"
                     },
                     model: {
-                      value: _vm.usuario.carrera,
+                      value: _vm.usuario.carrera_id,
                       callback: function($$v) {
-                        _vm.$set(_vm.usuario, "carrera", $$v)
+                        _vm.$set(_vm.usuario, "carrera_id", $$v)
                       },
-                      expression: "usuario.carrera"
+                      expression: "usuario.carrera_id"
                     }
                   })
                 ],
