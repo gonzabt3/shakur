@@ -89,6 +89,7 @@ export default {
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
+      user:1,
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.idPost,
@@ -102,8 +103,13 @@ export default {
 methods: {
     btnLike() {
       if (!this.btnLikeEstado) {
-        this.btnLikeEstado = true;
-        this.cantLikes += 1;
+        this.axios.post('api/like/'+this.postData.idPost+'/'+this.idUser,this.objectComentario)
+        .then((response) =>{
+            this.btnLikeEstado = true;
+            this.cantLikes += 1;
+        })   
+
+
       } else {
         this.btnLikeEstado = false;
         this.cantLikes -= 1;
