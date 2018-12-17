@@ -39,6 +39,8 @@ Route::get('/comentarios/{idPost}','Api\PublicacionesController@comentarios');
 Route::post('/usuario','Api\UserController@store');
 
 //poner like en un post
-Route::post('/like/{idPost}/{idUser}','Api\LikeController@store');
+Route::post('/like','Api\LikeController@store');
 
+//traer LIKES
+Route::get('/likes/{idPost}','Api\LikeController@index');
 

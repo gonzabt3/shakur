@@ -98,12 +98,25 @@ export default {
     };
   },
     mounted(){
+        this.getLikes();
         this.getComentarios();
     },
 methods: {
+    getLikes(){
+        this.axios.get('api/likes/'+this.postData.idPost)
+        .then((response) =>{
+            this.cantLikes=response.data
+        })  
+
+    },
     btnLike() {
       if (!this.btnLikeEstado) {
-        this.axios.post('api/like/'+this.postData.idPost+'/'+this.idUser,this.objectComentario)
+        let objetoLike = {
+            user_id:this.user,
+            publicacions_id:this.postData.idPost
+        }
+
+        this.axios.post('api/like',objetoLike)
         .then((response) =>{
             this.btnLikeEstado = true;
             this.cantLikes += 1;
