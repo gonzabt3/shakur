@@ -19,7 +19,7 @@ class UserController extends Controller
     
         User::create($user);
 
-        auth()->login($user);
+        // auth()->login($user);
 
     }
 
