@@ -42225,7 +42225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         comentario: 'la concha del pato',
                         fecha: '20 de agosto 2055',
                         imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                        likes: 7
+                        likes: 0
                     };
                     postAux.comentario = post.texto, postAux.fecha = post.created_at;
                     _this.arrayPosts.push(postAux);
@@ -42641,19 +42641,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.getLikes();
+        this.getUserLike();
         this.getComentarios();
     },
 
     methods: {
-        getLikes: function getLikes() {
+        //setea en true o false el boton de like
+        getUserLike: function getUserLike() {
             var _this = this;
 
+            this.axios.get('api/likes/' + this.postData.idPost + '/' + this.user).then(function (response) {
+                // console.log(response);
+                if (response.data.length > 0) {
+                    _this.btnLikeEstado = true;
+                }
+            });
+        },
+        getLikes: function getLikes() {
+            var _this2 = this;
+
             this.axios.get('api/likes/' + this.postData.idPost).then(function (response) {
-                _this.cantLikes = response.data;
+                _this2.cantLikes = response.data;
             });
         },
         btnLike: function btnLike() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (!this.btnLikeEstado) {
                 var objetoLike = {
@@ -42662,8 +42674,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 };
 
                 this.axios.post('api/like', objetoLike).then(function (response) {
-                    _this2.btnLikeEstado = true;
-                    _this2.cantLikes += 1;
+                    _this3.btnLikeEstado = true;
+                    _this3.cantLikes += 1;
                 });
             } else {
                 this.btnLikeEstado = false;
@@ -42671,16 +42683,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         submitComentario: function submitComentario() {
-            var _this3 = this;
+            var _this4 = this;
 
             // console.log(this.objectComentario);
             this.axios.post('api/comentario', this.objectComentario).then(function (response) {
-                _this3.objectComentario.texto = '';
-                _this3.getComentarios();
+                _this4.objectComentario.texto = '';
+                _this4.getComentarios();
             });
         },
         getComentarios: function getComentarios() {
-            var _this4 = this;
+            var _this5 = this;
 
             this.arrayComentarios = [];
             this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
@@ -42697,9 +42709,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         likes: 7
                     };
                     comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
-                    _this4.arrayComentarios.push(comentarioAux);
+                    _this5.arrayComentarios.push(comentarioAux);
                 });
-                _this4.cantComentarios = _this4.arrayComentarios.length;
+                _this5.cantComentarios = _this5.arrayComentarios.length;
             });
         }
     },

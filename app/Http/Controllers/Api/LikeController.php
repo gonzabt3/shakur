@@ -25,4 +25,13 @@ class LikeController extends Controller
 
         return new LikeResource($like);
     }
+
+    public function postXuser($idPost,$idUser){
+        $like = Like::where([
+            'publicacions_id' => $idPost,
+            'user_id' => $idUser
+     ])->get();
+
+     return $like;
+    }
 }

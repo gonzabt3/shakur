@@ -57,7 +57,7 @@ export default {
                                 comentario:'la concha del pato',
                                 fecha:'20 de agosto 2055',
                                 imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                                likes:7 
+                                likes:0 
                             }
                             postAux.comentario=post.texto,
                             postAux.fecha=post.created_at

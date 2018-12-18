@@ -99,9 +99,20 @@ export default {
   },
     mounted(){
         this.getLikes();
+        this.getUserLike();
         this.getComentarios();
     },
 methods: {
+    //setea en true o false el boton de like
+    getUserLike(){
+        this.axios.get('api/likes/'+this.postData.idPost+'/'+this.user)
+        .then((response) =>{
+        // console.log(response);
+        if(response.data.length>0){
+            this.btnLikeEstado=true
+        }
+        })  
+    },
     getLikes(){
         this.axios.get('api/likes/'+this.postData.idPost)
         .then((response) =>{

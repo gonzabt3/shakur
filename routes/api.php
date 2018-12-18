@@ -44,3 +44,6 @@ Route::post('/like','Api\LikeController@store');
 //traer LIKES
 Route::get('/likes/{idPost}','Api\LikeController@index');
 
+//traer true si el user le dio like
+Route::get('/likes/{idPost}/{idUser}','Api\LikeController@postXuser');
+
