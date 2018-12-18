@@ -45,5 +45,7 @@ Route::post('/like','Api\LikeController@store');
 Route::get('/likes/{idPost}','Api\LikeController@index');
 
 //traer true si el user le dio like
-Route::get('/likes/{idPost}/{idUser}','Api\LikeController@postXuser');
+Route::get('/like/{idPost}/{idUser}','Api\LikeController@postXuser');
 
+//delete like en el post
+Route::delete('/like/{idPost}/{idUser}','Api\LikeController@delete');

@@ -42650,7 +42650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUserLike: function getUserLike() {
             var _this = this;
 
-            this.axios.get('api/likes/' + this.postData.idPost + '/' + this.user).then(function (response) {
+            this.axios.get('api/like/' + this.postData.idPost + '/' + this.user).then(function (response) {
                 // console.log(response);
                 if (response.data.length > 0) {
                     _this.btnLikeEstado = true;
@@ -42671,15 +42671,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var objetoLike = {
                     user_id: this.user,
                     publicacions_id: this.postData.idPost
-                };
 
-                this.axios.post('api/like', objetoLike).then(function (response) {
+                    //agrego like
+                };this.axios.post('api/like', objetoLike).then(function (response) {
                     _this3.btnLikeEstado = true;
                     _this3.cantLikes += 1;
                 });
             } else {
-                this.btnLikeEstado = false;
-                this.cantLikes -= 1;
+                //saco like 
+                this.axios.delete('api/like/' + this.postData.idPost + '/' + this.user).then(function (response) {
+                    _this3.btnLikeEstado = false;
+                    _this3.cantLikes -= 1;
+                });
             }
         },
         submitComentario: function submitComentario() {

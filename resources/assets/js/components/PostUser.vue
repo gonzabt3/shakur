@@ -105,7 +105,7 @@ export default {
 methods: {
     //setea en true o false el boton de like
     getUserLike(){
-        this.axios.get('api/likes/'+this.postData.idPost+'/'+this.user)
+        this.axios.get('api/like/'+this.postData.idPost+'/'+this.user)
         .then((response) =>{
         // console.log(response);
         if(response.data.length>0){
@@ -127,16 +127,19 @@ methods: {
             publicacions_id:this.postData.idPost
         }
 
+        //agrego like
         this.axios.post('api/like',objetoLike)
         .then((response) =>{
             this.btnLikeEstado = true;
             this.cantLikes += 1;
         })   
-
-
       } else {
-        this.btnLikeEstado = false;
-        this.cantLikes -= 1;
+        //saco like 
+        this.axios.delete('api/like/'+this.postData.idPost+'/'+this.user)
+        .then((response) =>{
+            this.btnLikeEstado = false;
+            this.cantLikes -= 1;
+        })   
       }
     },
     submitComentario(){

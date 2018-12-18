@@ -30,8 +30,17 @@ class LikeController extends Controller
         $like = Like::where([
             'publicacions_id' => $idPost,
             'user_id' => $idUser
-     ])->get();
+            ])->get();
 
      return $like;
+    }
+
+    public function delete($idPost,$idUser){
+        $like = Like::where([
+            'publicacions_id' => $idPost,
+            'user_id' => $idUser
+            ]);
+
+     return $like->delete();
     }
 }
