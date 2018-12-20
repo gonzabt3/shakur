@@ -49,3 +49,6 @@ Route::get('/like/{idPost}/{idUser}','Api\LikeController@postXuser');
 
 //delete like en el post
 Route::delete('/like/{idPost}/{idUser}','Api\LikeController@delete');
+
+//traigo materias por carrera
+Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');

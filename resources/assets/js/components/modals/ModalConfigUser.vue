@@ -49,21 +49,68 @@
                             </b-col>
                         </b-row>
                     </b-col>
-                    <b-col>2 of 3</b-col>
+                    <b-col>
+                        <b-row>
+                            <b-col class="col-2">
+                                <b-form-group id="materias"
+                                label="Materias en curso:"
+                                label-for="materias">
+                                </b-form-group>
+                            </b-col>
+                            <b-col>
+                                <v-select
+                                    :options="opcionesMaterias"
+                                    v-model="data.materias"
+                                    multiple
+                                    placeholder="Elegio las materias"
+                                    input-id="materias"
+                                    name="materias">
+                                    <template slot="no-options">
+                                    <span>No se encontraron resultados</span>
+                                    </template>
+                                </v-select>
+                            </b-col>
+                        </b-row>
+                    </b-col>
                 </b-row>
         </b-container>
     </b-modal>
 </template>
 <script>
+import vSelect from "vue-select";
+
 export default {
+    components: { vSelect },
     data(){
     return {
+        opcionesMaterias:[],
+        idCarrera:15,
         data: {
             nombre: '',
-            temas: ''
+            temas: '',
+            materias:null
         },
         checkedAlias:true
     };
+    },
+    beforeMount() {
+         this.getMaterias();
+    },
+    methods:{
+        getMaterias() {
+        this.$http
+            .get("api/materias/"+this.idCarrera)
+            .then(response => {
+                console.log(response);
+          _.map(response.data, materia => {
+            this.opcionesMaterias.push({
+              label: materia.materia,
+              value: materia.id
+            });
+          });
+
+        })
+    }
     }
     
 }

@@ -11,4 +11,8 @@ class Carrera extends Model
     public function universidad(){
         return $this->belongsTo(Carrera::class);
     }
+
+    public function materias(){
+        return $this->hasMany(Materia::class);
+    }
 }
