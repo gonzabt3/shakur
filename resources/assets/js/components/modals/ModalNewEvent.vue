@@ -42,6 +42,10 @@ export default {
   methods: {
     submit() {
       console.log(this.data);
+        this.axios.post('api/evento/'+idMateria+'/'+idUser,this.data)
+        .then((response) =>{
+            console.log("ok");
+        })   
     },
     cleanModal() {
       this.data.nombre = '';

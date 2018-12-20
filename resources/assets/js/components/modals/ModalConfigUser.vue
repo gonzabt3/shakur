@@ -62,7 +62,7 @@
                                     :options="opcionesMaterias"
                                     v-model="data.materias"
                                     multiple
-                                    placeholder="Elegio las materias"
+                                    placeholder="Elegi las materias"
                                     input-id="materias"
                                     name="materias">
                                     <template slot="no-options">
