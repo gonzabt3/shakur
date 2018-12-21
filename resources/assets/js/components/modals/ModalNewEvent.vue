@@ -46,8 +46,9 @@ export default {
       // console.log(this.data);
       this.axios.post('api/evento',this.data)
       .then((response) =>{
-        this.$emit("responseGetEventos")            
         this.cleanModal();
+         this.$refs.newEvent.hide();
+        this.$emit("responseGetEventos")            
       })   
     },
     cleanModal() {

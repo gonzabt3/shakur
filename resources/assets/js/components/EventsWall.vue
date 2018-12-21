@@ -44,7 +44,7 @@ export default {
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {
-                console.log(data);
+                // console.log(data);
                 data.forEach(evento => {
                     let eventosAux={
                         idPost:evento.id,

@@ -43419,7 +43419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
+                // console.log(data);
                 data.forEach(function (evento) {
                     var eventosAux = {
                         idPost: evento.id,
@@ -43521,7 +43521,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43584,8 +43584,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // console.log(this.data);
       this.axios.post('api/evento', this.data).then(function (response) {
-        _this.$emit("responseGetEventos");
         _this.cleanModal();
+        _this.$refs.newEvent.hide();
+        _this.$emit("responseGetEventos");
       });
     },
     cleanModal: function cleanModal() {
