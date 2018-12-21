@@ -34,6 +34,8 @@ export default {
         nombre: '',
         temas: '',
         fecha: '',
+        materia_id:5,
+        user_id:1
       },
       en,
       es,
@@ -41,11 +43,12 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.data);
-        this.axios.post('api/evento/'+idMateria+'/'+idUser,this.data)
-        .then((response) =>{
-            console.log("ok");
-        })   
+      // console.log(this.data);
+      this.axios.post('api/evento',this.data)
+      .then((response) =>{
+        this.$emit("responseGetEventos")            
+        this.cleanModal();
+      })   
     },
     cleanModal() {
       this.data.nombre = '';

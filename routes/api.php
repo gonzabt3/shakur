@@ -54,4 +54,7 @@ Route::delete('/like/{idPost}/{idUser}','Api\LikeController@delete');
 Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
 
 //creo evento
-Route::post('/evento/{idMateria}/{idUser}','Api\EventoController@store');
+Route::post('/evento','Api\EventoController@store');
+
+//get de eventos por materia
+Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');

@@ -11,4 +11,9 @@ class Materia extends Model
     public function carrera(){
         return $this->belongsTo(Carrera::class);
     }
+
+    public function eventos(){
+        return $this->hasMany(Evento::class);
+    }
+
 }

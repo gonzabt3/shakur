@@ -11,12 +11,13 @@
             </b-row>
              <b-row>
                  <b-col>
-                        <p>Parcial de Matematicas -> 20/5</p>
-                        <p>Entrega TP -> 31/6</p>
+                    <p v-for="item in arrayEventos"> {{item.nombre}} -> {{item.fecha}}</p>
                 </b-col>
             </b-row>
         </b-card>
-        <modal-new-event></modal-new-event>
+        <modal-new-event
+        @responseGetEventos="getEventos"
+        ></modal-new-event>
     </b-container>
 </template>
 
@@ -26,9 +27,36 @@ import ModalNewEvent from '../components/modals/ModalNewEvent';
 export default {
   name: 'EventsWall',
   components: { ModalNewEvent },
+  data(){
+      return{
+          arrayEventos:[],
+          idMateria:5
+      }
+  },
+  mounted(){
+        this.getEventos();
+  },
   methods:{
       showModal(){
           this.$root.$emit('bv::show::modal','newEvent')
+      },
+      getEventos(){
+            this.arrayEventos=[],
+            this.axios.get('api/eventos/'+this.idMateria)
+            .then(({data}) => {
+                console.log(data);
+                data.forEach(evento => {
+                    let eventosAux={
+                        idPost:evento.id,
+                        nombre: '',
+                        fecha:'',
+                        temas:'' 
+                    }
+                    eventosAux.nombre=evento.nombre,
+                    eventosAux.fecha=evento.fecha
+                    this.arrayEventos.push(eventosAux);
+                });
+            });
       }
   }
 };
