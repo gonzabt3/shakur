@@ -34,8 +34,14 @@ class User extends Authenticatable
         return $this->belongsTo(Carrera::class);
     }
 
+    //encripta la pass cuando se crea un usuario
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function materias()
+    {
+       return $this->belongsToMany(Materia::class,'materias_x_users');
     }
 }

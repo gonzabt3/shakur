@@ -21,9 +21,17 @@
                 <b-form-input id="pass"
                           v-model="form.pass"
                           required
+                          :type="typePassword"
                           placeholder="Ingresa Contraseña">
                 </b-form-input>
                 </b-form-group>
+                <b-form-checkbox
+                  id="checkboxPassword"
+                  v-model="checkboxPassword"
+                  name="checkboxPassword"
+                >
+                Mostrar Contraseña
+                </b-form-checkbox>
                 <b-button type="submit" variant="primary">Entrar</b-button>
                 <b-button v-b-modal.newUser variant="secondary">Registrarse</b-button>
                 <b-form-group>
@@ -51,10 +59,16 @@ export default {
         user: '',
         pass: '',
       },
+      checkboxPassword: false,
       palabra:'aprender',
       arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.']
     }
     
+  },
+  computed:{
+    typePassword() {
+        return this.checkboxPassword ? "text" : "password";
+    },
   },
   methods: {
     onSubmit(evt) {

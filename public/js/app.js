@@ -41134,6 +41134,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -41148,11 +41156,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         user: '',
         pass: ''
       },
+      checkboxPassword: false,
       palabra: 'aprender',
       arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.']
     };
   },
 
+  computed: {
+    typePassword: function typePassword() {
+      return this.checkboxPassword ? "text" : "password";
+    }
+  },
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
@@ -41979,6 +41993,7 @@ var render = function() {
                             attrs: {
                               id: "pass",
                               required: "",
+                              type: _vm.typePassword,
                               placeholder: "Ingresa Contraseña"
                             },
                             model: {
@@ -41991,6 +42006,24 @@ var render = function() {
                           })
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-checkbox",
+                        {
+                          attrs: {
+                            id: "checkboxPassword",
+                            name: "checkboxPassword"
+                          },
+                          model: {
+                            value: _vm.checkboxPassword,
+                            callback: function($$v) {
+                              _vm.checkboxPassword = $$v
+                            },
+                            expression: "checkboxPassword"
+                          }
+                        },
+                        [_vm._v("\n          Mostrar Contraseña\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -45969,7 +46002,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46060,6 +46093,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46070,8 +46111,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             opcionesMaterias: [],
             idCarrera: 15,
             data: {
+                idUsuario: 1,
                 nombre: '',
-                temas: '',
+                apellido: '',
+                alias: '',
                 materias: null
             },
             checkedAlias: true
@@ -46086,13 +46129,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.$http.get("api/materias/" + this.idCarrera).then(function (response) {
-                console.log(response);
+                // console.log(response);
                 _.map(response.data, function (materia) {
                     _this.opcionesMaterias.push({
                         label: materia.materia,
                         value: materia.id
                     });
                 });
+            });
+        },
+        submit: function submit() {
+            console.log(this.data);
+            this.axios.post('api/usuario/config', this.data).then(function (response) {
+                console.log("volvio");
             });
         }
     }
@@ -46158,6 +46207,13 @@ var render = function() {
                               id: "alias",
                               placeholder: "Ingrese alias",
                               disabled: !_vm.checkedAlias
+                            },
+                            model: {
+                              value: _vm.data.alias,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "alias", $$v)
+                              },
+                              expression: "data.alias"
                             }
                           })
                         ],
@@ -46209,6 +46265,13 @@ var render = function() {
                             attrs: {
                               id: "nombre",
                               placeholder: "Ingrese Nombre"
+                            },
+                            model: {
+                              value: _vm.data.nombre,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "nombre", $$v)
+                              },
+                              expression: "data.nombre"
                             }
                           })
                         ],
@@ -46243,6 +46306,13 @@ var render = function() {
                             attrs: {
                               id: "apellido",
                               placeholder: "Ingrese apellido"
+                            },
+                            model: {
+                              value: _vm.data.apellido,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "apellido", $$v)
+                              },
+                              expression: "data.apellido"
                             }
                           })
                         ],
@@ -46320,9 +46390,21 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("template", { slot: "modal-footer" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-block",
+            attrs: { type: "submit" },
+            on: { click: _vm.submit }
+          },
+          [_vm._v("Guardar")]
+        )
+      ])
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

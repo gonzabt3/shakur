@@ -38,6 +38,9 @@ Route::get('/comentarios/{idPost}','Api\PublicacionesController@comentarios');
 //crea usuario
 Route::post('/usuario','Api\UserController@store');
 
+//config usuario
+Route::post('/usuario/config','Api\UserController@config');
+
 //poner like en un post
 Route::post('/like','Api\LikeController@store');
 
