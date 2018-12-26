@@ -42394,7 +42394,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Topbar'
+  name: 'Topbar',
+  data: function data() {
+    return {
+      nombreMaterias: [],
+      usuario: 1
+    };
+  },
+
+  methods: {
+    getMaterias: function getMaterias() {
+      this.$http.get("api/materias/" + this.usuario).then(function (response) {
+        // console.log(response);
+
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42427,33 +42442,6 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("b-nav-item", { attrs: { href: "#" } }, [_vm._v("Lengua")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-navbar-nav",
-            { staticClass: "ml-auto" },
-            [
-              _c(
-                "b-nav-form",
-                [
-                  _c("b-form-input", {
-                    staticClass: "mr-sm-2",
-                    attrs: { size: "sm", type: "text", placeholder: "Buscar" }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "my-2 my-sm-0",
-                      attrs: { size: "sm", type: "submit" }
-                    },
-                    [_vm._v("Buscar")]
-                  )
-                ],
-                1
-              )
             ],
             1
           )
@@ -46139,7 +46127,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         submit: function submit() {
-            console.log(this.data);
+            // console.log(this.data);
             this.axios.post('api/usuario/config', this.data).then(function (response) {
                 console.log("volvio");
             });

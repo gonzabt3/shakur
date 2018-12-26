@@ -90,18 +90,18 @@ import vSelect from "vue-select";
 export default {
     components: { vSelect },
     data(){
-    return {
-        opcionesMaterias:[],
-        idCarrera:15,
-        data: {
-            idUsuario:1,
-            nombre: '',
-            apellido: '',
-            alias: '',
-            materias:null
-        },
-        checkedAlias:true
-    };
+        return {
+            opcionesMaterias:[],
+            idCarrera:15,
+            data: {
+                idUsuario:1,
+                nombre: '',
+                apellido: '',
+                alias: '',
+                materias:null
+            },
+            checkedAlias:true
+        };
     },
     beforeMount() {
          this.getMaterias();
@@ -121,7 +121,7 @@ export default {
             })
         },
         submit(){
-            console.log(this.data);
+            // console.log(this.data);
             this.axios.post('api/usuario/config',this.data)
             .then((response) =>{
                 console.log("volvio");
