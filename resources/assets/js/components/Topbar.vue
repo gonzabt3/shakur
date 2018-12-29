@@ -8,8 +8,7 @@
   <b-collapse is-nav id="nav_collapse">
 
     <b-navbar-nav>
-      <b-nav-item href="#">Matematica</b-nav-item>
-      <b-nav-item href="#">Lengua</b-nav-item>
+      <b-nav-item v-for="materia in nombreMaterias" href="#">{{materia}}</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->
@@ -34,13 +33,17 @@ export default {
       usuario:1
     }
   },
+  mounted(){
+        this.getMaterias();
+  },
   methods:{
     getMaterias(){
         this.$http
-          .get("api/materias/"+this.usuario)
+          .get("api/materias/user/"+this.usuario)
           .then(response => {
-              // console.log(response);
-
+              response.data.forEach(materia => {
+                  this.nombreMaterias.push(materia.materia)
+              });
           })
     }
   }

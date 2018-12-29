@@ -42391,7 +42391,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
@@ -42401,12 +42400,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       usuario: 1
     };
   },
+  mounted: function mounted() {
+    this.getMaterias();
+  },
 
   methods: {
     getMaterias: function getMaterias() {
-      this.$http.get("api/materias/" + this.usuario).then(function (response) {
-        // console.log(response);
+      var _this = this;
 
+      this.$http.get("api/materias/user/" + this.usuario).then(function (response) {
+        response.data.forEach(function (materia) {
+          _this.nombreMaterias.push(materia.materia);
+        });
       });
     }
   }
@@ -42436,14 +42441,11 @@ var render = function() {
         [
           _c(
             "b-navbar-nav",
-            [
-              _c("b-nav-item", { attrs: { href: "#" } }, [
-                _vm._v("Matematica")
-              ]),
-              _vm._v(" "),
-              _c("b-nav-item", { attrs: { href: "#" } }, [_vm._v("Lengua")])
-            ],
-            1
+            _vm._l(_vm.nombreMaterias, function(materia) {
+              return _c("b-nav-item", { attrs: { href: "#" } }, [
+                _vm._v(_vm._s(materia))
+              ])
+            })
           )
         ],
         1
