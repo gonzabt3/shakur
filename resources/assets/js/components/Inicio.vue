@@ -73,7 +73,10 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      this.axios.post('api/login/',this.form)
+      .then((response) =>{
+      // console.log(response);
+      }) 
     },
     cambiarPalabra(){
           let array=this.arrayPalabras;

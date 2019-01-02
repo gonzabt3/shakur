@@ -64,3 +64,6 @@ Route::post('/evento','Api\EventoController@store');
 
 //get de eventos por materia
 Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');
+
+//login ,send data
+Route::post('/login','Api\LoginController@login');
