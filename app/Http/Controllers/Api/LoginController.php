@@ -14,7 +14,7 @@ class LoginController extends Controller
         
         $userData =  $this->validate(request(),[
             "email" => 'required',
-            "pass" => 'required'
+            "password" => 'required'
         ]);
 
         // dd($userData);

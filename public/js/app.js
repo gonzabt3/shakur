@@ -41989,7 +41989,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-form-group",
-                        { attrs: { fpr: "pass", label: "Contraeña:" } },
+                        { attrs: { for: "pass", label: "Contraeña:" } },
                         [
                           _c("b-form-input", {
                             attrs: {
@@ -41999,11 +41999,11 @@ var render = function() {
                               placeholder: "Ingresa Contraseña"
                             },
                             model: {
-                              value: _vm.form.pass,
+                              value: _vm.form.password,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "pass", $$v)
+                                _vm.$set(_vm.form, "password", $$v)
                               },
-                              expression: "form.pass"
+                              expression: "form.password"
                             }
                           })
                         ],
