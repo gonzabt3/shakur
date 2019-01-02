@@ -12,7 +12,7 @@
             <b-form @submit="onSubmit">
                 <b-form-group id="userLabel" label="Usuario:">
                 <b-form-input id="user"
-                          v-model="form.user"
+                          v-model="form.email"
                           required
                           placeholder="Ingresa Usuario">
                 </b-form-input>
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       form: {
-        user: '',
+        email: '',
         pass: '',
       },
       checkboxPassword: false,

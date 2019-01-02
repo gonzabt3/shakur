@@ -41153,7 +41153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       form: {
-        user: '',
+        email: '',
         pass: ''
       },
       checkboxPassword: false,
@@ -41976,11 +41976,11 @@ var render = function() {
                               placeholder: "Ingresa Usuario"
                             },
                             model: {
-                              value: _vm.form.user,
+                              value: _vm.form.email,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "user", $$v)
+                                _vm.$set(_vm.form, "email", $$v)
                               },
-                              expression: "form.user"
+                              expression: "form.email"
                             }
                           })
                         ],
