@@ -41154,7 +41154,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       form: {
         email: '',
-        pass: ''
+        password: ''
       },
       checkboxPassword: false,
       palabra: 'aprender',
@@ -41989,7 +41989,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-form-group",
-                        { attrs: { for: "pass", label: "Contraeña:" } },
+                        { attrs: { for: "pass", label: "Contraseña:" } },
                         [
                           _c("b-form-input", {
                             attrs: {

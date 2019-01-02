@@ -17,7 +17,7 @@
                           placeholder="Ingresa Usuario">
                 </b-form-input>
                 </b-form-group>
-                <b-form-group for="pass" label="Contraeña:">
+                <b-form-group for="pass" label="Contraseña:">
                 <b-form-input id="pass"
                           v-model="form.password"
                           required
@@ -57,7 +57,7 @@ export default {
     return {
       form: {
         email: '',
-        pass: '',
+        password: '',
       },
       checkboxPassword: false,
       palabra:'aprender',
