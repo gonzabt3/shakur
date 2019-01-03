@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //hacer publicacion
-Route::post('/publicacion','Api\PublicacionesController@store');
+Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
 
 //traer publicaciones
 Route::get('/publicacion','Api\PublicacionesController@index');

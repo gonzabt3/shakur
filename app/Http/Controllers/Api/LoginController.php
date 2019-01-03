@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Session;
-
+use Log;
 
 class LoginController extends Controller
 {
@@ -21,14 +21,14 @@ class LoginController extends Controller
         
         //me fijo que este el usuario en la tabla
         if(Auth::attempt($userData)){
-
             //me traigo el usuario y lo guardo en una variable de session
             $user=User::where('email', $userData['email'])->get();
             Session::put('user', $user);
             $user=Session::get('user');
             
-            dd($user);
-            // return $user;
+            // Log::info(Session::get('user'));
+            // dd($user);
+            return $user;
             // return $user->name; 
 
             // return redirect('/#/main');
