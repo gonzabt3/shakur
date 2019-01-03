@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Session;
 
 
 class LoginController extends Controller
@@ -17,10 +18,20 @@ class LoginController extends Controller
             "email" => 'required',
             "password" => 'required'
         ]);
-
-        // dd($userData);
+        
+        //me fijo que este el usuario en la tabla
         if(Auth::attempt($userData)){
-            return redirect('/#/main');
+
+            //me traigo el usuario y lo guardo en una variable de session
+            $user=User::where('email', $userData['email'])->get();
+            Session::put('user', $user);
+            $user=Session::get('user');
+            
+            dd($user);
+            // return $user;
+            // return $user->name; 
+
+            // return redirect('/#/main');
         }else{
             dd("no entro");
         }

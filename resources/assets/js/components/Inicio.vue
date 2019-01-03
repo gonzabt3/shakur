@@ -75,7 +75,7 @@ export default {
       evt.preventDefault();
       this.axios.post('api/login/',this.form)
       .then((response) =>{
-      // console.log(response);
+      console.log(response);
       }) 
     },
     cambiarPalabra(){

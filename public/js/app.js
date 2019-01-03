@@ -41171,7 +41171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       this.axios.post('api/login/', this.form).then(function (response) {
-        // console.log(response);
+        console.log(response);
       });
     },
     cambiarPalabra: function cambiarPalabra() {
