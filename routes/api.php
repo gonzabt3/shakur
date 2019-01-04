@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//login ,send data
+Route::post('/login','Api\LoginController@login');
+
 //hacer publicacion
 Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
 
@@ -65,5 +68,6 @@ Route::post('/evento','Api\EventoController@store');
 //get de eventos por materia
 Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');
 
-//login ,send data
-Route::post('/login','Api\LoginController@login');
+
+
+// Route::auth();

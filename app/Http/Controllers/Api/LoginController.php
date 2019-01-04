@@ -21,14 +21,15 @@ class LoginController extends Controller
         
         //me fijo que este el usuario en la tabla
         if(Auth::attempt($userData)){
+            $user = Auth::user();
             //me traigo el usuario y lo guardo en una variable de session
-            $user=User::where('email', $userData['email'])->get();
-            Session::put('user', $user);
-            $user=Session::get('user');
+            // $user=User::where('email', $userData['email'])->get();
+            // Session::put('user', $user);
+            // $user=Session::get('user');
             
-            // Log::info(Session::get('user'));
-            // dd($user);
-            return $user;
+            dd($user);
+
+            // return $user;
             // return $user->name; 
 
             // return redirect('/#/main');

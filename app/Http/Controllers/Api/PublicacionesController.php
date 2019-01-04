@@ -6,17 +6,12 @@ use App\Publicacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PublicacionResource;
+use Illuminate\Support\Facades\Auth;
 use Session;
-use Log;
 
 class PublicacionesController extends Controller
 {
     public function store(Request $request){
-        // $user=Session::get('user');
-        // dd("sad");
-        Log::info(Session::get('user'));
-
-        // dd($user);
 
         $publicacion = $this->validate($request,[
             'texto' => 'required'
@@ -29,6 +24,10 @@ class PublicacionesController extends Controller
 
 
     public function index(){
+
+        $user = Auth::user();
+
+        dd($user);
 
         $publicaciones = Publicacion::latest('created_at')->get();
         return($publicaciones);
