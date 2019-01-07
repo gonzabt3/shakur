@@ -30,9 +30,9 @@
                                 placeholder="Ingresa tu Contraseña">
                     </b-form-input>
                 </b-form-group>
-                <b-form-group label="Confirmar contraseña:" label-for="password2">
-                    <b-form-input id="password2"
-                                v-model="usuario.password2"
+                <b-form-group label="Confirmar contraseña:" label-for="password_confirmation">
+                    <b-form-input id="password_confirmation"
+                                v-model="usuario.password_confirmation"
                                 required
                                 placeholder="Confirma tu Contraseña">
                     </b-form-input>
@@ -97,7 +97,7 @@ export default {
           universidad:null,
           carrera_id:null,
           password:null,
-          password2:null   
+          password_confirmation:null   
       },
       optionsUniversidad: [
                 {
@@ -119,7 +119,7 @@ export default {
   methods :{
         crearUsuario(){
             console.log(this.usuario);
-            this.axios.post('api/usuario',this.usuario)
+            this.axios.post('api/auth/signup/',this.usuario)
                 .then(({data}) => this.setSuccessMessage())
         },
         setSuccessMessage(){

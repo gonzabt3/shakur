@@ -41154,7 +41154,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       form: {
         email: '',
-        password: ''
+        password: '',
+        remember_me: true
       },
       checkboxPassword: false,
       palabra: 'aprender',
@@ -41170,8 +41171,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      this.axios.post('api/login/', this.form).then(function (response) {
+      this.axios.post('api/auth/login/', this.form).then(function (response) {
         console.log(response);
+        sessionStorage.SessionName = "token";
+        sessionStorage.setItem("token", response.data.access_token);
       });
     },
     cambiarPalabra: function cambiarPalabra() {
@@ -41387,7 +41390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 universidad: null,
                 carrera_id: null,
                 password: null,
-                password2: null
+                password_confirmation: null
             },
             optionsUniversidad: [{
                 id: null,
@@ -41408,7 +41411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             console.log(this.usuario);
-            this.axios.post('api/usuario', this.usuario).then(function (_ref) {
+            this.axios.post('api/auth/signup/', this.usuario).then(function (_ref) {
                 var data = _ref.data;
                 return _this.setSuccessMessage();
             });
@@ -41806,22 +41809,22 @@ var render = function() {
                 {
                   attrs: {
                     label: "Confirmar contraseña:",
-                    "label-for": "password2"
+                    "label-for": "password_confirmation"
                   }
                 },
                 [
                   _c("b-form-input", {
                     attrs: {
-                      id: "password2",
+                      id: "password_confirmation",
                       required: "",
                       placeholder: "Confirma tu Contraseña"
                     },
                     model: {
-                      value: _vm.usuario.password2,
+                      value: _vm.usuario.password_confirmation,
                       callback: function($$v) {
-                        _vm.$set(_vm.usuario, "password2", $$v)
+                        _vm.$set(_vm.usuario, "password_confirmation", $$v)
                       },
-                      expression: "usuario.password2"
+                      expression: "usuario.password_confirmation"
                     }
                   })
                 ],
@@ -42250,6 +42253,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //vacio el array para que recarle los post
             this.arrayPosts = [];
+            this.axios.defaults.headers.common['Accept'] = 'application/json';
+            this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+            console.log(sessionStorage.getItem('token'));
             this.axios.get('api/publicacion').then(function (_ref) {
                 var data = _ref.data;
 

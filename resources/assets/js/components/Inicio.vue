@@ -58,6 +58,7 @@ export default {
       form: {
         email: '',
         password: '',
+        remember_me:true
       },
       checkboxPassword: false,
       palabra:'aprender',
@@ -73,9 +74,11 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.axios.post('api/login/',this.form)
+      this.axios.post('api/auth/login/',this.form)
       .then((response) =>{
       console.log(response);
+      sessionStorage.SessionName = "token"
+      sessionStorage.setItem("token",response.data.access_token);
       }) 
     },
     cambiarPalabra(){

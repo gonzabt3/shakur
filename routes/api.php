@@ -17,14 +17,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//login ,send data
-Route::post('/login','Api\LoginController@login');
+Route::group(['prefix' => 'auth'], function () {
+
+    //login ,send data
+    Route::post('/login','Api\AuthController@login');
+    Route::post('/signup', 'Api\AuthController@signup');
+  
+    Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('logout', 'AuthController@logout');
+    Route::get('user', 'AuthController@user');
+
+    //traer publicaciones
+    Route::get('/publicacion','Api\PublicacionesController@index');
+    });
+});
 
 //hacer publicacion
-Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
+Route::post('/publicacion','Api\PublicacionesController@store');
 
 //traer publicaciones
-Route::get('/publicacion','Api\PublicacionesController@index');
+Route::middleware('auth:api')->get('/publicacion','Api\PublicacionesController@index');
 
 //traer todas las universidades
 Route::get('/universidades','Api\UniversidadesController@index');
