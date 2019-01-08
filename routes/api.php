@@ -54,7 +54,7 @@ Route::get('/comentarios/{idPost}','Api\PublicacionesController@comentarios');
 Route::post('/usuario','Api\UserController@store');
 
 //config usuario
-Route::post('/usuario/config','Api\UserController@config');
+Route::middleware('auth:api')->post('/usuario/config','Api\UserController@config');
 
 //poner like en un post
 Route::post('/like','Api\LikeController@store');
@@ -72,14 +72,10 @@ Route::delete('/like/{idPost}/{idUser}','Api\LikeController@delete');
 Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
 
 //traigo materias por usuario
-Route::get('/materias/user/{idUsuario}','Api\MateriasController@materiasXusuario');
+Route::middleware('auth:api')->get('/materias2/user','Api\MateriasController@materiasXusuario');
 
 //creo evento
 Route::post('/evento','Api\EventoController@store');
 
 //get de eventos por materia
 Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');
-
-
-
-// Route::auth();

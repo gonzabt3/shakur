@@ -7,6 +7,8 @@ use App\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class MateriasController extends Controller
 {
@@ -18,8 +20,10 @@ class MateriasController extends Controller
         return Materia::find($idMateria)->eventos;
     }
 
-    public function materiasXusuario($idUsuario){
-        $data=User::find($idUsuario)->materias;
+    public function materiasXusuario(){
+        $user = Auth::user();
+        $data['materias']=$user->materias;
+        $data['username']=$user->name;
         return $data;
     }
 }

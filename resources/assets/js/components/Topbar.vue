@@ -12,13 +12,10 @@
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->
-    <!-- <b-navbar-nav class="ml-auto">
-
-      <b-nav-form>
-        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Buscar"/>
-        <b-button size="sm" class="my-2 my-sm-0" type="submit">Buscar</b-button>
-      </b-nav-form>
-    </b-navbar-nav> -->
+    <b-navbar-nav class="ml-auto">
+      <h4>{{username}}</h4>
+      <font-awesome-icon  icon="user"  class="pointer" size="lg"  />
+    </b-navbar-nav>
 
   </b-collapse>
 </b-navbar>
@@ -30,7 +27,7 @@ export default {
   data(){
     return{
       nombreMaterias:[],
-      usuario:1
+      username:''
     }
   },
   mounted(){
@@ -39,9 +36,10 @@ export default {
   methods:{
     getMaterias(){
         this.$http
-          .get("api/materias/user/"+this.usuario)
+          .get("api/materias2/user")
           .then(response => {
-              response.data.forEach(materia => {
+            this.username=response.data.username;
+              response.data.materias.forEach(materia => {
                   this.nombreMaterias.push(materia.materia)
               });
           })

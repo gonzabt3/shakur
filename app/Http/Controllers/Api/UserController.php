@@ -6,6 +6,8 @@ use App\Materia;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -26,14 +28,15 @@ class UserController extends Controller
 
     public function config(){
         $data = $this->validate(request(),[
-            "idUsuario" => 'required',
             "nombre" => 'required',
             "apellido" => 'required',
             "alias" => 'required',
             "materias" => 'required'
         ]);
         
-        $user=User::find($data['idUsuario']);
+        $user = Auth::user();
+        // $idUsuario=$user->id;
+
         // dd($data['materias']);
 
         //circo para guardar las materias x usuario

@@ -23060,7 +23060,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEyeSlash */]);
+__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faUser */]);
 
 __WEBPACK_IMPORTED_MODULE_8_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_8_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
@@ -34770,7 +34770,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faUnlock */
 /* unused harmony export faUnlockAlt */
 /* unused harmony export faUpload */
-/* unused harmony export faUser */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faUser; });
 /* unused harmony export faUserAlt */
 /* unused harmony export faUserAltSlash */
 /* unused harmony export faUserAstronaut */
@@ -42396,16 +42396,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
   data: function data() {
     return {
       nombreMaterias: [],
-      usuario: 1
+      username: ''
     };
   },
   mounted: function mounted() {
@@ -42416,8 +42413,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMaterias: function getMaterias() {
       var _this = this;
 
-      this.$http.get("api/materias/user/" + this.usuario).then(function (response) {
-        response.data.forEach(function (materia) {
+      this.$http.get("api/materias2/user").then(function (response) {
+        _this.username = response.data.username;
+        response.data.materias.forEach(function (materia) {
           _this.nombreMaterias.push(materia.materia);
         });
       });
@@ -42454,6 +42452,20 @@ var render = function() {
                 _vm._v(_vm._s(materia))
               ])
             })
+          ),
+          _vm._v(" "),
+          _c(
+            "b-navbar-nav",
+            { staticClass: "ml-auto" },
+            [
+              _c("h4", [_vm._v(_vm._s(_vm.username))]),
+              _vm._v(" "),
+              _c("font-awesome-icon", {
+                staticClass: "pointer",
+                attrs: { icon: "user", size: "lg" }
+              })
+            ],
+            1
           )
         ],
         1
