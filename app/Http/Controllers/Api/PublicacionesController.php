@@ -17,6 +17,9 @@ class PublicacionesController extends Controller
             'texto' => 'required'
         ]);
 
+        $user = Auth::user();
+
+        $publicacion['user_id']=$user->id;
         $publicacion = Publicacion::create($publicacion);
 
         return new PublicacionResource($publicacion);
@@ -24,11 +27,7 @@ class PublicacionesController extends Controller
 
 
     public function index(){
-
-        $user = Auth::user();
-
-        dd($user);
-
+        
         $publicaciones = Publicacion::latest('created_at')->get();
         return($publicaciones);
         // return PublicacionResource::collection($publicaciones);

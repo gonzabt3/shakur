@@ -33,7 +33,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 //hacer publicacion
-Route::post('/publicacion','Api\PublicacionesController@store');
+Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
 
 //traer publicaciones
 Route::middleware('auth:api')->get('/publicacion','Api\PublicacionesController@index');
