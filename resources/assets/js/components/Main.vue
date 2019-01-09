@@ -38,6 +38,7 @@ export default {
   data(){
       return{
           arrayPosts:[],
+          idMateria:1
       }
   },
   mounted(){
@@ -50,8 +51,8 @@ export default {
         this.arrayPosts=[]
         this.axios.defaults.headers.common['Accept'] = 'application/json'; 
         this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
-        console.log(sessionStorage.getItem('token'));
-        this.axios.get('api/publicacion')
+        // console.log(sessionStorage.getItem('token'));
+        this.axios.get('api/publicacion/'+this.idMateria)
                     .then(({data}) => {
                         data.forEach(post => {
                             let postAux={

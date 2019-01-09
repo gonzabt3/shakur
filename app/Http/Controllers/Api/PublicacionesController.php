@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Publicacion;
+use App\Materia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PublicacionResource;
@@ -26,10 +27,15 @@ class PublicacionesController extends Controller
     }
 
 
-    public function index(){
+    public function index($idMateria){
+
+        // dd(Materia::find($idMateria)->publicaciones);
         
-        $publicaciones = Publicacion::latest('created_at')->get();
+        $publicaciones=Materia::find($idMateria)->publicaciones;
+        
+        // $publicaciones = Publicacion::latest('created_at')->get();
         return($publicaciones);
+        
         // return PublicacionResource::collection($publicaciones);
 
     }

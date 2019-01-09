@@ -26,7 +26,7 @@ export default {
     return {
         object:{
             texto:null,
-            grupo_id:null,
+            materia_id:null,
             user_id:null
         }
     };

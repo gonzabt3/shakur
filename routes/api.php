@@ -28,7 +28,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('user', 'AuthController@user');
 
     //traer publicaciones
-    Route::get('/publicacion','Api\PublicacionesController@index');
+    Route::get('/publicacion/{idMateria}','Api\PublicacionesController@index');
     });
 });
 
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
 
 //traer publicaciones
-Route::middleware('auth:api')->get('/publicacion','Api\PublicacionesController@index');
+Route::middleware('auth:api')->get('/publicacion/{idMateria}','Api\PublicacionesController@index');
 
 //traer todas las universidades
 Route::get('/universidades','Api\UniversidadesController@index');

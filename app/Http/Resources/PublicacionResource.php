@@ -18,7 +18,7 @@ class PublicacionResource extends JsonResource
         return [
             'id'=>$this->id,
             'texto'=>$this->texto,
-            'grupo_id'=>$this->grupo_id,
+            'materia_id'=>$this->materia_id,
             'user_id'=>$this->user_id
         ];
     }

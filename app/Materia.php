@@ -16,9 +16,12 @@ class Materia extends Model
         return $this->hasMany(Evento::class);
     }
 
-    public function usuarios()
-    {
+    public function usuarios(){
        return $this->belongsToMany(User::class,'materias_x_users');
+    }
+
+    public function publicaciones(){
+        return $this->hasMany(Publicacion::class);
     }
 
 }

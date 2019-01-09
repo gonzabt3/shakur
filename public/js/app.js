@@ -42243,7 +42243,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
     data: function data() {
         return {
-            arrayPosts: []
+            arrayPosts: [],
+            idMateria: 1
         };
     },
     mounted: function mounted() {
@@ -42259,8 +42260,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.arrayPosts = [];
             this.axios.defaults.headers.common['Accept'] = 'application/json';
             this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
-            console.log(sessionStorage.getItem('token'));
-            this.axios.get('api/publicacion').then(function (_ref) {
+            // console.log(sessionStorage.getItem('token'));
+            this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
                 data.forEach(function (post) {
@@ -42417,6 +42418,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMaterias: function getMaterias() {
       var _this = this;
 
+      this.axios.defaults.headers.common['Accept'] = 'application/json';
+      this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
       this.$http.get("api/materias2/user").then(function (response) {
         _this.username = response.data.username;
         response.data.materias.forEach(function (materia) {
@@ -46595,7 +46598,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             object: {
                 texto: null,
-                grupo_id: null,
+                materia_id: null,
                 user_id: null
             }
         };
