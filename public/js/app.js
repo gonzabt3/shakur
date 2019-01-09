@@ -41168,13 +41168,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.checkboxPassword ? "text" : "password";
     }
   },
+  //LOGIN
   methods: {
     onSubmit: function onSubmit(evt) {
+      var _this = this;
+
       evt.preventDefault();
       this.axios.post('api/auth/login/', this.form).then(function (response) {
-        console.log(response);
+        // console.log(response);
         sessionStorage.SessionName = "token";
         sessionStorage.setItem("token", response.data.access_token);
+        _this.$router.push("/main");
       });
     },
     cambiarPalabra: function cambiarPalabra() {

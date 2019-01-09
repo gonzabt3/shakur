@@ -71,14 +71,16 @@ export default {
         return this.checkboxPassword ? "text" : "password";
     },
   },
+  //LOGIN
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       this.axios.post('api/auth/login/',this.form)
       .then((response) =>{
-      console.log(response);
+      // console.log(response);
       sessionStorage.SessionName = "token"
       sessionStorage.setItem("token",response.data.access_token);
+      this.$router.push("/main");
       }) 
     },
     cambiarPalabra(){
