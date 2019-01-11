@@ -8,7 +8,8 @@
   <b-collapse is-nav id="nav_collapse">
 
     <b-navbar-nav>
-      <b-nav-item v-for="materia in nombreMaterias" href="#">{{materia}}</b-nav-item>
+      <!-- <h5>asd</h5> -->
+      <b-nav-item id="materia" v-for="materia in materias" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->
@@ -26,7 +27,7 @@ export default {
   name: 'Topbar',
   data(){
     return{
-      nombreMaterias:[],
+      materias:[],
       username:''
     }
   },
@@ -42,11 +43,20 @@ export default {
           .then(response => {
             this.username=response.data.username;
               response.data.materias.forEach(materia => {
-                  this.nombreMaterias.push(materia.materia)
+                let obj={
+                  id:materia.id,
+                  nombre:materia.materia
+                }
+                  this.materias.push(obj)
               });
           })
+    },
+    //funcion que marca la materia actual
+    clickMateria(val){
+      console.log(val)
     }
   }
+
 };
 
 </script>

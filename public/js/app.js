@@ -42401,12 +42401,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
   data: function data() {
     return {
-      nombreMaterias: [],
+      materias: [],
       username: ''
     };
   },
@@ -42423,11 +42424,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.get("api/materias2/user").then(function (response) {
         _this.username = response.data.username;
         response.data.materias.forEach(function (materia) {
-          _this.nombreMaterias.push(materia.materia);
+          var obj = {
+            id: materia.id,
+            nombre: materia.materia
+          };
+          _this.materias.push(obj);
         });
       });
+    },
+
+    //funcion que marca la materia actual
+    clickMateria: function clickMateria(val) {
+      console.log(val);
     }
   }
+
 });
 
 /***/ }),
@@ -42454,10 +42465,19 @@ var render = function() {
         [
           _c(
             "b-navbar-nav",
-            _vm._l(_vm.nombreMaterias, function(materia) {
-              return _c("b-nav-item", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(materia))
-              ])
+            _vm._l(_vm.materias, function(materia) {
+              return _c(
+                "b-nav-item",
+                {
+                  attrs: { id: "materia" },
+                  on: {
+                    click: function($event) {
+                      _vm.clickMateria(materia.id)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(materia.nombre))]
+              )
             })
           ),
           _vm._v(" "),
