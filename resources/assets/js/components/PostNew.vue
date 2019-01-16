@@ -22,18 +22,19 @@
 <script>
 export default {
   name: 'PostNew',
+    props:['idMateria'],
     data() {
     return {
         object:{
             texto:null,
-            materia_id:null,
+            materia_id:this.idMateria,
             user_id:null
         }
     };
   },
     methods :{
       hacerPost(){
-
+            this.object.materia_id=this.idMateria
             this.axios.post('api/publicacion',this.object)
             .then((response) =>{
                 this.object.texto='',

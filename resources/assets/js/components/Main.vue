@@ -10,6 +10,7 @@
             <b-col cols="5" class="scroll">
                 <post-new 
                 @responseGetPosts="getPosts"
+                :id-materia="idMateria"
                 ></post-new>
                 <!-- tira error por un bug de la verga del eslint -->
                 <post-user  

@@ -42231,6 +42231,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -46622,11 +46623,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'PostNew',
+    props: ['idMateria'],
     data: function data() {
         return {
             object: {
                 texto: null,
-                materia_id: null,
+                materia_id: this.idMateria,
                 user_id: null
             }
         };
@@ -46636,6 +46638,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hacerPost: function hacerPost() {
             var _this = this;
 
+            this.object.materia_id = this.idMateria;
             this.axios.post('api/publicacion', this.object).then(function (response) {
                 _this.object.texto = '', _this.$emit("responseGetPosts");
             });
@@ -46749,7 +46752,10 @@ var render = function() {
             "b-col",
             { staticClass: "scroll", attrs: { cols: "5" } },
             [
-              _c("post-new", { on: { responseGetPosts: _vm.getPosts } }),
+              _c("post-new", {
+                attrs: { "id-materia": _vm.idMateria },
+                on: { responseGetPosts: _vm.getPosts }
+              }),
               _vm._v(" "),
               _vm._l(_vm.arrayPosts, function(item) {
                 return _c("post-user", { attrs: { postData: item } })
