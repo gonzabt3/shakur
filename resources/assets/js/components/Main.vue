@@ -1,6 +1,8 @@
 <template>
     <div >
-        <topbar></topbar>
+        <topbar 
+        @changeMateria="updateWalls"
+        ></topbar>
         <b-row >
             <b-col cols="3">
                 <settings-wall></settings-wall>
@@ -68,6 +70,11 @@ export default {
                             this.arrayPosts.push(postAux);
                         });
                     });
+      },
+    //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
+      updateWalls(val){
+        this.idMateria=val;
+        this.getPosts();
       }
   }
 };

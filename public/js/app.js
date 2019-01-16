@@ -42229,6 +42229,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -42277,6 +42279,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.arrayPosts.push(postAux);
                 });
             });
+        },
+
+        //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
+        updateWalls: function updateWalls(val) {
+            this.idMateria = val;
+            this.getPosts();
         }
     }
 });
@@ -42435,7 +42443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     //funcion que marca la materia actual
     clickMateria: function clickMateria(val) {
-      console.log(val);
+      this.$emit("changeMateria", val);
     }
   }
 
@@ -46628,7 +46636,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hacerPost: function hacerPost() {
             var _this = this;
 
-            // console.log(this.object);
             this.axios.post('api/publicacion', this.object).then(function (response) {
                 _this.object.texto = '', _this.$emit("responseGetPosts");
             });
@@ -46731,7 +46738,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("topbar"),
+      _c("topbar", { on: { changeMateria: _vm.updateWalls } }),
       _vm._v(" "),
       _c(
         "b-row",

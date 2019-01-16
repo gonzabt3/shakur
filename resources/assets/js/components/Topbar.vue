@@ -53,7 +53,7 @@ export default {
     },
     //funcion que marca la materia actual
     clickMateria(val){
-      console.log(val)
+      this.$emit("changeMateria",val);
     }
   }
 

@@ -33,7 +33,7 @@ export default {
   },
     methods :{
       hacerPost(){
-            // console.log(this.object);
+
             this.axios.post('api/publicacion',this.object)
             .then((response) =>{
                 this.object.texto='',
