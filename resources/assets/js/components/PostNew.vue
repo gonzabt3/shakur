@@ -35,6 +35,7 @@ export default {
     methods :{
       hacerPost(){
             this.object.materia_id=this.idMateria
+            console.log(this.object);
             this.axios.post('api/publicacion',this.object)
             .then((response) =>{
                 this.object.texto='',

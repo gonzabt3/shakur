@@ -43476,6 +43476,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -43500,7 +43501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getEventos: function getEventos() {
             var _this = this;
 
-            console.log(this.idMateria);
+            // console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
@@ -43606,7 +43607,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43648,6 +43649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['idMateria'],
   components: { Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */] },
   data: function data() {
     return {
@@ -43655,7 +43657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         nombre: '',
         temas: '',
         fecha: '',
-        materia_id: 5,
+        materia_id: this.idMateria,
         user_id: 1
       },
       en: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* en */],
@@ -43667,7 +43669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     submit: function submit() {
       var _this = this;
 
-      // console.log(this.data);
+      this.data.materia_id = this.idMateria;
       this.axios.post('api/evento', this.data).then(function (response) {
         _this.cleanModal();
         _this.$refs.newEvent.hide();
@@ -45400,7 +45402,10 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-new-event", { on: { responseGetEventos: _vm.getEventos } })
+      _c("modal-new-event", {
+        attrs: { "id-materia": _vm.idMateria },
+        on: { responseGetEventos: _vm.getEventos }
+      })
     ],
     1
   )
@@ -46645,6 +46650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.object.materia_id = this.idMateria;
+            console.log(this.object);
             this.axios.post('api/publicacion', this.object).then(function (response) {
                 _this.object.texto = '', _this.$emit("responseGetPosts");
             });

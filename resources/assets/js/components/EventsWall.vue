@@ -17,6 +17,7 @@
         </b-card>
         <modal-new-event
         @responseGetEventos="getEventos"
+        :id-materia="idMateria"
         ></modal-new-event>
     </b-container>
 </template>
@@ -42,7 +43,7 @@ export default {
           this.$root.$emit('bv::show::modal','newEvent')
       },
       getEventos(){
-            console.log(this.idMateria);
+            // console.log(this.idMateria);
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {

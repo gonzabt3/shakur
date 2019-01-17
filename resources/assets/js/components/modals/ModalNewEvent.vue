@@ -27,6 +27,7 @@ import Datepicker from 'vuejs-datepicker';
 import { en, es } from 'vuejs-datepicker/dist/locale';
 
 export default {
+  props:['idMateria'],
   components: { Datepicker },
   data() {
     return {
@@ -34,7 +35,7 @@ export default {
         nombre: '',
         temas: '',
         fecha: '',
-        materia_id:5,
+        materia_id:this.idMateria,
         user_id:1
       },
       en,
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     submit() {
-      // console.log(this.data);
+      this.data.materia_id=this.idMateria
       this.axios.post('api/evento',this.data)
       .then((response) =>{
         this.cleanModal();

@@ -15,7 +15,8 @@ class PublicacionesController extends Controller
     public function store(Request $request){
 
         $publicacion = $this->validate($request,[
-            'texto' => 'required'
+            'texto' => 'required',
+            'materia_id' => 'required'
         ]);
 
         $user = Auth::user();
