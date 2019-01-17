@@ -42232,6 +42232,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -42286,6 +42289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateWalls: function updateWalls(val) {
             this.idMateria = val;
             this.getPosts();
+            this.$refs.eventWall.getEventos();
         }
     }
 });
@@ -43477,11 +43481,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'EventsWall',
+    props: ['idMateria'],
     components: { ModalNewEvent: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default.a },
     data: function data() {
         return {
-            arrayEventos: [],
-            idMateria: 5
+            arrayEventos: []
+            //   idMateria:5
         };
     },
     mounted: function mounted() {
@@ -43495,6 +43500,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getEventos: function getEventos() {
             var _this = this;
 
+            console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
@@ -46767,7 +46773,11 @@ var render = function() {
           _c(
             "b-col",
             [
-              _c("events-wall", { staticClass: "form-group" }),
+              _c("events-wall", {
+                ref: "eventWall",
+                staticClass: "form-group",
+                attrs: { "id-materia": _vm.idMateria }
+              }),
               _vm._v(" "),
               _c("doc-wall")
             ],

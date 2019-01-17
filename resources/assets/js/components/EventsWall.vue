@@ -25,12 +25,13 @@
 import ModalNewEvent from '../components/modals/ModalNewEvent';
 
 export default {
-  name: 'EventsWall',
+    name: 'EventsWall',
+    props:['idMateria'],
   components: { ModalNewEvent },
   data(){
       return{
           arrayEventos:[],
-          idMateria:5
+        //   idMateria:5
       }
   },
   mounted(){
@@ -41,6 +42,7 @@ export default {
           this.$root.$emit('bv::show::modal','newEvent')
       },
       getEventos(){
+            console.log(this.idMateria);
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {

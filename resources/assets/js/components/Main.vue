@@ -19,7 +19,10 @@
                 ></post-user>
             </b-col>
             <b-col>
-                <events-wall class="form-group"></events-wall>
+                <events-wall class="form-group"
+                :id-materia="idMateria"
+                ref="eventWall"
+                ></events-wall>
                 <doc-wall></doc-wall>
             </b-col>
         </b-row>
@@ -76,6 +79,7 @@ export default {
       updateWalls(val){
         this.idMateria=val;
         this.getPosts();
+        this.$refs.eventWall.getEventos();
       }
   }
 };
