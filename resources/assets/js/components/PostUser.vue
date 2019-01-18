@@ -12,7 +12,7 @@
                                 <h3 class="text-left">{{postData.name}}</h3>
                             </b-col>
                             <b-col>
-                                <label>{{postData.fecha}}</label>
+                                <label><b-badge pill variant="secondary">{{postData.fecha | formatDate}}</b-badge></label>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -72,6 +72,9 @@
 
 <script>
 import Comentario from '../components/Comentario';
+import moment from "moment";
+
+const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
@@ -101,6 +104,12 @@ export default {
         this.getLikes();
         this.getUserLike();
         this.getComentarios();
+    },
+    filters:{
+        formatDate(value) {
+            if (!value) return "-";
+            return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
+        },
     },
 methods: {
     //setea en true o false el boton de like

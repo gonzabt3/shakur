@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -26,6 +28,7 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAxios, axios)
+Vue.use(require('vue-moment'));
 
 //pongo lodash
 window._ = require('lodash');
