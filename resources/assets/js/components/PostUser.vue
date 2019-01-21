@@ -30,10 +30,10 @@
                 </b-form-group>
                 <b-row>
                     <b-col  class="">
-                        <b-button size="sm" @click="btnLike">
-                            <label class="no-margin-bottom">{{cantLikes}}</label>
-                            <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
-                        </b-button>
+                        <like
+                        :cantidad-likes="postData.likes"
+                        :id-post="postData.idPost"
+                        ></like>
                         <b-button size="sm" @click="showComentarios = !showComentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
                             <b-img :src="commentIcon" fluid alt="comments" /> Comentar
@@ -72,23 +72,20 @@
 
 <script>
 import Comentario from '../components/Comentario';
+import Like from '../components/common/Like'
 import moment from "moment";
 
 const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
-  components: { Comentario },
+  components: { Comentario,Like },
   props:['postData'],//data entrante
   data() {
     return {
-      beerIcon: '../images/beer.png',
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantLikes: this.postData.likes,
-      stringBtnLike: 'Like',
       cantComentarios: 1,
-      btnLikeEstado: false,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
@@ -129,28 +126,6 @@ methods: {
         })  
 
     },
-    btnLike() {
-      if (!this.btnLikeEstado) {
-        let objetoLike = {
-            user_id:this.user,
-            publicacions_id:this.postData.idPost
-        }
-
-        //agrego like
-        this.axios.post('api/like',objetoLike)
-        .then((response) =>{
-            this.btnLikeEstado = true;
-            this.cantLikes += 1;
-        })   
-      } else {
-        //saco like 
-        this.axios.delete('api/like/'+this.postData.idPost+'/'+this.user)
-        .then((response) =>{
-            this.btnLikeEstado = false;
-            this.cantLikes -= 1;
-        })   
-      }
-    },
     submitComentario(){
         // console.log(this.objectComentario);
         this.axios.post('api/comentario',this.objectComentario)
@@ -182,10 +157,6 @@ methods: {
     }
   },
   watch: {
-    btnLikeEstado(value) {
-      this.beerIcon = (value == true ? '../images/beerVacia.png' : '../images/beer.png');
-      this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
-    },
     showManyComentarios(value) { // cambia el icon del ojo de los comentarios
       this.iconEyeComentarios = (value == true ? 'eye-slash' : 'eye');
     },
