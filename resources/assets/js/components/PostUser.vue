@@ -9,10 +9,10 @@
                     <b-col>
                         <b-row>
                             <b-col id="nombreUser" cols="7">
-                                <h3 class="text-left">{{postData.name}}</h3>
+                                <h3 class="text-left">{{postData.user.name}}</h3>
                             </b-col>
                             <b-col>
-                                <label><b-badge pill variant="secondary">{{postData.fecha | formatDate}}</b-badge></label>
+                                <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -25,13 +25,13 @@
                 <br>
                 <b-form-group class="text-center">
                     <p class="card-text text-justify">
-                        {{postData.comentario}}
+                        {{postData.texto}}
                     </p>
                 </b-form-group>
                 <b-row>
                     <b-col  class="">
                         <like
-                        :cantidad-likes="postData.likes"
+                        :cantidad-likes="cantidadLikes"
                         :id-post="postData.idPost"
                         ></like>
                         <b-button size="sm" @click="showComentarios = !showComentarios">
@@ -98,7 +98,7 @@ export default {
     };
   },
     mounted(){
-        this.getLikes();
+        console.log(this.postData)
         this.getUserLike();
         this.getComentarios();
     },
@@ -107,6 +107,11 @@ export default {
             if (!value) return "-";
             return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
         },
+    },
+    computed:{
+        cantidadLikes:function(){
+            return this.postData.likes.length;
+        }
     },
 methods: {
     //setea en true o false el boton de like

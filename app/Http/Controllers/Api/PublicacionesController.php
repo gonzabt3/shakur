@@ -30,10 +30,10 @@ class PublicacionesController extends Controller
 
     public function index($idMateria){
 
-        $publicaciones=Publicacion::where('materia_id',523)->with('user','likes')->get();
+        $publicaciones=Publicacion::where('materia_id',$idMateria)->with('user','likes')->get();
 
 
-        dd($publicaciones);
+        // dd($publicaciones);
 
         return($publicaciones);
     

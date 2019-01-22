@@ -58760,53 +58760,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Main',
-    components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
-    data: function data() {
-        return {
-            arrayPosts: [],
-            idMateria: 1
-        };
+  name: 'Main',
+  components: { Topbar: __WEBPACK_IMPORTED_MODULE_0__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_1__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_2__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_3__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_4__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_5__components_PostNew___default.a },
+  data: function data() {
+    return {
+      arrayPosts: [],
+      idMateria: 1 //se cambia en el metodo update  walls
+    };
+  },
+  mounted: function mounted() {
+    this.getPosts();
+  },
+
+  methods: {
+    //   TRAE TODAS LAS PUBLICACIONES
+    getPosts: function getPosts() {
+      var _this = this;
+
+      //vacio el array para que recarle los post
+      this.arrayPosts = [];
+      this.axios.defaults.headers.common['Accept'] = 'application/json';
+      this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+      // console.log(sessionStorage.getItem('token'));
+      this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
+        var data = _ref.data;
+
+        data.forEach(function (post) {
+          _this.arrayPosts.push(post);
+        });
+      });
     },
-    mounted: function mounted() {
-        this.getPosts();
-    },
 
-    methods: {
-        //   TRAE TODAS LAS PUBLICACIONES
-        getPosts: function getPosts() {
-            var _this = this;
-
-            //vacio el array para que recarle los post
-            this.arrayPosts = [];
-            this.axios.defaults.headers.common['Accept'] = 'application/json';
-            this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
-            // console.log(sessionStorage.getItem('token'));
-            this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
-                var data = _ref.data;
-
-                data.forEach(function (post) {
-                    var postAux = {
-                        idPost: post.id,
-                        name: 'Pepe San martin',
-                        comentario: 'la concha del pato',
-                        fecha: '20 de agosto 2055',
-                        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                        likes: 0
-                    };
-                    postAux.comentario = post.texto, postAux.fecha = post.created_at;
-                    _this.arrayPosts.push(postAux);
-                });
-            });
-        },
-
-        //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
-        updateWalls: function updateWalls(val) {
-            this.idMateria = val;
-            this.getPosts();
-            this.$refs.eventWall.getEventos();
-        }
+    //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
+    updateWalls: function updateWalls(val) {
+      this.idMateria = val;
+      this.getPosts();
+      this.$refs.eventWall.getEventos();
     }
+  }
 });
 
 /***/ }),
@@ -59242,7 +59233,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         };
     },
     mounted: function mounted() {
-        this.getLikes();
+        console.log(this.postData);
         this.getUserLike();
         this.getComentarios();
     },
@@ -59251,6 +59242,11 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         formatDate: function formatDate(value) {
             if (!value) return "-";
             return __WEBPACK_IMPORTED_MODULE_2_moment___default()(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
+        }
+    },
+    computed: {
+        cantidadLikes: function cantidadLikes() {
+            return this.postData.likes.length;
         }
     },
     methods: {
@@ -59684,7 +59680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!this.btnLikeEstado) {
                 var objetoLike = {
                     user_id: this.user,
-                    publicacions_id: this.postData.idPost
+                    publicacions_id: this.idPost
                     //agrego like
                 };this.axios.post('api/like', objetoLike).then(function (response) {
                     _this.btnLikeEstado = true;
@@ -60064,7 +60060,7 @@ var render = function() {
                             { attrs: { id: "nombreUser", cols: "7" } },
                             [
                               _c("h3", { staticClass: "text-left" }, [
-                                _vm._v(_vm._s(_vm.postData.name))
+                                _vm._v(_vm._s(_vm.postData.user.name))
                               ])
                             ]
                           ),
@@ -60079,7 +60075,9 @@ var render = function() {
                                   [
                                     _vm._v(
                                       _vm._s(
-                                        _vm._f("formatDate")(_vm.postData.fecha)
+                                        _vm._f("formatDate")(
+                                          _vm.postData.created_at
+                                        )
                                       )
                                     )
                                   ]
@@ -60124,7 +60122,7 @@ var render = function() {
                 _c("p", { staticClass: "card-text text-justify" }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.postData.comentario) +
+                      _vm._s(_vm.postData.texto) +
                       "\n                "
                   )
                 ])
@@ -60139,7 +60137,7 @@ var render = function() {
                     [
                       _c("like", {
                         attrs: {
-                          "cantidad-likes": _vm.postData.likes,
+                          "cantidad-likes": _vm.cantidadLikes,
                           "id-post": _vm.postData.idPost
                         }
                       }),

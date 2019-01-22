@@ -22,7 +22,7 @@ export default {
                 if (!this.btnLikeEstado) {
                     let objetoLike = {
                     user_id:this.user,
-                    publicacions_id:this.postData.idPost
+                    publicacions_id:this.idPost
             }
             //agrego like
             this.axios.post('api/like',objetoLike)

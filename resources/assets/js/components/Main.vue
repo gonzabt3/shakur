@@ -44,7 +44,7 @@ export default {
   data(){
       return{
           arrayPosts:[],
-          idMateria:1
+          idMateria:1 //se cambia en el metodo update  walls
       }
   },
   mounted(){
@@ -61,17 +61,7 @@ export default {
         this.axios.get('api/publicacion/'+this.idMateria)
                     .then(({data}) => {
                         data.forEach(post => {
-                            let postAux={
-                                idPost:post.id,
-                                name: 'Pepe San martin',
-                                comentario:'la concha del pato',
-                                fecha:'20 de agosto 2055',
-                                imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                                likes:0 
-                            }
-                            postAux.comentario=post.texto,
-                            postAux.fecha=post.created_at
-                            this.arrayPosts.push(postAux);
+                            this.arrayPosts.push(post);
                         });
                     });
       },
