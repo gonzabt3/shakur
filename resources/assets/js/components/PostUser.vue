@@ -31,8 +31,7 @@
                 <b-row>
                     <b-col  class="">
                         <like
-                        :cantidad-likes="cantidadLikes"
-                        :id-post="postData.idPost"
+                        :likes-data="postData.likes"
                         ></like>
                         <b-button size="sm" @click="showComentarios = !showComentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>

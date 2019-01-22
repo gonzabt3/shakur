@@ -7,14 +7,12 @@
 <script>
 export default {
     name:"Like",
-    props:['cantidadLikes','idPost'],
+    props:['likesData'],
     data(){
         return{
             beerIcon: '../images/beer.png',
             stringBtnLike: 'Like',
-            btnLikeEstado: false,
-            cantLikes: this.cantidadLikes
-
+            btnLikeEstado: false
         }
         },
         methods:{
