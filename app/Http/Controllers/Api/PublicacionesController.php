@@ -30,15 +30,13 @@ class PublicacionesController extends Controller
 
     public function index($idMateria){
 
-        // dd(Materia::find($idMateria)->publicaciones);
-        
-        $publicaciones=Materia::find($idMateria)->publicaciones;
-        
-        // $publicaciones = Publicacion::latest('created_at')->get();
-        return($publicaciones);
-        
-        // return PublicacionResource::collection($publicaciones);
+        $publicaciones=Publicacion::where('materia_id',523)->with('user','likes')->get();
 
+
+        dd($publicaciones);
+
+        return($publicaciones);
+    
     }
 
     public function comentarios($id){

@@ -13,4 +13,14 @@ class Publicacion extends Model
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
 }

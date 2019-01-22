@@ -10,4 +10,8 @@ class Like extends Model
     protected $fillable = [
         'publicacions_id','user_id'
     ];
+
+    public function publicaciones(){
+        return $this->belongsTo(Publicacion::class);
+    }
 }

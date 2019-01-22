@@ -45,4 +45,8 @@ class User extends Authenticatable
     {
        return $this->belongsToMany(Materia::class,'materias_x_users');
     }
+
+    public function publicaciones(){
+        return $this->hasMany(Publicacion::class);
+    }
 }
