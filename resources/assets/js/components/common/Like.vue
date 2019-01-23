@@ -1,41 +1,52 @@
 <template>
     <b-button size="sm" @click="btnLike">
-        <label class="no-margin-bottom">{{cantLikes}}</label>
+        <label class="no-margin-bottom">{{cantidadLikes}}</label>
         <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
     </b-button>
 </template>
 <script>
 export default {
     name:"Like",
-    props:['likesData'],
+    props:['likesData','idUserLogeado','idPost'],
     data(){
         return{
             beerIcon: '../images/beer.png',
             stringBtnLike: 'Like',
-            btnLikeEstado: false
-        }
+            btnLikeEstado: false,
+            cantidadLikes:this.likesData.length
+            }
+        },
+        mounted(){
+            this.estadoBtnLike();
         },
         methods:{
             btnLike() {
-                if (!this.btnLikeEstado) {
-                    let objetoLike = {
-                    user_id:this.user,
-                    publicacions_id:this.idPost
-            }
-            //agrego like
-            this.axios.post('api/like',objetoLike)
-            .then((response) =>{
-                this.btnLikeEstado = true;
-                this.cantLikes += 1;
-            })   
-            } else {
-            //saco like 
-            this.axios.delete('api/like/'+this.postData.idPost+'/'+this.user)
-            .then((response) =>{
-                this.btnLikeEstado = false;
-                this.cantLikes -= 1;
-            })   
-            }
+                    if (!this.btnLikeEstado) {
+                        let obj={
+                            publicacion_id:this.idPost
+                        }
+                        console.log(obj)
+                //agrego like
+                this.axios.post('api/like',obj)
+                .then((response) =>{
+                    this.btnLikeEstado = true;
+                    this.cantidadLikes += 1;
+                })   
+                } else {
+                //saco like 
+                this.axios.delete('api/like/'+this.idPost)
+                .then((response) =>{
+                    this.btnLikeEstado = false;
+                    this.cantidadLikes -= 1;
+                })   
+                }
+            },
+        estadoBtnLike(){
+            this.likesData.forEach(like => {
+                if(like.user_id==this.idUserLogeado){
+                    this.btnLikeEstado=true
+                }
+            })
         }
         },
         watch:{

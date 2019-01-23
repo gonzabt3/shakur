@@ -57,7 +57,7 @@ Route::post('/usuario','Api\UserController@store');
 Route::middleware('auth:api')->post('/usuario/config','Api\UserController@config');
 
 //poner like en un post
-Route::post('/like','Api\LikeController@store');
+Route::middleware('auth:api')->post('/like','Api\LikeController@store');
 
 //traer LIKES
 Route::get('/likes/{idPost}','Api\LikeController@index');
@@ -66,7 +66,7 @@ Route::get('/likes/{idPost}','Api\LikeController@index');
 Route::get('/like/{idPost}/{idUser}','Api\LikeController@postXuser');
 
 //delete like en el post
-Route::delete('/like/{idPost}/{idUser}','Api\LikeController@delete');
+Route::middleware('auth:api')->delete('/like/{idPost}','Api\LikeController@delete');
 
 //traigo materias por carrera
 Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');

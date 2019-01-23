@@ -32,6 +32,8 @@
                     <b-col  class="">
                         <like
                         :likes-data="postData.likes"
+                        :id-user-logeado="postData.id_user_logeado"
+                        :id-post="postData.id"
                         ></like>
                         <b-button size="sm" @click="showComentarios = !showComentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
@@ -97,8 +99,6 @@ export default {
     };
   },
     mounted(){
-        console.log(this.postData)
-        this.getUserLike();
         this.getComentarios();
     },
     filters:{
@@ -107,29 +107,7 @@ export default {
             return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
         },
     },
-    computed:{
-        cantidadLikes:function(){
-            return this.postData.likes.length;
-        }
-    },
 methods: {
-    //setea en true o false el boton de like
-    getUserLike(){
-        this.axios.get('api/like/'+this.postData.idPost+'/'+this.user)
-        .then((response) =>{
-        // console.log(response);
-        if(response.data.length>0){
-            this.btnLikeEstado=true
-        }
-        })  
-    },
-    getLikes(){
-        this.axios.get('api/likes/'+this.postData.idPost)
-        .then((response) =>{
-            this.cantLikes=response.data
-        })  
-
-    },
     submitComentario(){
         // console.log(this.objectComentario);
         this.axios.post('api/comentario',this.objectComentario)

@@ -29,11 +29,14 @@ class PublicacionesController extends Controller
 
 
     public function index($idMateria){
+       $publicaciones=Publicacion::where('materia_id',$idMateria)->with('user','likes')->get();
 
-        $publicaciones=Publicacion::where('materia_id',$idMateria)->with('user','likes')->get();
-
-
-        // dd($publicaciones);
+        //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
+        $publicaciones->map(function ($post) {
+            $user = Auth::user();
+            $post['id_user_logeado'] = $user->id;
+            return $post;
+        });
 
         return($publicaciones);
     

@@ -59204,6 +59204,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -59232,8 +59234,6 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         };
     },
     mounted: function mounted() {
-        console.log(this.postData);
-        this.getUserLike();
         this.getComentarios();
     },
 
@@ -59243,41 +59243,18 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             return __WEBPACK_IMPORTED_MODULE_2_moment___default()(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
         }
     },
-    computed: {
-        cantidadLikes: function cantidadLikes() {
-            return this.postData.likes.length;
-        }
-    },
     methods: {
-        //setea en true o false el boton de like
-        getUserLike: function getUserLike() {
-            var _this = this;
-
-            this.axios.get('api/like/' + this.postData.idPost + '/' + this.user).then(function (response) {
-                // console.log(response);
-                if (response.data.length > 0) {
-                    _this.btnLikeEstado = true;
-                }
-            });
-        },
-        getLikes: function getLikes() {
-            var _this2 = this;
-
-            this.axios.get('api/likes/' + this.postData.idPost).then(function (response) {
-                _this2.cantLikes = response.data;
-            });
-        },
         submitComentario: function submitComentario() {
-            var _this3 = this;
+            var _this = this;
 
             // console.log(this.objectComentario);
             this.axios.post('api/comentario', this.objectComentario).then(function (response) {
-                _this3.objectComentario.texto = '';
-                _this3.getComentarios();
+                _this.objectComentario.texto = '';
+                _this.getComentarios();
             });
         },
         getComentarios: function getComentarios() {
-            var _this4 = this;
+            var _this2 = this;
 
             this.arrayComentarios = [];
             this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
@@ -59294,9 +59271,9 @@ var dateFormat = "DD-MM-YYYY HH:mm";
                         likes: 7
                     };
                     comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
-                    _this4.arrayComentarios.push(comentarioAux);
+                    _this2.arrayComentarios.push(comentarioAux);
                 });
-                _this4.cantComentarios = _this4.arrayComentarios.length;
+                _this2.cantComentarios = _this2.arrayComentarios.length;
             });
         }
     },
@@ -59641,7 +59618,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59661,13 +59638,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Like",
-    props: ['likesData'],
+    props: ['likesData', 'idUserLogeado', 'idPost'],
     data: function data() {
         return {
             beerIcon: '../images/beer.png',
             stringBtnLike: 'Like',
-            btnLikeEstado: false
+            btnLikeEstado: false,
+            cantidadLikes: this.likesData.length
         };
+    },
+    mounted: function mounted() {
+        this.estadoBtnLike();
     },
 
     methods: {
@@ -59675,21 +59656,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             if (!this.btnLikeEstado) {
-                var objetoLike = {
-                    user_id: this.user,
-                    publicacions_id: this.idPost
-                    //agrego like
-                };this.axios.post('api/like', objetoLike).then(function (response) {
+                var obj = {
+                    publicacion_id: this.idPost
+                };
+                console.log(obj);
+                //agrego like
+                this.axios.post('api/like', obj).then(function (response) {
                     _this.btnLikeEstado = true;
-                    _this.cantLikes += 1;
+                    _this.cantidadLikes += 1;
                 });
             } else {
                 //saco like 
-                this.axios.delete('api/like/' + this.postData.idPost + '/' + this.user).then(function (response) {
+                this.axios.delete('api/like/' + this.idPost).then(function (response) {
                     _this.btnLikeEstado = false;
-                    _this.cantLikes -= 1;
+                    _this.cantidadLikes -= 1;
                 });
             }
+        },
+        estadoBtnLike: function estadoBtnLike() {
+            var _this2 = this;
+
+            this.likesData.forEach(function (like) {
+                if (like.user_id == _this2.idUserLogeado) {
+                    _this2.btnLikeEstado = true;
+                }
+            });
         }
     },
     watch: {
@@ -59714,7 +59705,7 @@ var render = function() {
     { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
     [
       _c("label", { staticClass: "no-margin-bottom" }, [
-        _vm._v(_vm._s(_vm.cantLikes))
+        _vm._v(_vm._s(_vm.cantidadLikes))
       ]),
       _vm._v(" "),
       _c("b-img", { attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" } }),
@@ -60133,7 +60124,11 @@ var render = function() {
                     {},
                     [
                       _c("like", {
-                        attrs: { "likes-data": _vm.postData.likes }
+                        attrs: {
+                          "likes-data": _vm.postData.likes,
+                          "id-user-logeado": _vm.postData.id_user_logeado,
+                          "id-post": _vm.postData.id
+                        }
                       }),
                       _vm._v(" "),
                       _c(

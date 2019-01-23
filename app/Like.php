@@ -8,7 +8,7 @@ class Like extends Model
 {
     protected $table = 'likes';
     protected $fillable = [
-        'publicacions_id','user_id'
+        'publicacion_id','user_id'
     ];
 
     public function publicaciones(){

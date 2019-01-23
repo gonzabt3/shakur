@@ -6,6 +6,8 @@ use App\Like;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 
 class LikeController extends Controller
@@ -17,10 +19,11 @@ class LikeController extends Controller
 
     public function store(Request $request){
         $like = $this->validate($request,[
-            'publicacions_id' => 'required',
-            'user_id' => 'required'
-        ]);
-
+            'publicacion_id' => 'required'
+            ]);
+        
+        $user = Auth::user();
+        $like['user_id']=$user->id;
         $like = Like::create($like);
 
         return new LikeResource($like);
@@ -35,10 +38,12 @@ class LikeController extends Controller
      return $like;
     }
 
-    public function delete($idPost,$idUser){
+    public function delete($idPost){
+        $user = Auth::user();
+
         $like = Like::where([
-            'publicacions_id' => $idPost,
-            'user_id' => $idUser
+            'publicacion_id' => $idPost,
+            'user_id' => $user->id
             ]);
 
      return $like->delete();
