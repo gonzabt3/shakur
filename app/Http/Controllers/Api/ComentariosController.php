@@ -27,9 +27,14 @@ class ComentariosController extends Controller
 
 
     public function index(){
-
         $comentarios = Comentario::latest('created_at')->get();
         return($comentarios);
     }
 
+    public function comentarios($id){
+        $publicaciones=Comentario::where('publicacion_id',$id)->with('user','likesComentarios')->get();
+        // dd($publicaciones);
+        return $publicaciones;
+        // return Publicacion::find($id)->comentarios;
+    }
 }

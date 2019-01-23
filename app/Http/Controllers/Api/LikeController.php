@@ -2,10 +2,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Like;
+use App\LikeComentario;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
+use App\Http\Resources\LikeComentarioResource;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
@@ -48,4 +50,31 @@ class LikeController extends Controller
 
      return $like->delete();
     }
+
+    // --------------------------------------------COMENTARIOS--------------------------------------------
+
+
+    public function storeComentario(Request $request){
+        $like = $this->validate($request,[
+            'comentario_id' => 'required'
+            ]);
+        
+        $user = Auth::user();
+        $like['user_id']=$user->id;
+        $like = LikeComentario::create($like);
+
+        return new LikeComentarioResource($like);
+    }
+
+    public function deleteComentario($idPost){
+        $user = Auth::user();
+
+        $like = LikeComentario::where([
+            'comentario_id' => $idPost,
+            'user_id' => $user->id
+            ]);
+
+     return $like->delete();
+    }
+
 }

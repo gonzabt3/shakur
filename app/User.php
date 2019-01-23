@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function publicaciones(){
         return $this->hasMany(Publicacion::class);
     }
+
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
 }

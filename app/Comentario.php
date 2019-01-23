@@ -9,5 +9,12 @@ class Comentario extends Model
     protected $fillable = [
         'texto','publicacion_id','user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     
+    public function likesComentarios(){
+        return $this->hasMany(LikeComentario::class);
+    }
 }

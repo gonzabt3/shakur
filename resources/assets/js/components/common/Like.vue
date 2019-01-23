@@ -7,7 +7,7 @@
 <script>
 export default {
     name:"Like",
-    props:['likesData','idUserLogeado','idPost'],
+    props:['likesData','idUserLogeado','idPost','urlLike'],
     data(){
         return{
             beerIcon: '../images/beer.png',
@@ -27,14 +27,14 @@ export default {
                         }
                         console.log(obj)
                 //agrego like
-                this.axios.post('api/like',obj)
+                this.axios.post(this.urlLike,obj)
                 .then((response) =>{
                     this.btnLikeEstado = true;
                     this.cantidadLikes += 1;
                 })   
                 } else {
                 //saco like 
-                this.axios.delete('api/like/'+this.idPost)
+                this.axios.delete(this.urlLike+'/'+this.idPost)
                 .then((response) =>{
                     this.btnLikeEstado = false;
                     this.cantidadLikes -= 1;

@@ -35,6 +35,7 @@
                         :likes-data="postData.likes"
                         :id-user-logeado="postData.id_user_logeado"
                         :id-post="postData.id"
+                        :url-like="urlLike"
                         ></like>
                         <b-button size="sm" @click="comentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
@@ -88,6 +89,7 @@ export default {
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
       user:1,
+      urlLike:"api/like",
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
