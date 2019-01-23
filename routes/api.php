@@ -45,7 +45,7 @@ Route::get('/universidades','Api\UniversidadesController@index');
 Route::get('/carreras/{id}','Api\CarrerasController@index');
 
 //hecer comentario
-Route::post('/comentario','Api\ComentariosController@store');
+Route::middleware('auth:api')->post('/comentario','Api\ComentariosController@store');
 
 //traer comentario por publicacion
 Route::get('/comentarios/{idPost}','Api\PublicacionesController@comentarios');

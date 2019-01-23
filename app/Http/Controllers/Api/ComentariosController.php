@@ -6,6 +6,8 @@ use App\Comentario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ComentarioResource;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class ComentariosController extends Controller
 {
@@ -14,10 +16,10 @@ class ComentariosController extends Controller
     public function store(Request $request){
         $comentario = $this->validate($request,[
             'texto' => 'required',
-            'publicacion_id' => 'required',
-            'user_id' => 'required'
-        ]);
-
+            'publicacion_id' => 'required'
+            ]);
+        $user = Auth::user();
+        $comentario['user_id']=$user->id;
         $comentario = Comentario::create($comentario);
 
         return new ComentarioResource($comentario);

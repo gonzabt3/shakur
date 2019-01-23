@@ -29,27 +29,24 @@
                     </p>
                 </b-form-group>
                 <b-row>
+                    <b-form-group>
                     <b-col  class="">
                         <like
                         :likes-data="postData.likes"
                         :id-user-logeado="postData.id_user_logeado"
                         :id-post="postData.id"
                         ></like>
-                        <b-button size="sm" @click="showComentarios = !showComentarios">
+                        <b-button size="sm" @click="comentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
                             <b-img :src="commentIcon" fluid alt="comments" /> Comentar
                         </b-button>
                     </b-col>
+                    </b-form-group>
                 </b-row>
                 <div v-if="showComentarios">
-                    <div class="strike form-group">
-                        <span><font-awesome-icon  :icon="iconEyeComentarios"   size="sm" @click="showManyComentarios = !showManyComentarios" /></span>
-                    </div>
-                    <div v-if="showManyComentarios">
                     <comentario v-for="item in arrayComentarios"
                     :comentarioData="item" ></comentario>
                     <hr />
-                    </div>
                     <b-row>
                         <b-col cols="2">
                             <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
@@ -72,7 +69,7 @@
 </template>
 
 <script>
-import Comentario from '../components/Comentario';
+import Comentario from '../components/common/Comentario';
 import Like from '../components/common/Like'
 import moment from "moment";
 
@@ -93,14 +90,10 @@ export default {
       user:1,
       objectComentario:{
           texto:'',
-          publicacion_id:this.postData.idPost,
-          user_id:1
-      }
+          publicacion_id:this.postData.id
+        }
     };
   },
-    mounted(){
-        this.getComentarios();
-    },
     filters:{
         formatDate(value) {
             if (!value) return "-";
@@ -116,9 +109,17 @@ methods: {
             this.getComentarios()
         })        
     },
+    comentarios(){
+        if(!this.showComentarios){
+            this.getComentarios()
+            this.showComentarios=true
+        }else{
+            this.showComentarios=false
+        }
+    },
     getComentarios(){
         this.arrayComentarios=[]
-        this.axios.get('api/comentarios/'+this.postData.idPost)
+        this.axios.get('api/comentarios/'+this.postData.id)
                     .then(({data}) => {
                         // console.log(data)
                         data.forEach(comentario => {
@@ -136,7 +137,7 @@ methods: {
                         });
                         this.cantComentarios=this.arrayComentarios.length
                     });
-    }
+    },
   },
   watch: {
     showManyComentarios(value) { // cambia el icon del ojo de los comentarios

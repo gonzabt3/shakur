@@ -59127,15 +59127,12 @@ exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Comentario__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Comentario___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Comentario__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_Comentario__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_Comentario___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_common_Comentario__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Like__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Like___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_common_Like__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-//
-//
-//
 //
 //
 //
@@ -59215,7 +59212,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'PostUser',
-    components: { Comentario: __WEBPACK_IMPORTED_MODULE_0__components_Comentario___default.a, Like: __WEBPACK_IMPORTED_MODULE_1__components_common_Like___default.a },
+    components: { Comentario: __WEBPACK_IMPORTED_MODULE_0__components_common_Comentario___default.a, Like: __WEBPACK_IMPORTED_MODULE_1__components_common_Like___default.a },
     props: ['postData'], //data entrante
     data: function data() {
         return {
@@ -59228,13 +59225,9 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             user: 1,
             objectComentario: {
                 texto: '',
-                publicacion_id: this.postData.idPost,
-                user_id: 1
+                publicacion_id: this.postData.id
             }
         };
-    },
-    mounted: function mounted() {
-        this.getComentarios();
     },
 
     filters: {
@@ -59253,11 +59246,19 @@ var dateFormat = "DD-MM-YYYY HH:mm";
                 _this.getComentarios();
             });
         },
+        comentarios: function comentarios() {
+            if (!this.showComentarios) {
+                this.getComentarios();
+                this.showComentarios = true;
+            } else {
+                this.showComentarios = false;
+            }
+        },
         getComentarios: function getComentarios() {
             var _this2 = this;
 
             this.arrayComentarios = [];
-            this.axios.get('api/comentarios/' + this.postData.idPost).then(function (_ref) {
+            this.axios.get('api/comentarios/' + this.postData.id).then(function (_ref) {
                 var data = _ref.data;
 
                 // console.log(data)
@@ -59286,253 +59287,11 @@ var dateFormat = "DD-MM-YYYY HH:mm";
 });
 
 /***/ }),
-/* 385 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(386)
-}
-var normalizeComponent = __webpack_require__(9)
-/* script */
-var __vue_script__ = __webpack_require__(388)
-/* template */
-var __vue_template__ = __webpack_require__(389)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-6e7a5cd8"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Comentario.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6e7a5cd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-6e7a5cd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 386 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(387);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(8)("010852da", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e7a5cd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comentario.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e7a5cd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comentario.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 387 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.no-margin-bottom[data-v-6e7a5cd8]{\n    margin-bottom: 0px;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 388 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['comentarioData'], //data entrante
-  data: function data() {
-    return {
-      beerIcon: '../images/beer.png',
-      cantLikes: 5,
-      btnLikeEstado: false,
-      stringBtnLike: 'Like'
-    };
-  },
-
-  methods: {
-    btnLike: function btnLike() {
-      if (!this.btnLikeEstado) {
-        this.btnLikeEstado = true;
-        this.cantLikes += 1;
-      } else {
-        this.btnLikeEstado = false;
-        this.cantLikes -= 1;
-      }
-    }
-  },
-  watch: {
-    btnLikeEstado: function btnLikeEstado(value) {
-      this.beerIcon = value == true ? '../images/beerVacia.png' : '../images/beer.png';
-      this.stringBtnLike = value == true ? 'Dislike' : 'Like';
-    }
-  }
-
-});
-
-/***/ }),
-/* 389 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "b-container",
-    [
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            { attrs: { cols: "2" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  rounded: "circle",
-                  width: "50",
-                  height: "50",
-                  thumbnail: "",
-                  fluid: "",
-                  src:
-                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
-                  alt: "Thumbnail"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            [
-              _c("b-row", [
-                _c("h5", { staticClass: "no-margin-bottom" }, [
-                  _vm._v("Gonzalo Muscolo")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("b-row", [
-                _c("p", { staticClass: "form-control" }, [
-                  _vm._v(_vm._s(_vm.comentarioData.comentario))
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-row",
-                [
-                  _c(
-                    "b-button",
-                    { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
-                    [
-                      _c("label", { staticClass: "no-margin-bottom" }, [
-                        _vm._v(_vm._s(_vm.comentarioData.likes))
-                      ]),
-                      _vm._v(" "),
-                      _c("b-img", {
-                        attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
-                      }),
-                      _vm._v(
-                        " " +
-                          _vm._s(_vm.stringBtnLike) +
-                          "\n                    "
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6e7a5cd8", module.exports)
-  }
-}
-
-/***/ }),
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
 /* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60120,40 +59879,42 @@ var render = function() {
                 "b-row",
                 [
                   _c(
-                    "b-col",
-                    {},
+                    "b-form-group",
                     [
-                      _c("like", {
-                        attrs: {
-                          "likes-data": _vm.postData.likes,
-                          "id-user-logeado": _vm.postData.id_user_logeado,
-                          "id-post": _vm.postData.id
-                        }
-                      }),
-                      _vm._v(" "),
                       _c(
-                        "b-button",
-                        {
-                          attrs: { size: "sm" },
-                          on: {
-                            click: function($event) {
-                              _vm.showComentarios = !_vm.showComentarios
-                            }
-                          }
-                        },
+                        "b-col",
+                        {},
                         [
-                          _c("label", { staticClass: "no-margin-bottom" }, [
-                            _vm._v(_vm._s(_vm.cantComentarios))
-                          ]),
-                          _vm._v(" "),
-                          _c("b-img", {
+                          _c("like", {
                             attrs: {
-                              src: _vm.commentIcon,
-                              fluid: "",
-                              alt: "comments"
+                              "likes-data": _vm.postData.likes,
+                              "id-user-logeado": _vm.postData.id_user_logeado,
+                              "id-post": _vm.postData.id
                             }
                           }),
-                          _vm._v(" Comentar\n                    ")
+                          _vm._v(" "),
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { size: "sm" },
+                              on: { click: _vm.comentarios }
+                            },
+                            [
+                              _c("label", { staticClass: "no-margin-bottom" }, [
+                                _vm._v(_vm._s(_vm.cantComentarios))
+                              ]),
+                              _vm._v(" "),
+                              _c("b-img", {
+                                attrs: {
+                                  src: _vm.commentIcon,
+                                  fluid: "",
+                                  alt: "comments"
+                                }
+                              }),
+                              _vm._v(" Comentar\n                    ")
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -60168,41 +59929,13 @@ var render = function() {
                 ? _c(
                     "div",
                     [
-                      _c("div", { staticClass: "strike form-group" }, [
-                        _c(
-                          "span",
-                          [
-                            _c("font-awesome-icon", {
-                              attrs: {
-                                icon: _vm.iconEyeComentarios,
-                                size: "sm"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.showManyComentarios = !_vm.showManyComentarios
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
+                      _vm._l(_vm.arrayComentarios, function(item) {
+                        return _c("comentario", {
+                          attrs: { comentarioData: item }
+                        })
+                      }),
                       _vm._v(" "),
-                      _vm.showManyComentarios
-                        ? _c(
-                            "div",
-                            [
-                              _vm._l(_vm.arrayComentarios, function(item) {
-                                return _c("comentario", {
-                                  attrs: { comentarioData: item }
-                                })
-                              }),
-                              _vm._v(" "),
-                              _c("hr")
-                            ],
-                            2
-                          )
-                        : _vm._e(),
+                      _c("hr"),
                       _vm._v(" "),
                       _c(
                         "b-row",
@@ -60267,7 +60000,7 @@ var render = function() {
                         1
                       )
                     ],
-                    1
+                    2
                   )
                 : _vm._e()
             ],
@@ -85573,6 +85306,252 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 439 */,
+/* 440 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(441)
+}
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(443)
+/* template */
+var __vue_template__ = __webpack_require__(444)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-77605f1e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/common/Comentario.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-77605f1e", Component.options)
+  } else {
+    hotAPI.reload("data-v-77605f1e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 441 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(442);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(8)("60d35ba4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77605f1e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comentario.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77605f1e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comentario.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 442 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 443 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['comentarioData'], //data entrante
+  data: function data() {
+    return {
+      beerIcon: '../images/beer.png',
+      cantLikes: 5,
+      btnLikeEstado: false,
+      stringBtnLike: 'Like'
+    };
+  },
+
+  methods: {
+    btnLike: function btnLike() {
+      if (!this.btnLikeEstado) {
+        this.btnLikeEstado = true;
+        this.cantLikes += 1;
+      } else {
+        this.btnLikeEstado = false;
+        this.cantLikes -= 1;
+      }
+    }
+  },
+  watch: {
+    btnLikeEstado: function btnLikeEstado(value) {
+      this.beerIcon = value == true ? '../images/beerVacia.png' : '../images/beer.png';
+      this.stringBtnLike = value == true ? 'Dislike' : 'Like';
+    }
+  }
+
+});
+
+/***/ }),
+/* 444 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-form-group",
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { attrs: { cols: "2" } },
+            [
+              _c("b-img", {
+                attrs: {
+                  rounded: "circle",
+                  width: "50",
+                  height: "50",
+                  thumbnail: "",
+                  fluid: "",
+                  src:
+                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
+                  alt: "Thumbnail"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c("b-row", [
+                _c("h5", { staticClass: "no-margin-bottom" }, [
+                  _vm._v("Gonzalo Muscolo")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("b-row", [
+                _c("p", { staticClass: "form-control" }, [
+                  _vm._v(_vm._s(_vm.comentarioData.comentario))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-button",
+                    { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
+                    [
+                      _c("label", { staticClass: "no-margin-bottom" }, [
+                        _vm._v(_vm._s(_vm.comentarioData.likes))
+                      ]),
+                      _vm._v(" "),
+                      _c("b-img", {
+                        attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
+                      }),
+                      _vm._v(
+                        " " + _vm._s(_vm.stringBtnLike) + "\n                  "
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-77605f1e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
