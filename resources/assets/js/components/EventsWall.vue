@@ -11,7 +11,8 @@
             </b-row>
              <b-row>
                  <b-col>
-                    <p v-for="item in arrayEventos"> {{item.nombre}} -> {{item.fecha}}</p>
+                    <p v-for="item in arrayEventos" 
+                    :key="item.id"> {{item.nombre}} -> {{item.fecha}}</p>
                 </b-col>
             </b-row>
         </b-card>

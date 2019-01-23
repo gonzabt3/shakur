@@ -58750,6 +58750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -58921,6 +58922,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
@@ -58988,6 +58990,7 @@ var render = function() {
               return _c(
                 "b-nav-item",
                 {
+                  key: materia.id,
                   attrs: { id: "materia" },
                   on: {
                     click: function($event) {
@@ -59204,6 +59207,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -59224,7 +59229,6 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             showManyComentarios: false,
             iconEyeComentarios: 'eye',
             user: 1,
-            urlLike: "api/like",
             objectComentario: {
                 texto: '',
                 publicacion_id: this.postData.id
@@ -59263,19 +59267,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             this.axios.get('api/comentarios/' + this.postData.id).then(function (_ref) {
                 var data = _ref.data;
 
-                // console.log(data)
-                data.forEach(function (comentario) {
-                    var comentarioAux = {
-                        idPost: comentario.id,
-                        name: 'Pepe San martin',
-                        comentario: 'la concha del pato',
-                        fecha: '20 de agosto 2055',
-                        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                        likes: 7
-                    };
-                    comentarioAux.comentario = comentario.texto, comentarioAux.fecha = comentario.created_at;
-                    _this2.arrayComentarios.push(comentarioAux);
-                });
+                _this2.arrayComentarios = data;
                 _this2.cantComentarios = _this2.arrayComentarios.length;
             });
         }
@@ -59385,6 +59377,8 @@ exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-botto
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Like__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Like___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_Like__);
 //
 //
 //
@@ -59408,37 +59402,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a },
   props: ['comentarioData'], //data entrante
   data: function data() {
-    return {
-      beerIcon: '../images/beer.png',
-      cantLikes: 5,
-      btnLikeEstado: false,
-      stringBtnLike: 'Like'
-    };
-  },
-
-  methods: {
-    btnLike: function btnLike() {
-      if (!this.btnLikeEstado) {
-        this.btnLikeEstado = true;
-        this.cantLikes += 1;
-      } else {
-        this.btnLikeEstado = false;
-        this.cantLikes -= 1;
-      }
-    }
-  },
-  watch: {
-    btnLikeEstado: function btnLikeEstado(value) {
-      this.beerIcon = value == true ? '../images/beerVacia.png' : '../images/beer.png';
-      this.stringBtnLike = value == true ? 'Dislike' : 'Like';
-    }
+    return {};
   }
-
 });
 
 /***/ }),
@@ -59480,36 +59455,28 @@ var render = function() {
             [
               _c("b-row", [
                 _c("h5", { staticClass: "no-margin-bottom" }, [
-                  _vm._v("Gonzalo Muscolo")
+                  _vm._v(_vm._s(_vm.comentarioData.user.name))
                 ])
               ]),
               _vm._v(" "),
               _c("b-row", [
                 _c("p", { staticClass: "form-control" }, [
-                  _vm._v(_vm._s(_vm.comentarioData.comentario))
+                  _vm._v(_vm._s(_vm.comentarioData.texto))
                 ])
               ]),
               _vm._v(" "),
               _c(
                 "b-row",
                 [
-                  _c(
-                    "b-button",
-                    { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
-                    [
-                      _c("label", { staticClass: "no-margin-bottom" }, [
-                        _vm._v(_vm._s(_vm.comentarioData.likes))
-                      ]),
-                      _vm._v(" "),
-                      _c("b-img", {
-                        attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
-                      }),
-                      _vm._v(
-                        " " + _vm._s(_vm.stringBtnLike) + "\n                  "
-                      )
-                    ],
-                    1
-                  )
+                  _c("like", {
+                    attrs: {
+                      "likes-data": _vm.comentarioData.likes_comentarios,
+                      "id-user-logeado": _vm.comentarioData.id_user_logeado,
+                      "id-post": _vm.comentarioData.id,
+                      "url-like": "api/like/comentario",
+                      tipo: "cm"
+                    }
+                  })
                 ],
                 1
               )
@@ -59619,7 +59586,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59639,7 +59606,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Like",
-    props: ['likesData', 'idUserLogeado', 'idPost', 'urlLike'],
+    props: ['likesData', 'idUserLogeado', 'idPost', 'urlLike', 'tipo'],
     data: function data() {
         return {
             beerIcon: '../images/beer.png',
@@ -59657,10 +59624,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             if (!this.btnLikeEstado) {
-                var obj = {
-                    publicacion_id: this.idPost
-                };
-                console.log(obj);
+
+                // villeriada para mandarla variable correcta
+                var obj = void 0;
+                if (this.tipo == "mg") {
+                    obj = {
+                        publicacion_id: this.idPost
+                    };
+                }
+                if (this.tipo == "cm") {
+                    obj = {
+                        comentario_id: this.idPost
+                    };
+                }
+
                 //agrego like
                 this.axios.post(this.urlLike, obj).then(function (response) {
                     _this.btnLikeEstado = true;
@@ -60132,7 +60109,8 @@ var render = function() {
                               "likes-data": _vm.postData.likes,
                               "id-user-logeado": _vm.postData.id_user_logeado,
                               "id-post": _vm.postData.id,
-                              "url-like": _vm.urlLike
+                              "url-like": "api/like",
+                              tipo: "mg"
                             }
                           }),
                           _vm._v(" "),
@@ -60174,7 +60152,8 @@ var render = function() {
                     [
                       _vm._l(_vm.arrayComentarios, function(item) {
                         return _c("comentario", {
-                          attrs: { comentarioData: item }
+                          key: item.id,
+                          attrs: { "comentario-data": item }
                         })
                       }),
                       _vm._v(" "),
@@ -60365,6 +60344,7 @@ exports.push([module.i, "\n.shadow[data-v-4e9b067a]{\n        -webkit-box-shadow
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent__ = __webpack_require__(401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent__);
+//
 //
 //
 //
@@ -62300,7 +62280,7 @@ var render = function() {
               _c(
                 "b-col",
                 _vm._l(_vm.arrayEventos, function(item) {
-                  return _c("p", [
+                  return _c("p", { key: item.id }, [
                     _vm._v(
                       " " + _vm._s(item.nombre) + " -> " + _vm._s(item.fecha)
                     )
@@ -63682,7 +63662,10 @@ var render = function() {
               }),
               _vm._v(" "),
               _vm._l(_vm.arrayPosts, function(item) {
-                return _c("post-user", { attrs: { postData: item } })
+                return _c("post-user", {
+                  key: item.id,
+                  attrs: { postData: item }
+                })
               })
             ],
             2

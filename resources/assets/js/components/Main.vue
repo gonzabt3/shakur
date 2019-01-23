@@ -15,7 +15,8 @@
                 <!-- tira error por un bug de la verga del eslint -->
                 <post-user  
                 v-for="item in arrayPosts"
-                :postData="item" 
+                :postData="item"
+                :key="item.id" 
                 ></post-user>
             </b-col>
             <b-col>

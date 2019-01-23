@@ -35,7 +35,8 @@
                         :likes-data="postData.likes"
                         :id-user-logeado="postData.id_user_logeado"
                         :id-post="postData.id"
-                        :url-like="urlLike"
+                        url-like="api/like"
+                        tipo="mg"
                         ></like>
                         <b-button size="sm" @click="comentarios">
                             <label class="no-margin-bottom">{{cantComentarios}}</label>
@@ -46,7 +47,8 @@
                 </b-row>
                 <div v-if="showComentarios">
                     <comentario v-for="item in arrayComentarios"
-                    :comentarioData="item" ></comentario>
+                    :comentario-data="item"
+                    :key="item.id" ></comentario>
                     <hr />
                     <b-row>
                         <b-col cols="2">
@@ -71,7 +73,7 @@
 
 <script>
 import Comentario from '../components/common/Comentario';
-import Like from '../components/common/Like'
+import Like from '../components/common/Like';
 import moment from "moment";
 
 const dateFormat ="DD-MM-YYYY HH:mm";
@@ -89,7 +91,6 @@ export default {
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
       user:1,
-      urlLike:"api/like",
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
@@ -123,20 +124,7 @@ methods: {
         this.arrayComentarios=[]
         this.axios.get('api/comentarios/'+this.postData.id)
                     .then(({data}) => {
-                        // console.log(data)
-                        data.forEach(comentario => {
-                            let comentarioAux={
-                                idPost:comentario.id,
-                                name: 'Pepe San martin',
-                                comentario:'la concha del pato',
-                                fecha:'20 de agosto 2055',
-                                imagen:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/457px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg',
-                                likes:7 
-                            }
-                            comentarioAux.comentario=comentario.texto,
-                            comentarioAux.fecha=comentario.created_at
-                            this.arrayComentarios.push(comentarioAux);
-                        });
+                        this.arrayComentarios=data
                         this.cantComentarios=this.arrayComentarios.length
                     });
     },

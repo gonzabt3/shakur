@@ -48,7 +48,7 @@ Route::get('/carreras/{id}','Api\CarrerasController@index');
 Route::middleware('auth:api')->post('/comentario','Api\ComentariosController@store');
 
 //traer comentario por publicacion
-Route::get('/comentarios/{idPost}','Api\ComentariosController@comentarios');
+Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosController@comentarios');
 
 //crea usuario
 Route::post('/usuario','Api\UserController@store');
@@ -69,10 +69,10 @@ Route::get('/likes/{idPost}','Api\LikeController@index');
 Route::middleware('auth:api')->delete('/like/{idPost}','Api\LikeController@delete');
 
 //poner like en un comentario
-Route::middleware('auth:api')->post('/likeComentario','Api\LikeController@storeComentario');
+Route::middleware('auth:api')->post('/like/comentario','Api\LikeController@storeComentario');
 
 //delete like en el comentario
-Route::middleware('auth:api')->delete('/likeComentario/{idPost}','Api\LikeController@deleteComentario');
+Route::middleware('auth:api')->delete('/like/comentario/{idPost}','Api\LikeController@deleteComentario');
 
 //traigo materias por carrera
 Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');

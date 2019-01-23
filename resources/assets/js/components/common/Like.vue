@@ -7,7 +7,7 @@
 <script>
 export default {
     name:"Like",
-    props:['likesData','idUserLogeado','idPost','urlLike'],
+    props:['likesData','idUserLogeado','idPost','urlLike','tipo'],
     data(){
         return{
             beerIcon: '../images/beer.png',
@@ -22,10 +22,20 @@ export default {
         methods:{
             btnLike() {
                     if (!this.btnLikeEstado) {
-                        let obj={
-                            publicacion_id:this.idPost
-                        }
-                        console.log(obj)
+                
+                // villeriada para mandarla variable correcta
+                let obj;
+                if(this.tipo=="mg"){
+                    obj={
+                        publicacion_id:this.idPost
+                    }
+                }
+                if(this.tipo=="cm"){
+                    obj={
+                        comentario_id:this.idPost
+                    }
+                }
+                
                 //agrego like
                 this.axios.post(this.urlLike,obj)
                 .then((response) =>{

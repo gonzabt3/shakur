@@ -32,9 +32,15 @@ class ComentariosController extends Controller
     }
 
     public function comentarios($id){
-        $publicaciones=Comentario::where('publicacion_id',$id)->with('user','likesComentarios')->get();
-        // dd($publicaciones);
-        return $publicaciones;
-        // return Publicacion::find($id)->comentarios;
+        $comentarios=Comentario::where('publicacion_id',$id)->with('user','likesComentarios')->get();
+        
+        //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
+        $comentarios->map(function ($comment) {
+            $user = Auth::user();
+            $comment['id_user_logeado'] = $user->id;
+            return $comment;
+        });
+
+        return $comentarios;
     }
 }

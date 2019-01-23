@@ -9,7 +9,8 @@
 
     <b-navbar-nav>
       <!-- <h5>asd</h5> -->
-      <b-nav-item id="materia" v-for="materia in materias" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
+      <b-nav-item id="materia" v-for="materia in materias"
+      :key="materia.id" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->

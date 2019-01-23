@@ -6,51 +6,35 @@
             </b-col>
             <b-col>
                 <b-row>
-                    <h5 class="no-margin-bottom">Gonzalo Muscolo</h5>
+                    <h5 class="no-margin-bottom">{{comentarioData.user.name}}</h5>
                 </b-row>
                 <b-row>
-                    <p class="form-control">{{comentarioData.comentario}}</p>
+                    <p class="form-control">{{comentarioData.texto}}</p>
                 </b-row>
                 <b-row>
-                    <b-button size="sm" @click="btnLike">
-                            <label class="no-margin-bottom">{{comentarioData.likes}}</label>
-                            <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
-                        </b-button>
+                    <like
+                      :likes-data="comentarioData.likes_comentarios"
+                      :id-user-logeado="comentarioData.id_user_logeado"
+                      :id-post="comentarioData.id"
+                      url-like="api/like/comentario"
+                      tipo="cm"
+                      ></like>
                 </b-row>
             </b-col>
         </b-row>
         </b-form-group>
 </template>
 <script>
+import Like from '../common/Like';
 
 export default {
+  components:{Like},
   props:['comentarioData'],//data entrante
   data() {
     return {
-      beerIcon: '../images/beer.png',
-      cantLikes: 5,
-      btnLikeEstado: false,
-      stringBtnLike: 'Like',
-    };
-  },
-  methods: {
-    btnLike() {
-      if (!this.btnLikeEstado) {
-        this.btnLikeEstado = true;
-        this.cantLikes += 1;
-      } else {
-        this.btnLikeEstado = false;
-        this.cantLikes -= 1;
-      }
-    },
-  },
-  watch: {
-    btnLikeEstado(value) {
-      this.beerIcon = (value == true ? '../images/beerVacia.png' : '../images/beer.png');
-      this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
-    },
-  },
 
+    };
+  }
 };
 </script>
 <style scoped>
