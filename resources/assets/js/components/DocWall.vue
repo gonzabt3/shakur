@@ -15,7 +15,9 @@
                 </b-col>
             </b-row>
         </b-card>
-        <modal-new-doc></modal-new-doc>
+        <modal-new-doc 
+        :id-materia="idMateria"
+        ></modal-new-doc>
     </b-container>
 </template>
 
@@ -23,13 +25,14 @@
 import ModalNewDoc from '../components/modals/ModalNewDoc';
 
 export default {
-  name: 'EventsWall',
-  components: { ModalNewDoc },
-  methods:{
+    props:['idMateria'],
+    name: 'EventsWall',
+    components: { ModalNewDoc },
+    methods:{
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
       }
-  }
+    }
 };
 </script>
 

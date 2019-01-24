@@ -24,7 +24,9 @@
                 :id-materia="idMateria"
                 ref="eventWall"
                 ></events-wall>
-                <doc-wall></doc-wall>
+                <doc-wall 
+                :id-materia="idMateria"
+                ></doc-wall>
             </b-col>
         </b-row>
     </div>

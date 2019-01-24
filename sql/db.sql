@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: shakur
 -- ------------------------------------------------------
--- Server version	5.7.24-0ubuntu0.18.10.1
+-- Server version	5.7.25-0ubuntu0.18.10.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +63,7 @@ CREATE TABLE `comentarios` (
   KEY `comentarios_user_id_index` (`user_id`),
   CONSTRAINT `comentarios_publicacion_id_foreign` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacions` (`id`),
   CONSTRAINT `comentarios_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `comentarios` (
 
 LOCK TABLES `comentarios` WRITE;
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+INSERT INTO `comentarios` VALUES (1,'comentario 11',15,5,'2019-01-23 07:05:59','2019-01-23 07:05:59'),(2,'123xssasd',15,5,'2019-01-23 07:14:47','2019-01-23 07:14:47'),(3,'55',20,5,'2019-01-23 17:02:16','2019-01-23 17:02:16'),(4,'66',20,5,'2019-01-23 17:02:33','2019-01-23 17:02:33'),(5,'eee',13,5,'2019-01-24 05:53:09','2019-01-24 05:53:09'),(6,'holaaaa',35,5,'2019-01-24 17:58:43','2019-01-24 17:58:43');
 /*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,7 @@ CREATE TABLE `eventos` (
   KEY `eventos_user_id_index` (`user_id`),
   CONSTRAINT `eventos_materia_id_foreign` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`),
   CONSTRAINT `eventos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +106,7 @@ CREATE TABLE `eventos` (
 
 LOCK TABLES `eventos` WRITE;
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
-INSERT INTO `eventos` VALUES (1,'prueba','1','2018-12-05T03:14:00.000Z',5,1,'2018-12-29 07:38:43','2018-12-29 07:38:43'),(2,'trabajo practico','kaka','2018-12-22T23:04:00.000Z',5,1,'2019-01-01 02:05:16','2019-01-01 02:05:16');
+INSERT INTO `eventos` VALUES (1,'prueba','1','2018-12-05T03:14:00.000Z',5,1,'2018-12-29 07:38:43','2018-12-29 07:38:43'),(2,'trabajo practico','kaka','2018-12-22T23:04:00.000Z',527,1,'2019-01-01 02:05:16','2019-01-01 02:05:16'),(3,'hola','123','2019-01-03T01:21:00.000Z',523,1,'2019-01-17 04:21:58','2019-01-17 04:21:58'),(4,'123','123','2019-01-02T03:14:00.000Z',5,1,'2019-01-17 06:53:03','2019-01-17 06:53:03'),(5,'123321','123','2019-01-04T14:00:00.000Z',1,1,'2019-01-17 17:01:07','2019-01-17 17:01:07'),(6,'1','1','2019-01-02T14:02:00.000Z',1,1,'2019-01-17 17:02:19','2019-01-17 17:02:19'),(7,'123','213','2019-01-03T14:02:00.000Z',523,1,'2019-01-17 17:02:44','2019-01-17 17:02:44'),(8,'gonzaaaaaa','123123','2019-01-01T14:03:00.000Z',527,1,'2019-01-17 17:03:23','2019-01-17 17:03:23');
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,6 +139,38 @@ INSERT INTO `facultades` VALUES (1,'Universidad Nacional de Lanus','0000-00-00 0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `files`
+--
+
+DROP TABLE IF EXISTS `files`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `files` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `materia_id` int(10) unsigned DEFAULT NULL,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `files_materia_id_index` (`materia_id`),
+  KEY `files_user_id_index` (`user_id`),
+  CONSTRAINT `files_materia_id_foreign` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`),
+  CONSTRAINT `files_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `files`
+--
+
+LOCK TABLES `files` WRITE;
+/*!40000 ALTER TABLE `files` DISABLE KEYS */;
+/*!40000 ALTER TABLE `files` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `likes`
 --
 
@@ -146,16 +179,16 @@ DROP TABLE IF EXISTS `likes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `likes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `publicacions_id` int(10) unsigned DEFAULT NULL,
+  `publicacion_id` int(10) unsigned DEFAULT NULL,
   `user_id` int(10) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `likes_publicacions_id_index` (`publicacions_id`),
+  KEY `likes_publicacions_id_index` (`publicacion_id`),
   KEY `likes_user_id_index` (`user_id`),
-  CONSTRAINT `likes_publicacions_id_foreign` FOREIGN KEY (`publicacions_id`) REFERENCES `publicacions` (`id`),
+  CONSTRAINT `likes_publicacions_id_foreign` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacions` (`id`),
   CONSTRAINT `likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +197,39 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` VALUES (1,15,1,NULL,NULL),(2,NULL,5,'2019-01-23 06:00:09','2019-01-23 06:00:09'),(3,13,5,'2019-01-24 05:53:06','2019-01-24 05:53:06'),(4,35,5,'2019-01-24 17:58:45','2019-01-24 17:58:45');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `likes_comentarios`
+--
+
+DROP TABLE IF EXISTS `likes_comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `likes_comentarios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `comentario_id` int(10) unsigned DEFAULT NULL,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `likes_comentarios_comentario_id_index` (`comentario_id`),
+  KEY `likes_comentarios_user_id_index` (`user_id`),
+  CONSTRAINT `likes_comentarios_comentario_id_foreign` FOREIGN KEY (`comentario_id`) REFERENCES `comentarios` (`id`),
+  CONSTRAINT `likes_comentarios_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `likes_comentarios`
+--
+
+LOCK TABLES `likes_comentarios` WRITE;
+/*!40000 ALTER TABLE `likes_comentarios` DISABLE KEYS */;
+INSERT INTO `likes_comentarios` VALUES (2,5,5,'2019-01-24 05:53:11','2019-01-24 05:53:11'),(3,6,5,'2019-01-24 17:58:47','2019-01-24 17:58:47');
+/*!40000 ALTER TABLE `likes_comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -239,7 +304,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +313,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2018_10_31_221819_crea_tabla_publicaciones',1),(4,'2018_11_19_214741_create_publicacions_table',2),(5,'2018_11_27_192200_table_facultades',3),(6,'2018_11_27_193346_agregar_campo_tabla_facultades',4),(7,'2018_12_06_183454_crear_tabla_carreras',5),(8,'2018_12_11_023431_crear_tabla_comentarios',6),(9,'2018_12_13_203028_add_columnas_a_user',7),(10,'2018_12_14_223555_crear_tabla_likes',7),(11,'2018_12_17_042717_cambios_users',8),(12,'2018_12_18_223741_creo_tabla_materias',9),(13,'2018_12_20_185937_creo_tabla_eventos',9),(14,'2018_12_21_181904_modificar_tabla_eventos',9),(15,'2018_12_26_182953_creo_tabla_materias_x_users',9),(16,'2016_06_01_000001_create_oauth_auth_codes_table',10),(17,'2016_06_01_000002_create_oauth_access_tokens_table',10),(18,'2016_06_01_000003_create_oauth_refresh_tokens_table',10),(19,'2016_06_01_000004_create_oauth_clients_table',10),(20,'2016_06_01_000005_create_oauth_personal_access_clients_table',10),(21,'2019_01_05_031700_cambios_users',11),(22,'2019_01_09_211725_cambios_grupoid_publicacion',12);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2018_10_31_221819_crea_tabla_publicaciones',1),(4,'2018_11_19_214741_create_publicacions_table',2),(5,'2018_11_27_192200_table_facultades',3),(6,'2018_11_27_193346_agregar_campo_tabla_facultades',4),(7,'2018_12_06_183454_crear_tabla_carreras',5),(8,'2018_12_11_023431_crear_tabla_comentarios',6),(9,'2018_12_13_203028_add_columnas_a_user',7),(10,'2018_12_14_223555_crear_tabla_likes',7),(11,'2018_12_17_042717_cambios_users',8),(12,'2018_12_18_223741_creo_tabla_materias',9),(13,'2018_12_20_185937_creo_tabla_eventos',9),(14,'2018_12_21_181904_modificar_tabla_eventos',9),(15,'2018_12_26_182953_creo_tabla_materias_x_users',9),(16,'2016_06_01_000001_create_oauth_auth_codes_table',10),(17,'2016_06_01_000002_create_oauth_access_tokens_table',10),(18,'2016_06_01_000003_create_oauth_refresh_tokens_table',10),(19,'2016_06_01_000004_create_oauth_clients_table',10),(20,'2016_06_01_000005_create_oauth_personal_access_clients_table',10),(21,'2019_01_05_031700_cambios_users',11),(22,'2019_01_09_211725_cambios_grupoid_publicacion',12),(23,'2019_01_22_032556_modificar_tabla_likes',13),(24,'2019_01_23_143912_creo_tabla_likes_coments',14),(25,'2019_01_24_031901_crear_tabla_files',15);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,7 +345,7 @@ CREATE TABLE `oauth_access_tokens` (
 
 LOCK TABLES `oauth_access_tokens` WRITE;
 /*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
-INSERT INTO `oauth_access_tokens` VALUES ('01338d37f861f911e003f0c16e174a9e6d239a31bffb83fbca211ac1c6909d9a50d80ad9eaec7916',5,1,'Personal Access Token','[]',0,'2019-01-12 08:35:33','2019-01-12 08:35:33','2019-01-19 05:35:33'),('22394a364e966cf495e9a8c23c01568c5484aec11210e9b2fe5dd7cbad48d2638652aace80950d65',5,1,'Personal Access Token','[]',0,'2019-01-15 05:56:41','2019-01-15 05:56:41','2019-01-22 02:56:41'),('34323f5463ed758456c3b1736592636b2ce2ca252ae7b4e98fa08c3a84641f980f01ddfca28bacf8',4,1,'Personal Access Token','[]',0,'2019-01-08 06:38:06','2019-01-08 06:38:06','2019-01-15 03:38:06'),('441650f922b2dcd65b7e8c8c5bfac6d333a36eab91c7ecbc84f55712bd84036a36a6aadbcd929d2c',5,1,'Personal Access Token','[]',0,'2019-01-09 16:59:37','2019-01-09 16:59:37','2019-01-16 13:59:38'),('4c060405178ee2da5c3784e719eaf948f2ed2d5d2f145435fc9a339ea3cef816826e31e0f8bed624',5,1,'Personal Access Token','[]',0,'2019-01-09 17:01:13','2019-01-09 17:01:13','2019-01-16 14:01:13'),('569f584ebc3f0ab6a4181040fab7deff23fe70ebcda1aeab3bd228a6193ae9f7d855b5b5c6ec4bbd',4,1,'Personal Access Token','[]',0,'2019-01-08 05:56:20','2019-01-08 05:56:20','2019-01-15 02:56:20'),('59a2de0d75c9e9dda1f6d719c6e0059a34f9460cfbc210da8c32b746093833037463c166b9c9edbb',4,1,'Personal Access Token','[]',0,'2019-01-08 06:32:14','2019-01-08 06:32:14','2019-01-15 03:32:14'),('771c4eb26dc3e53d0458e684248d4dcbe95a75541a2dbc6a69cdf17ebb8fe9000012e7b84b797573',4,1,'Personal Access Token','[]',0,'2019-01-08 06:38:43','2019-01-08 06:38:43','2019-01-15 03:38:43'),('7ae2692ca8b37e061b456224429ed85beea8a92f2600e9f8447c356ad681b4c00aad743af6024ef6',5,1,'Personal Access Token','[]',0,'2019-01-16 06:16:55','2019-01-16 06:16:55','2019-01-23 03:16:55'),('9fdf1ae06d4c8837dca85d9e5d1beb954447c2b8c33e6a8506788fcfd454084380af52f4880b3f5b',5,1,'Personal Access Token','[]',0,'2019-01-15 17:35:32','2019-01-15 17:35:32','2019-01-22 14:35:32'),('a58fbcfacea4dfcca77b7b0abb5300073734959e5e66d7c13b10639edc043214699d92da84dd6a88',5,1,'Personal Access Token','[]',0,'2019-01-09 16:59:55','2019-01-09 16:59:55','2019-01-16 13:59:55'),('abb07e29e1210f27f055ff22d95a5c5b1cd7da8572282ef29e4f0299e295c1fb89dcf1d9120188ad',4,1,'Personal Access Token','[]',0,'2019-01-08 06:34:41','2019-01-08 06:34:41','2019-01-15 03:34:41'),('b3b81630a8bde742ae5d993c3b45be7d0a44af36dcdb8fbb1eaa34288830c22331e46bd0c44eb535',5,1,'Personal Access Token','[]',0,'2019-01-11 07:28:29','2019-01-11 07:28:29','2019-01-18 04:28:29'),('c7b5a194d3e2c24f416e9311416aa682cef9396a1fcb725c429581979479b2c7f0f1ad1fd72d93c0',5,1,'Personal Access Token','[]',0,'2019-01-11 06:23:04','2019-01-11 06:23:04','2019-01-18 03:23:04'),('d1af2bd800beb4a6404f64d8a4a37598e4f8f37367ed3f1495455d4d17a0c0fbc43ba2f5ec96a9ee',5,1,'Personal Access Token','[]',0,'2019-01-09 17:01:39','2019-01-09 17:01:39','2019-01-16 14:01:39'),('d7eedae183d39f79d7431a29f0d3c7965612dd687ea9d60a9493ac2017b3d10fb9460cc4d90286fc',5,1,'Personal Access Token','[]',0,'2019-01-16 17:23:22','2019-01-16 17:23:22','2019-01-23 14:23:22'),('f9114b05d0fc0f02f9be47d9fa20acb992c79ef5105ae97aec6d59add84977157c432eb88761b44f',5,1,'Personal Access Token','[]',0,'2019-01-09 17:21:21','2019-01-09 17:21:21','2019-01-16 14:21:21');
+INSERT INTO `oauth_access_tokens` VALUES ('01338d37f861f911e003f0c16e174a9e6d239a31bffb83fbca211ac1c6909d9a50d80ad9eaec7916',5,1,'Personal Access Token','[]',0,'2019-01-12 08:35:33','2019-01-12 08:35:33','2019-01-19 05:35:33'),('15837af0fdcec7350aa6f79c2c264cc817dafcb85f48f953d6d1b363aaeca2594287171c3a945cfe',5,1,'Personal Access Token','[]',0,'2019-01-17 16:59:55','2019-01-17 16:59:55','2019-01-24 13:59:55'),('1a206fa4deb990f4458093345613630270743a0a837aac9089254448d1d47480cc03ee6b187085bc',5,1,'Personal Access Token','[]',0,'2019-01-23 17:01:41','2019-01-23 17:01:41','2019-01-30 14:01:41'),('22394a364e966cf495e9a8c23c01568c5484aec11210e9b2fe5dd7cbad48d2638652aace80950d65',5,1,'Personal Access Token','[]',0,'2019-01-15 05:56:41','2019-01-15 05:56:41','2019-01-22 02:56:41'),('34323f5463ed758456c3b1736592636b2ce2ca252ae7b4e98fa08c3a84641f980f01ddfca28bacf8',4,1,'Personal Access Token','[]',0,'2019-01-08 06:38:06','2019-01-08 06:38:06','2019-01-15 03:38:06'),('360910e6b92ada3efe32775b732543f5d38069bef89275ace0cd417dce9dab1f7bd79d3d85713b4e',5,1,'Personal Access Token','[]',0,'2019-01-22 04:48:48','2019-01-22 04:48:48','2019-01-29 01:48:48'),('37ab9a781237b0af71288fcf5f3b40c7ad06fc2bed24095cc1726875c17c293e6cd3965d3cc28fb4',1,1,'Personal Access Token','[]',0,'2019-01-18 03:45:56','2019-01-18 03:45:56','2019-01-25 00:45:56'),('441650f922b2dcd65b7e8c8c5bfac6d333a36eab91c7ecbc84f55712bd84036a36a6aadbcd929d2c',5,1,'Personal Access Token','[]',0,'2019-01-09 16:59:37','2019-01-09 16:59:37','2019-01-16 13:59:38'),('456d86fd5edaf5f99770ca38291bf2e616cd6c535968de3a53fa76a519d8e401a173ea18b9dbeb49',5,1,'Personal Access Token','[]',0,'2019-01-18 03:41:57','2019-01-18 03:41:57','2019-01-25 00:41:57'),('4c060405178ee2da5c3784e719eaf948f2ed2d5d2f145435fc9a339ea3cef816826e31e0f8bed624',5,1,'Personal Access Token','[]',0,'2019-01-09 17:01:13','2019-01-09 17:01:13','2019-01-16 14:01:13'),('5006c5adeaef98860989d479d0a9440cd5c9146610716d3523975d140225fd60d1eb3f0495cc8f71',5,1,'Personal Access Token','[]',0,'2019-01-23 04:59:44','2019-01-23 04:59:44','2019-01-30 01:59:44'),('569f584ebc3f0ab6a4181040fab7deff23fe70ebcda1aeab3bd228a6193ae9f7d855b5b5c6ec4bbd',4,1,'Personal Access Token','[]',0,'2019-01-08 05:56:20','2019-01-08 05:56:20','2019-01-15 02:56:20'),('59a2de0d75c9e9dda1f6d719c6e0059a34f9460cfbc210da8c32b746093833037463c166b9c9edbb',4,1,'Personal Access Token','[]',0,'2019-01-08 06:32:14','2019-01-08 06:32:14','2019-01-15 03:32:14'),('6b87878b4d4baca02ef5a70f409c5f30c714c4bc3f0d15d90bf4708d42788de4068e55072b6f7ae0',5,1,'Personal Access Token','[]',0,'2019-01-17 04:07:41','2019-01-17 04:07:41','2019-01-24 01:07:41'),('771c4eb26dc3e53d0458e684248d4dcbe95a75541a2dbc6a69cdf17ebb8fe9000012e7b84b797573',4,1,'Personal Access Token','[]',0,'2019-01-08 06:38:43','2019-01-08 06:38:43','2019-01-15 03:38:43'),('7ae2692ca8b37e061b456224429ed85beea8a92f2600e9f8447c356ad681b4c00aad743af6024ef6',5,1,'Personal Access Token','[]',0,'2019-01-16 06:16:55','2019-01-16 06:16:55','2019-01-23 03:16:55'),('923fa6d5ccb612f6814e682dc40889897e07b299b3cc685719834ee471c47b225ef6cfb6b32f0c1f',5,1,'Personal Access Token','[]',0,'2019-01-24 17:58:16','2019-01-24 17:58:16','2019-01-31 14:58:16'),('9aebd816a5469bd747e101fd31db65ecc72ae6133f2c0cb6cee600bf0bc6a2ddfddf435a19b9a748',5,1,'Personal Access Token','[]',0,'2019-01-19 07:47:49','2019-01-19 07:47:49','2019-01-26 04:47:49'),('9de57582e1125c1f9a7b4c43fa38376ee41ccb993f44be562d4c28eabf43ad23e3462b61d30718c9',5,1,'Personal Access Token','[]',0,'2019-01-22 17:31:02','2019-01-22 17:31:02','2019-01-29 14:31:02'),('9fdf1ae06d4c8837dca85d9e5d1beb954447c2b8c33e6a8506788fcfd454084380af52f4880b3f5b',5,1,'Personal Access Token','[]',0,'2019-01-15 17:35:32','2019-01-15 17:35:32','2019-01-22 14:35:32'),('a58fbcfacea4dfcca77b7b0abb5300073734959e5e66d7c13b10639edc043214699d92da84dd6a88',5,1,'Personal Access Token','[]',0,'2019-01-09 16:59:55','2019-01-09 16:59:55','2019-01-16 13:59:55'),('aa48e5787c8b082aaa99ec74f3502e542f1e7dbd06fb1d1fa56f53c6a8ac47ca6b6aa7f8227f965c',5,1,'Personal Access Token','[]',0,'2019-01-24 17:43:34','2019-01-24 17:43:34','2019-01-31 14:43:34'),('abb07e29e1210f27f055ff22d95a5c5b1cd7da8572282ef29e4f0299e295c1fb89dcf1d9120188ad',4,1,'Personal Access Token','[]',0,'2019-01-08 06:34:41','2019-01-08 06:34:41','2019-01-15 03:34:41'),('ae56a7cc0ef7e415004a533e49fa562495a64c4bbe7dd4ed1fb70abcd7ac714228b7046e5f88259e',5,1,'Personal Access Token','[]',0,'2019-01-24 05:52:55','2019-01-24 05:52:55','2019-01-31 02:52:55'),('b3b81630a8bde742ae5d993c3b45be7d0a44af36dcdb8fbb1eaa34288830c22331e46bd0c44eb535',5,1,'Personal Access Token','[]',0,'2019-01-11 07:28:29','2019-01-11 07:28:29','2019-01-18 04:28:29'),('c7b5a194d3e2c24f416e9311416aa682cef9396a1fcb725c429581979479b2c7f0f1ad1fd72d93c0',5,1,'Personal Access Token','[]',0,'2019-01-11 06:23:04','2019-01-11 06:23:04','2019-01-18 03:23:04'),('d1af2bd800beb4a6404f64d8a4a37598e4f8f37367ed3f1495455d4d17a0c0fbc43ba2f5ec96a9ee',5,1,'Personal Access Token','[]',0,'2019-01-09 17:01:39','2019-01-09 17:01:39','2019-01-16 14:01:39'),('d7eedae183d39f79d7431a29f0d3c7965612dd687ea9d60a9493ac2017b3d10fb9460cc4d90286fc',5,1,'Personal Access Token','[]',0,'2019-01-16 17:23:22','2019-01-16 17:23:22','2019-01-23 14:23:22'),('f9114b05d0fc0f02f9be47d9fa20acb992c79ef5105ae97aec6d59add84977157c432eb88761b44f',5,1,'Personal Access Token','[]',0,'2019-01-09 17:21:21','2019-01-09 17:21:21','2019-01-16 14:21:21'),('fbe6a9edd027d54f6ed2533b79f4e56c33c6ab9bbb08a639379026c735247c8d569eb88c7b225517',5,1,'Personal Access Token','[]',0,'2019-01-17 04:25:08','2019-01-17 04:25:08','2019-01-24 01:25:08');
 /*!40000 ALTER TABLE `oauth_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,33 +487,6 @@ LOCK TABLES `password_resets` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `publicaciones`
---
-
-DROP TABLE IF EXISTS `publicaciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `publicaciones` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `texto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idMegusta` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `publicaciones`
---
-
-LOCK TABLES `publicaciones` WRITE;
-/*!40000 ALTER TABLE `publicaciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `publicaciones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `publicacions`
 --
 
@@ -465,7 +503,7 @@ CREATE TABLE `publicacions` (
   PRIMARY KEY (`id`),
   KEY `publicacions_materia_id_index` (`materia_id`),
   CONSTRAINT `publicacions_materia_id_foreign` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,7 +512,7 @@ CREATE TABLE `publicacions` (
 
 LOCK TABLES `publicacions` WRITE;
 /*!40000 ALTER TABLE `publicacions` DISABLE KEYS */;
-INSERT INTO `publicacions` VALUES (13,'user 4',4,'2019-01-08 06:41:01','2019-01-08 06:41:01',523),(14,'3',5,'2019-01-09 17:02:07','2019-01-09 17:02:07',523),(15,'123213',5,'2019-01-11 06:24:17','2019-01-11 06:24:17',1),(16,'123',5,'2019-01-15 06:02:14','2019-01-15 06:02:14',NULL),(17,'111',5,'2019-01-15 06:14:01','2019-01-15 06:14:01',NULL),(18,'111',5,'2019-01-15 06:16:45','2019-01-15 06:16:45',NULL),(19,'1111',5,'2019-01-15 06:48:58','2019-01-15 06:48:58',NULL),(20,'555',5,'2019-01-15 06:51:28','2019-01-15 06:51:28',527),(21,'1',5,'2019-01-15 06:52:13','2019-01-15 06:52:13',NULL),(22,'1',5,'2019-01-15 06:53:38','2019-01-15 06:53:38',NULL),(23,'123',5,'2019-01-16 17:33:41','2019-01-16 17:33:41',NULL),(24,'qwew',5,'2019-01-16 17:34:47','2019-01-16 17:34:47',NULL),(25,'qqqq',5,'2019-01-16 17:34:58','2019-01-16 17:34:58',NULL);
+INSERT INTO `publicacions` VALUES (13,'user 4',4,'2019-01-08 06:41:01','2019-01-08 06:41:01',523),(14,'3',5,'2019-01-09 17:02:07','2019-01-09 17:02:07',523),(15,'123213',5,'2019-01-11 06:24:17','2019-01-11 06:24:17',1),(16,'123',5,'2019-01-15 06:02:14','2019-01-15 06:02:14',NULL),(17,'111',5,'2019-01-15 06:14:01','2019-01-15 06:14:01',NULL),(18,'111',5,'2019-01-15 06:16:45','2019-01-15 06:16:45',NULL),(19,'1111',5,'2019-01-15 06:48:58','2019-01-15 06:48:58',NULL),(20,'555',5,'2019-01-15 06:51:28','2019-01-15 06:51:28',527),(21,'1',5,'2019-01-15 06:52:13','2019-01-15 06:52:13',NULL),(22,'1',5,'2019-01-15 06:53:38','2019-01-15 06:53:38',NULL),(23,'123',5,'2019-01-16 17:33:41','2019-01-16 17:33:41',NULL),(24,'qwew',5,'2019-01-16 17:34:47','2019-01-16 17:34:47',NULL),(25,'qqqq',5,'2019-01-16 17:34:58','2019-01-16 17:34:58',NULL),(26,'matematica 11',5,'2019-01-17 06:13:21','2019-01-17 06:13:21',NULL),(27,'is1',5,'2019-01-17 06:13:31','2019-01-17 06:13:31',NULL),(28,'1232',5,'2019-01-17 06:14:59','2019-01-17 06:14:59',NULL),(29,'qwe',5,'2019-01-17 06:15:31','2019-01-17 06:15:31',NULL),(30,'matematica pija',5,'2019-01-17 06:17:39','2019-01-17 06:17:39',523),(31,'is 1 pija',5,'2019-01-17 06:17:58','2019-01-17 06:17:58',527),(32,'HALA MELANIEEEEEEEEEEEEEEE',5,'2019-01-18 03:43:14','2019-01-18 03:43:14',523),(33,'123231',5,'2019-01-23 05:57:32','2019-01-23 05:57:32',1),(34,'22',5,'2019-01-23 05:57:41','2019-01-23 05:57:41',1),(35,'hola elisabet',5,'2019-01-24 17:58:32','2019-01-24 17:58:32',523);
 /*!40000 ALTER TABLE `publicacions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,7 +573,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'gonzalo','muscolo',15,'gonzalo.muscolo@gmail.com','$2y$10$wnu9ABbBxWeSGM290QR1M.0VfKp7uQ7LRrDn4mui5tdLNN0br3B36',NULL,'','2018-12-17 07:34:01','2018-12-17 07:34:01'),(3,'gonzalo22','muscolo',2,'gonzalo.mus222colo@gmail.com','$2y$12$HoSaFtUff4CF7hs0iNnW0ePyx2K/kpipFj1nKaGD0bQQiRZ5hpt8O',NULL,'','2018-12-29 06:13:33','2018-12-29 06:13:33'),(4,'nombre','123',18,'1@1.com','$2y$12$QdAQVhftiDrhXpBXkfaKh.Ip2nNG4YwZWCXKbF/W2PZBzQ8sSqcaC',NULL,'','2019-01-03 07:34:56','2019-01-03 07:34:56'),(5,'gonzalo','muscolo',1,'gonzal2222o.muscolo@gmail.com','$2y$10$41ZmB7668OvKvpv89kaTpeZrtPuuwTv2Voe04tcnVNXp7E1paNfBi',NULL,'','2019-01-05 06:42:46','2019-01-05 06:42:46');
+INSERT INTO `users` VALUES (1,'guada','muscolo',15,'guada@gmail.com','$2y$10$41ZmB7668OvKvpv89kaTpeZrtPuuwTv2Voe04tcnVNXp7E1paNfBi',NULL,'','2018-12-17 07:34:01','2018-12-17 07:34:01'),(3,'gonzalo22','muscolo',2,'gonzalo.mus222colo@gmail.com','$2y$12$HoSaFtUff4CF7hs0iNnW0ePyx2K/kpipFj1nKaGD0bQQiRZ5hpt8O',NULL,'','2018-12-29 06:13:33','2018-12-29 06:13:33'),(4,'nombre','123',18,'1@1.com','$2y$12$QdAQVhftiDrhXpBXkfaKh.Ip2nNG4YwZWCXKbF/W2PZBzQ8sSqcaC',NULL,'','2019-01-03 07:34:56','2019-01-03 07:34:56'),(5,'gonzalo','muscolo',1,'gonzal2222o.muscolo@gmail.com','$2y$10$41ZmB7668OvKvpv89kaTpeZrtPuuwTv2Voe04tcnVNXp7E1paNfBi',NULL,'','2019-01-05 06:42:46','2019-01-05 06:42:46');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -548,4 +586,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-16 12:49:39
+-- Dump completed on 2019-01-24 12:18:46
