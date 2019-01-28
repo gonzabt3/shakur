@@ -7,11 +7,11 @@
                                 placeholder="Ingresa nombre">
                     </b-form-input>
                 </b-form-group>
-                <b-form-group label="Temas:" label-for="temas">
+                <!-- <b-form-group label="Temas:" label-for="temas">
                     <b-form-input id="temas" v-model="data.temas"
                                 placeholder="Ingresa los temas">
                     </b-form-input>
-                </b-form-group>
+                </b-form-group> -->
                 <b-form-group label="Archivo:" label-for="data.file">
                     <b-form-file v-model="data.file" :state="Boolean(data.file)" placeholder="Elije un archivo"></b-form-file>
                 </b-form-group>
@@ -29,7 +29,7 @@ export default {
     return {
       data: {
         nombre: '',
-        temas: '',
+        // temas: '',
         file:null,
         idMateria:this.idMateria
       },
@@ -37,15 +37,21 @@ export default {
   },
   methods: {
     submit() {
-      this.axios.post('api/file',this.data)
+      
+      let formData = new FormData();
+
+      formData.append('nombre',this.data.nombre);
+      formData.append('idMateria',this.data.idMateria);
+      formData.append('file',this.data.file);
+
+      this.axios.post('api/file',formData)
         .then((response)=>{
-          
         })
 
     },
     cleanModal() {
       this.data.nombre = '';
-      this.data.temas = '';
+      // this.data.temas = '';
       this.data.file = null;
     },
   },

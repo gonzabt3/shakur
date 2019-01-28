@@ -7,19 +7,41 @@ use App\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FileResource;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File as FacedeFile;  //renombro el facade porque File se llama la clase 
+
 
 
 class FileController extends Controller
 {
     public function store(Request $request){
-        $file = $this->validate($request,[
+
+        $parameters = $this->validate($request,[
             'nombre' => 'required',
-            'temas' => 'required',
-            'file' => 'required'
+            'idMateria' => 'required',
         ]);
+        
 
-        $file = file::create($file);
+        $file =$request->file('file');
 
-        return new FileResource($file);
-    }
+        $path =public_path().'/storage/app/'.$parameters['idMateria'];
+        
+        //si no existe el directorio lo creo
+        if(!FacedeFile::exists($path)){
+            FacedeFile::makeDirectory($path,$mode = 0777, true, true);
+        }
+            
+        //agrego user
+        $user = Auth::user();
+        $parameters['user_id']=$user->id;
+        
+
+        Storage::disk('local')->put($path,$file);
+
+        }
+
+
 }

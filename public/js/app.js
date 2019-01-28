@@ -62536,7 +62536,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62578,7 +62578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       data: {
         nombre: '',
-        temas: '',
+        // temas: '',
         file: null,
         idMateria: this.idMateria
       }
@@ -62587,11 +62587,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     submit: function submit() {
-      this.axios.post('api/file', this.data).then(function (response) {});
+
+      var formData = new FormData();
+
+      formData.append('nombre', this.data.nombre);
+      formData.append('idMateria', this.data.idMateria);
+      formData.append('file', this.data.file);
+
+      this.axios.post('api/file', formData).then(function (response) {});
     },
     cleanModal: function cleanModal() {
       this.data.nombre = '';
-      this.data.temas = '';
+      // this.data.temas = '';
       this.data.file = null;
     }
   }
@@ -62632,24 +62639,6 @@ var render = function() {
                         _vm.$set(_vm.data, "nombre", $$v)
                       },
                       expression: "data.nombre"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { label: "Temas:", "label-for": "temas" } },
-                [
-                  _c("b-form-input", {
-                    attrs: { id: "temas", placeholder: "Ingresa los temas" },
-                    model: {
-                      value: _vm.data.temas,
-                      callback: function($$v) {
-                        _vm.$set(_vm.data, "temas", $$v)
-                      },
-                      expression: "data.temas"
                     }
                   })
                 ],
