@@ -35,13 +35,18 @@ export default {
       },
     };
   },
+  watch:{
+    idMateria:function(val){
+      return val;
+    }
+  },
   methods: {
     submit() {
       
       let formData = new FormData();
 
       formData.append('nombre',this.data.nombre);
-      formData.append('idMateria',this.data.idMateria);
+      formData.append('idMateria',this.idMateria);
       formData.append('file',this.data.file);
 
       this.axios.post('api/file',formData)

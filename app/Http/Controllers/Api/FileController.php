@@ -27,20 +27,28 @@ class FileController extends Controller
 
         $file =$request->file('file');
 
-        $path =public_path().'/storage/app/'.$parameters['idMateria'];
-        
+        $path =public_path().'/storage/app/public/'.$parameters['idMateria'];
+
         //si no existe el directorio lo creo
-        if(!FacedeFile::exists($path)){
-            FacedeFile::makeDirectory($path,$mode = 0777, true, true);
-        }
+        // if(!FacedeFile::exists($path)){
+        //     FacedeFile::makeDirectory($path,$mode = 0777, true, true);
+        // }
             
         //agrego user
         $user = Auth::user();
         $parameters['user_id']=$user->id;
         
+        //ruta del archivo a partir de public
+        $pathFile = '/public/'.$parameters['idMateria'];
 
-        Storage::disk('local')->put($path,$file);
+        Storage::disk('local')->put($pathFile,$file);
 
+        $parameters['path'] = $pathFile;
+
+        $parameters['materia_id']=$parameters['idMateria'];
+
+        $fileObject = File::create($parameters);
+        $fileObject->save();
         }
 
 
