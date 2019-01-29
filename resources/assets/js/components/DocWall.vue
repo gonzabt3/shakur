@@ -26,11 +26,23 @@ import ModalNewDoc from '../components/modals/ModalNewDoc';
 
 export default {
     props:['idMateria'],
-    name: 'EventsWall',
+    name: 'DocWall',
     components: { ModalNewDoc },
+    data(){
+        return{
+            arrayDocs:[]
+        }
+    },
     methods:{
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
+      },
+      getDocs(){
+          this.arrayDocs = []
+          this.axios.get('api/file/'+this.idMateria)
+          .then(({data}) => {
+
+          })
       }
     }
 };

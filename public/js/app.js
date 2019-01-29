@@ -62637,11 +62637,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['idMateria'],
-    name: 'EventsWall',
+    name: 'DocWall',
     components: { ModalNewDoc: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewDoc___default.a },
+    data: function data() {
+        return {
+            arrayDocs: []
+        };
+    },
+
     methods: {
         showModal: function showModal() {
             this.$root.$emit('bv::show::modal', 'newDoc');
+        },
+        getDocs: function getDocs() {
+            this.arrayDocs = [];
+            this.axios.get('api/file/' + this.idMateria).then(function (_ref) {
+                var data = _ref.data;
+            });
         }
     }
 });

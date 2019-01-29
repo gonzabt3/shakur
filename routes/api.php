@@ -88,3 +88,6 @@ Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');
 
 //creo adjunto
 Route::middleware('auth:api')->post('/file','Api\FileController@store');
+
+//traigo adjuntos
+Route::middleware('auth:api')->get('/file/{idMateria}','Api\FileController@index');

@@ -41,15 +41,20 @@ class FileController extends Controller
         //ruta del archivo a partir de public
         $pathFile = '/public/'.$parameters['idMateria'];
 
+        //guardo
         Storage::disk('local')->put($pathFile,$file);
 
         $parameters['path'] = $pathFile;
-
         $parameters['materia_id']=$parameters['idMateria'];
 
         $fileObject = File::create($parameters);
         $fileObject->save();
         }
 
+
+        public function index(Request $request,Response $response,Int $idMateria){
+            
+
+        }
 
 }
