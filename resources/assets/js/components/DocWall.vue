@@ -11,7 +11,10 @@
             </b-row>
              <b-row>
                  <b-col>
-                        <p>PDF Derivadas</p>
+                    <label
+                        v-for="item in arrayDocs"
+                        :key="item.id">
+                        <a :href="item.path" download >{{item.nombre}}</a></label>
                 </b-col>
             </b-row>
         </b-card>
@@ -33,6 +36,9 @@ export default {
             arrayDocs:[]
         }
     },
+    mounted(){
+        this.getDocs();
+    },
     methods:{
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
@@ -41,7 +47,7 @@ export default {
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
-
+              this.arrayDocs=data
           })
       }
     }
