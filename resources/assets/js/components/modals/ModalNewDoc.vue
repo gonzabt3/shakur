@@ -51,6 +51,9 @@ export default {
 
       this.axios.post('api/file',formData)
         .then((response)=>{
+          this.cleanModal();
+          this.$refs.newDoc.hide();
+          this.$emit("responseGetDocs")  
         })
 
     },

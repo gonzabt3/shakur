@@ -21,6 +21,7 @@
             </b-row>
         </b-card>
         <modal-new-doc 
+        @responseGetDocs="getDocs"
         :id-materia="idMateria"
         ></modal-new-doc>
     </b-container>
@@ -50,7 +51,6 @@ export default {
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
               this.arrayDocs=data
-              console.log(data);
           })
       }
     }

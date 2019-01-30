@@ -62441,6 +62441,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -62469,7 +62470,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref.data;
 
                 _this.arrayDocs = data;
-                console.log(data);
             });
         }
     }
@@ -62561,7 +62561,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62617,6 +62617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     submit: function submit() {
+      var _this = this;
 
       var formData = new FormData();
 
@@ -62624,7 +62625,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formData.append('idMateria', this.idMateria);
       formData.append('file', this.data.file);
 
-      this.axios.post('api/file', formData).then(function (response) {});
+      this.axios.post('api/file', formData).then(function (response) {
+        _this.cleanModal();
+        _this.$refs.newDoc.hide();
+        _this.$emit("responseGetDocs");
+      });
     },
     cleanModal: function cleanModal() {
       this.data.nombre = '';
@@ -62807,7 +62812,10 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-new-doc", { attrs: { "id-materia": _vm.idMateria } })
+      _c("modal-new-doc", {
+        attrs: { "id-materia": _vm.idMateria },
+        on: { responseGetDocs: _vm.getDocs }
+      })
     ],
     1
   )
