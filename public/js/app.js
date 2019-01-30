@@ -39625,7 +39625,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faUser */]);
+__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["f" /* faUser */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faArrowCircleDown */]);
 
 __WEBPACK_IMPORTED_MODULE_8_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_8_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
@@ -50612,7 +50612,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faArrowAltCircleLeft */
 /* unused harmony export faArrowAltCircleRight */
 /* unused harmony export faArrowAltCircleUp */
-/* unused harmony export faArrowCircleDown */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return faArrowCircleDown; });
 /* unused harmony export faArrowCircleLeft */
 /* unused harmony export faArrowCircleRight */
 /* unused harmony export faArrowCircleUp */
@@ -50836,9 +50836,9 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faExpandArrowsAlt */
 /* unused harmony export faExternalLinkAlt */
 /* unused harmony export faExternalLinkSquareAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return faEye; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faEye; });
 /* unused harmony export faEyeDropper */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faEyeSlash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faEyeSlash; });
 /* unused harmony export faFastBackward */
 /* unused harmony export faFastForward */
 /* unused harmony export faFax */
@@ -51124,7 +51124,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faPlayCircle */
 /* unused harmony export faPlug */
 /* unused harmony export faPlus */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faPlusCircle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faPlusCircle; });
 /* unused harmony export faPlusSquare */
 /* unused harmony export faPodcast */
 /* unused harmony export faPoll */
@@ -51247,7 +51247,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faStop */
 /* unused harmony export faStopCircle */
 /* unused harmony export faStopwatch */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faStore; });
 /* unused harmony export faStoreAlt */
 /* unused harmony export faStream */
 /* unused harmony export faStreetView */
@@ -51336,7 +51336,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faUnlock */
 /* unused harmony export faUnlockAlt */
 /* unused harmony export faUpload */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return faUser; });
 /* unused harmony export faUserAlt */
 /* unused harmony export faUserAltSlash */
 /* unused harmony export faUserAstronaut */
@@ -62439,6 +62439,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -62467,6 +62469,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref.data;
 
                 _this.arrayDocs = data;
+                console.log(data);
             });
         }
     }
@@ -62773,10 +62776,27 @@ var render = function() {
               _c(
                 "b-col",
                 _vm._l(_vm.arrayDocs, function(item) {
-                  return _c("label", { key: item.id }, [
-                    _c("a", { attrs: { href: item.path, download: "" } }, [
-                      _vm._v(_vm._s(item.nombre))
-                    ])
+                  return _c("p", { key: item.id }, [
+                    _c(
+                      "a",
+                      { attrs: { href: item.path, download: "" } },
+                      [
+                        _c("font-awesome-icon", {
+                          staticClass: " pointer",
+                          attrs: { icon: "arrow-circle-down", size: "sm" }
+                        }),
+                        _vm._v(
+                          "\n                        " + _vm._s(item.nombre)
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(
+                      " subido por " +
+                        _vm._s(item.user.name) +
+                        " " +
+                        _vm._s(item.user.apellido)
+                    )
                   ])
                 })
               )

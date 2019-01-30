@@ -11,10 +11,12 @@
             </b-row>
              <b-row>
                  <b-col>
-                    <label
+                    <p
                         v-for="item in arrayDocs"
                         :key="item.id">
-                        <a :href="item.path" download >{{item.nombre}}</a></label>
+                        <a :href="item.path" download >
+                            <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
+                            {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}}</p>
                 </b-col>
             </b-row>
         </b-card>
@@ -48,6 +50,7 @@ export default {
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
               this.arrayDocs=data
+              console.log(data);
           })
       }
     }
