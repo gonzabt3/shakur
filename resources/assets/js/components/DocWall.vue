@@ -16,7 +16,12 @@
                         :key="item.id">
                         <a :href="item.path" download >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
-                            {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}}</p>
+                            {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}} <delete
+                            :id="item.id"
+                            tipo="doc"
+                            :user-creador="item.user"
+                            :user-logeado="item.id_user_logeado"
+                             /></p>
                 </b-col>
             </b-row>
         </b-card>
@@ -29,11 +34,12 @@
 
 <script>
 import ModalNewDoc from '../components/modals/ModalNewDoc';
+import Delete from '../components/common/Delete';
 
 export default {
     props:['idMateria'],
     name: 'DocWall',
-    components: { ModalNewDoc },
+    components: { ModalNewDoc,Delete },
     data(){
         return{
             arrayDocs:[]
