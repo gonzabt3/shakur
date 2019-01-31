@@ -12,7 +12,7 @@ export default {
     },
     methods:{
         sumbit(){
-            this.axios.delete('api/delete/'+this.tipo+'/'+this.id)
+            this.axios.delete('api/'+this.tipo+'/'+this.id)
             .then(({data}) => {
 
             })
