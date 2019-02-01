@@ -84,7 +84,7 @@ Route::middleware('auth:api')->get('/materias2/user','Api\MateriasController@mat
 Route::post('/evento','Api\EventoController@store');
 
 //get de eventos por materia
-Route::get('/eventos/{idMateria}','Api\MateriasController@eventosXmateria');
+Route::get('/eventos/{idMateria}','Api\EventoController@index');
 
 //creo adjunto
 Route::middleware('auth:api')->post('/file','Api\FileController@store');

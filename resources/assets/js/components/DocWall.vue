@@ -5,7 +5,7 @@
                 <b-col>
                     <b-form inline >
                         <h3><u>Documentación</u></h3>
-                        <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
+                        <font-awesome-icon   icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
                     </b-form>
                 </b-col>
             </b-row>
@@ -17,6 +17,7 @@
                         <a :href="item.path" download >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
                             {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}} <delete
+                            @actualizar="getDocs"
                             :id="item.id"
                             tipo="doc"
                             :user-creador="item.user"

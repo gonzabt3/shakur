@@ -1,5 +1,5 @@
 <template>
-        <font-awesome-icon v-if="userLogeado==userCreador.id" class="opacidad solido"  icon="times" @click="sumbit"/>
+        <font-awesome-icon v-if="userLogeado==userCreador.id" class="opacidad solido pointer"  icon="times" @click="sumbit"/>
 </template>
 <script>
 export default {
@@ -14,7 +14,7 @@ export default {
         sumbit(){
             this.axios.delete('api/'+this.tipo+'/'+this.id)
             .then(({data}) => {
-
+                this.$emit("actualizar")  
             })
         }
     },
@@ -31,6 +31,10 @@ export default {
 
 .solido:hover{
     opacity: 1.0;
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 </style>

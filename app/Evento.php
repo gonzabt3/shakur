@@ -15,7 +15,7 @@ class Evento extends Model
         return $this->belongsTo(Materia::class);
     }
 
-    public function users(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }

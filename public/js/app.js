@@ -60346,6 +60346,8 @@ exports.push([module.i, "\n.shadow[data-v-4e9b067a]{\n        -webkit-box-shadow
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent__ = __webpack_require__(401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Delete__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_common_Delete__);
 //
 //
 //
@@ -60371,17 +60373,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'EventsWall',
     props: ['idMateria'],
-    components: { ModalNewEvent: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default.a },
+    components: { ModalNewEvent: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__components_common_Delete___default.a },
     data: function data() {
         return {
             arrayEventos: []
-            //   idMateria:5
         };
     },
     mounted: function mounted() {
@@ -60393,23 +60400,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$root.$emit('bv::show::modal', 'newEvent');
         },
         getEventos: function getEventos() {
-            var _this = this;
-
             // console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
-                // console.log(data);
-                data.forEach(function (evento) {
-                    var eventosAux = {
-                        idPost: evento.id,
-                        nombre: '',
-                        fecha: '',
-                        temas: ''
-                    };
-                    eventosAux.nombre = evento.nombre, eventosAux.fecha = evento.fecha;
-                    _this.arrayEventos.push(eventosAux);
-                });
+                console.log(data);
             });
         }
     }
@@ -62282,11 +62277,24 @@ var render = function() {
               _c(
                 "b-col",
                 _vm._l(_vm.arrayEventos, function(item) {
-                  return _c("p", { key: item.id }, [
-                    _vm._v(
-                      " " + _vm._s(item.nombre) + " -> " + _vm._s(item.fecha)
-                    )
-                  ])
+                  return _c(
+                    "p",
+                    { key: item.id },
+                    [
+                      _vm._v(
+                        " " +
+                          _vm._s(item.nombre) +
+                          " -> " +
+                          _vm._s(item.fecha) +
+                          " "
+                      ),
+                      _c("delete", {
+                        attrs: { id: item.id, tipo: "event" },
+                        on: { actualizar: _vm.getEventos }
+                      })
+                    ],
+                    1
+                  )
                 })
               )
             ],
@@ -62415,6 +62423,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewDoc___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewDoc__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Delete__ = __webpack_require__(418);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_common_Delete__);
+//
 //
 //
 //
@@ -62826,7 +62835,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n.pointer[data-v-2c7f6268]{\n    cursor: pointer;\n}\n\n", ""]);
 
 // exports
 
@@ -62850,8 +62859,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sumbit: function sumbit() {
+            var _this = this;
+
             this.axios.delete('api/' + this.tipo + '/' + this.id).then(function (_ref) {
                 var data = _ref.data;
+
+                _this.$emit("actualizar");
             });
         }
     },
@@ -62868,7 +62881,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.userLogeado == _vm.userCreador.id
     ? _c("font-awesome-icon", {
-        staticClass: "opacidad solido",
+        staticClass: "opacidad solido pointer",
         attrs: { icon: "times" },
         on: { click: _vm.sumbit }
       })
@@ -62964,7 +62977,8 @@ var render = function() {
                           tipo: "doc",
                           "user-creador": item.user,
                           "user-logeado": item.id_user_logeado
-                        }
+                        },
+                        on: { actualizar: _vm.getDocs }
                       })
                     ],
                     1

@@ -75,6 +75,6 @@ class FileController extends Controller
 
 
         public function delete(Request $request,Response $response,Int $id){
-            dd($id);
+            File::destroy($id);
         }
 }

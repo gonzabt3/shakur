@@ -12,7 +12,12 @@
              <b-row>
                  <b-col>
                     <p v-for="item in arrayEventos" 
-                    :key="item.id"> {{item.nombre}} -> {{item.fecha}}</p>
+                    :key="item.id"> {{item.nombre}} -> {{item.fecha}} <delete
+                    @actualizar="getEventos"
+                    :id="item.id"
+                    tipo="event"
+
+                    /> </p>
                 </b-col>
             </b-row>
         </b-card>
@@ -25,15 +30,15 @@
 
 <script>
 import ModalNewEvent from '../components/modals/ModalNewEvent';
+import Delete from '../components/common/Delete'
 
 export default {
     name: 'EventsWall',
     props:['idMateria'],
-  components: { ModalNewEvent },
+  components: { ModalNewEvent ,Delete},
   data(){
       return{
           arrayEventos:[],
-        //   idMateria:5
       }
   },
   mounted(){
@@ -48,18 +53,7 @@ export default {
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {
-                // console.log(data);
-                data.forEach(evento => {
-                    let eventosAux={
-                        idPost:evento.id,
-                        nombre: '',
-                        fecha:'',
-                        temas:'' 
-                    }
-                    eventosAux.nombre=evento.nombre,
-                    eventosAux.fecha=evento.fecha
-                    this.arrayEventos.push(eventosAux);
-                });
+                console.log(data);
             });
       }
   }
