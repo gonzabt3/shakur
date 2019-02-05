@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Services\EventoService;
 use App\Http\Services\MateriaService;
+use App\Http\Services\UserService;
 use App\Http\Resources\EventoResource;
 
 
@@ -15,10 +16,12 @@ class EventoController extends Controller
 {
     protected $eventoService;
     protected $materiaService;
+    protected $userService;
 
-    public function __construct(EventoService $eventoService,MateriaService $materiaService){
+    public function __construct(EventoService $eventoService,MateriaService $materiaService,UserService $userService){
         $this->eventoService = $eventoService;
         $this->materiaService = $materiaService;
+        $this->userService = $userService;
     }
 
 
@@ -42,6 +45,11 @@ class EventoController extends Controller
     }
 
     public function index($idMateria){
-        return $this->eventoService->index($idMateria);
+        
+        //loop
+
+        $this->userService->checkAutor('event',8);
+
+        // return $this->materiaService->getEventos($idMateria);
     }
 }

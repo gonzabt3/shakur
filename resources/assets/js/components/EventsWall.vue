@@ -12,11 +12,10 @@
              <b-row>
                  <b-col>
                     <p v-for="item in arrayEventos" 
-                    :key="item.id"> {{item.nombre}} -> {{item.fecha}} <delete
+                    :key="item.id" > {{item.nombre}} -> {{item.fecha}} <delete
                     @actualizar="getEventos"
                     :id="item.id"
                     tipo="event"
-
                     /> </p>
                 </b-col>
             </b-row>
@@ -53,7 +52,8 @@ export default {
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {
-                console.log(data);
+                console.log(data)
+                this.arrayEventos=data;
             });
       }
   }
