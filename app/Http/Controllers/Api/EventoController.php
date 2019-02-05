@@ -10,6 +10,8 @@ use App\Http\Services\EventoService;
 use App\Http\Services\MateriaService;
 use App\Http\Services\UserService;
 use App\Http\Resources\EventoResource;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 
 class EventoController extends Controller
@@ -45,11 +47,6 @@ class EventoController extends Controller
     }
 
     public function index($idMateria){
-        
-        //loop
-
-        $this->userService->checkAutor('event',8);
-
-        // return $this->materiaService->getEventos($idMateria);
+        return $this->materiaService->getEventos($idMateria);
     }
 }

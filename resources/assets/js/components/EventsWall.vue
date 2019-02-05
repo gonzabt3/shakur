@@ -53,7 +53,7 @@ export default {
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {
                 console.log(data)
-                this.arrayEventos=data;
+                // this.arrayEventos=data;
             });
       }
   }

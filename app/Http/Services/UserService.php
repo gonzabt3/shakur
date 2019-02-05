@@ -9,18 +9,19 @@ use App\Publicacion;
 use App\File;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Http\Controllers\Controller;
 
 class UserService {
 
     public function checkAutor(String $tipo,Int $id){
 
         $user = Auth::user();
-  
+
         if($tipo=="like"){
             $object=Like::find($id)->with('user');
         }
         if($tipo=="event"){
-            $object=Evento::find($id)->with('user');
+            $object=Evento::find($id);
         }
         if($tipo=="post"){
             $object=Publicacion::find($id)->with('user');
@@ -29,7 +30,10 @@ class UserService {
             $object=File::find($id)->with('user');
         }
 
-        var_dump($object);
-        exit();
-    }
+        if($object->user->id==$user->id){
+            return true;
+        }else{
+            return false;
+        }
+    }       
 }
