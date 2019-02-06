@@ -15,6 +15,7 @@
                     :key="item.id" > {{item.nombre}} -> {{item.fecha}} <delete
                     @actualizar="getEventos"
                     :id="item.id"
+                    :flag-autor="item.flagAutor"
                     tipo="event"
                     /> </p>
                 </b-col>
@@ -52,8 +53,8 @@ export default {
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)
             .then(({data}) => {
-                console.log(data)
-                // this.arrayEventos=data;
+                // console.log(data)
+                this.arrayEventos=data;
             });
       }
   }

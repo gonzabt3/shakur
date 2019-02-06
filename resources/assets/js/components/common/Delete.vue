@@ -1,10 +1,10 @@
 <template>
-        <font-awesome-icon v-if="userLogeado==userCreador.id" class="opacidad solido pointer"  icon="times" @click="sumbit"/>
+        <font-awesome-icon v-if="flagAutor" class="opacidad solido pointer"  icon="times" @click="sumbit"/>
 </template>
 <script>
 export default {
     name:"dalete",
-    props:['id','tipo','userCreador','userLogeado','size'],
+    props:['id','tipo','flagAutor','size'],
     data(){
         return{
             

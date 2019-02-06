@@ -60611,6 +60611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -60633,12 +60634,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$root.$emit('bv::show::modal', 'newEvent');
         },
         getEventos: function getEventos() {
+            var _this = this;
+
             // console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
-                // this.arrayEventos=data;
+                // console.log(data)
+                _this.arrayEventos = data;
             });
         }
     }
@@ -62528,7 +62531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "dalete",
-    props: ['id', 'tipo', 'userCreador', 'userLogeado', 'size'],
+    props: ['id', 'tipo', 'flagAutor', 'size'],
     data: function data() {
         return {};
     },
@@ -62555,7 +62558,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.userLogeado == _vm.userCreador.id
+  return _vm.flagAutor
     ? _c("font-awesome-icon", {
         staticClass: "opacidad solido pointer",
         attrs: { icon: "times" },
@@ -62633,7 +62636,11 @@ var render = function() {
                           " "
                       ),
                       _c("delete", {
-                        attrs: { id: item.id, tipo: "event" },
+                        attrs: {
+                          id: item.id,
+                          "flag-autor": item.flagAutor,
+                          tipo: "event"
+                        },
                         on: { actualizar: _vm.getEventos }
                       })
                     ],

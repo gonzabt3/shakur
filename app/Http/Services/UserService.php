@@ -26,7 +26,7 @@ class UserService {
         if($tipo=="post"){
             $object=Publicacion::find($id)->with('user');
         }
-        if($tipo=="doc"){
+        if($tipo=="file"){
             $object=File::find($id)->with('user');
         }
 
