@@ -61,11 +61,15 @@ class FileController extends Controller
         public function index(Request $request,Response $response,Int $idMateria){
             
             $files=File::where('materia_id',$idMateria)->with('user')->get(); 
-
-            //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
+            
             $files->map(function ($file) {
                 $user = Auth::user();
-                $file['id_user_logeado'] = $user->id;
+                
+                if($file->user_id==$user->id){
+                    $file['checkCreador']=true;
+                }else{
+                    $file['checkCreador']=false;
+                }
                 return $file;
             });
             
@@ -75,6 +79,9 @@ class FileController extends Controller
 
 
         public function delete(Request $request,Response $response,Int $id){
-            File::destroy($id);
+            //corroboro que sea el autor el que lo esta borrando
+            if(Auth::user()->id==File::find($id)->user_id){
+                File::destroy($id);
+            }
         }
 }
