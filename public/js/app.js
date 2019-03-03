@@ -59372,6 +59372,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             this.axios.get('api/comentarios/' + this.postData.id).then(function (_ref) {
                 var data = _ref.data;
 
+                console.log(data);
                 _this2.arrayComentarios = data;
                 _this2.cantComentarios = _this2.arrayComentarios.length;
             });
@@ -59575,7 +59576,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59595,7 +59596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Like",
-    props: ['likesData', 'idUserLogeado', 'idPost', 'urlLike', 'tipo'],
+    props: ['likesData', 'flagLike', 'idPost', 'urlLike', 'tipo'],
     data: function data() {
         return {
             beerIcon: '../images/beer.png',
@@ -59641,13 +59642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         estadoBtnLike: function estadoBtnLike() {
-            var _this2 = this;
-
-            this.likesData.forEach(function (like) {
-                if (like.user_id == _this2.idUserLogeado) {
-                    _this2.btnLikeEstado = true;
-                }
-            });
+            this.btnLikeEstado = this.flagLike;
         }
     },
     watch: {
@@ -59768,7 +59763,7 @@ var render = function() {
                   _c("like", {
                     attrs: {
                       "likes-data": _vm.comentarioData.likes_comentarios,
-                      "id-user-logeado": _vm.comentarioData.id_user_logeado,
+                      "flag-like": _vm.comentarioData.flagLike,
                       "id-post": _vm.comentarioData.id,
                       "url-like": "api/like/comentario",
                       tipo: "cm"

@@ -125,6 +125,7 @@ methods: {
         this.arrayComentarios=[]
         this.axios.get('api/comentarios/'+this.postData.id)
                     .then(({data}) => {
+                        console.log(data);
                         this.arrayComentarios=data
                         this.cantComentarios=this.arrayComentarios.length
                     });

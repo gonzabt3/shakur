@@ -24,7 +24,7 @@
                 <b-row>
                     <like
                       :likes-data="comentarioData.likes_comentarios"
-                      :id-user-logeado="comentarioData.id_user_logeado"
+                      :flag-like="comentarioData.flagLike"
                       :id-post="comentarioData.id"
                       url-like="api/like/comentario"
                       tipo="cm"

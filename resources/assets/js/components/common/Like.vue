@@ -7,7 +7,7 @@
 <script>
 export default {
     name:"Like",
-    props:['likesData','idUserLogeado','idPost','urlLike','tipo'],
+    props:['likesData','flagLike','idPost','urlLike','tipo'],
     data(){
         return{
             beerIcon: '../images/beer.png',
@@ -52,11 +52,7 @@ export default {
                 }
             },
         estadoBtnLike(){
-            this.likesData.forEach(like => {
-                if(like.user_id==this.idUserLogeado){
-                    this.btnLikeEstado=true
-                }
-            })
+                    this.btnLikeEstado=this.flagLike
         }
         },
         watch:{

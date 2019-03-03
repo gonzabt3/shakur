@@ -48,7 +48,7 @@ Route::get('/carreras/{id}','Api\CarrerasController@index');
 Route::middleware('auth:api')->post('/comentario','Api\ComentariosController@store');
 
 //traer comentario por publicacion
-Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosController@comentarios');
+Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosController@getComentarios');
 
 //crea usuario
 Route::post('/usuario','Api\UserController@store');
