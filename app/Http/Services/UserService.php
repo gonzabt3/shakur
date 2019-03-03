@@ -27,9 +27,9 @@ class UserService {
             $object=Publicacion::find($id)->with('user');
         }
         if($tipo=="file"){
-            $object=File::find($id)->with('user');
+            $object=File::find($id);
         }
-
+        // dd($object->user);
         if($object->user->id==$user->id){
             return true;
         }else{

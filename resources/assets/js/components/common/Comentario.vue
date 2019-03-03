@@ -6,7 +6,17 @@
             </b-col>
             <b-col>
                 <b-row>
-                    <h5 class="no-margin-bottom">{{comentarioData.user.name}}</h5>
+                    <b-col cols="11">
+                        <h5 class="no-margin-bottom">{{comentarioData.user.name}}</h5>
+                    </b-col>
+                    <b-col cols="1">
+                        <delete
+                        @actualizar="getComentarios" 
+                        :id="comentarioData.id"
+                        flag-autor="true"
+                        tipo="comment"
+                        />
+                    </b-col>
                 </b-row>
                 <b-row>
                     <p class="form-control">{{comentarioData.texto}}</p>
@@ -26,14 +36,20 @@
 </template>
 <script>
 import Like from '../common/Like';
+import Delete from '../common/Delete';
 
 export default {
-  components:{Like},
+  components:{Like,Delete},
   props:['comentarioData'],//data entrante
   data() {
     return {
 
     };
+  },
+  methods:{
+      getComentarios(){
+        this.$emit("getComentarios")  
+      }
   }
 };
 </script>

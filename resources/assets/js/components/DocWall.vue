@@ -13,14 +13,14 @@
                  <b-col>
                     <p
                         v-for="item in arrayDocs"
-                        :key="item.id">4
+                        :key="item.id">
                         <a :href="item.path" download >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
                             {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}} <delete
                             @actualizar="getDocs"
                             :id="item.id"
                             tipo="doc"
-                            :flag-autor="item.checkCreador"
+                            :flag-autor="item.flagAutor"
                              /></p>
                 </b-col>
             </b-row>

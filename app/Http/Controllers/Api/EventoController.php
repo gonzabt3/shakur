@@ -49,4 +49,8 @@ class EventoController extends Controller
     public function index($idMateria){
         return $this->materiaService->getEventos($idMateria);
     }
+
+    public function delete($id){
+        return $this->eventoService->delete($id);
+    }
 }

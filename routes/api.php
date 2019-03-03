@@ -93,4 +93,11 @@ Route::middleware('auth:api')->post('/file','Api\FileController@store');
 Route::middleware('auth:api')->get('/file/{idMateria}','Api\FileController@index');
 
 // DELETE COSAS
+//delete files
 Route::middleware('auth:api')->delete('/doc/{id}','Api\FileController@delete');
+
+//delete evento
+Route::middleware('auth:api')->delete('/event/{id}','Api\EventoController@delete');
+
+//delete comment
+Route::middleware('auth:api')->delete('/comment/{id}','Api\ComentariosController@delete');

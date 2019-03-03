@@ -48,6 +48,7 @@
                 <div v-if="showComentarios">
                     <comentario v-for="item in arrayComentarios"
                     :comentario-data="item"
+                    @getComentarios="getComentarios"
                     :key="item.id" ></comentario>
                     <hr />
                     <b-row>
@@ -86,7 +87,7 @@ export default {
     return {
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantComentarios: 1,
+      cantComentarios: null,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',

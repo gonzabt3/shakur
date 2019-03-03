@@ -59313,6 +59313,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -59328,7 +59329,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         return {
             commentIcon: '../images/comment.png',
             progreso: 55,
-            cantComentarios: 1,
+            cantComentarios: null,
             showComentarios: false,
             showManyComentarios: false,
             iconEyeComentarios: 'eye',
@@ -59483,6 +59484,8 @@ exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-botto
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Like__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Like___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_Like__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_Delete__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_Delete__);
 //
 //
 //
@@ -59509,14 +59512,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a },
+  components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
   props: ['comentarioData'], //data entrante
   data: function data() {
     return {};
+  },
+
+  methods: {
+    getComentarios: function getComentarios() {
+      this.$emit("getComentarios");
+    }
   }
 });
 
@@ -59708,11 +59728,33 @@ var render = function() {
           _c(
             "b-col",
             [
-              _c("b-row", [
-                _c("h5", { staticClass: "no-margin-bottom" }, [
-                  _vm._v(_vm._s(_vm.comentarioData.user.name))
-                ])
-              ]),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "11" } }, [
+                    _c("h5", { staticClass: "no-margin-bottom" }, [
+                      _vm._v(_vm._s(_vm.comentarioData.user.name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { cols: "1" } },
+                    [
+                      _c("delete", {
+                        attrs: {
+                          id: _vm.comentarioData.id,
+                          "flag-autor": "true",
+                          tipo: "comment"
+                        },
+                        on: { actualizar: _vm.getComentarios }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("b-row", [
                 _c("p", { staticClass: "form-control" }, [
@@ -60206,7 +60248,8 @@ var render = function() {
                       _vm._l(_vm.arrayComentarios, function(item) {
                         return _c("comentario", {
                           key: item.id,
-                          attrs: { "comentario-data": item }
+                          attrs: { "comentario-data": item },
+                          on: { getComentarios: _vm.getComentarios }
                         })
                       }),
                       _vm._v(" "),
@@ -60457,7 +60500,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
-                // console.log(data)
                 _this.arrayEventos = data;
             });
         }
@@ -62318,7 +62360,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n.pointer[data-v-2c7f6268]{\n    cursor: pointer;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n.pointer[data-v-2c7f6268]{\n    cursor: pointer;\n}\n\n", ""]);
 
 // exports
 
@@ -62350,8 +62392,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$emit("actualizar");
             });
         }
-    },
-    mounted: function mounted() {}
+    }
 });
 
 /***/ }),
@@ -62956,7 +62997,6 @@ var render = function() {
                     "p",
                     { key: item.id },
                     [
-                      _vm._v("4\n                    "),
                       _c(
                         "a",
                         { attrs: { href: item.path, download: "" } },
@@ -62982,7 +63022,7 @@ var render = function() {
                         attrs: {
                           id: item.id,
                           tipo: "doc",
-                          "flag-autor": item.checkCreador
+                          "flag-autor": item.flagAutor
                         },
                         on: { actualizar: _vm.getDocs }
                       })

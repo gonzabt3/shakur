@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Comentario;
+use App\Http\Services\ComentarioService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ComentarioResource;
@@ -11,7 +12,11 @@ use Session;
 
 class ComentariosController extends Controller
 {
-    //
+    protected $comentarioService;
+
+    public function __construct(ComentarioService $comentarioService){
+        $this->comentarioService = $comentarioService;
+    }
 
     public function store(Request $request){
         $comentario = $this->validate($request,[
@@ -42,5 +47,9 @@ class ComentariosController extends Controller
         });
 
         return $comentarios;
+    }
+
+    public function delete($id){
+        $this->comentarioService->delete($id);
     }
 }

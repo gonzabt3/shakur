@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FileResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Services\UserService;
 use Session;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\File as FacedeFile;  //renombro el facade porque 
 
 class FileController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
+    }
+
     public function store(Request $request){
 
         $parameters = $this->validate($request,[
@@ -62,15 +69,8 @@ class FileController extends Controller
             
             $files=File::where('materia_id',$idMateria)->with('user')->get(); 
             
-            $files->map(function ($file) {
-                $user = Auth::user();
-                
-                if($file->user_id==$user->id){
-                    $file['checkCreador']=true;
-                }else{
-                    $file['checkCreador']=false;
-                }
-                return $file;
+            $files->map(function ($file) {                  
+                $file['flagAutor'] = $this->userService->checkAutor('file',$file->id);
             });
             
             return $files;
