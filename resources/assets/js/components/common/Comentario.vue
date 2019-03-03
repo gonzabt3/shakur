@@ -13,7 +13,7 @@
                         <delete
                         @actualizar="getComentarios" 
                         :id="comentarioData.id"
-                        flag-autor="true"
+                        :flag-autor="comentarioData.flagAutor"
                         tipo="comment"
                         />
                     </b-col>

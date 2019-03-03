@@ -12,7 +12,7 @@
              <b-row>
                  <b-col>
                     <p v-for="item in arrayEventos" 
-                    :key="item.id" > {{item.nombre}} -> {{item.fecha}} <delete
+                    :key="item.id" > {{item.nombre}} -> {{item.fecha | formatDate}} <delete
                     @actualizar="getEventos"
                     :id="item.id"
                     :flag-autor="item.flagAutor"
@@ -31,6 +31,10 @@
 <script>
 import ModalNewEvent from '../components/modals/ModalNewEvent';
 import Delete from '../components/common/Delete'
+import moment from "moment";
+
+
+const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
     name: 'EventsWall',
@@ -56,7 +60,13 @@ export default {
                 this.arrayEventos=data;
             });
       }
-  }
+  },
+    filters:{
+    formatDate(value) {
+        if (!value) return "-";
+        return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
+    },
+},
 };
 </script>
 

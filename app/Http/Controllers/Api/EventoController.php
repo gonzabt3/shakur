@@ -29,6 +29,7 @@ class EventoController extends Controller
 
 
     public function store(Request $request){
+
         $evento = $this->validate($request,[
             'nombre' => 'required',
             'temas' => 'required',
@@ -37,9 +38,11 @@ class EventoController extends Controller
             'user_id' => 'required'
         ]);
 
-        $evento = Evento::create($evento);
+        //agrego user
+        $user = Auth::user();
+        $evento['user_id']=$user->id;
 
-        return new EventoResource($evento);
+        return $this->eventoService->store($evento);
     }
 
     public function eventos($idMateria){

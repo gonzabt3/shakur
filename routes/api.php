@@ -81,7 +81,7 @@ Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
 Route::middleware('auth:api')->get('/materias2/user','Api\MateriasController@materiasXusuario');
 
 //creo evento
-Route::post('/evento','Api\EventoController@store');
+Route::middleware('auth:api')->post('/evento','Api\EventoController@store');
 
 //get de eventos por materia
 Route::middleware('auth:api')->get('/eventos/{idMateria}','Api\EventoController@index');

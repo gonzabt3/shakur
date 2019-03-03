@@ -4,6 +4,9 @@ namespace App\Http\Services;
 
 use App\Http\Services\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Http\Resources\EventoResource;
+
 
 use App\Evento;
 use App\User;
@@ -22,5 +25,12 @@ class EventoService {
         if(Auth::user()->id==Evento::find($id)->user_id){
             Evento::destroy($id);
         }
+    }
+
+    public function store($evento){
+
+        $evento = Evento::create($evento);
+
+        return new EventoResource($evento);
     }
 }

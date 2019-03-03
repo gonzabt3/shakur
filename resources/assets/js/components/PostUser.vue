@@ -13,6 +13,9 @@
                             </b-col>
                             <b-col>
                                 <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
+                                <delete 
+                                    flag-autor="true"
+                                />
                             </b-col>
                         </b-row>
                         <b-row>
@@ -75,13 +78,14 @@
 <script>
 import Comentario from '../components/common/Comentario';
 import Like from '../components/common/Like';
+import Delete from '../components/common/Delete';
 import moment from "moment";
 
 const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
-  components: { Comentario,Like },
+  components: { Comentario,Like,Delete },
   props:['postData'],//data entrante
   data() {
     return {
