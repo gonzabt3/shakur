@@ -101,3 +101,6 @@ Route::middleware('auth:api')->delete('/event/{id}','Api\EventoController@delete
 
 //delete comment
 Route::middleware('auth:api')->delete('/comment/{id}','Api\ComentariosController@delete');
+
+//delete post
+Route::middleware('auth:api')->delete('/post/{id}','Api\PublicacionesController@delete');

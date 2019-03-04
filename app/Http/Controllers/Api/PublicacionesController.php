@@ -6,12 +6,19 @@ use App\Publicacion;
 use App\Materia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Services\PublicacionService;
 use App\Http\Resources\PublicacionResource;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
 class PublicacionesController extends Controller
 {
+    protected $publicacionService;
+
+    public function __construct(PublicacionService $publicacionService){
+        $this->publicacionService = $publicacionService;
+    }
+
     public function store(Request $request){
 
         $publicacion = $this->validate($request,[
@@ -29,18 +36,11 @@ class PublicacionesController extends Controller
 
 
     public function index($idMateria){
-       $publicaciones=Publicacion::where('materia_id',$idMateria)->with('user','likes')->get();
-
-        //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
-        $publicaciones->map(function ($post) {
-            $user = Auth::user();
-            $post['id_user_logeado'] = $user->id;
-            return $post;
-        });
-
-        return($publicaciones);
-    
+        return $this->publicacionService->getPosts($idMateria);
     }
 
+    public function delete($idPost){
+        return $this->publicacionService->delete($idPost);
+    }
 
 }

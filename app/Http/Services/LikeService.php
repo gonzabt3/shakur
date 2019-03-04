@@ -17,12 +17,16 @@ class LikeService{
 
         if($tipo=='comment'){
             $count=LikeComentario::where(['comentario_id' => $id,'user_id' => $user->id])->count();
+        }
 
-            if($count>0){
-                return true;
-            }else{
-                return false;
-            }
+        if($tipo=='post'){
+            $count=Like::where(['publicacion_id' => $id,'user_id' => $user->id])->count();
+        }
+
+        if($count>0){
+            return true;
+        }else{
+            return false;
         }
     }
 }

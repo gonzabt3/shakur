@@ -51,9 +51,9 @@ export default {
                 })   
                 }
             },
-        estadoBtnLike(){
-                    this.btnLikeEstado=this.flagLike
-        }
+            estadoBtnLike(){
+                        this.btnLikeEstado=this.flagLike
+            }
         },
         watch:{
              btnLikeEstado(value) {

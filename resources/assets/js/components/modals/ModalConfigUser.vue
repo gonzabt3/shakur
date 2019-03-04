@@ -124,7 +124,7 @@ export default {
             // console.log(this.data);
             this.axios.post('api/usuario/config',this.data)
             .then((response) =>{
-                console.log("volvio");
+                // console.log("volvio");
             })  
         }
     }

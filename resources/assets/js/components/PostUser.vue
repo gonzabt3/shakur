@@ -14,7 +14,10 @@
                             <b-col>
                                 <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
                                 <delete 
-                                    flag-autor="true"
+                                    :id="postData.id"
+                                    :flag-autor="postData.flagAutor"
+                                    tipo="post"
+                                    @actualizar="getPosts"
                                 />
                             </b-col>
                         </b-row>
@@ -36,7 +39,7 @@
                     <b-col  class="">
                         <like
                         :likes-data="postData.likes"
-                        :id-user-logeado="postData.id_user_logeado"
+                        :flag-like="postData.flagLike"
                         :id-post="postData.id"
                         url-like="api/like"
                         tipo="mg"
@@ -129,11 +132,13 @@ methods: {
         this.arrayComentarios=[]
         this.axios.get('api/comentarios/'+this.postData.id)
                     .then(({data}) => {
-                        console.log(data);
                         this.arrayComentarios=data
                         this.cantComentarios=this.arrayComentarios.length
                     });
     },
+    getPosts(){
+        this.$emit("getPosts")  
+    }
   },
   watch: {
     showManyComentarios(value) { // cambia el icon del ojo de los comentarios

@@ -14,6 +14,7 @@
                 ></post-new>
                 <!-- tira error por un bug de la verga del eslint -->
                 <post-user  
+                @getPosts="getPosts"
                 v-for="item in arrayPosts"
                 :postData="item"
                 :key="item.id" 
@@ -63,9 +64,8 @@ export default {
         // console.log(sessionStorage.getItem('token'));
         this.axios.get('api/publicacion/'+this.idMateria)
                     .then(({data}) => {
-                        data.forEach(post => {
-                            this.arrayPosts.push(post);
-                        });
+                        this.arrayPosts=data;
+
                     });
       },
     //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA

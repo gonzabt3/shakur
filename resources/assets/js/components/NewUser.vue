@@ -118,7 +118,7 @@ export default {
   },
   methods :{
         crearUsuario(){
-            console.log(this.usuario);
+            // console.log(this.usuario);
             this.axios.post('api/auth/signup/',this.usuario)
                 .then(({data}) => this.setSuccessMessage())
         },
