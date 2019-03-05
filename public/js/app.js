@@ -54926,10 +54926,6 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: "/" } }, [_vm._v("Inicio")]),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: "/main" } }, [_vm._v("Main")]),
-      _vm._v(" "),
       _c("router-view")
     ],
     1

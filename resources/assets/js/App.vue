@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <link rel="shortcut icon" type="image/png" href="components/favIcon.png"/>
-    <router-link to="/">Inicio</router-link>
-    <router-link to="/main">Main</router-link>
+    <!-- <router-link to="/">Inicio</router-link>
+    <router-link to="/main">Main</router-link> -->
     <router-view></router-view>
   </div>
 </template>
