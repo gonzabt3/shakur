@@ -58871,7 +58871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       arrayPosts: [],
-      idMateria: 1 //se cambia en el metodo update  walls
+      idMateria: null //se cambia en el metodo update  walls
     };
   },
   mounted: function mounted() {
@@ -58899,7 +58899,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateWalls: function updateWalls(val) {
       this.idMateria = val;
       this.getPosts();
-      this.$refs.eventWall.getEventos();
+      this.$refs.eventWall.getEventos(val);
+      this.$refs.docWall.getDocs(val);
     }
   }
 });
@@ -59020,12 +59021,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
@@ -59054,6 +59049,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           };
           _this.materias.push(obj);
         });
+        //hago que se setean los walls y el muro con la primera materia que tiene el user
+        _this.clickMateria(_this.materias[0].id);
       });
     },
 
@@ -60614,9 +60611,14 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         showModal: function showModal() {
             this.$root.$emit('bv::show::modal', 'newEvent');
         },
-        getEventos: function getEventos() {
+        getEventos: function getEventos(val) {
             var _this = this;
 
+            //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
+            if (val != null) {
+                this.idMateria = val;
+            }
+            console.log("GET EVENTOS");
             // console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
@@ -62705,9 +62707,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModal: function showModal() {
             this.$root.$emit('bv::show::modal', 'newDoc');
         },
-        getDocs: function getDocs() {
+        getDocs: function getDocs(val) {
             var _this = this;
 
+            //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
+            if (val != null) {
+                this.idMateria = val;
+            }
+            console.log("GET DOCS");
             this.arrayDocs = [];
             this.axios.get('api/file/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
@@ -64024,7 +64031,10 @@ var render = function() {
                 attrs: { "id-materia": _vm.idMateria }
               }),
               _vm._v(" "),
-              _c("doc-wall", { attrs: { "id-materia": _vm.idMateria } })
+              _c("doc-wall", {
+                ref: "docWall",
+                attrs: { "id-materia": _vm.idMateria }
+              })
             ],
             1
           )

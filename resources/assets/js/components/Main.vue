@@ -12,7 +12,6 @@
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
                 ></post-new>
-                <!-- tira error por un bug de la verga del eslint -->
                 <post-user  
                 @getPosts="getPosts"
                 v-for="item in arrayPosts"
@@ -26,6 +25,7 @@
                 ref="eventWall"
                 ></events-wall>
                 <doc-wall 
+                ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
             </b-col>
@@ -48,7 +48,7 @@ export default {
   data(){
       return{
           arrayPosts:[],
-          idMateria:1 //se cambia en el metodo update  walls
+          idMateria:null //se cambia en el metodo update  walls
       }
   },
   mounted(){
@@ -72,8 +72,9 @@ export default {
       updateWalls(val){
         this.idMateria=val;
         this.getPosts();
-        this.$refs.eventWall.getEventos();
-      }
+        this.$refs.eventWall.getEventos(val);
+        this.$refs.docWall.getDocs(val);
+        }
   }
 };
 </script>

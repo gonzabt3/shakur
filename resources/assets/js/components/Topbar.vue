@@ -1,24 +1,18 @@
 <template>
 <b-navbar toggleable="md" type="dark" variant="info">
-
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
   <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
-
   <b-collapse is-nav id="nav_collapse">
-
     <b-navbar-nav>
       <!-- <h5>asd</h5> -->
       <b-nav-item id="materia" v-for="materia in materias"
       :key="materia.id" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
     </b-navbar-nav>
-
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
       <h4>{{username}}</h4>
       <font-awesome-icon  icon="user"  class="pointer" size="lg"  />
     </b-navbar-nav>
-
   </b-collapse>
 </b-navbar>
 </template>
@@ -50,6 +44,8 @@ export default {
                 }
                   this.materias.push(obj)
               });
+              //hago que se setean los walls y el muro con la primera materia que tiene el user
+              this.clickMateria(this.materias[0].id);
           })
     },
     //funcion que marca la materia actual

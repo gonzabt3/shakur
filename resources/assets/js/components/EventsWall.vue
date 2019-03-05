@@ -52,7 +52,12 @@ export default {
       showModal(){
           this.$root.$emit('bv::show::modal','newEvent')
       },
-      getEventos(){
+      getEventos(val){
+            //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
+            if(val!=null){
+                this.idMateria=val
+            }
+            console.log("GET EVENTOS");
             // console.log(this.idMateria);
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)

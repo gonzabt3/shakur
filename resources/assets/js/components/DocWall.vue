@@ -52,7 +52,12 @@ export default {
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
       },
-      getDocs(){
+      getDocs(val){
+        //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
+          if(val!=null){
+              this.idMateria=val
+          }
+          console.log("GET DOCS");
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
