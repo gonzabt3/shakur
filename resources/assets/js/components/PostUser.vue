@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container fluid>
         <b-form-group>
             <b-card class="shadow">
                 <b-row>
@@ -75,7 +75,7 @@
                 </div>
             </b-card>
         </b-form-group>
-    </div>
+    </b-container>
 </template>
 
 <script>

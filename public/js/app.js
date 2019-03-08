@@ -54841,7 +54841,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(352)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(352)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -58794,7 +58794,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.scroll[data-v-2e13bc20] {\n    overflow-y: scroll;\n    /*  ARREGLAR ESTA NEGRDADA */\n    height: 500px;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-padding[data-v-2e13bc20]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.scroll[data-v-2e13bc20] {\n    overflow-y: scroll;\n    /*  ARREGLAR ESTA NEGRDADA */\n  height: 100vh;\n}\n\n", ""]);
 
 // exports
 
@@ -60170,7 +60170,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "b-container",
+    { attrs: { fluid: "" } },
     [
       _c(
         "b-form-group",
@@ -63898,7 +63899,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "b-container",
     [
       _c(
         "b-form-group",
@@ -63982,7 +63983,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "b-container",
+    { staticClass: "no-padding", attrs: { fluid: "" } },
     [
       _c("topbar", { on: { changeMateria: _vm.updateWalls } }),
       _vm._v(" "),

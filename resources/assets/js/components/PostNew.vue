@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container>
         <b-form-group>
             <b-card class="shadow" title="Nueva Publicacion">
                 <b-form>
@@ -17,7 +17,7 @@
                 </b-form>
             </b-card>
         </b-form-group>
-    </div>
+    </b-container>
 </template>
 <script>
 export default {

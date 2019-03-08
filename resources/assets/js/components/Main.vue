@@ -1,10 +1,10 @@
 <template>
-    <div >
+    <b-container  fluid class="no-padding">
         <topbar 
         @changeMateria="updateWalls"
         ></topbar>
         <b-row >
-            <b-col cols="3">
+            <b-col cols="3" >
                 <settings-wall></settings-wall>
             </b-col>
             <b-col cols="5" class="scroll">
@@ -19,7 +19,7 @@
                 :key="item.id" 
                 ></post-user>
             </b-col>
-            <b-col>
+            <b-col >
                 <events-wall class="form-group"
                 :id-materia="idMateria"
                 ref="eventWall"
@@ -30,7 +30,7 @@
                 ></doc-wall>
             </b-col>
         </b-row>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -81,10 +81,15 @@ export default {
 
 <style scoped>
 
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .scroll {
     overflow-y: scroll;
     /*  ARREGLAR ESTA NEGRDADA */
-    height: 500px;
+  height: 100vh;
 }
 
 </style>
