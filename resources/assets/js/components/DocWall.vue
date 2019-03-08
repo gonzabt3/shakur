@@ -37,16 +37,13 @@ import ModalNewDoc from '../components/modals/ModalNewDoc';
 import Delete from '../components/common/Delete';
 
 export default {
-    props:['idMateria'],
     name: 'DocWall',
     components: { ModalNewDoc,Delete },
     data(){
         return{
-            arrayDocs:[]
+            arrayDocs:[],
+            idMateria:null
         }
-    },
-    mounted(){
-        this.getDocs();
     },
     methods:{
       showModal(){
@@ -57,7 +54,7 @@ export default {
           if(val!=null){
               this.idMateria=val
           }
-          console.log("GET DOCS");
+        //   console.log("GET DOCS");
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {

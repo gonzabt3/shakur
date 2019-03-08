@@ -38,15 +38,12 @@ const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
     name: 'EventsWall',
-    props:['idMateria'],
   components: { ModalNewEvent ,Delete},
   data(){
       return{
           arrayEventos:[],
+          idMateria:null
       }
-  },
-  mounted(){
-        this.getEventos();
   },
   methods:{
       showModal(){
@@ -57,7 +54,6 @@ export default {
             if(val!=null){
                 this.idMateria=val
             }
-            console.log("GET EVENTOS");
             // console.log(this.idMateria);
             this.arrayEventos=[],
             this.axios.get('api/eventos/'+this.idMateria)

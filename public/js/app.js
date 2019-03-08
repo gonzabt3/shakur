@@ -60592,15 +60592,12 @@ var dateFormat = "DD-MM-YYYY HH:mm";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'EventsWall',
-    props: ['idMateria'],
     components: { ModalNewEvent: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewEvent___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__components_common_Delete___default.a },
     data: function data() {
         return {
-            arrayEventos: []
+            arrayEventos: [],
+            idMateria: null
         };
-    },
-    mounted: function mounted() {
-        this.getEventos();
     },
 
     methods: {
@@ -60614,7 +60611,6 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             if (val != null) {
                 this.idMateria = val;
             }
-            console.log("GET EVENTOS");
             // console.log(this.idMateria);
             this.arrayEventos = [], this.axios.get('api/eventos/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
@@ -62687,16 +62683,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['idMateria'],
     name: 'DocWall',
     components: { ModalNewDoc: __WEBPACK_IMPORTED_MODULE_0__components_modals_ModalNewDoc___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__components_common_Delete___default.a },
     data: function data() {
         return {
-            arrayDocs: []
+            arrayDocs: [],
+            idMateria: null
         };
-    },
-    mounted: function mounted() {
-        this.getDocs();
     },
 
     methods: {
@@ -62710,7 +62703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (val != null) {
                 this.idMateria = val;
             }
-            console.log("GET DOCS");
+            //   console.log("GET DOCS");
             this.arrayDocs = [];
             this.axios.get('api/file/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
