@@ -63991,11 +63991,9 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", { attrs: { cols: "3" } }, [_c("settings-wall")], 1),
-          _vm._v(" "),
           _c(
             "b-col",
-            { staticClass: "scroll", attrs: { cols: "5" } },
+            { staticClass: "scroll", attrs: { sm: "5" } },
             [
               _c("post-new", {
                 attrs: { "id-materia": _vm.idMateria },
@@ -64011,23 +64009,6 @@ var render = function() {
               })
             ],
             2
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            [
-              _c("events-wall", {
-                ref: "eventWall",
-                staticClass: "form-group",
-                attrs: { "id-materia": _vm.idMateria }
-              }),
-              _vm._v(" "),
-              _c("doc-wall", {
-                ref: "docWall",
-                attrs: { "id-materia": _vm.idMateria }
-              })
-            ],
-            1
           )
         ],
         1

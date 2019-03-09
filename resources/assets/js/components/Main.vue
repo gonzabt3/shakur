@@ -4,10 +4,10 @@
         @changeMateria="updateWalls"
         ></topbar>
         <b-row >
-            <b-col cols="3" >
+            <!-- <b-col cols="3" >
                 <settings-wall></settings-wall>
-            </b-col>
-            <b-col cols="5" class="scroll">
+            </b-col> -->
+            <b-col sm="5" class="scroll">
                 <post-new 
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
@@ -19,7 +19,7 @@
                 :key="item.id" 
                 ></post-user>
             </b-col>
-            <b-col >
+            <!-- <b-col >
                 <events-wall class="form-group"
                 :id-materia="idMateria"
                 ref="eventWall"
@@ -28,7 +28,7 @@
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
-            </b-col>
+            </b-col> -->
         </b-row>
     </b-container>
 </template>

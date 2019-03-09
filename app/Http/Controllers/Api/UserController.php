@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function store(){
+        
       $user =  $this->validate(request(),[
             "name" => 'required',
             "apellido" => 'required',
@@ -19,11 +20,12 @@ class UserController extends Controller
             "email" => 'required|email',
             "password" => 'required',
         ]);
-    
+        
+        dd($user);
+
         User::create($user);
 
         // auth()->login($user);
-
     }
 
     public function config(){
