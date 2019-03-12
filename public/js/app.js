@@ -58861,6 +58861,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -64022,18 +64054,65 @@ var render = function() {
             [
               _c(
                 "b-col",
-                { staticClass: "text-center" },
                 [
                   _c(
-                    "b-button-group",
+                    "b-tabs",
+                    {
+                      staticClass: "white",
+                      attrs: { pills: "", card: "", lazy: "" }
+                    },
                     [
-                      _c("b-button", { on: { click: _vm.openModalPerfil } }, [
-                        _vm._v("Mi perfil")
-                      ]),
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Mi perfil" } },
+                        [_c("settings-wall")],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("b-button", [_vm._v("Eventos")]),
+                      _c(
+                        "b-tab",
+                        { staticClass: "scroll", attrs: { title: "Muro" } },
+                        [
+                          _c("post-new", {
+                            attrs: { "id-materia": _vm.idMateria },
+                            on: { responseGetPosts: _vm.getPosts }
+                          }),
+                          _vm._v(" "),
+                          _vm._l(_vm.arrayPosts, function(item) {
+                            return _c("post-user", {
+                              key: item.id,
+                              attrs: { postData: item },
+                              on: { getPosts: _vm.getPosts }
+                            })
+                          })
+                        ],
+                        2
+                      ),
                       _vm._v(" "),
-                      _c("b-button", [_vm._v("Documentacion")])
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Eventos" } },
+                        [
+                          _c("events-wall", {
+                            ref: "eventWall",
+                            staticClass: "form-group",
+                            attrs: { "id-materia": _vm.idMateria }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Archivos" } },
+                        [
+                          _c("doc-wall", {
+                            ref: "docWall",
+                            attrs: { "id-materia": _vm.idMateria }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -64052,25 +64131,27 @@ var render = function() {
             ? _c("b-col", { attrs: { cols: "3" } }, [_c("settings-wall")], 1)
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "scroll", attrs: { sm: "5" } },
-            [
-              _c("post-new", {
-                attrs: { "id-materia": _vm.idMateria },
-                on: { responseGetPosts: _vm.getPosts }
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.arrayPosts, function(item) {
-                return _c("post-user", {
-                  key: item.id,
-                  attrs: { postData: item },
-                  on: { getPosts: _vm.getPosts }
-                })
-              })
-            ],
-            2
-          ),
+          !_vm.celular
+            ? _c(
+                "b-col",
+                { staticClass: "scroll", attrs: { sm: "5" } },
+                [
+                  _c("post-new", {
+                    attrs: { "id-materia": _vm.idMateria },
+                    on: { responseGetPosts: _vm.getPosts }
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.arrayPosts, function(item) {
+                    return _c("post-user", {
+                      key: item.id,
+                      attrs: { postData: item },
+                      on: { getPosts: _vm.getPosts }
+                    })
+                  })
+                ],
+                2
+              )
+            : _vm._e(),
           _vm._v(" "),
           !_vm.celular
             ? _c(

@@ -4,19 +4,51 @@
         @changeMateria="updateWalls"
         ></topbar>
         <b-row v-if="celular">
-            <b-col class="text-center">
-                <b-button-group>
-                    <b-button @click="openModalPerfil">Mi perfil</b-button>
-                    <b-button>Eventos</b-button>
-                    <b-button>Documentacion</b-button>
-                </b-button-group>
+            <b-col >
+                <b-tabs pills
+                  card
+                  lazy
+                  class="white">
+                      <b-tab
+                        title="Mi perfil">
+                <settings-wall></settings-wall>
+                      </b-tab>
+                      <b-tab
+                      class="scroll"
+                        title="Muro">
+                        <post-new 
+                        @responseGetPosts="getPosts"
+                        :id-materia="idMateria"
+                        ></post-new>
+                        <post-user  
+                        @getPosts="getPosts"
+                        v-for="item in arrayPosts"
+                        :postData="item"
+                        :key="item.id" 
+                        ></post-user>
+                      </b-tab>
+                      <b-tab
+                        title="Eventos">
+                        <events-wall class="form-group"
+                :id-materia="idMateria"
+                ref="eventWall"
+                ></events-wall>
+                      </b-tab>
+                      <b-tab
+                        title="Archivos">
+                        <doc-wall 
+                ref="docWall"
+                :id-materia="idMateria"
+                ></doc-wall>
+                      </b-tab>
+                </b-tabs>
             </b-col>
         </b-row>
         <b-row >
             <b-col cols="3" v-if="!celular" >
                 <settings-wall></settings-wall>
             </b-col>
-            <b-col sm="5" class="scroll" >
+            <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
