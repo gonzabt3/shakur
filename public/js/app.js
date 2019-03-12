@@ -58852,6 +58852,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58867,8 +58876,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       arrayPosts: [],
-      idMateria: null //se cambia en el metodo update  walls
+      idMateria: null, //se cambia en el metodo update  walls,
+      celular: false
     };
+  },
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
   mounted: function mounted() {
     this.getPosts();
@@ -58897,7 +58914,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getPosts();
       this.$refs.eventWall.getEventos(val);
       this.$refs.docWall.getDocs(val);
-    }
+    },
+    handleResize: function handleResize() {
+      var ancho = window.innerWidth;
+      // this.window.height = window.innerHeight;
+
+      if (ancho <= 576) {
+        this.celular = true;
+      }
+    },
+
+    // ABRIR MODALS
+    openModalPerfil: function openModalPerfil() {}
   }
 });
 
@@ -63988,9 +64016,42 @@ var render = function() {
     [
       _c("topbar", { on: { changeMateria: _vm.updateWalls } }),
       _vm._v(" "),
+      _vm.celular
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                { staticClass: "text-center" },
+                [
+                  _c(
+                    "b-button-group",
+                    [
+                      _c("b-button", { on: { click: _vm.openModalPerfil } }, [
+                        _vm._v("Mi perfil")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-button", [_vm._v("Eventos")]),
+                      _vm._v(" "),
+                      _c("b-button", [_vm._v("Documentacion")])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "b-row",
         [
+          !_vm.celular
+            ? _c("b-col", { attrs: { cols: "3" } }, [_c("settings-wall")], 1)
+            : _vm._e(),
+          _vm._v(" "),
           _c(
             "b-col",
             { staticClass: "scroll", attrs: { sm: "5" } },
@@ -64009,7 +64070,26 @@ var render = function() {
               })
             ],
             2
-          )
+          ),
+          _vm._v(" "),
+          !_vm.celular
+            ? _c(
+                "b-col",
+                [
+                  _c("events-wall", {
+                    ref: "eventWall",
+                    staticClass: "form-group",
+                    attrs: { "id-materia": _vm.idMateria }
+                  }),
+                  _vm._v(" "),
+                  _c("doc-wall", {
+                    ref: "docWall",
+                    attrs: { "id-materia": _vm.idMateria }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       )

@@ -3,11 +3,20 @@
         <topbar 
         @changeMateria="updateWalls"
         ></topbar>
+        <b-row v-if="celular">
+            <b-col class="text-center">
+                <b-button-group>
+                    <b-button @click="openModalPerfil">Mi perfil</b-button>
+                    <b-button>Eventos</b-button>
+                    <b-button>Documentacion</b-button>
+                </b-button-group>
+            </b-col>
+        </b-row>
         <b-row >
-            <!-- <b-col cols="3" >
+            <b-col cols="3" v-if="!celular" >
                 <settings-wall></settings-wall>
-            </b-col> -->
-            <b-col sm="5" class="scroll">
+            </b-col>
+            <b-col sm="5" class="scroll" >
                 <post-new 
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
@@ -19,7 +28,7 @@
                 :key="item.id" 
                 ></post-user>
             </b-col>
-            <!-- <b-col >
+            <b-col v-if="!celular" >
                 <events-wall class="form-group"
                 :id-materia="idMateria"
                 ref="eventWall"
@@ -28,7 +37,7 @@
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
-            </b-col> -->
+            </b-col>
         </b-row>
     </b-container>
 </template>
@@ -48,8 +57,16 @@ export default {
   data(){
       return{
           arrayPosts:[],
-          idMateria:null //se cambia en el metodo update  walls
-      }
+          idMateria:null, //se cambia en el metodo update  walls,
+          celular:false
+        }
+  },
+   created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
   },
   mounted(){
         this.getPosts();
@@ -74,7 +91,18 @@ export default {
         this.getPosts();
         this.$refs.eventWall.getEventos(val);
         this.$refs.docWall.getDocs(val);
-        }
+        },
+    handleResize() {
+        let ancho = window.innerWidth;
+        // this.window.height = window.innerHeight;
+  
+        if(ancho<=576){              
+                this.celular=true
+            }
+    },
+    // ABRIR MODALS
+    openModalPerfil(){
+    }
   }
 };
 </script>
