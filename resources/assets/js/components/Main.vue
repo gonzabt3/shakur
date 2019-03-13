@@ -6,7 +6,7 @@
         <!-- VISTA DE CELULAR -->
         <b-row v-if="celular">
             <b-col >
-                <b-tabs pills card lazy class="white">
+                <b-tabs pills card  class="white">
                   <b-tab title="Mi perfil">
                     <settings-wall></settings-wall>
                   </b-tab>
@@ -77,17 +77,8 @@ import SettingsWall from '../components/SettingsWall';
 import PostNew from '../components/PostNew';
 import Topbar from '../components/Topbar';
 
-
 export default {
   name: 'Main',
-  // components:{
-  //   PostNew:()=> import("../components/PostNew"),
-  //   SettingsWall:() => import('../components/SettingsWall'),
-  //   DocWall:() => import('../components/DocWall'),
-  //   EventsWall:() => import('../components/EventsWall'),
-  //   PostUser:() => import('../components/PostUser'),
-  //   Topbar:() => import('../components/Topbar'),
-  // },
   components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew },
   data(){
       return{
@@ -134,9 +125,6 @@ export default {
         if(ancho<=576){              
                 this.celular=true
             }
-    },
-    // ABRIR MODALS
-    openModalPerfil(){
     }
   }
 };
