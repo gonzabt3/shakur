@@ -28,7 +28,7 @@ class EventoService {
     }
 
     public function store($evento){
-
+        
         $evento = Evento::create($evento);
 
         return new EventoResource($evento);

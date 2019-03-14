@@ -59038,7 +59038,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n", ""]);
 
 // exports
 
@@ -59057,6 +59057,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_common_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_common_Delete__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+//
+//
 //
 //
 //
@@ -60036,7 +60038,10 @@ var render = function() {
                         [
                           _c(
                             "b-col",
-                            { attrs: { id: "nombreUser", cols: "7" } },
+                            {
+                              staticClass: "no-padding",
+                              attrs: { id: "nombreUser", cols: "5", md: "6" }
+                            },
                             [
                               _c("h3", { staticClass: "text-left" }, [
                                 _vm._v(_vm._s(_vm.postData.user.name))
@@ -60046,6 +60051,10 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-col",
+                            {
+                              staticClass: "no-padding",
+                              attrs: { cols: "5", md: "4" }
+                            },
                             [
                               _c(
                                 "label",
@@ -60067,8 +60076,18 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              ),
-                              _vm._v(" "),
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            {
+                              staticClass:
+                                "no-padding text-center left-padding-20",
+                              attrs: { cols: "1", md: "2" }
+                            },
+                            [
                               _c("delete", {
                                 attrs: {
                                   id: _vm.postData.id,
@@ -60076,26 +60095,6 @@ var render = function() {
                                   tipo: "post"
                                 },
                                 on: { actualizar: _vm.getPosts }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-row",
-                        [
-                          _c(
-                            "b-col",
-                            {
-                              staticClass: "no-padding-left",
-                              attrs: { cols: "12" }
-                            },
-                            [
-                              _c("b-progress", {
-                                attrs: { value: _vm.progreso }
                               })
                             ],
                             1
@@ -60537,7 +60536,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60590,6 +60589,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         materia_id: this.idMateria,
         user_id: 1
       },
+      // VARIABLES PARA EL PLUG DEL CALENDARIO
       en: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* en */],
       es: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["b" /* es */]
     };

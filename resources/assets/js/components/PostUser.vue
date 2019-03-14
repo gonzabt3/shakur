@@ -8,11 +8,13 @@
                     </b-col>
                     <b-col>
                         <b-row>
-                            <b-col id="nombreUser" cols="7">
-                                <h3 class="text-left">{{postData.user.name}}</h3>
+                            <b-col id="nombreUser" cols="5" md="6" class="no-padding" >
+                                <h3  class="text-left">{{postData.user.name}}</h3>
                             </b-col>
-                            <b-col>
-                                <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
+                            <b-col cols="5" md="4" class="no-padding">
+                                <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>        
+                            </b-col>
+                            <b-col cols="1" md="2" class="no-padding text-center left-padding-20">
                                 <delete 
                                     :id="postData.id"
                                     :flag-autor="postData.flagAutor"
@@ -21,11 +23,11 @@
                                 />
                             </b-col>
                         </b-row>
-                        <b-row>
+                        <!-- <b-row>
                             <b-col cols="12" class="no-padding-left">
                                 <b-progress  :value="progreso" ></b-progress>
                             </b-col>
-                        </b-row>
+                        </b-row> -->
                     </b-col>
                 </b-row>
                 <br>
@@ -162,8 +164,17 @@ methods: {
     margin-bottom: 0px;
 }
 
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .no-padding-left{
     padding-left: 0px;
+}
+
+.left-padding-20{
+    padding-left:20px;
 }
 
 /* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */

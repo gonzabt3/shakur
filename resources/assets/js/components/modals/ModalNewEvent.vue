@@ -38,6 +38,7 @@ export default {
         materia_id:this.idMateria,
         user_id:1
       },
+      // VARIABLES PARA EL PLUG DEL CALENDARIO
       en,
       es,
     };
