@@ -36,5 +36,18 @@ class UserService {
         }else{
             return false;
         }
-    }       
+    }
+    
+    //checke si el usuario ya tiene esa materia
+    public function checkMateria($idMateria){
+        $user = Auth::user();
+
+        $materia =User::find($user->id)->materias()->get()->find($idMateria);
+
+        if($materia!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

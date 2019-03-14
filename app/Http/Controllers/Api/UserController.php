@@ -3,14 +3,20 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use App\Materia;
-
+use App\Http\Services\UserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
-{
+{   
+    protected $userService;
+
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
+    }
+
     public function store(){
         
       $user =  $this->validate(request(),[
@@ -43,6 +49,11 @@ class UserController extends Controller
 
         //circo para guardar las materias x usuario
         foreach ($data['materias'] as $materia) {
+                
+            if($this->userService->checkMateria($materia['value'])){
+                return false;
+            }
+
             $user->materias()->saveMany([Materia::find($materia['value'])]);
         }
     }
