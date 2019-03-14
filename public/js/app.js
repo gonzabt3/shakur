@@ -60040,7 +60040,7 @@ var render = function() {
                             "b-col",
                             {
                               staticClass: "no-padding",
-                              attrs: { id: "nombreUser", cols: "5", md: "6" }
+                              attrs: { id: "nombreUser" }
                             },
                             [
                               _c("h3", { staticClass: "text-left" }, [
@@ -60052,40 +60052,8 @@ var render = function() {
                           _c(
                             "b-col",
                             {
-                              staticClass: "no-padding",
-                              attrs: { cols: "5", md: "4" }
-                            },
-                            [
-                              _c(
-                                "label",
-                                [
-                                  _c(
-                                    "b-badge",
-                                    {
-                                      attrs: { pill: "", variant: "secondary" }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm._f("formatDate")(
-                                            _vm.postData.created_at
-                                          )
-                                        )
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            {
-                              staticClass:
-                                "no-padding text-center left-padding-20",
-                              attrs: { cols: "1", md: "2" }
+                              staticClass: "text-center ",
+                              attrs: { cols: "2" }
                             },
                             [
                               _c("delete", {
@@ -60101,7 +60069,29 @@ var render = function() {
                           )
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("b-row", [
+                        _c(
+                          "label",
+                          [
+                            _c(
+                              "b-badge",
+                              { attrs: { pill: "", variant: "secondary" } },
+                              [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("formatDate")(
+                                      _vm.postData.created_at
+                                    )
+                                  )
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     ],
                     1
                   )
