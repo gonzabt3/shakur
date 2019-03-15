@@ -5,6 +5,7 @@ use App\User;
 use App\Materia;
 use App\Http\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,9 +35,10 @@ class UserController extends Controller
         // auth()->login($user);
     }
 
-    public function config(){
+    public function config(Request $request,Response $response){
+
         $data = $this->validate(request(),[
-            "nombre" => 'required',
+            "name" => 'required',
             "apellido" => 'required',
             "alias" => 'required',
             "materias" => 'required'
@@ -45,16 +47,17 @@ class UserController extends Controller
         $user = Auth::user();
         // $idUsuario=$user->id;
 
-        // dd($data['materias']);
+        
 
+        $this->userService->update($data);
         //circo para guardar las materias x usuario
-        foreach ($data['materias'] as $materia) {
+        // foreach ($data['materias'] as $materia) {
                 
-            if($this->userService->checkMateria($materia['value'])){
-                return false;
-            }
+        //     if($this->userService->checkMateria($materia['value'])){
+        //         return false;
+        //     }
 
-            $user->materias()->saveMany([Materia::find($materia['value'])]);
-        }
+        //     $user->materias()->saveMany([Materia::find($materia['value'])]);
+        // }
     }
 }

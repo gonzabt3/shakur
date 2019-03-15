@@ -63104,7 +63104,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -63213,8 +63213,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             opcionesMaterias: [],
             idCarrera: 15,
             data: {
-                idUsuario: 1,
-                nombre: '',
+                name: '',
                 apellido: '',
                 alias: '',
                 materias: null
@@ -63369,11 +63368,11 @@ var render = function() {
                               placeholder: "Ingrese Nombre"
                             },
                             model: {
-                              value: _vm.data.nombre,
+                              value: _vm.data.name,
                               callback: function($$v) {
-                                _vm.$set(_vm.data, "nombre", $$v)
+                                _vm.$set(_vm.data, "name", $$v)
                               },
-                              expression: "data.nombre"
+                              expression: "data.name"
                             }
                           })
                         ],

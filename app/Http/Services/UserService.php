@@ -11,8 +11,16 @@ use App\Comentario;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+
 
 class UserService {
+
+    protected $userResource;
+
+    public function __construct(UserResource $userResource){
+        $this->userResource = $userResource;
+    }
 
     public function checkAutor(String $tipo,Int $id){
 
@@ -49,5 +57,12 @@ class UserService {
         }else{
             return false;
         }
+    }
+
+    public function update($parameters){
+        $user = Auth::user();
+
+        // $user->toArray($parameters);
+         $this->userResource->update($user->id,$parameters);
     }
 }

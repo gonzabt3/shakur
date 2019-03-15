@@ -33,7 +33,7 @@
                             <b-col>
                                 <b-form-input 
                                 id="nombre"
-                                v-model="data.nombre"
+                                v-model="data.name"
                                 placeholder="Ingrese Nombre">
                                 </b-form-input>
                             </b-col>
@@ -94,8 +94,7 @@ export default {
             opcionesMaterias:[],
             idCarrera:15,
             data: {
-                idUsuario:1,
-                nombre: '',
+                name: '',
                 apellido: '',
                 alias: '',
                 materias:null
