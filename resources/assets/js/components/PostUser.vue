@@ -9,7 +9,7 @@
                     <b-col>
                         <b-row>
                             <b-col id="nombreUser" class="no-padding" >
-                                <h3  class="text-left">{{postData.user.name}}</h3>
+                                <h3  class="text-left">{{nameAlias}}</h3>
                             </b-col>
                             <!-- <b-col cols="5" md="4" class="no-padding">
                             </b-col> -->
@@ -112,6 +112,15 @@ export default {
             if (!value) return "-";
             return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
         },
+    },
+    computed:{
+        nameAlias: function(){
+            if(this.postData.user.alias==null){
+                return this.postData.user.name+' '+this.postData.user.apellido;
+            }else{
+                return this.postData.user.alias
+            }
+        }
     },
 methods: {
     submitComentario(){

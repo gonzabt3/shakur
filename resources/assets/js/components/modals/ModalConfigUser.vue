@@ -105,6 +105,13 @@ export default {
     beforeMount() {
          this.getMaterias();
     },
+    watch:{
+        checkedAlias(val){
+            if(!val){
+                this.data.alias=""
+            }
+        }
+    },
     methods:{
         getMaterias() {
             this.$http

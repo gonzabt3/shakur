@@ -59173,6 +59173,15 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             return __WEBPACK_IMPORTED_MODULE_3_moment___default()(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
         }
     },
+    computed: {
+        nameAlias: function nameAlias() {
+            if (this.postData.user.alias == null) {
+                return this.postData.user.name + ' ' + this.postData.user.apellido;
+            } else {
+                return this.postData.user.alias;
+            }
+        }
+    },
     methods: {
         submitComentario: function submitComentario() {
             var _this = this;
@@ -60044,7 +60053,7 @@ var render = function() {
                             },
                             [
                               _c("h3", { staticClass: "text-left" }, [
-                                _vm._v(_vm._s(_vm.postData.user.name))
+                                _vm._v(_vm._s(_vm.nameAlias))
                               ])
                             ]
                           ),
@@ -62510,6 +62519,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModal: function showModal() {
             this.$root.$emit('bv::show::modal', 'newDoc');
         },
+        nameAlias: function nameAlias(user) {
+            if (user.alias == null) {
+                return user.name + ' ' + user.apellido;
+            } else {
+                return user.alias;
+            }
+        },
         getDocs: function getDocs(val) {
             var _this = this;
 
@@ -62853,11 +62869,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(
-                        " subido por " +
-                          _vm._s(item.user.name) +
-                          " " +
-                          _vm._s(item.user.apellido) +
-                          " "
+                        " subido por " + _vm._s(_vm.nameAlias(item.user)) + " "
                       ),
                       _c("delete", {
                         attrs: {
@@ -63104,7 +63116,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -63225,6 +63237,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getMaterias();
     },
 
+    watch: {
+        checkedAlias: function checkedAlias(val) {
+            if (!val) {
+                this.data.alias = "";
+            }
+        }
+    },
     methods: {
         getMaterias: function getMaterias() {
             var _this = this;

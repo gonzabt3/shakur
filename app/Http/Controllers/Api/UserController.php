@@ -40,13 +40,13 @@ class UserController extends Controller
         $data = $this->validate(request(),[
             "name" => 'required',
             "apellido" => 'required',
-            "alias" => 'required',
-            "materias" => 'required'
+            "alias" => 'nullable'
+            // "materias" => 'required'
         ]);
         
         $user = Auth::user();
         // $idUsuario=$user->id;
-
+        // dd($data);
         
 
         $this->userService->update($data);

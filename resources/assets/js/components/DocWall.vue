@@ -16,7 +16,7 @@
                         :key="item.id">
                         <a :href="item.path" download >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
-                            {{item.nombre}}</a> subido por {{item.user.name}} {{item.user.apellido}} <delete
+                            {{item.nombre}}</a> subido por {{nameAlias(item.user)}} <delete
                             @actualizar="getDocs"
                             :id="item.id"
                             tipo="doc"
@@ -49,6 +49,13 @@ export default {
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
       },
+       nameAlias(user){
+            if(user.alias==null){
+                return user.name+' '+user.apellido;
+            }else{
+                return user.alias
+            }
+        },
       getDocs(val){
         //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
           if(val!=null){

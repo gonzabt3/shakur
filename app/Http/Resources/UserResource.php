@@ -8,7 +8,7 @@ use App\User;
 class UserResource {
     public function update(int $id,array $request){
         $user = User::find($id);
-
+        
         return $user->update($request);
     }
 }
