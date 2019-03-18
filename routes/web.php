@@ -16,3 +16,5 @@ Route::get('/', function () {
     return view('index');
 });
 
+// Route::get('logout','Api\AuthController@logout');
+// Route::get('/logout','Api\AuthController@logout2');

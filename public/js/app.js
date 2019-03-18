@@ -63017,6 +63017,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -63026,6 +63027,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         showModal: function showModal() {
             this.$root.$emit('bv::show::modal', 'configUser');
+        },
+        logout: function logout() {
+            alert("Asd");
         }
     }
 });
@@ -63555,8 +63559,14 @@ var render = function() {
           attrs: { id: "settingsCard", title: "Configuracion" }
         },
         [
-          _c("h6", { staticClass: "pointer", on: { click: _vm.showModal } }, [
-            _c("u", [_vm._v("Mi perfil")])
+          _c("h6", { on: { click: _vm.showModal } }, [
+            _c("u", { staticClass: "pointer" }, [_vm._v("Mi perfil")])
+          ]),
+          _vm._v(" "),
+          _c("h6", [
+            _c("a", { staticClass: "pointer", attrs: { href: "/logout" } }, [
+              _vm._v("Salir")
+            ])
           ])
         ]
       ),
