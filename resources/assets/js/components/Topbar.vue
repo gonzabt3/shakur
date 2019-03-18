@@ -45,7 +45,9 @@ export default {
                   this.materias.push(obj)
               });
               //hago que se setean los walls y el muro con la primera materia que tiene el user
-              this.clickMateria(this.materias[0].id);
+              if(this.materias.length>0){
+                this.clickMateria(this.materias[0].id);
+              }
           })
     },
     //funcion que marca la materia actual

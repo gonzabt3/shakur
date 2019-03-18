@@ -40,8 +40,8 @@ class UserController extends Controller
         $data = $this->validate(request(),[
             "name" => 'required',
             "apellido" => 'required',
-            "alias" => 'nullable'
-            // "materias" => 'required'
+            "alias" => 'nullable',
+            "materias" => 'required'
         ]);
         
         $user = Auth::user();
@@ -50,14 +50,5 @@ class UserController extends Controller
         
 
         $this->userService->update($data);
-        //circo para guardar las materias x usuario
-        // foreach ($data['materias'] as $materia) {
-                
-        //     if($this->userService->checkMateria($materia['value'])){
-        //         return false;
-        //     }
-
-        //     $user->materias()->saveMany([Materia::find($materia['value'])]);
-        // }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\User;
 use App\Like;
+use App\Materia;
 use App\Evento;
 use App\Publicacion;
 use App\File;
@@ -64,5 +65,22 @@ class UserService {
 
         // $user->toArray($parameters);
          $this->userResource->update($user->id,$parameters);
+         $this->storeMaterias($parameters);
+    }
+
+    public function storeMaterias($parameters){
+        $user = Auth::user();
+
+        // dd($parameters);
+        $materias=$parameters['materias'];
+        //circo para guardar las materias x usuario
+        foreach ($materias as $materia) {
+                
+            if($this->checkMateria($materia['value'])){
+                return false;
+            }
+
+            $user->materias()->saveMany([Materia::find($materia['value'])]);
+        }
     }
 }

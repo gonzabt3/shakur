@@ -63950,7 +63950,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.materias.push(obj);
         });
         //hago que se setean los walls y el muro con la primera materia que tiene el user
-        _this.clickMateria(_this.materias[0].id);
+        if (_this.materias.length > 0) {
+          _this.clickMateria(_this.materias[0].id);
+        }
       });
     },
 
