@@ -130,8 +130,13 @@ export default {
             // console.log(this.data);
             this.axios.post('api/usuario/config',this.data)
             .then((response) =>{
-                // console.log("volvio");
-            })  
+                this.$refs.configUser.hide();
+                this.$notify({
+                    group: 'foo',
+                    title: 'Configuracion guardada',
+                    type:'success',
+                });            
+        })  
         }
     }
     

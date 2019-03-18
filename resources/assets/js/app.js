@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+//vue-notification
+import Notifications from 'vue-notification'
 
 
 import Vue from 'vue';
@@ -26,6 +28,7 @@ library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,fa
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
+Vue.use(Notifications);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));

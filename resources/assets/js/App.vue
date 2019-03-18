@@ -4,6 +4,7 @@
     <!-- <router-link to="/">Inicio</router-link>
     <router-link to="/main">Main</router-link> -->
     <router-view></router-view>
+    <notifications group="foo" />
   </div>
 </template>
 
