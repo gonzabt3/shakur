@@ -24,7 +24,7 @@ class PublicacionService{
     }
 
     public function getPosts($idMateria){
-        $publicaciones=Publicacion::where('materia_id',$idMateria)->with('user','likes')->get();
+        $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes')->get();
 
         //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
         $publicaciones->map(function ($post) {
