@@ -58848,6 +58848,8 @@ module.exports = "/images/fadu.jpg?c6d1efce0226fe42657157c9b829b976";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_NewUser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser__);
 //
 //
 //
@@ -58895,6 +58897,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -58902,7 +58906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   name: 'Inicio',
-  components: { newUser: __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default.a },
+  components: { newUser: __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default.a, successNewUser: __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser___default.a },
   data: function data() {
     return {
       form: {
@@ -58910,6 +58914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: '',
         remember_me: true
       },
+      mailNewUser: '',
       checkboxPassword: false,
       palabra: 'aprender',
       arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.']
@@ -58923,6 +58928,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   //LOGIN
   methods: {
+    openModalSuccess: function openModalSuccess(mail) {
+      this.mailNewUser = mail;
+      this.$root.$emit('bv::show::modal', 'successModal');
+    },
     onSubmit: function onSubmit(evt) {
       var _this = this;
 
@@ -59038,7 +59047,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59168,9 +59177,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             // console.log(this.usuario);
-            this.axios.post('api/auth/signup/', this.usuario).then(function (_ref) {
-                var data = _ref.data;
-                return _this.setSuccessMessage();
+            this.axios.post('api/auth/signup/', this.usuario).then(function (response) {
+                _this.$refs.newUser.hide();
+                _this.$emit("success", _this.usuario.email);
             });
         },
         setSuccessMessage: function setSuccessMessage() {
@@ -59218,6 +59227,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 _this3.error = "Ocurrió un error al llenar los valores de este selector";
             });
+        },
+        cleanModal: function cleanModal() {
+            this.usuario.name = '', this.usuario.apellido = "", this.usuario.email = "", this.usuario.universidad = null, this.usuario.carrera_id = null, this.usuario.password = "", this.usuario.password_confirmation = "";
         }
     },
     mounted: function mounted() {
@@ -59465,7 +59477,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-modal",
-    { attrs: { id: "newUser", title: "Crear Usuario" } },
+    {
+      ref: "newUser",
+      attrs: { id: "newUser", title: "Crear Usuario" },
+      on: { hide: _vm.cleanModal }
+    },
     [
       _c(
         "b-container",
@@ -59833,7 +59849,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("new-user")
+      _c("new-user", { on: { success: _vm.openModalSuccess } }),
+      _vm._v(" "),
+      _c("success-new-user", { attrs: { "mail-user": _vm.mailNewUser } })
     ],
     1
   )
@@ -87174,6 +87192,158 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 445 */,
+/* 446 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(447)
+}
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(449)
+/* template */
+var __vue_template__ = __webpack_require__(450)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-d7c14dba"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/modals/ModalSuccessNewUser.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d7c14dba", Component.options)
+  } else {
+    hotAPI.reload("data-v-d7c14dba", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 447 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(448);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(8)("5947cf10", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7c14dba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalSuccessNewUser.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7c14dba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalSuccessNewUser.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 448 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 449 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+      props: ['mailUser']
+
+});
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-modal",
+    {
+      ref: "successModal",
+      attrs: { "hide-footer": true, id: "successModal", title: "Genial!!" }
+    },
+    [
+      _c("b-container", [
+        _c("p", [_vm._v("Gracias por registrarte en Shakur.")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Te enviaremos un mail de confirmacion a " +
+              _vm._s(_vm.mailUser) +
+              " ."
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d7c14dba", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="newUser" title="Crear Usuario">
+    <b-modal @hide="cleanModal" id="newUser" ref="newUser" title="Crear Usuario">
         <b-container>
             <b-form>
                 <b-form-group  label="Nombre:" label-for="nombre">
@@ -120,7 +120,10 @@ export default {
         crearUsuario(){
             // console.log(this.usuario);
             this.axios.post('api/auth/signup/',this.usuario)
-                .then(({data}) => this.setSuccessMessage())
+                .then((response) => {
+                    this.$refs.newUser.hide();
+                    this.$emit("success",this.usuario.email)     
+                })
         },
         setSuccessMessage(){
             this.console("volvio");
@@ -170,6 +173,15 @@ export default {
                     this.error =
                         "Ocurrió un error al llenar los valores de este selector";
                 });  
+        },
+        cleanModal(){
+            this.usuario.name='',
+            this.usuario.apellido="",
+            this.usuario.email="",
+            this.usuario.universidad=null,
+            this.usuario.carrera_id=null,
+            this.usuario.password="",
+            this.usuario.password_confirmation="" 
         }
   },
   mounted(){

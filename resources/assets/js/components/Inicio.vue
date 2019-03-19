@@ -41,25 +41,28 @@
           </b-card>
           </b-col>
         </b-row>
-      <new-user></new-user>
+      <new-user @success="openModalSuccess"></new-user>
+      <success-new-user :mail-user="mailNewUser"></success-new-user>
       </b-container>
 </template>
 
 <script>
 
 import newUser from '../components/NewUser';
+import successNewUser from '../components/modals/ModalSuccessNewUser';
 
 export default {
 
   name: 'Inicio',
-  components: { newUser },
+  components: { newUser,successNewUser },
   data() {
     return {
       form: {
         email: '',
         password: '',
-        remember_me:true
+        remember_me:true,
       },
+      mailNewUser:'',
       checkboxPassword: false,
       palabra:'aprender',
       arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.']
@@ -73,6 +76,10 @@ export default {
   },
   //LOGIN
   methods: {
+    openModalSuccess(mail){
+      this.mailNewUser=mail
+      this.$root.$emit('bv::show::modal','successModal')
+    },
     onSubmit(evt) {
       evt.preventDefault();
       this.axios.post('api/auth/login/',this.form)
