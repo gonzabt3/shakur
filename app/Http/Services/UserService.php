@@ -76,11 +76,10 @@ class UserService {
         //circo para guardar las materias x usuario
         foreach ($materias as $materia) {
                 
-            if($this->checkMateria($materia['value'])){
-                return false;
+            if(!$this->checkMateria($materia['value'])){
+                $user->materias()->saveMany([Materia::find($materia['value'])]);
             }
 
-            $user->materias()->saveMany([Materia::find($materia['value'])]);
         }
     }
 }

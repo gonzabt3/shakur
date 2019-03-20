@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::get('/usuario', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::group(['prefix' => 'auth'], function () {
 
@@ -25,7 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
   
     Route::group(['middleware' => 'auth:api'], function() {
     Route::get('logout', 'AuthController@logout');
-    Route::get('user', 'AuthController@user');
+    // Route::get('user', 'AuthController@user');
 
     //traer publicaciones
     Route::get('/publicacion/{idMateria}','Api\PublicacionesController@index');
@@ -52,6 +52,9 @@ Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosContr
 
 //crea usuario
 Route::post('/usuario','Api\UserController@store');
+
+//get usuario
+Route::middleware('auth:api')->get('/usuario','Api\UserController@index');
 
 //config usuario
 Route::middleware('auth:api')->post('/usuario/config','Api\UserController@config');

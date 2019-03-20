@@ -105,6 +105,9 @@ export default {
     beforeMount() {
          this.getMaterias();
     },
+    mounted(){
+         this.getInfoUser();
+    },
     watch:{
         checkedAlias(val){
             if(!val){
@@ -113,17 +116,36 @@ export default {
         }
     },
     methods:{
+        getInfoUser(){
+            this.$http.get("api/usuario")
+                .then(response => {
+                    let user=response.data;
+                    // console.log(user);
+
+                    this.data.name=user.name
+                    this.data.apellido=user.apellido
+                    this.data.alias=user.alias
+                    this.setMaterias(user.materias)
+                    // this.data.materias=[{label:user.materias[0].materia,value:user.materias[0].id}]
+                })
+        },
+        setMaterias(materias){
+            let materiasSelected=[]
+            _.map(materias,materia =>{
+                materiasSelected.push({label:materia.materia,value:materia.id})
+            })
+            this.data.materias=materiasSelected
+        },
         getMaterias() {
             this.$http
                 .get("api/materias/"+this.idCarrera)
                 .then(response => {
-                    // console.log(response);
-            _.map(response.data, materia => {
-                this.opcionesMaterias.push({
-                label: materia.materia,
-                value: materia.id
-                });
-            });
+                    _.map(response.data, materia => {
+                        this.opcionesMaterias.push({
+                        label: materia.materia,
+                        value: materia.id
+                        });
+                    });
             })
         },
         submit(){

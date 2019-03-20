@@ -28,7 +28,7 @@ class UserController extends Controller
             "password" => 'required',
         ]);
         
-        dd($user);
+        // dd($user);
 
         User::create($user);
 
@@ -47,8 +47,11 @@ class UserController extends Controller
         $user = Auth::user();
         // $idUsuario=$user->id;
         // dd($data);
-        
 
         $this->userService->update($data);
+    }
+
+    public function index(Request $request,Response $response){
+        return Auth::user()->load('materias');
     }
 }
