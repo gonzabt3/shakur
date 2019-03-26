@@ -58848,8 +58848,8 @@ module.exports = "/images/fadu.jpg?c6d1efce0226fe42657157c9b829b976";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_NewUser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__);
 //
 //
 //
@@ -58906,7 +58906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   name: 'Inicio',
-  components: { newUser: __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default.a, successNewUser: __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalSuccessNewUser___default.a },
+  components: { newUser: __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default.a, ModalComunication: __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication___default.a },
   data: function data() {
     return {
       form: {
@@ -58914,7 +58914,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: '',
         remember_me: true
       },
-      mailNewUser: '',
+      modalComunication: {
+        mailNewUser: '',
+        p1: '',
+        p2: '',
+        title: ''
+      },
       checkboxPassword: false,
       palabra: 'aprender',
       arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.']
@@ -58929,8 +58934,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   //LOGIN
   methods: {
     openModalSuccess: function openModalSuccess(mail) {
-      this.mailNewUser = mail;
-      this.$root.$emit('bv::show::modal', 'successModal');
+      this.modalComunication.mailNewUser = mail;
+      this.modalComunication.p1 = 'Gracias por registrarte en Shakur';
+      this.modalComunication.p2 = 'Te enviaremos un mail de confirmacion a';
+      this.modalComunication.title = 'Genial';
+      this.$root.$emit('bv::show::modal', 'comunicationModal');
     },
     onSubmit: function onSubmit(evt) {
       var _this = this;
@@ -59047,7 +59055,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59178,8 +59186,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // console.log(this.usuario);
             this.axios.post('api/auth/signup/', this.usuario).then(function (response) {
-                _this.$refs.newUser.hide();
                 _this.$emit("success", _this.usuario.email);
+                _this.$refs.newUser.hide();
             });
         },
         setSuccessMessage: function setSuccessMessage() {
@@ -59726,7 +59734,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-d7c14dba"
+var __vue_scopeId__ = "data-v-0c8ad25c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -59737,7 +59745,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/modals/ModalSuccessNewUser.vue"
+Component.options.__file = "resources/assets/js/components/modals/ModalComunication.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -59746,9 +59754,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d7c14dba", Component.options)
+    hotAPI.createRecord("data-v-0c8ad25c", Component.options)
   } else {
-    hotAPI.reload("data-v-d7c14dba", Component.options)
+    hotAPI.reload("data-v-0c8ad25c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -59769,13 +59777,13 @@ var content = __webpack_require__(376);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("5947cf10", content, false, {});
+var update = __webpack_require__(6)("296d060c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7c14dba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalSuccessNewUser.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7c14dba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalSuccessNewUser.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0c8ad25c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalComunication.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0c8ad25c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalComunication.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -59793,7 +59801,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59812,10 +59820,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-      props: ['mailUser']
-
+    props: ['mailUser', 'p1', 'p2', 'title'],
+    computed: {
+        flagButton: function flagButton() {
+            if (this.mailUser != '') {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        p: function p() {
+            if (this.mailUser != "") {
+                return this.p2;
+            } else {
+                return this.p2 + " " + this.mailUser;
+            }
+        }
+    },
+    methods: {
+        miPerfil: function miPerfil() {
+            this.$refs.comunicationModal.hide();
+            this.$emit("openMiPerfil");
+        }
+    }
 });
 
 /***/ }),
@@ -59829,21 +59859,30 @@ var render = function() {
   return _c(
     "b-modal",
     {
-      ref: "successModal",
-      attrs: { "hide-footer": true, id: "successModal", title: "Genial!!" }
+      ref: "comunicationModal",
+      attrs: { "hide-footer": true, id: "comunicationModal", title: _vm.title }
     },
     [
-      _c("b-container", [
-        _c("p", [_vm._v("Gracias por registrarte en Shakur.")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Te enviaremos un mail de confirmacion a " +
-              _vm._s(_vm.mailUser) +
-              " ."
-          )
-        ])
-      ])
+      _c(
+        "b-container",
+        [
+          _c("p", [_vm._v(_vm._s(_vm.p1) + ".")]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.p))]),
+          _vm._v(" "),
+          _vm.flagButton
+            ? _c(
+                "b-btn",
+                {
+                  attrs: { block: "", variant: "primary" },
+                  on: { click: _vm.miPerfil }
+                },
+                [_vm._v("Ir a mi perfil")]
+              )
+            : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -59854,7 +59893,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d7c14dba", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0c8ad25c", module.exports)
   }
 }
 
@@ -60002,7 +60041,14 @@ var render = function() {
       _vm._v(" "),
       _c("new-user", { on: { success: _vm.openModalSuccess } }),
       _vm._v(" "),
-      _c("success-new-user", { attrs: { "mail-user": _vm.mailNewUser } })
+      _c("modal-comunication", {
+        attrs: {
+          title: _vm.modalComunication.title,
+          p1: _vm.modalComunication.p1,
+          p2: _vm.modalComunication.p2,
+          "mail-user": _vm.modalComunication.mailNewUser
+        }
+      })
     ],
     1
   )
@@ -60126,6 +60172,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_PostNew___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_PostNew__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Topbar__ = __webpack_require__(441);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Topbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication__);
 //
 //
 //
@@ -60196,6 +60244,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -60207,12 +60258,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Main',
-  components: { Topbar: __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_0__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_1__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_2__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_3__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_4__components_PostNew___default.a },
+  components: { Topbar: __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_0__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_1__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_2__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_3__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_4__components_PostNew___default.a, ModalComunication: __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication___default.a },
   data: function data() {
     return {
       arrayPosts: [],
       idMateria: null, //se cambia en el metodo update  walls,
-      celular: false
+      celular: false,
+      modalComunication: {
+        mailNewUser: '',
+        p1: '',
+        p2: '',
+        title: ''
+      }
     };
   },
   created: function created() {
@@ -60257,6 +60314,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (ancho <= 576) {
         this.celular = true;
       }
+    },
+    comunication: function comunication() {
+      this.modalComunication.p1 = 'Por favor selecciona las materias que estas cursando';
+      this.modalComunication.p2 = 'shakur.';
+      this.modalComunication.title = 'Tu perfil';
+      this.$root.$emit('bv::show::modal', 'comunicationModal');
+    },
+    openMiPerfil: function openMiPerfil() {
+      this.$refs.settings.showModal();
     }
   }
 });
@@ -65301,6 +65367,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //hago que se setean los walls y el muro con la primera materia que tiene el user
         if (_this.materias.length > 0) {
           _this.clickMateria(_this.materias[0].id);
+        } else {
+          _this.$emit("comunication");
         }
       });
     },
@@ -65396,7 +65464,9 @@ var render = function() {
     "b-container",
     { staticClass: "no-padding", attrs: { fluid: "" } },
     [
-      _c("topbar", { on: { changeMateria: _vm.updateWalls } }),
+      _c("topbar", {
+        on: { changeMateria: _vm.updateWalls, comunication: _vm.comunication }
+      }),
       _vm._v(" "),
       _vm.celular
         ? _c(
@@ -65412,7 +65482,7 @@ var render = function() {
                       _c(
                         "b-tab",
                         { attrs: { title: "Mi perfil" } },
-                        [_c("settings-wall")],
+                        [_c("settings-wall", { ref: "settings" })],
                         1
                       ),
                       _vm._v(" "),
@@ -65475,7 +65545,12 @@ var render = function() {
         "b-row",
         [
           !_vm.celular
-            ? _c("b-col", { attrs: { cols: "3" } }, [_c("settings-wall")], 1)
+            ? _c(
+                "b-col",
+                { attrs: { cols: "3" } },
+                [_c("settings-wall", { ref: "settings" })],
+                1
+              )
             : _vm._e(),
           _vm._v(" "),
           !_vm.celular
@@ -65520,7 +65595,17 @@ var render = function() {
             : _vm._e()
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("modal-comunication", {
+        ref: "comunicationModal",
+        attrs: {
+          p1: _vm.modalComunication.p1,
+          p2: _vm.modalComunication.p2,
+          title: _vm.modalComunication.title
+        },
+        on: { openMiPerfil: _vm.openMiPerfil }
+      })
     ],
     1
   )

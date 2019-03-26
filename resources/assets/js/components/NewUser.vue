@@ -121,8 +121,9 @@ export default {
             // console.log(this.usuario);
             this.axios.post('api/auth/signup/',this.usuario)
                 .then((response) => {
-                    this.$refs.newUser.hide();
                     this.$emit("success",this.usuario.email)     
+                    this.$refs.newUser.hide();
+                    
                 })
         },
         setSuccessMessage(){

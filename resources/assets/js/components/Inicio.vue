@@ -42,19 +42,19 @@
           </b-col>
         </b-row>
       <new-user @success="openModalSuccess"></new-user>
-      <success-new-user :mail-user="mailNewUser"></success-new-user>
+      <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser"></modal-comunication>
       </b-container>
 </template>
 
 <script>
 
 import newUser from '../components/NewUser';
-import successNewUser from '../components/modals/ModalSuccessNewUser';
+import ModalComunication from '../components/modals/ModalComunication';
 
 export default {
 
   name: 'Inicio',
-  components: { newUser,successNewUser },
+  components: { newUser,ModalComunication },
   data() {
     return {
       form: {
@@ -62,7 +62,12 @@ export default {
         password: '',
         remember_me:true,
       },
-      mailNewUser:'',
+      modalComunication:{
+        mailNewUser:'',
+        p1:'',
+        p2:'',
+        title:''
+      },
       checkboxPassword: false,
       palabra:'aprender',
       arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.']
@@ -77,8 +82,11 @@ export default {
   //LOGIN
   methods: {
     openModalSuccess(mail){
-      this.mailNewUser=mail
-      this.$root.$emit('bv::show::modal','successModal')
+      this.modalComunication.mailNewUser=mail
+      this.modalComunication.p1='Gracias por registrarte en Shakur'
+      this.modalComunication.p2='Te enviaremos un mail de confirmacion a'
+      this.modalComunication.title='Genial'
+      this.$root.$emit('bv::show::modal','comunicationModal')
     },
     onSubmit(evt) {
       evt.preventDefault();

@@ -2,13 +2,14 @@
     <b-container  fluid class="no-padding">
         <topbar  
         @changeMateria="updateWalls"
+        @comunication="comunication"
         ></topbar>
         <!-- VISTA DE CELULAR -->
         <b-row v-if="celular">
             <b-col >
                 <b-tabs pills card  class="white">
                   <b-tab title="Mi perfil">
-                    <settings-wall></settings-wall>
+                    <settings-wall ref="settings"></settings-wall>
                   </b-tab>
                   <b-tab class="scroll" title="Muro">
                     <post-new 
@@ -40,7 +41,7 @@
         <!-- FIN VISTA DE CELULAR -->
         <b-row >
             <b-col cols="3" v-if="!celular" >
-                <settings-wall></settings-wall>
+                <settings-wall ref="settings"></settings-wall>
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
@@ -65,6 +66,7 @@
                 ></doc-wall>
             </b-col>
         </b-row>
+        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" ></modal-comunication>
     </b-container>
 </template>
 
@@ -76,15 +78,22 @@ import DocWall from '../components/DocWall';
 import SettingsWall from '../components/SettingsWall';
 import PostNew from '../components/PostNew';
 import Topbar from '../components/Topbar';
+import ModalComunication from '../components/modals/ModalComunication'
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew },
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication},
   data(){
       return{
           arrayPosts:[],
           idMateria:null, //se cambia en el metodo update  walls,
-          celular:false
+          celular:false,
+          modalComunication:{
+            mailNewUser:'',
+            p1:'',
+            p2:'',
+            title:''
+          },   
         }
   },
    created() {
@@ -125,6 +134,16 @@ export default {
         if(ancho<=576){              
                 this.celular=true
             }
+    },
+    comunication(){
+      this.modalComunication.p1='Por favor selecciona las materias que estas cursando'
+      this.modalComunication.p2='shakur.'
+      this.modalComunication.title='Tu perfil'
+      this.$root.$emit('bv::show::modal','comunicationModal')
+
+    },
+    openMiPerfil(){
+        this.$refs.settings.showModal();
     }
   }
 };
