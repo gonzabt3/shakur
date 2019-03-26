@@ -157,7 +157,8 @@ export default {
                     group: 'foo',
                     title: 'Configuracion guardada',
                     type:'success',
-                });            
+                });    
+                 window.location.reload()       
         })  
         }
     }

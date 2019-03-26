@@ -13,9 +13,9 @@ export default {
     computed:{
         flagButton: function(){
             if( this.mailUser !=''){
-                return false
-            }else{
                 return true
+            }else{
+                return false
             }
         },
         p: function (){
