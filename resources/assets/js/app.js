@@ -18,6 +18,9 @@ import VueAxios from 'vue-axios'
 //vue-notification
 import Notifications from 'vue-notification'
 
+//vee-validate
+import VeeValidate from 'vee-validate'
+
 
 import Vue from 'vue';
 import App from './App';
@@ -32,6 +35,8 @@ Vue.use(Notifications);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));
+Vue.use(VeeValidate);
+
 
 //pongo lodash
 window._ = require('lodash');

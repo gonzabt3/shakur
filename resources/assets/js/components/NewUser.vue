@@ -2,12 +2,16 @@
     <b-modal @hide="cleanModal" id="newUser" ref="newUser" title="Crear Usuario">
         <b-container>
             <b-form>
-                <b-form-group  label="Nombre:" label-for="nombre">
-                    <b-form-input id="nombre"
+                <b-form-group  label="Nombre:" label-for="name" :class="{'has-error': errors.has('name')}" >
+                    <b-form-input id="name"
+                                name="name"
                                 v-model="usuario.name"
                                 required
-                                placeholder="Ingresa tu nombre">
+                                placeholder="Ingresa tu nombre"
+                                v-validate="'required'"
+                                >
                     </b-form-input>
+                        <p class="text-danger" v-if="errors.has('name')">{{ errors.first('name') }}</p>
                 </b-form-group>
                 <b-form-group label="Apellido:" label-for="apellido">
                     <b-form-input id="apellido"
@@ -85,6 +89,9 @@ import MpSelect from "../components/common/MpSelect";
 export default {
   name: 'NewUser',
   components: { MpSelect },
+    $_veeValidate: {
+    validator: "new"
+  },
   data() {
     return {
       universidades: [
