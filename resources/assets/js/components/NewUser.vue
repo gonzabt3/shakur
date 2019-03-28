@@ -106,6 +106,7 @@
                     <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
+            <!-- ALERTA DE ERRORES -->
             <b-alert 
             :show="hasErrors" 
             variant="danger" 

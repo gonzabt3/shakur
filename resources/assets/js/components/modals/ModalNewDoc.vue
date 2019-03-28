@@ -3,9 +3,15 @@
         <b-container>
             <b-form>
                 <b-form-group label="Nombre:" label-for="nombre">
-                    <b-form-input id="nombre" v-model="data.nombre"
-                                placeholder="Ingresa nombre">
+                    <b-form-input 
+                      id="nombre" 
+                      v-model="data.nombre"
+                      placeholder="Ingresa nombre"
+                      name="nombre"
+                      v-validate="'required'"
+                      :class="{'is-invalid':errors.has('nombre')}">
                     </b-form-input>
+                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
                 <!-- <b-form-group label="Temas:" label-for="temas">
                     <b-form-input id="temas" v-model="data.temas"
@@ -13,9 +19,21 @@
                     </b-form-input>
                 </b-form-group> -->
                 <b-form-group label="Archivo:" label-for="data.file">
-                    <b-form-file v-model="data.file" :state="Boolean(data.file)" placeholder="Elije un archivo"></b-form-file>
+                    <b-form-file 
+                      v-model="data.file" 
+                      :state="Boolean(data.file)" 
+                      placeholder="Elije un archivo"
+                      name="file"
+                      v-validate="'required'"
+                      :class="{'is-invalid':errors.has('file')}">
+                      ></b-form-file>
+                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
+            <b-alert 
+            :show="hasErrors" 
+            variant="danger" 
+            class="text-center">{{ error }}</b-alert>
         </b-container>
         <template slot="modal-footer">
       <button class="btn btn-success btn-block" @click="submit" type="submit">Subir</button>
@@ -25,6 +43,9 @@
 <script>
 export default {
   props:['idMateria'],
+  $_veeValidate: {
+    validator: "new"
+  },
   data() {
     return {
       data: {
@@ -33,6 +54,8 @@ export default {
         file:null,
         idMateria:this.idMateria
       },
+              error:'',
+
     };
   },
   watch:{
@@ -40,22 +63,31 @@ export default {
       return val;
     }
   },
+  computed: {
+    hasErrors() {
+        return this.error != "";
+    }
+  },
   methods: {
     submit() {
-      
-      let formData = new FormData();
+      this.$validator.validateAll().then(result=>{
+        if(result){
+          let formData = new FormData();
 
-      formData.append('nombre',this.data.nombre);
-      formData.append('idMateria',this.idMateria);
-      formData.append('file',this.data.file);
+          formData.append('nombre',this.data.nombre);
+          formData.append('idMateria',this.idMateria);
+          formData.append('file',this.data.file);
 
-      this.axios.post('api/file',formData)
+          this.axios.post('api/file',formData)
         .then((response)=>{
           this.cleanModal();
           this.$refs.newDoc.hide();
           this.$emit("responseGetDocs")  
         })
-
+        }else{
+          this.error = "Por favor, corrija los campos en rojo";      
+        }
+      })
     },
     cleanModal() {
       this.data.nombre = '';

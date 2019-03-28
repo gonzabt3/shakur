@@ -9,21 +9,29 @@
           <b-col >
           <b-card>
             <h1>Inicio</h1>
-            <b-form @submit="onSubmit">
+            <b-form >
                 <b-form-group id="userLabel" label="Usuario:">
-                <b-form-input id="user"
-                          v-model="form.email"
-                          required
-                          placeholder="Ingresa Usuario">
-                </b-form-input>
+                  <b-form-input id="user"
+                            name="user"
+                            :class="{'is-invalid':errors.has('user')}"
+                            v-validate="'required'"
+                            v-model="form.email"
+                            
+                            placeholder="Ingresa Usuario">
+                  </b-form-input>
+                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group for="pass" label="Contraseña:">
-                <b-form-input id="pass"
-                          v-model="form.password"
-                          required
-                          :type="typePassword"
-                          placeholder="Ingresa Contraseña">
-                </b-form-input>
+                  <b-form-input id="pass"
+                            name="pass"
+                            :class="{'is-invalid':errors.has('pass')}"
+                            v-validate="'required'"
+                            v-model="form.password"
+                            
+                            :type="typePassword"
+                            placeholder="Ingresa Contraseña">
+                  </b-form-input>
+                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-checkbox
                   id="checkboxPassword"
@@ -32,12 +40,16 @@
                 >
                 Mostrar Contraseña
                 </b-form-checkbox>
-                <b-button type="submit" variant="primary">Entrar</b-button>
+                <b-button @click="onSubmit" variant="primary">Entrar</b-button>
                 <b-button v-b-modal.newUser variant="secondary">Registrarse</b-button>
                 <b-form-group>
                   <b-link href="#/" disabled>Olvide mi contraseña</b-link>
                 </b-form-group>
           </b-form>
+          <b-alert 
+            :show="hasErrors" 
+            variant="danger" 
+            class="text-center">{{ error }}</b-alert>
           </b-card>
           </b-col>
         </b-row>
@@ -55,6 +67,9 @@ export default {
 
   name: 'Inicio',
   components: { newUser,ModalComunication },
+  $_veeValidate: {
+    validator: "new"
+  },
   data() {
     return {
       form: {
@@ -70,7 +85,8 @@ export default {
       },
       checkboxPassword: false,
       palabra:'aprender',
-      arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.']
+      arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.'],
+      error:''
     }
     
   },
@@ -78,6 +94,9 @@ export default {
     typePassword() {
         return this.checkboxPassword ? "text" : "password";
     },
+    hasErrors() {
+      return this.error != "";
+    }
   },
   //LOGIN
   methods: {
@@ -89,14 +108,21 @@ export default {
       this.$root.$emit('bv::show::modal','comunicationModal')
     },
     onSubmit(evt) {
-      evt.preventDefault();
-      this.axios.post('api/auth/login/',this.form)
-      .then((response) =>{
-      // console.log(response);
-      sessionStorage.SessionName = "token"
-      sessionStorage.setItem("token",response.data.access_token);
-      this.$router.push("/main");
-      }) 
+      this.$validator.validateAll().then(result => {
+        if(result){
+          evt.preventDefault();
+          this.axios.post('api/auth/login/',this.form)
+            .then((response) =>{
+              // console.log(response);
+              sessionStorage.SessionName = "token"
+              sessionStorage.setItem("token",response.data.access_token);
+              this.$router.push("/main");
+        }) 
+        }else{
+          this.error = "Por favor, corrija los campos en rojo";
+        }
+      })
+      
     },
     cambiarPalabra(){
           let array=this.arrayPalabras;

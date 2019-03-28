@@ -69900,6 +69900,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -69909,6 +69921,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   name: 'Inicio',
   components: { newUser: __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default.a, ModalComunication: __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication___default.a },
+  $_veeValidate: {
+    validator: "new"
+  },
   data: function data() {
     return {
       form: {
@@ -69924,13 +69939,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       checkboxPassword: false,
       palabra: 'aprender',
-      arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.']
+      arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.'],
+      error: ''
     };
   },
 
   computed: {
     typePassword: function typePassword() {
       return this.checkboxPassword ? "text" : "password";
+    },
+    hasErrors: function hasErrors() {
+      return this.error != "";
     }
   },
   //LOGIN
@@ -69945,12 +69964,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       var _this = this;
 
-      evt.preventDefault();
-      this.axios.post('api/auth/login/', this.form).then(function (response) {
-        // console.log(response);
-        sessionStorage.SessionName = "token";
-        sessionStorage.setItem("token", response.data.access_token);
-        _this.$router.push("/main");
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          evt.preventDefault();
+          _this.axios.post('api/auth/login/', _this.form).then(function (response) {
+            // console.log(response);
+            sessionStorage.SessionName = "token";
+            sessionStorage.setItem("token", response.data.access_token);
+            _this.$router.push("/main");
+          });
+        } else {
+          _this.error = "Por favor, corrija los campos en rojo";
+        }
       });
     },
     cambiarPalabra: function cambiarPalabra() {
@@ -70057,7 +70082,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70070,6 +70095,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__);
+//
 //
 //
 //
@@ -71050,16 +71076,24 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form",
-                    { on: { submit: _vm.onSubmit } },
                     [
                       _c(
                         "b-form-group",
                         { attrs: { id: "userLabel", label: "Usuario:" } },
                         [
                           _c("b-form-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'"
+                              }
+                            ],
+                            class: { "is-invalid": _vm.errors.has("user") },
                             attrs: {
                               id: "user",
-                              required: "",
+                              name: "user",
                               placeholder: "Ingresa Usuario"
                             },
                             model: {
@@ -71069,7 +71103,11 @@ var render = function() {
                               },
                               expression: "form.email"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("b-form-invalid-feedback", [
+                            _vm._v("Campor requerdio")
+                          ])
                         ],
                         1
                       ),
@@ -71079,9 +71117,18 @@ var render = function() {
                         { attrs: { for: "pass", label: "Contraseña:" } },
                         [
                           _c("b-form-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'"
+                              }
+                            ],
+                            class: { "is-invalid": _vm.errors.has("pass") },
                             attrs: {
                               id: "pass",
-                              required: "",
+                              name: "pass",
                               type: _vm.typePassword,
                               placeholder: "Ingresa Contraseña"
                             },
@@ -71092,7 +71139,11 @@ var render = function() {
                               },
                               expression: "form.password"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("b-form-invalid-feedback", [
+                            _vm._v("Campor requerdio")
+                          ])
                         ],
                         1
                       ),
@@ -71117,7 +71168,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-button",
-                        { attrs: { type: "submit", variant: "primary" } },
+                        {
+                          attrs: { variant: "primary" },
+                          on: { click: _vm.onSubmit }
+                        },
                         [_vm._v("Entrar")]
                       ),
                       _vm._v(" "),
@@ -71149,6 +71203,15 @@ var render = function() {
                       )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-alert",
+                    {
+                      staticClass: "text-center",
+                      attrs: { show: _vm.hasErrors, variant: "danger" }
+                    },
+                    [_vm._v(_vm._s(_vm.error))]
                   )
                 ],
                 1
@@ -73031,7 +73094,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73068,6 +73131,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73075,6 +73165,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['idMateria'],
   components: { Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */] },
+  $_veeValidate: {
+    validator: "new"
+  },
   data: function data() {
     return {
       data: {
@@ -73084,21 +73177,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         materia_id: this.idMateria,
         user_id: 1
       },
+      error: '',
       // VARIABLES PARA EL PLUG DEL CALENDARIO
       en: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* en */],
       es: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["b" /* es */]
     };
   },
 
+  computed: {
+    hasErrors: function hasErrors() {
+      return this.error != "";
+    }
+  },
   methods: {
     submit: function submit() {
       var _this = this;
 
-      this.data.materia_id = this.idMateria;
-      this.axios.post('api/evento', this.data).then(function (response) {
-        _this.cleanModal();
-        _this.$refs.newEvent.hide();
-        _this.$emit("responseGetEventos");
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          _this.data.materia_id = _this.idMateria;
+          _this.axios.post('api/evento', _this.data).then(function (response) {
+            _this.cleanModal();
+            _this.$refs.newEvent.hide();
+            _this.$emit("responseGetEventos");
+          });
+        } else {
+          _this.error = "Por favor, corrija los campos en rojo";
+        }
       });
     },
     cleanModal: function cleanModal() {
@@ -74675,9 +74780,19 @@ var render = function() {
                 { attrs: { label: "Nombre:", "label-for": "nombre" } },
                 [
                   _c("b-form-input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    class: { "is-invalid": _vm.errors.has("nombre") },
                     attrs: {
                       id: "nombre",
-                      placeholder: "Ingresa nombre del evento"
+                      placeholder: "Ingresa nombre del evento",
+                      name: "nombre"
                     },
                     model: {
                       value: _vm.data.nombre,
@@ -74686,7 +74801,9 @@ var render = function() {
                       },
                       expression: "data.nombre"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("b-form-invalid-feedback", [_vm._v("Campor requerdio")])
                 ],
                 1
               ),
@@ -74696,9 +74813,19 @@ var render = function() {
                 { attrs: { label: "Temas:", "label-for": "temas" } },
                 [
                   _c("b-form-input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    class: { "is-invalid": _vm.errors.has("temas") },
                     attrs: {
                       id: "temas",
-                      placeholder: "Ingresa los temas del parcial"
+                      placeholder: "Ingresa los temas del parcial",
+                      name: "temas"
                     },
                     model: {
                       value: _vm.data.temas,
@@ -74707,7 +74834,9 @@ var render = function() {
                       },
                       expression: "data.temas"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("b-form-invalid-feedback", [_vm._v("Campor requerdio")])
                 ],
                 1
               ),
@@ -74717,10 +74846,20 @@ var render = function() {
                 { attrs: { label: "Seleccionar Fecha" } },
                 [
                   _c("datepicker", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    class: { "is-invalid": _vm.errors.has("fecha") },
                     attrs: {
                       "input-class": "form-control",
                       language: _vm.es,
-                      placeholder: "Seleccionar fecha"
+                      placeholder: "Seleccionar fecha",
+                      name: "fecha"
                     },
                     model: {
                       value: _vm.data.fecha,
@@ -74729,12 +74868,23 @@ var render = function() {
                       },
                       expression: "data.fecha"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("b-form-invalid-feedback", [_vm._v("Campor requerdio")])
                 ],
                 1
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-alert",
+            {
+              staticClass: "text-center",
+              attrs: { show: _vm.hasErrors, variant: "danger" }
+            },
+            [_vm._v(_vm._s(_vm.error))]
           )
         ],
         1
@@ -75126,7 +75276,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -75161,9 +75311,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['idMateria'],
+  $_veeValidate: {
+    validator: "new"
+  },
   data: function data() {
     return {
       data: {
@@ -75171,7 +75342,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // temas: '',
         file: null,
         idMateria: this.idMateria
-      }
+      },
+      error: ''
+
     };
   },
 
@@ -75180,20 +75353,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return val;
     }
   },
+  computed: {
+    hasErrors: function hasErrors() {
+      return this.error != "";
+    }
+  },
   methods: {
     submit: function submit() {
       var _this = this;
 
-      var formData = new FormData();
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          var formData = new FormData();
 
-      formData.append('nombre', this.data.nombre);
-      formData.append('idMateria', this.idMateria);
-      formData.append('file', this.data.file);
+          formData.append('nombre', _this.data.nombre);
+          formData.append('idMateria', _this.idMateria);
+          formData.append('file', _this.data.file);
 
-      this.axios.post('api/file', formData).then(function (response) {
-        _this.cleanModal();
-        _this.$refs.newDoc.hide();
-        _this.$emit("responseGetDocs");
+          _this.axios.post('api/file', formData).then(function (response) {
+            _this.cleanModal();
+            _this.$refs.newDoc.hide();
+            _this.$emit("responseGetDocs");
+          });
+        } else {
+          _this.error = "Por favor, corrija los campos en rojo";
+        }
       });
     },
     cleanModal: function cleanModal() {
@@ -75232,7 +75416,20 @@ var render = function() {
                 { attrs: { label: "Nombre:", "label-for": "nombre" } },
                 [
                   _c("b-form-input", {
-                    attrs: { id: "nombre", placeholder: "Ingresa nombre" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    class: { "is-invalid": _vm.errors.has("nombre") },
+                    attrs: {
+                      id: "nombre",
+                      placeholder: "Ingresa nombre",
+                      name: "nombre"
+                    },
                     model: {
                       value: _vm.data.nombre,
                       callback: function($$v) {
@@ -75240,7 +75437,9 @@ var render = function() {
                       },
                       expression: "data.nombre"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("b-form-invalid-feedback", [_vm._v("Campor requerdio")])
                 ],
                 1
               ),
@@ -75249,24 +75448,49 @@ var render = function() {
                 "b-form-group",
                 { attrs: { label: "Archivo:", "label-for": "data.file" } },
                 [
-                  _c("b-form-file", {
-                    attrs: {
-                      state: Boolean(_vm.data.file),
-                      placeholder: "Elije un archivo"
-                    },
-                    model: {
-                      value: _vm.data.file,
-                      callback: function($$v) {
-                        _vm.$set(_vm.data, "file", $$v)
+                  _c(
+                    "b-form-file",
+                    {
+                      directives: [
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required",
+                          expression: "'required'"
+                        }
+                      ],
+                      class: { "is-invalid": _vm.errors.has("file") },
+                      attrs: {
+                        state: Boolean(_vm.data.file),
+                        placeholder: "Elije un archivo",
+                        name: "file"
                       },
-                      expression: "data.file"
-                    }
-                  })
+                      model: {
+                        value: _vm.data.file,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "file", $$v)
+                        },
+                        expression: "data.file"
+                      }
+                    },
+                    [_vm._v("\n                  >")]
+                  ),
+                  _vm._v(" "),
+                  _c("b-form-invalid-feedback", [_vm._v("Campor requerdio")])
                 ],
                 1
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-alert",
+            {
+              staticClass: "text-center",
+              attrs: { show: _vm.hasErrors, variant: "danger" }
+            },
+            [_vm._v(_vm._s(_vm.error))]
           )
         ],
         1
