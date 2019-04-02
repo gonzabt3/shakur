@@ -39,6 +39,7 @@ import Like from '../common/Like';
 import Delete from '../common/Delete';
 
 export default {
+    //prueba
   components:{Like,Delete},
   props:['comentarioData'],//data entrante
   data() {
