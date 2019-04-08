@@ -1,10 +1,10 @@
 <template>
-      <b-container>
+      <b-container fluid>
         <b-row >
           <b-col>
             <h1 class="valentine">Shakur</h1>
-            <h1 class="roboto">Tu lugar para</h1>
-            <h1 class="roboto">{{palabra}}</h1>
+            <h1 v-if="!celular" class="roboto">Tu lugar para</h1>
+            <h1 v-if="!celular" class="roboto">{{palabra}}</h1>
           </b-col>
           <b-col >
           <b-card>
@@ -83,12 +83,20 @@ export default {
         p2:'',
         title:''
       },
+      celular:false,
       checkboxPassword: false,
       palabra:'aprender',
       arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.'],
       error:''
     }
     
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
   },
   computed:{
     typePassword() {
@@ -135,7 +143,15 @@ export default {
               // console.log(i);
               i+=1              
           }.bind(this),1500,array);
-        }
+        },
+    handleResize() {
+        let ancho = window.innerWidth;
+        // this.window.height = window.innerHeight;
+  
+        if(ancho<=576){              
+                this.celular=true
+            }
+    }
   },
   beforeMount(){
     this.cambiarPalabra();
@@ -154,10 +170,21 @@ export default {
 
   .valentine{
   font-family:valentine !important;
-  font-size: 900%;
+  /* font-size: 900%; */
   color:white;
   }
 
+  @media screen and (min-width: 322px) {
+    .valentine {
+      font-size: 900%;
+    }
+  }
+
+@media screen and (max-width: 320px) {
+    .valentine {
+      font-size: 600%;
+    }
+  }
   .roboto{
     font-family:'Roboto:900i', sans-serif;
     font-size: 400%;

@@ -66980,7 +66980,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -67055,8 +67055,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { attrs: { id: "app" } },
+    "b-container",
+    { staticClass: "no-padding-main", attrs: { id: "app", fluid: "" } },
     [
       _c("link", {
         attrs: {
@@ -69831,7 +69831,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  font-size: 900%;\n  color:white;\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n", ""]);
 
 // exports
 
@@ -69937,11 +69937,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         p2: '',
         title: ''
       },
+      celular: false,
       checkboxPassword: false,
       palabra: 'aprender',
       arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.'],
       error: ''
     };
+  },
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   computed: {
@@ -69989,6 +69997,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // console.log(i);
         i += 1;
       }.bind(this), 1500, array);
+    },
+    handleResize: function handleResize() {
+      var ancho = window.innerWidth;
+      // this.window.height = window.innerHeight;
+
+      if (ancho <= 576) {
+        this.celular = true;
+      }
     }
   },
   beforeMount: function beforeMount() {
@@ -71054,6 +71070,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -71061,9 +71078,15 @@ var render = function() {
           _c("b-col", [
             _c("h1", { staticClass: "valentine" }, [_vm._v("Shakur")]),
             _vm._v(" "),
-            _c("h1", { staticClass: "roboto" }, [_vm._v("Tu lugar para")]),
+            !_vm.celular
+              ? _c("h1", { staticClass: "roboto" }, [_vm._v("Tu lugar para")])
+              : _vm._e(),
             _vm._v(" "),
-            _c("h1", { staticClass: "roboto" }, [_vm._v(_vm._s(_vm.palabra))])
+            !_vm.celular
+              ? _c("h1", { staticClass: "roboto" }, [
+                  _vm._v(_vm._s(_vm.palabra))
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
