@@ -39736,7 +39736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["g" /* faUser */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faArrowCircleDown */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["f" /* faTimes */]);
+__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["f" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["h" /* faUser */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faArrowCircleDown */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["g" /* faTimes */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faComment */]);
 
 __WEBPACK_IMPORTED_MODULE_10_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_10_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
@@ -50873,7 +50873,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faCogs */
 /* unused harmony export faCoins */
 /* unused harmony export faColumns */
-/* unused harmony export faComment */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faComment; });
 /* unused harmony export faCommentAlt */
 /* unused harmony export faCommentDollar */
 /* unused harmony export faCommentDots */
@@ -50949,9 +50949,9 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faExpandArrowsAlt */
 /* unused harmony export faExternalLinkAlt */
 /* unused harmony export faExternalLinkSquareAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faEye; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faEye; });
 /* unused harmony export faEyeDropper */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faEyeSlash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faEyeSlash; });
 /* unused harmony export faFastBackward */
 /* unused harmony export faFastForward */
 /* unused harmony export faFax */
@@ -51237,7 +51237,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faPlayCircle */
 /* unused harmony export faPlug */
 /* unused harmony export faPlus */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faPlusCircle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faPlusCircle; });
 /* unused harmony export faPlusSquare */
 /* unused harmony export faPodcast */
 /* unused harmony export faPoll */
@@ -51360,7 +51360,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faStop */
 /* unused harmony export faStopCircle */
 /* unused harmony export faStopwatch */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return faStore; });
 /* unused harmony export faStoreAlt */
 /* unused harmony export faStream */
 /* unused harmony export faStreetView */
@@ -51410,7 +51410,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faThumbsUp */
 /* unused harmony export faThumbtack */
 /* unused harmony export faTicketAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return faTimes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return faTimes; });
 /* unused harmony export faTimesCircle */
 /* unused harmony export faTint */
 /* unused harmony export faTintSlash */
@@ -51449,7 +51449,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faUnlock */
 /* unused harmony export faUnlockAlt */
 /* unused harmony export faUpload */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return faUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return faUser; });
 /* unused harmony export faUserAlt */
 /* unused harmony export faUserAltSlash */
 /* unused harmony export faUserAstronaut */
@@ -71721,6 +71721,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -72215,25 +72217,7 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { attrs: { cols: "2" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  rounded: "circle",
-                  width: "50",
-                  height: "50",
-                  thumbnail: "",
-                  fluid: "",
-                  src:
-                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
-                  alt: "Thumbnail"
-                }
-              })
-            ],
-            1
-          ),
+          _c("b-col", { attrs: { cols: "2" } }),
           _vm._v(" "),
           _c(
             "b-col",
@@ -72771,25 +72755,7 @@ var render = function() {
                       _c(
                         "b-row",
                         [
-                          _c(
-                            "b-col",
-                            { attrs: { cols: "2" } },
-                            [
-                              _c("b-img", {
-                                attrs: {
-                                  rounded: "circle",
-                                  width: "35",
-                                  height: "35",
-                                  thumbnail: "",
-                                  fluid: "",
-                                  src:
-                                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
-                                  alt: "Thumbnail"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _c("b-col", { attrs: { cols: "2" } }),
                           _vm._v(" "),
                           _c(
                             "b-col",
@@ -72815,6 +72781,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-col",
+                            { attrs: { cols: "3" } },
                             [
                               _c(
                                 "b-button",
@@ -72822,7 +72789,12 @@ var render = function() {
                                   attrs: { type: "submit", variant: "primary" },
                                   on: { click: _vm.submitComentario }
                                 },
-                                [_vm._v("Comentar")]
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "comment" }
+                                  })
+                                ],
+                                1
                               )
                             ],
                             1
