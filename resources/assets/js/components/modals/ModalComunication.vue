@@ -1,5 +1,5 @@
 <template>
-    <b-modal :hide-footer="true"  ref="comunicationModal" id="comunicationModal" :title="title">
+    <b-modal no-close-on-backdrop :hide-footer="true"  ref="comunicationModal" id="comunicationModal" :title="title">
         <b-container>
             <p>{{p1}}.</p>
             <p>{{p}}</p>
