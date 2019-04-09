@@ -69976,10 +69976,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result) {
           evt.preventDefault();
           _this.axios.post('api/auth/login/', _this.form).then(function (response) {
-            // console.log(response);
+            console.log(response);
             sessionStorage.SessionName = "token";
             sessionStorage.setItem("token", response.data.access_token);
             _this.$router.push("/main");
+          }).catch(function (error) {
+            if (error.response.status == 401) {
+              _this.error = "Usuario o contreseña incorrecta";
+            }
           });
         } else {
           _this.error = "Por favor, corrija los campos en rojo";

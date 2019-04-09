@@ -121,11 +121,16 @@ export default {
           evt.preventDefault();
           this.axios.post('api/auth/login/',this.form)
             .then((response) =>{
-              // console.log(response);
+              console.log(response);
               sessionStorage.SessionName = "token"
               sessionStorage.setItem("token",response.data.access_token);
               this.$router.push("/main");
-        }) 
+        })
+        .catch(error => {
+          if (error.response.status == 401) {
+              this.error = "Usuario o contreseña incorrecta";
+              }
+          });
         }else{
           this.error = "Por favor, corrija los campos en rojo";
         }
