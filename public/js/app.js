@@ -71893,7 +71893,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -71944,22 +71944,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
-  props: ['comentarioData'], //data entrante
-  data: function data() {
-    return {};
-  },
+    components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
+    props: ['comentarioData'], //data entrante
+    data: function data() {
+        return {};
+    },
 
-  methods: {
-    getComentarios: function getComentarios() {
-      this.$emit("getComentarios");
+    computed: {
+        nameAlias: function nameAlias() {
+            if (this.comentarioData.user.alias == null) {
+                return this.comentarioData.user.name + ' ' + this.comentarioData.user.apellido;
+            } else {
+                return this.comentarioData.user.alias;
+            }
+        }
+    },
+    methods: {
+        getComentarios: function getComentarios() {
+            this.$emit("getComentarios");
+        }
     }
-  }
 });
 
 /***/ }),
@@ -72225,11 +72236,18 @@ var render = function() {
               _c(
                 "b-row",
                 [
-                  _c("b-col", { attrs: { cols: "11" } }, [
-                    _c("h5", { staticClass: "no-margin-bottom" }, [
-                      _vm._v(_vm._s(_vm.comentarioData.user.name))
-                    ])
-                  ]),
+                  _c(
+                    "b-col",
+                    { staticClass: "no-padding-left", attrs: { cols: "10" } },
+                    [
+                      _c("b-form-group", [
+                        _c("h5", { staticClass: "no-margin-bottom" }, [
+                          _vm._v(_vm._s(_vm.nameAlias))
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "b-col",

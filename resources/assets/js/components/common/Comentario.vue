@@ -6,8 +6,10 @@
             </b-col>
             <b-col>
                 <b-row>
-                    <b-col cols="11">
-                        <h5 class="no-margin-bottom">{{comentarioData.user.name}}</h5>
+                    <b-col cols="10" class="no-padding-left">
+                        <b-form-group>
+                            <h5 class="no-margin-bottom">{{nameAlias}}</h5>
+                        </b-form-group>
                     </b-col>
                     <b-col cols="1">
                         <delete
@@ -46,6 +48,15 @@ export default {
 
     };
   },
+    computed:{
+        nameAlias: function(){
+            if(this.comentarioData.user.alias==null){
+                return this.comentarioData.user.name+' '+this.comentarioData.user.apellido;
+            }else{
+                return this.comentarioData.user.alias
+            }
+        }
+    },
   methods:{
       getComentarios(){
         this.$emit("getComentarios")  
@@ -56,6 +67,10 @@ export default {
 <style scoped>
 .no-margin-bottom{
     margin-bottom: 0px;
+}
+
+.no-padding-left{
+    padding-left: 0px;
 }
 
 </style>
