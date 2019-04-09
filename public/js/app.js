@@ -69831,7 +69831,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -69852,6 +69852,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_NewUser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -71170,60 +71180,101 @@ var render = function() {
                           _vm._v(" "),
                           _c("b-form-invalid-feedback", [
                             _vm._v("Campor requerdio")
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-checkbox",
+                            {
+                              attrs: {
+                                id: "checkboxPassword",
+                                name: "checkboxPassword"
+                              },
+                              model: {
+                                value: _vm.checkboxPassword,
+                                callback: function($$v) {
+                                  _vm.checkboxPassword = $$v
+                                },
+                                expression: "checkboxPassword"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Mostrar Contraseña\n              "
+                              )
+                            ]
+                          )
                         ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
-                        "b-form-checkbox",
-                        {
-                          attrs: {
-                            id: "checkboxPassword",
-                            name: "checkboxPassword"
-                          },
-                          model: {
-                            value: _vm.checkboxPassword,
-                            callback: function($$v) {
-                              _vm.checkboxPassword = $$v
-                            },
-                            expression: "checkboxPassword"
-                          }
-                        },
-                        [_vm._v("\n          Mostrar Contraseña\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "primary" },
-                          on: { click: _vm.onSubmit }
-                        },
-                        [_vm._v("Entrar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          directives: [
-                            {
-                              name: "b-modal",
-                              rawName: "v-b-modal.newUser",
-                              modifiers: { newUser: true }
-                            }
-                          ],
-                          attrs: { variant: "secondary" }
-                        },
-                        [_vm._v("Registrarse")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
+                        "b-row",
                         [
                           _c(
-                            "b-link",
-                            { attrs: { href: "#/", disabled: "" } },
-                            [_vm._v("Olvide mi contraseña")]
+                            "b-col",
+                            [
+                              _c(
+                                "b-row",
+                                [
+                                  _c(
+                                    "b-col",
+                                    { staticClass: "no-padding-right" },
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            variant: "primary"
+                                          },
+                                          on: { click: _vm.onSubmit }
+                                        },
+                                        [_vm._v("Entrar")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-col",
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "b-modal",
+                                              rawName: "v-b-modal.newUser",
+                                              modifiers: { newUser: true }
+                                            }
+                                          ],
+                                          attrs: {
+                                            block: "",
+                                            variant: "secondary"
+                                          }
+                                        },
+                                        [_vm._v("Registrarse")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                [
+                                  _c(
+                                    "b-link",
+                                    { attrs: { href: "#/", disabled: "" } },
+                                    [_vm._v("Olvide mi contraseña")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1

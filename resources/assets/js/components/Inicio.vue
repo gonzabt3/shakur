@@ -32,19 +32,29 @@
                             placeholder="Ingresa Contraseña">
                   </b-form-input>
                     <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                     <b-form-checkbox
+                      id="checkboxPassword"
+                      v-model="checkboxPassword"
+                      name="checkboxPassword"
+                    >
+                    Mostrar Contraseña
+                    </b-form-checkbox>
                 </b-form-group>
-                <b-form-checkbox
-                  id="checkboxPassword"
-                  v-model="checkboxPassword"
-                  name="checkboxPassword"
-                >
-                Mostrar Contraseña
-                </b-form-checkbox>
-                <b-button @click="onSubmit" variant="primary">Entrar</b-button>
-                <b-button v-b-modal.newUser variant="secondary">Registrarse</b-button>
-                <b-form-group>
-                  <b-link href="#/" disabled>Olvide mi contraseña</b-link>
-                </b-form-group>
+                <b-row>
+                  <b-col>
+                    <b-row>
+                      <b-col class="no-padding-right">
+                        <b-button  block @click="onSubmit" variant="primary">Entrar</b-button>
+                      </b-col>
+                      <b-col>
+                        <b-button block  v-b-modal.newUser variant="secondary">Registrarse</b-button>
+                      </b-col>
+                    </b-row>
+                    <b-form-group>
+                      <b-link href="#/" disabled>Olvide mi contraseña</b-link>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
           </b-form>
           <b-alert 
             :show="hasErrors" 
@@ -194,5 +204,9 @@ export default {
     font-family:'Roboto:900i', sans-serif;
     font-size: 400%;
     color:white;
+  }
+
+  .no-padding-right{
+    padding-right: 0px;
   }
 </style>
