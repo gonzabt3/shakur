@@ -36,10 +36,10 @@ class User extends Authenticatable
     }
 
     //encripta la pass cuando se crea un usuario
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 
     public function materias()
     {

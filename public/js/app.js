@@ -39736,7 +39736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["g" /* faUser */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faArrowCircleDown */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["f" /* faTimes */]);
+__WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["library"].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["e" /* faPlusCircle */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["f" /* faStore */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["c" /* faEye */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["d" /* faEyeSlash */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["h" /* faUser */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faArrowCircleDown */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["g" /* faTimes */], __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["b" /* faComment */]);
 
 __WEBPACK_IMPORTED_MODULE_10_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_10_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
@@ -50873,7 +50873,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faCogs */
 /* unused harmony export faCoins */
 /* unused harmony export faColumns */
-/* unused harmony export faComment */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faComment; });
 /* unused harmony export faCommentAlt */
 /* unused harmony export faCommentDollar */
 /* unused harmony export faCommentDots */
@@ -50949,9 +50949,9 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faExpandArrowsAlt */
 /* unused harmony export faExternalLinkAlt */
 /* unused harmony export faExternalLinkSquareAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faEye; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faEye; });
 /* unused harmony export faEyeDropper */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faEyeSlash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faEyeSlash; });
 /* unused harmony export faFastBackward */
 /* unused harmony export faFastForward */
 /* unused harmony export faFax */
@@ -51237,7 +51237,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faPlayCircle */
 /* unused harmony export faPlug */
 /* unused harmony export faPlus */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return faPlusCircle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faPlusCircle; });
 /* unused harmony export faPlusSquare */
 /* unused harmony export faPodcast */
 /* unused harmony export faPoll */
@@ -51360,7 +51360,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faStop */
 /* unused harmony export faStopCircle */
 /* unused harmony export faStopwatch */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return faStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return faStore; });
 /* unused harmony export faStoreAlt */
 /* unused harmony export faStream */
 /* unused harmony export faStreetView */
@@ -51410,7 +51410,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faThumbsUp */
 /* unused harmony export faThumbtack */
 /* unused harmony export faTicketAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return faTimes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return faTimes; });
 /* unused harmony export faTimesCircle */
 /* unused harmony export faTint */
 /* unused harmony export faTintSlash */
@@ -51449,7 +51449,7 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 /* unused harmony export faUnlock */
 /* unused harmony export faUnlockAlt */
 /* unused harmony export faUpload */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return faUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return faUser; });
 /* unused harmony export faUserAlt */
 /* unused harmony export faUserAltSlash */
 /* unused harmony export faUserAstronaut */
@@ -66980,7 +66980,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -67055,8 +67055,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { attrs: { id: "app" } },
+    "b-container",
+    { staticClass: "no-padding-main", attrs: { id: "app", fluid: "" } },
     [
       _c("link", {
         attrs: {
@@ -69831,7 +69831,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  font-size: 900%;\n  color:white;\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(364)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -69852,6 +69852,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NewUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_NewUser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modals_ModalComunication__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69937,11 +69947,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         p2: '',
         title: ''
       },
+      celular: false,
       checkboxPassword: false,
       palabra: 'aprender',
       arrayPalabras: ['estar.', 'estudiar.', 'conocer.', 'leer.', 'matear.', 'pensar.', 'crecer.'],
       error: ''
     };
+  },
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   computed: {
@@ -69968,10 +69986,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result) {
           evt.preventDefault();
           _this.axios.post('api/auth/login/', _this.form).then(function (response) {
-            // console.log(response);
+            console.log(response);
             sessionStorage.SessionName = "token";
             sessionStorage.setItem("token", response.data.access_token);
             _this.$router.push("/main");
+          }).catch(function (error) {
+            if (error.response.status == 401) {
+              _this.error = "Usuario o contreseña incorrecta";
+            }
           });
         } else {
           _this.error = "Por favor, corrija los campos en rojo";
@@ -69989,6 +70011,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // console.log(i);
         i += 1;
       }.bind(this), 1500, array);
+    },
+    handleResize: function handleResize() {
+      var ancho = window.innerWidth;
+      // this.window.height = window.innerHeight;
+
+      if (ancho <= 576) {
+        this.celular = true;
+      }
     }
   },
   beforeMount: function beforeMount() {
@@ -70082,7 +70112,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70095,8 +70125,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__);
-//
-//
 //
 //
 //
@@ -70840,17 +70868,6 @@ var render = function() {
                       _c(
                         "b-form-checkbox",
                         {
-                          directives: [
-                            {
-                              name: "validate",
-                              rawName: "v-validate",
-                              value: "required",
-                              expression: "'required'"
-                            }
-                          ],
-                          class: {
-                            "is-invalid": _vm.errors.has("checkCondiciones")
-                          },
                           attrs: {
                             name: "checkCondiciones",
                             required: "",
@@ -71007,7 +71024,12 @@ var render = function() {
     "b-modal",
     {
       ref: "comunicationModal",
-      attrs: { "hide-footer": true, id: "comunicationModal", title: _vm.title }
+      attrs: {
+        "no-close-on-backdrop": "",
+        "hide-footer": true,
+        id: "comunicationModal",
+        title: _vm.title
+      }
     },
     [
       _c(
@@ -71054,6 +71076,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -71061,9 +71084,15 @@ var render = function() {
           _c("b-col", [
             _c("h1", { staticClass: "valentine" }, [_vm._v("Shakur")]),
             _vm._v(" "),
-            _c("h1", { staticClass: "roboto" }, [_vm._v("Tu lugar para")]),
+            !_vm.celular
+              ? _c("h1", { staticClass: "roboto" }, [_vm._v("Tu lugar para")])
+              : _vm._e(),
             _vm._v(" "),
-            _c("h1", { staticClass: "roboto" }, [_vm._v(_vm._s(_vm.palabra))])
+            !_vm.celular
+              ? _c("h1", { staticClass: "roboto" }, [
+                  _vm._v(_vm._s(_vm.palabra))
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
@@ -71143,60 +71172,101 @@ var render = function() {
                           _vm._v(" "),
                           _c("b-form-invalid-feedback", [
                             _vm._v("Campor requerdio")
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-checkbox",
+                            {
+                              attrs: {
+                                id: "checkboxPassword",
+                                name: "checkboxPassword"
+                              },
+                              model: {
+                                value: _vm.checkboxPassword,
+                                callback: function($$v) {
+                                  _vm.checkboxPassword = $$v
+                                },
+                                expression: "checkboxPassword"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Mostrar Contraseña\n              "
+                              )
+                            ]
+                          )
                         ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
-                        "b-form-checkbox",
-                        {
-                          attrs: {
-                            id: "checkboxPassword",
-                            name: "checkboxPassword"
-                          },
-                          model: {
-                            value: _vm.checkboxPassword,
-                            callback: function($$v) {
-                              _vm.checkboxPassword = $$v
-                            },
-                            expression: "checkboxPassword"
-                          }
-                        },
-                        [_vm._v("\n          Mostrar Contraseña\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "primary" },
-                          on: { click: _vm.onSubmit }
-                        },
-                        [_vm._v("Entrar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          directives: [
-                            {
-                              name: "b-modal",
-                              rawName: "v-b-modal.newUser",
-                              modifiers: { newUser: true }
-                            }
-                          ],
-                          attrs: { variant: "secondary" }
-                        },
-                        [_vm._v("Registrarse")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
+                        "b-row",
                         [
                           _c(
-                            "b-link",
-                            { attrs: { href: "#/", disabled: "" } },
-                            [_vm._v("Olvide mi contraseña")]
+                            "b-col",
+                            [
+                              _c(
+                                "b-row",
+                                [
+                                  _c(
+                                    "b-col",
+                                    { staticClass: "no-padding-right" },
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            variant: "primary"
+                                          },
+                                          on: { click: _vm.onSubmit }
+                                        },
+                                        [_vm._v("Entrar")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-col",
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "b-modal",
+                                              rawName: "v-b-modal.newUser",
+                                              modifiers: { newUser: true }
+                                            }
+                                          ],
+                                          attrs: {
+                                            block: "",
+                                            variant: "secondary"
+                                          }
+                                        },
+                                        [_vm._v("Registrarse")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                [
+                                  _c(
+                                    "b-link",
+                                    { attrs: { href: "#/", disabled: "" } },
+                                    [_vm._v("Olvide mi contraseña")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
@@ -71698,6 +71768,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -71868,7 +71940,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -71919,22 +71991,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
-  props: ['comentarioData'], //data entrante
-  data: function data() {
-    return {};
-  },
+    components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
+    props: ['comentarioData'], //data entrante
+    data: function data() {
+        return {};
+    },
 
-  methods: {
-    getComentarios: function getComentarios() {
-      this.$emit("getComentarios");
+    computed: {
+        nameAlias: function nameAlias() {
+            if (this.comentarioData.user.alias == null) {
+                return this.comentarioData.user.name + ' ' + this.comentarioData.user.apellido;
+            } else {
+                return this.comentarioData.user.alias;
+            }
+        }
+    },
+    methods: {
+        getComentarios: function getComentarios() {
+            this.$emit("getComentarios");
+        }
     }
-  }
 });
 
 /***/ }),
@@ -72192,25 +72275,7 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { attrs: { cols: "2" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  rounded: "circle",
-                  width: "50",
-                  height: "50",
-                  thumbnail: "",
-                  fluid: "",
-                  src:
-                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
-                  alt: "Thumbnail"
-                }
-              })
-            ],
-            1
-          ),
+          _c("b-col", { attrs: { cols: "2" } }),
           _vm._v(" "),
           _c(
             "b-col",
@@ -72218,11 +72283,18 @@ var render = function() {
               _c(
                 "b-row",
                 [
-                  _c("b-col", { attrs: { cols: "11" } }, [
-                    _c("h5", { staticClass: "no-margin-bottom" }, [
-                      _vm._v(_vm._s(_vm.comentarioData.user.name))
-                    ])
-                  ]),
+                  _c(
+                    "b-col",
+                    { staticClass: "no-padding-left", attrs: { cols: "10" } },
+                    [
+                      _c("b-form-group", [
+                        _c("h5", { staticClass: "no-margin-bottom" }, [
+                          _vm._v(_vm._s(_vm.nameAlias))
+                        ])
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "b-col",
@@ -72748,25 +72820,7 @@ var render = function() {
                       _c(
                         "b-row",
                         [
-                          _c(
-                            "b-col",
-                            { attrs: { cols: "2" } },
-                            [
-                              _c("b-img", {
-                                attrs: {
-                                  rounded: "circle",
-                                  width: "35",
-                                  height: "35",
-                                  thumbnail: "",
-                                  fluid: "",
-                                  src:
-                                    "http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg",
-                                  alt: "Thumbnail"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _c("b-col", { attrs: { cols: "2" } }),
                           _vm._v(" "),
                           _c(
                             "b-col",
@@ -72792,6 +72846,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-col",
+                            { attrs: { cols: "3" } },
                             [
                               _c(
                                 "b-button",
@@ -72799,7 +72854,12 @@ var render = function() {
                                   attrs: { type: "submit", variant: "primary" },
                                   on: { click: _vm.submitComentario }
                                 },
-                                [_vm._v("Comentar")]
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "comment" }
+                                  })
+                                ],
+                                1
                               )
                             ],
                             1

@@ -1,10 +1,10 @@
 <template>
-      <b-container>
+      <b-container fluid>
         <b-row >
           <b-col>
             <h1 class="valentine">Shakur</h1>
-            <h1 class="roboto">Tu lugar para</h1>
-            <h1 class="roboto">{{palabra}}</h1>
+            <h1 v-if="!celular" class="roboto">Tu lugar para</h1>
+            <h1 v-if="!celular" class="roboto">{{palabra}}</h1>
           </b-col>
           <b-col >
           <b-card>
@@ -32,19 +32,29 @@
                             placeholder="Ingresa Contraseña">
                   </b-form-input>
                     <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                     <b-form-checkbox
+                      id="checkboxPassword"
+                      v-model="checkboxPassword"
+                      name="checkboxPassword"
+                    >
+                    Mostrar Contraseña
+                    </b-form-checkbox>
                 </b-form-group>
-                <b-form-checkbox
-                  id="checkboxPassword"
-                  v-model="checkboxPassword"
-                  name="checkboxPassword"
-                >
-                Mostrar Contraseña
-                </b-form-checkbox>
-                <b-button @click="onSubmit" variant="primary">Entrar</b-button>
-                <b-button v-b-modal.newUser variant="secondary">Registrarse</b-button>
-                <b-form-group>
-                  <b-link href="#/" disabled>Olvide mi contraseña</b-link>
-                </b-form-group>
+                <b-row>
+                  <b-col>
+                    <b-row>
+                      <b-col class="no-padding-right">
+                        <b-button  block @click="onSubmit" variant="primary">Entrar</b-button>
+                      </b-col>
+                      <b-col>
+                        <b-button block  v-b-modal.newUser variant="secondary">Registrarse</b-button>
+                      </b-col>
+                    </b-row>
+                    <b-form-group>
+                      <b-link href="#/" disabled>Olvide mi contraseña</b-link>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
           </b-form>
           <b-alert 
             :show="hasErrors" 
@@ -83,12 +93,20 @@ export default {
         p2:'',
         title:''
       },
+      celular:false,
       checkboxPassword: false,
       palabra:'aprender',
       arrayPalabras:['estar.','estudiar.','conocer.','leer.','matear.','pensar.','crecer.'],
       error:''
     }
     
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
   },
   computed:{
     typePassword() {
@@ -113,11 +131,16 @@ export default {
           evt.preventDefault();
           this.axios.post('api/auth/login/',this.form)
             .then((response) =>{
-              // console.log(response);
+              console.log(response);
               sessionStorage.SessionName = "token"
               sessionStorage.setItem("token",response.data.access_token);
               this.$router.push("/main");
-        }) 
+        })
+        .catch(error => {
+          if (error.response.status == 401) {
+              this.error = "Usuario o contreseña incorrecta";
+              }
+          });
         }else{
           this.error = "Por favor, corrija los campos en rojo";
         }
@@ -135,7 +158,15 @@ export default {
               // console.log(i);
               i+=1              
           }.bind(this),1500,array);
-        }
+        },
+    handleResize() {
+        let ancho = window.innerWidth;
+        // this.window.height = window.innerHeight;
+  
+        if(ancho<=576){              
+                this.celular=true
+            }
+    }
   },
   beforeMount(){
     this.cambiarPalabra();
@@ -154,13 +185,28 @@ export default {
 
   .valentine{
   font-family:valentine !important;
-  font-size: 900%;
+  /* font-size: 900%; */
   color:white;
   }
 
+  @media screen and (min-width: 322px) {
+    .valentine {
+      font-size: 900%;
+    }
+  }
+
+@media screen and (max-width: 320px) {
+    .valentine {
+      font-size: 600%;
+    }
+  }
   .roboto{
     font-family:'Roboto:900i', sans-serif;
     font-size: 400%;
     color:white;
+  }
+
+  .no-padding-right{
+    padding-right: 0px;
   }
 </style>
