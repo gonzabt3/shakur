@@ -64,7 +64,7 @@
           </b-col>
         </b-row>
       <new-user @success="openModalSuccess"></new-user>
-      <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser"></modal-comunication>
+      <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser" :flag-button="false" :close-out-side="true"></modal-comunication>
       </b-container>
 </template>
 

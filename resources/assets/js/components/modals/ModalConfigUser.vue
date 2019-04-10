@@ -1,16 +1,16 @@
 <template>
-         <b-modal  size="lg" ref="configUser" id="configUser" title="Configuracion usuario">
-        <b-container fluid>
-                <b-row>
-                    <b-col>
+        <b-container   fluid>
+         <b-modal   ref="configUser" id="configUser" title="Configuracion usuario">
+                <b-row >
+                    <b-col  cols="12">
                         <b-row>
-                            <b-col class="col-2">
+                            <b-col cols="2">
                                 <b-form-group id="alias"
                                 label="Alias:"
                                 label-for="alias">
                                 </b-form-group>
                             </b-col>
-                            <b-col>
+                            <b-col cols="7">
                                 <b-form-input 
                                     id="alias"
                                     v-model="data.alias" 
@@ -18,13 +18,13 @@
                                     :disabled="!checkedAlias">
                                 </b-form-input>
                             </b-col>
-                            <b-col class="col-1">
+                            <b-col  >
                                 <b-form-checkbox v-model="checkedAlias" > 
                                 </b-form-checkbox>
                             </b-col>
                         </b-row>
                         <b-row>
-                            <b-col class="col-2">
+                            <b-col cols="2">
                                 <b-form-group id="nombre"
                                 label="Nombre:"
                                 label-for="nombre">
@@ -39,7 +39,7 @@
                             </b-col>
                         </b-row>
                         <b-row>
-                            <b-col class="col-2">
+                            <b-col cols="2">
                                 <b-form-group id="apellido"
                                 label="Apellido:"
                                 label-for="apellido">
@@ -56,7 +56,7 @@
                     </b-col>
                     <b-col>
                         <b-row>
-                            <b-col class="col-2">
+                            <b-col cols="2">
                                 <b-form-group id="materias"
                                 label="Materias en curso:"
                                 label-for="materias">
@@ -78,11 +78,11 @@
                         </b-row>
                     </b-col>
                 </b-row>
-        </b-container>
                <template slot="modal-footer">
-      <button class="btn btn-success btn-block" @click="submit" type="submit">Guardar</button>
-    </template>
-    </b-modal>
+                    <button class="btn btn-success btn-block" @click="submit" type="submit">Guardar</button>
+                </template>
+        </b-modal>
+    </b-container>
 </template>
 <script>
 import vSelect from "vue-select";
@@ -166,5 +166,8 @@ export default {
 }
 </script>
 <style scoped>
+.border-right-20{
+    border-right-width: 20px;
+}
 
 </style>

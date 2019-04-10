@@ -70965,7 +70965,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70987,15 +70987,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['mailUser', 'p1', 'p2', 'title'],
+    props: ['mailUser', 'p1', 'p2', 'title', 'flagButton', "closeOutSide"],
     computed: {
-        flagButton: function flagButton() {
-            if (this.mailUser != '') {
-                return true;
-            } else {
-                return false;
-            }
-        },
         p: function p() {
             if (this.mailUser != "") {
                 return this.p2;
@@ -71021,19 +71014,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-modal",
-    {
-      ref: "comunicationModal",
-      attrs: {
-        "no-close-on-backdrop": "",
-        "hide-footer": true,
-        id: "comunicationModal",
-        title: _vm.title
-      }
-    },
+    "b-container",
     [
       _c(
-        "b-container",
+        "b-modal",
+        {
+          ref: "comunicationModal",
+          attrs: {
+            "no-close-on-backdrop": true,
+            "hide-footer": true,
+            id: "comunicationModal",
+            title: _vm.title
+          }
+        },
         [
           _c("p", [_vm._v(_vm._s(_vm.p1) + ".")]),
           _vm._v(" "),
@@ -71300,7 +71293,9 @@ var render = function() {
           title: _vm.modalComunication.title,
           p1: _vm.modalComunication.p1,
           p2: _vm.modalComunication.p2,
-          "mail-user": _vm.modalComunication.mailNewUser
+          "mail-user": _vm.modalComunication.mailNewUser,
+          "flag-button": false,
+          "close-out-side": true
         }
       })
     ],
@@ -71998,6 +71993,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    //prueba
     components: { Like: __WEBPACK_IMPORTED_MODULE_0__common_Like___default.a, Delete: __WEBPACK_IMPORTED_MODULE_1__common_Delete___default.a },
     props: ['comentarioData'], //data entrante
     data: function data() {
@@ -75900,7 +75896,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.border-right-20[data-v-48bcd248]{\n    border-right-width: 20px;\n}\n\n", ""]);
 
 // exports
 
@@ -76100,28 +76096,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-modal",
-    {
-      ref: "configUser",
-      attrs: { size: "lg", id: "configUser", title: "Configuracion usuario" }
-    },
+    "b-container",
+    { attrs: { fluid: "" } },
     [
       _c(
-        "b-container",
-        { attrs: { fluid: "" } },
+        "b-modal",
+        {
+          ref: "configUser",
+          attrs: { id: "configUser", title: "Configuracion usuario" }
+        },
         [
           _c(
             "b-row",
             [
               _c(
                 "b-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
                     "b-row",
                     [
                       _c(
                         "b-col",
-                        { staticClass: "col-2" },
+                        { attrs: { cols: "2" } },
                         [
                           _c("b-form-group", {
                             attrs: {
@@ -76136,6 +76133,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { attrs: { cols: "7" } },
                         [
                           _c("b-form-input", {
                             attrs: {
@@ -76157,7 +76155,6 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
-                        { staticClass: "col-1" },
                         [
                           _c("b-form-checkbox", {
                             model: {
@@ -76180,7 +76177,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
-                        { staticClass: "col-2" },
+                        { attrs: { cols: "2" } },
                         [
                           _c("b-form-group", {
                             attrs: {
@@ -76221,7 +76218,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
-                        { staticClass: "col-2" },
+                        { attrs: { cols: "2" } },
                         [
                           _c("b-form-group", {
                             attrs: {
@@ -76268,7 +76265,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
-                        { staticClass: "col-2" },
+                        { attrs: { cols: "2" } },
                         [
                           _c("b-form-group", {
                             attrs: {
@@ -76322,24 +76319,24 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("template", { slot: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success btn-block",
+                attrs: { type: "submit" },
+                on: { click: _vm.submit }
+              },
+              [_vm._v("Guardar")]
+            )
+          ])
         ],
-        1
-      ),
-      _vm._v(" "),
-      _c("template", { slot: "modal-footer" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-block",
-            attrs: { type: "submit" },
-            on: { click: _vm.submit }
-          },
-          [_vm._v("Guardar")]
-        )
-      ])
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -77008,7 +77005,9 @@ var render = function() {
         attrs: {
           p1: _vm.modalComunication.p1,
           p2: _vm.modalComunication.p2,
-          title: _vm.modalComunication.title
+          title: _vm.modalComunication.title,
+          "flag-button": true,
+          "close-out-side": false
         },
         on: { openMiPerfil: _vm.openMiPerfil }
       })

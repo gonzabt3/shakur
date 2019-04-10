@@ -66,7 +66,7 @@
                 ></doc-wall>
             </b-col>
         </b-row>
-        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" ></modal-comunication>
+        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
     </b-container>
 </template>
 

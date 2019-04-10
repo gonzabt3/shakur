@@ -1,23 +1,16 @@
 <template>
-    <b-modal no-close-on-backdrop :hide-footer="true"  ref="comunicationModal" id="comunicationModal" :title="title">
-        <b-container>
+    <b-container>
+        <b-modal :no-close-on-backdrop="true" :hide-footer="true"  ref="comunicationModal" id="comunicationModal" :title="title">
             <p>{{p1}}.</p>
             <p>{{p}}</p>
             <b-btn @click="miPerfil" v-if="flagButton" block variant="primary">Ir a mi perfil</b-btn>
-        </b-container>
-    </b-modal>
+        </b-modal>
+    </b-container>
 </template>
 <script>
 export default {
-    props:['mailUser','p1','p2','title'],
+    props:['mailUser','p1','p2','title','flagButton',"closeOutSide",],
     computed:{
-        flagButton: function(){
-            if( this.mailUser !=''){
-                return true
-            }else{
-                return false
-            }
-        },
         p: function (){
             if(this.mailUser != ""){
                 return this.p2
