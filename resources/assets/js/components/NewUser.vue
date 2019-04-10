@@ -1,6 +1,6 @@
 <template>
+    <b-container>
     <b-modal @hide="cleanModal" id="newUser" ref="newUser" title="Crear Usuario">
-        <b-container>
             <b-form >
                 <b-form-group  label="Nombre:" label-for="name"  >
                     <b-form-input id="name"
@@ -109,11 +109,11 @@
             :show="hasErrors" 
             variant="danger" 
             class="text-center">{{ error }}</b-alert>
-        </b-container>
         <template slot="modal-footer">
       <button class="btn btn-success btn-block" type="submit"  @click="crearUsuario">Registrarse</button>
     </template>
     </b-modal>
+    </b-container>
 </template>
 <script>
 import MpSelect from "../components/common/MpSelect";

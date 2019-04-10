@@ -1,5 +1,5 @@
 <template>
-    <b-container  id="app" fluid class="no-padding-main">
+    <b-container  id="app" fluid class="height no-padding-main">
       <link rel="shortcut icon" type="image/png" href="components/favIcon.png"/>
       <!-- <router-link to="/">Inicio</router-link>
       <router-link to="/main">Main</router-link> -->
@@ -16,9 +16,19 @@ export default {
 </script>
 
 <style >
-body{
-    background-image:url('../../../public/images/fadu.jpg');
+/* es el alto de el background */
+.height{
   height: 100vh;
+      overflow-x: hidden;
+
+}
+
+body{
+  /* height: 100vh; */
+    overflow-x: hidden;
+
+    /* ------------background--------   */
+    background-image:url('../../../public/images/fadu.jpg');
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;

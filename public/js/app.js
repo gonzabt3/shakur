@@ -66980,7 +66980,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\nbody{\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n  height: 100vh;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* es el alto de el background */\n.height{\n  height: 100vh;\n      overflow-x: hidden;\n}\nbody{\n  /* height: 100vh; */\n    overflow-x: hidden;\n\n    /* ------------background--------   */\n    background-image:url(" + escape(__webpack_require__(355)) + ");\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -67056,7 +67056,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { staticClass: "no-padding-main", attrs: { id: "app", fluid: "" } },
+    { staticClass: "height no-padding-main", attrs: { id: "app", fluid: "" } },
     [
       _c("link", {
         attrs: {
@@ -70595,15 +70595,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-modal",
-    {
-      ref: "newUser",
-      attrs: { id: "newUser", title: "Crear Usuario" },
-      on: { hide: _vm.cleanModal }
-    },
+    "b-container",
     [
       _c(
-        "b-container",
+        "b-modal",
+        {
+          ref: "newUser",
+          attrs: { id: "newUser", title: "Crear Usuario" },
+          on: { hide: _vm.cleanModal }
+        },
         [
           _c(
             "b-form",
@@ -70900,24 +70900,24 @@ var render = function() {
               attrs: { show: _vm.hasErrors, variant: "danger" }
             },
             [_vm._v(_vm._s(_vm.error))]
-          )
+          ),
+          _vm._v(" "),
+          _c("template", { slot: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success btn-block",
+                attrs: { type: "submit" },
+                on: { click: _vm.crearUsuario }
+              },
+              [_vm._v("Registrarse")]
+            )
+          ])
         ],
-        1
-      ),
-      _vm._v(" "),
-      _c("template", { slot: "modal-footer" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-block",
-            attrs: { type: "submit" },
-            on: { click: _vm.crearUsuario }
-          },
-          [_vm._v("Registrarse")]
-        )
-      ])
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
