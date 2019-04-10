@@ -61,7 +61,7 @@
                     <hr />
                     <b-row>
                         <b-col cols="2">
-                            <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" />
+                            <!-- <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" /> -->
                         </b-col>
                         <b-col cols="7">
                             <b-form-input id="newComent"
@@ -70,8 +70,10 @@
                             placeholder="Comenta algo">
                             </b-form-input>
                         </b-col>
-                        <b-col>
-                            <b-button @click="submitComentario" type="submit" variant="primary">Comentar</b-button>
+                        <b-col cols="3">
+                            <b-button @click="submitComentario" type="submit" variant="primary">
+                            <font-awesome-icon   icon="comment" />                                
+                            </b-button>
                         </b-col>
                     </b-row>
                 </div>

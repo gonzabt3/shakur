@@ -97,8 +97,6 @@
                     <b-form-checkbox-group  id="checkCondiciones">
                         <b-form-checkbox 
                                 name="checkCondiciones"
-                                :class="{'is-invalid':errors.has('checkCondiciones')}"
-                                v-validate="'required'" 
                                 required 
                                 value="checkCondiciones">
                             Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
@@ -169,12 +167,12 @@ export default {
             // console.log(this.usuario);
             this.$validator.validateAll().then(result => {
                 if(result){
-                     this.axios.post('api/auth/signup/',this.usuario)
+                this.axios.post('api/auth/signup/',this.usuario)
                 .then((response) => {
                     this.$emit("success",this.usuario.email)     
                     this.$refs.newUser.hide();
                     
-                })
+                    })
                 }else {
                     this.error = "Por favor, corrija los campos en rojo";
                 }
