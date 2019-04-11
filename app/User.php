@@ -2,13 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,Notifiable;
+    use HasApiTokens,Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,7 @@ class User extends Authenticatable
     // protected $table = 'users';
 
     protected $fillable = [
-        'name','apellido','alias','carrera_id', 'email', 'password',
+        'name','apellido','alias','carrera_id', 'email', 'password','active', 'activation_token',
     ];
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','activation_token',
     ];
 
     public function carrera(){
