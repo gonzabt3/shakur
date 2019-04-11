@@ -69986,9 +69986,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result) {
           evt.preventDefault();
           _this.axios.post('api/auth/login/', _this.form).then(function (response) {
-            console.log(response);
-            sessionStorage.SessionName = "token";
-            sessionStorage.setItem("token", response.data.access_token);
+            // console.log(response);
+
+            _this.axios.defaults.headers.common['Accept'] = 'application/json';
+            _this.axios.defaults.headers.common['Content-Type'] = 'application/json';
+            _this.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            _this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
+            // sessionStorage.SessionName = "token"
+            // sessionStorage.setItem("token",response.data.access_token);
             _this.$router.push("/main");
           }).catch(function (error) {
             if (error.response.status == 401) {
@@ -71539,8 +71544,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       //vacio el array para que recarle los post
       this.arrayPosts = [];
-      this.axios.defaults.headers.common['Accept'] = 'application/json';
-      this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+      // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+      // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
       // console.log(sessionStorage.getItem('token'));
       this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
         var data = _ref.data;
@@ -75805,7 +75810,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$root.$emit('bv::show::modal', 'configUser');
         },
         logout: function logout() {
-            alert("Asd");
+            this.axios.get('api/logout2').then(function (response) {
+                console.log(response);
+            });
         }
     }
 });
@@ -76031,7 +76038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getInfoUser: function getInfoUser() {
             var _this = this;
 
-            this.$http.get("api/usuario").then(function (response) {
+            this.axios.get("api/usuario").then(function (response) {
                 var user = response.data;
                 // console.log(user);
 
@@ -76052,7 +76059,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMaterias: function getMaterias() {
             var _this2 = this;
 
-            this.$http.get("api/materias/" + this.idCarrera).then(function (response) {
+            this.axios.get("api/materias/" + this.idCarrera).then(function (response) {
                 _.map(response.data, function (materia) {
                     _this2.opcionesMaterias.push({
                         label: materia.materia,
@@ -76372,7 +76379,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("h6", [
-            _c("a", { staticClass: "pointer", attrs: { href: "/logout" } }, [
+            _c("a", { staticClass: "pointer", on: { click: _vm.logout } }, [
               _vm._v("Salir")
             ])
           ])
@@ -76756,9 +76763,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMaterias: function getMaterias() {
       var _this = this;
 
-      this.axios.defaults.headers.common['Accept'] = 'application/json';
-      this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
-      this.$http.get("api/materias2/user").then(function (response) {
+      // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+      // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
+      this.axios.get("api/materias2/user").then(function (response) {
         _this.username = response.data.username;
         response.data.materias.forEach(function (materia) {
           var obj = {

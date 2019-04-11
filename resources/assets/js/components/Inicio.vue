@@ -131,9 +131,14 @@ export default {
           evt.preventDefault();
           this.axios.post('api/auth/login/',this.form)
             .then((response) =>{
-              console.log(response);
-              sessionStorage.SessionName = "token"
-              sessionStorage.setItem("token",response.data.access_token);
+              // console.log(response);
+
+              this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+              this.axios.defaults.headers.common['Content-Type'] = 'application/json'; 
+              this.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
+              this.axios.defaults.headers.common['Authorization'] = 'Bearer '+response.data.access_token; 
+              // sessionStorage.SessionName = "token"
+              // sessionStorage.setItem("token",response.data.access_token);
               this.$router.push("/main");
         })
         .catch(error => {

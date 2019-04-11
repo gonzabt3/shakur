@@ -117,7 +117,7 @@ export default {
     },
     methods:{
         getInfoUser(){
-            this.$http.get("api/usuario")
+            this.axios.get("api/usuario")
                 .then(response => {
                     let user=response.data;
                     // console.log(user);
@@ -137,7 +137,7 @@ export default {
             this.data.materias=materiasSelected
         },
         getMaterias() {
-            this.$http
+            this.axios
                 .get("api/materias/"+this.idCarrera)
                 .then(response => {
                     _.map(response.data, materia => {

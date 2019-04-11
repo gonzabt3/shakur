@@ -31,9 +31,9 @@ export default {
   },
   methods:{
     getMaterias(){
-        this.axios.defaults.headers.common['Accept'] = 'application/json'; 
-        this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
-        this.$http
+        // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+        // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
+        this.axios
           .get("api/materias2/user")
           .then(response => {
             this.username=response.data.username;

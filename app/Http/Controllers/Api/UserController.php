@@ -18,22 +18,22 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function store(){
+    // public function store(){
         
-      $user =  $this->validate(request(),[
-            "name" => 'required',
-            "apellido" => 'required',
-            "carrera_id" => 'required',
-            "email" => 'required|email',
-            "password" => 'required',
-        ]);
+    //   $user =  $this->validate(request(),[
+    //         "name" => 'required',
+    //         "apellido" => 'required',
+    //         "carrera_id" => 'required',
+    //         "email" => 'required|email',
+    //         "password" => 'required',
+    //     ]);
         
-        // dd($user);
+    //     // dd($user);
 
-        User::create($user);
+    //     User::create($user);
 
-        // auth()->login($user);
-    }
+    //     // auth()->login($user);
+    // }
 
     public function config(Request $request,Response $response){
 

@@ -2,7 +2,7 @@
     <b-container>
         <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6 @click="showModal"><u class="pointer">Mi perfil</u></h6>
-            <h6  ><a href="/logout" class="pointer">Salir</a></h6>
+            <h6  ><a @click="logout" class="pointer">Salir</a></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>
         <modal-config-user></modal-config-user>
@@ -19,8 +19,11 @@ export default {
           this.$root.$emit('bv::show::modal','configUser')
       },
       logout(){
-          alert("Asd");
-      }
+          this.axios.get('api/logout2')
+          .then((response)=>{
+              console.log(response)
+          })
+    }
   }
 };
 </script>

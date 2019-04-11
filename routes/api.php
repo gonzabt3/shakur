@@ -24,11 +24,11 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/signup', 'Api\AuthController@signup');
   
     Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('logout', 'AuthController@logout');
-    // Route::get('user', 'AuthController@user');
+        Route::get('/logout', 'AuthController@logout');
+        // Route::get('user', 'AuthController@user');
 
-    //traer publicaciones
-    Route::get('/publicacion/{idMateria}','Api\PublicacionesController@index');
+        //traer publicaciones
+        Route::get('/publicacion/{idMateria}','Api\PublicacionesController@index');
     });
 });
 
@@ -51,7 +51,7 @@ Route::middleware('auth:api')->post('/comentario','Api\ComentariosController@sto
 Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosController@getComentarios');
 
 //crea usuario
-Route::post('/usuario','Api\UserController@store');
+// Route::post('/usuario','Api\UserController@store');
 
 //get usuario
 Route::middleware('auth:api')->get('/usuario','Api\UserController@index');
