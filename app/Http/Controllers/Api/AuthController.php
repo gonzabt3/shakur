@@ -3,7 +3,8 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use Carbon\Carbon;
-
+use Avatar;
+use Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,9 @@ class AuthController extends Controller
         ]);
         $user->save();
         
+        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+
         $user->notify(new SignupActivate($user));
 
         return response()->json([

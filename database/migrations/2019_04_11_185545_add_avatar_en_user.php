@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNotifacitonEnUsers extends Migration
+class AddAvatarEnUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddNotifacitonEnUsers extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function($table) {
+            $table->string('avatar')->default('avatar.png');
+        });
     }
 
     /**

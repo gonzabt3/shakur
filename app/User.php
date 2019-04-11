@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Storage;
 
 class User extends Authenticatable
 {
@@ -16,11 +17,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $appends = ['avatar_url'];
+    protected $dates = ['deleted_at'];
 
     // protected $table = 'users';
 
     protected $fillable = [
-        'name','apellido','alias','carrera_id', 'email', 'password','active', 'activation_token',
+        'name','apellido','alias','carrera_id', 'email', 'password','active', 'activation_token','avatar',
     ];
 
     /**
@@ -31,6 +34,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','activation_token',
     ];
+
+    public function getAvatarUrlAttribute()
+    {
+        return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
+    }
 
     public function carrera(){
         return $this->belongsTo(Carrera::class);
