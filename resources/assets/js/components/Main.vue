@@ -103,19 +103,25 @@ export default {
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
+  beforeMount(){
+    this.setHeader();
+  }, 
   mounted(){
         this.getPosts();
   },
   methods:{
+    setHeader(){
+        this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+        this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
+    },
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(){
         //vacio el array para que recarle los post
         this.arrayPosts=[]
-        // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
-        // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
         // console.log(sessionStorage.getItem('token'));
         this.axios.get('api/publicacion/'+this.idMateria)
                     .then(({data}) => {
+                      // console.log(data);
                         this.arrayPosts=data;
 
                     });

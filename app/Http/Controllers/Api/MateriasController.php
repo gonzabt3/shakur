@@ -19,7 +19,12 @@ class MateriasController extends Controller
         $this->materiaService = $materiaService;
     }
 
-    public function materiasXcarrera($id){
+    public function materiasXcarrera($id=null){
+
+        // if($id==null){
+            $id=Auth::user()->carrera_id;
+        // }
+        
         return Carrera::find($id)->materias;
     }
 

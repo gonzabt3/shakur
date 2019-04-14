@@ -92,7 +92,7 @@ export default {
     data(){
         return {
             opcionesMaterias:[],
-            idCarrera:15,
+            idCarrera:null,
             data: {
                 name: '',
                 apellido: '',
@@ -120,8 +120,8 @@ export default {
             this.axios.get("api/usuario")
                 .then(response => {
                     let user=response.data;
-                    // console.log(user);
 
+                    this.idCarrera=user.carrera_id
                     this.data.name=user.name
                     this.data.apellido=user.apellido
                     this.data.alias=user.alias

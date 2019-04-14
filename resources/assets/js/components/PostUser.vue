@@ -4,7 +4,7 @@
             <b-card class="shadow">
                 <b-row>
                     <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.imagen" alt="Thumbnail" />
+                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
                     </b-col>
                     <b-col>
                         <b-row>

@@ -136,9 +136,12 @@ export default {
               this.axios.defaults.headers.common['Accept'] = 'application/json'; 
               this.axios.defaults.headers.common['Content-Type'] = 'application/json'; 
               this.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
-              this.axios.defaults.headers.common['Authorization'] = 'Bearer '+response.data.access_token; 
-              // sessionStorage.SessionName = "token"
-              // sessionStorage.setItem("token",response.data.access_token);
+
+              sessionStorage.SessionName = "token"
+              sessionStorage.setItem("token",response.data.access_token);
+
+              this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem("token"); 
+             
               this.$router.push("/main");
         })
         .catch(error => {

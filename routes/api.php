@@ -79,7 +79,7 @@ Route::middleware('auth:api')->post('/like/comentario','Api\LikeController@store
 Route::middleware('auth:api')->delete('/like/comentario/{idPost}','Api\LikeController@deleteComentario');
 
 //traigo materias por carrera
-Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
+Route::middleware('auth:api')->get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
 
 //traigo materias por usuario
 Route::middleware('auth:api')->get('/materias2/user','Api\MateriasController@materiasXusuario');

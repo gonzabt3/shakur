@@ -69991,9 +69991,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.axios.defaults.headers.common['Accept'] = 'application/json';
             _this.axios.defaults.headers.common['Content-Type'] = 'application/json';
             _this.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-            _this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-            // sessionStorage.SessionName = "token"
-            // sessionStorage.setItem("token",response.data.access_token);
+
+            sessionStorage.SessionName = "token";
+            sessionStorage.setItem("token", response.data.access_token);
+
+            _this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem("token");
+
             _this.$router.push("/main");
           }).catch(function (error) {
             if (error.response.status == 401) {
@@ -71533,23 +71536,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   destroyed: function destroyed() {
     window.removeEventListener('resize', this.handleResize);
   },
+  beforeMount: function beforeMount() {
+    this.setHeader();
+  },
   mounted: function mounted() {
     this.getPosts();
   },
 
   methods: {
+    setHeader: function setHeader() {
+      this.axios.defaults.headers.common['Accept'] = 'application/json';
+      this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+    },
+
     //   TRAE TODAS LAS PUBLICACIONES
     getPosts: function getPosts() {
       var _this = this;
 
       //vacio el array para que recarle los post
       this.arrayPosts = [];
-      // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
-      // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
       // console.log(sessionStorage.getItem('token'));
       this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
         var data = _ref.data;
 
+        // console.log(data);
         _this.arrayPosts = data;
       });
     },
@@ -72663,7 +72673,7 @@ var render = function() {
                           height: "75",
                           thumbnail: "",
                           fluid: "",
-                          src: _vm.postData.imagen,
+                          src: _vm.postData.user.avatar_url,
                           alt: "Thumbnail"
                         }
                       })
@@ -76010,7 +76020,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             opcionesMaterias: [],
-            idCarrera: 15,
+            idCarrera: null,
             data: {
                 name: '',
                 apellido: '',
@@ -76040,8 +76050,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.axios.get("api/usuario").then(function (response) {
                 var user = response.data;
-                // console.log(user);
 
+                _this.idCarrera = user.carrera_id;
                 _this.data.name = user.name;
                 _this.data.apellido = user.apellido;
                 _this.data.alias = user.alias;
