@@ -3,6 +3,13 @@
          <b-modal   ref="configUser" id="configUser" title="Configuracion usuario">
                 <b-row >
                     <b-col  cols="12">
+                        <b-row >
+                            <b-col > 
+                                <b-form-group>
+                                    <b-img @click="avatarModal"  style="cursor:pointer" center rounded="circle" thumbnail fluid :src="data.avatar_url" alt="Thumbnail" />
+                                </b-form-group>
+                            </b-col>
+                        </b-row>
                         <b-row>
                             <b-col cols="2">
                                 <b-form-group id="alias"
@@ -82,13 +89,15 @@
                     <button class="btn btn-success btn-block" @click="submit" type="submit">Guardar</button>
                 </template>
         </b-modal>
+        <modal-avatar></modal-avatar>
     </b-container>
 </template>
 <script>
 import vSelect from "vue-select";
+import ModalAvatar from '../modals/ModalAvatar';
 
 export default {
-    components: { vSelect },
+    components: { vSelect,ModalAvatar },
     data(){
         return {
             opcionesMaterias:[],
@@ -97,7 +106,8 @@ export default {
                 name: '',
                 apellido: '',
                 alias: '',
-                materias:null
+                materias:null,
+                avatar_url:''
             },
             checkedAlias:true
         };
@@ -116,6 +126,9 @@ export default {
         }
     },
     methods:{
+        avatarModal(){
+            this.$root.$emit('bv::show::modal','modalAvatar')
+        },
         getInfoUser(){
             this.axios.get("api/usuario")
                 .then(response => {
@@ -125,6 +138,12 @@ export default {
                     this.data.name=user.name
                     this.data.apellido=user.apellido
                     this.data.alias=user.alias
+                    this.data.avatar_url=user.avatar_url
+
+                    //deshabilito el campo de alias
+                    if(this.data.alias==null){
+                        this.checkedAlias=false
+                    }
                     this.setMaterias(user.materias)
                     // this.data.materias=[{label:user.materias[0].materia,value:user.materias[0].id}]
                 })

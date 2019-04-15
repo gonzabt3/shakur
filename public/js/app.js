@@ -75943,6 +75943,8 @@ exports.push([module.i, "\n.border-right-20[data-v-48bcd248]{\n    border-right-
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(434);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modals_ModalAvatar__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modals_ModalAvatar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__modals_ModalAvatar__);
 //
 //
 //
@@ -76029,11 +76031,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a },
+    components: { vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a, ModalAvatar: __WEBPACK_IMPORTED_MODULE_1__modals_ModalAvatar___default.a },
     data: function data() {
         return {
             opcionesMaterias: [],
@@ -76042,7 +76053,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 apellido: '',
                 alias: '',
-                materias: null
+                materias: null,
+                avatar_url: ''
             },
             checkedAlias: true
         };
@@ -76062,6 +76074,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        avatarModal: function avatarModal() {
+            this.$root.$emit('bv::show::modal', 'modalAvatar');
+        },
         getInfoUser: function getInfoUser() {
             var _this = this;
 
@@ -76072,6 +76087,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.data.name = user.name;
                 _this.data.apellido = user.apellido;
                 _this.data.alias = user.alias;
+                _this.data.avatar_url = user.avatar_url;
+
+                //deshabilito el campo de alias
+                if (_this.data.alias == null) {
+                    _this.checkedAlias = false;
+                }
                 _this.setMaterias(user.materias);
                 // this.data.materias=[{label:user.materias[0].materia,value:user.materias[0].id}]
             });
@@ -76147,6 +76168,37 @@ var render = function() {
                 "b-col",
                 { attrs: { cols: "12" } },
                 [
+                  _c(
+                    "b-row",
+                    [
+                      _c(
+                        "b-col",
+                        [
+                          _c(
+                            "b-form-group",
+                            [
+                              _c("b-img", {
+                                staticStyle: { cursor: "pointer" },
+                                attrs: {
+                                  center: "",
+                                  rounded: "circle",
+                                  thumbnail: "",
+                                  fluid: "",
+                                  src: _vm.data.avatar_url,
+                                  alt: "Thumbnail"
+                                },
+                                on: { click: _vm.avatarModal }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _c(
                     "b-row",
                     [
@@ -76368,7 +76420,9 @@ var render = function() {
           ])
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("modal-avatar")
     ],
     1
   )
@@ -98898,6 +98952,151 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 451 */,
+/* 452 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(453)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(455)
+/* template */
+var __vue_template__ = __webpack_require__(456)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-563fb618"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/modals/ModalAvatar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-563fb618", Component.options)
+  } else {
+    hotAPI.reload("data-v-563fb618", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 453 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(454);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("65d9f393", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-563fb618\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAvatar.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-563fb618\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAvatar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 454 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 455 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 456 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "modalAvatar",
+          attrs: { id: "modalAvatar", title: "Selecciona tu imagen de perfil" }
+        },
+        [_c("b-row")],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-563fb618", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
