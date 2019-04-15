@@ -4,9 +4,25 @@
                 <b-row >
                     <b-col  cols="12">
                         <b-row >
+                            <b-col cols="4" />
                             <b-col > 
                                 <b-form-group>
-                                    <b-img @click="avatarModal"  style="cursor:pointer" center rounded="circle" thumbnail fluid :src="data.avatar_url" alt="Thumbnail" />
+                                    <!-- <b-img @click="avatarModal"  style="cursor:pointer" center rounded="circle" thumbnail fluid :src="data.avatar_url" alt="Thumbnail" /> -->
+                                     <croppa 
+                                     alt="Thumbnail"
+                                        class="c1"
+                                        :width="100"
+                                        :height="100"
+                                        :image-border-radius="50"
+                                        canvas-color="#e6e6e6"
+                                        placeholder="Selecciona una imagen" 
+                                        v-model="croppa"
+                                        :placeholder-font-size="8"
+                                        prevent-white-space
+                                        @init="onInit"
+                                        >
+                                          <img slot="initial" :src="data.avatar_url" />
+                                        </croppa>
                                 </b-form-group>
                             </b-col>
                         </b-row>
@@ -100,6 +116,7 @@ export default {
     components: { vSelect,ModalAvatar },
     data(){
         return {
+            croppa: {},
             opcionesMaterias:[],
             idCarrera:null,
             data: {
@@ -107,7 +124,8 @@ export default {
                 apellido: '',
                 alias: '',
                 materias:null,
-                avatar_url:''
+                avatar_url:'',
+                avatarFile:null
             },
             checkedAlias:true
         };
@@ -168,7 +186,7 @@ export default {
             })
         },
         submit(){
-            // console.log(this.data);
+            this.data.avatarFile=this.croppa.generateDataUrl()
             this.axios.post('api/usuario/config',this.data)
             .then((response) =>{
                 this.$refs.configUser.hide();
@@ -179,7 +197,24 @@ export default {
                 });    
                  window.location.reload()       
         })  
-        }
+        },
+        // ----------------AVATARRRR--------------
+         onInit() {
+            this.croppa.addClipPlugin(function (ctx, x, y, w, h) {
+            /*
+            * ctx: canvas context
+            * x: start point (top-left corner) x coordination
+            * y: start point (top-left corner) y coordination
+            * w: croppa width
+            * h: croppa height
+            */
+            console.log(x, y, w, h)
+            ctx.beginPath()
+            ctx.arc(x + w / 2, y + h / 2, w / 2, 0, 2 * Math.PI, true)
+            ctx.closePath()
+        })
+    }
+
     }
     
 }

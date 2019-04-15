@@ -21,6 +21,9 @@ import Notifications from 'vue-notification'
 //vee-validate
 import VeeValidate from 'vee-validate'
 
+//croppa
+import Croppa from 'vue-croppa';
+
 
 import Vue from 'vue';
 import App from './App';
@@ -36,6 +39,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));
 Vue.use(VeeValidate);
+Vue.use(Croppa);
 
 
 //pongo lodash
