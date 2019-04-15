@@ -72286,7 +72286,24 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", { attrs: { cols: "2" } }),
+          _c(
+            "b-col",
+            { attrs: { cols: "2" } },
+            [
+              _c("b-img", {
+                attrs: {
+                  rounded: "circle",
+                  width: "50",
+                  height: "50",
+                  thumbnail: "",
+                  fluid: "",
+                  src: _vm.comentarioData.user.avatar_url,
+                  alt: "Thumbnail"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "b-col",
@@ -76756,13 +76773,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Topbar',
   data: function data() {
     return {
       materias: [],
-      username: ''
+      username: '',
+      avatar_url: ''
     };
   },
   mounted: function mounted() {
@@ -76776,7 +76795,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
       // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
       this.axios.get("api/materias2/user").then(function (response) {
+        // console.log(response.data)
         _this.username = response.data.username;
+        _this.avatar_url = response.data.avatar;
         response.data.materias.forEach(function (materia) {
           var obj = {
             id: materia.id,
@@ -76846,11 +76867,15 @@ var render = function() {
             "b-navbar-nav",
             { staticClass: "ml-auto" },
             [
-              _c("h4", [_vm._v(_vm._s(_vm.username))]),
+              _c("h4", [_vm._v(_vm._s(_vm.username) + " ")]),
               _vm._v(" "),
-              _c("font-awesome-icon", {
-                staticClass: "pointer",
-                attrs: { icon: "user", size: "lg" }
+              _c("b-img", {
+                attrs: {
+                  rounded: "circle",
+                  width: "30",
+                  height: "30",
+                  src: _vm.avatar_url
+                }
               })
             ],
             1

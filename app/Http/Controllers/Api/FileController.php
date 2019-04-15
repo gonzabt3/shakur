@@ -34,7 +34,7 @@ class FileController extends Controller
 
         $file =$request->file('file');
 
-        $path =public_path().'/storage/app/public/'.$parameters['idMateria'];
+        $path =public_path().'/storage/app/public/files/'.$parameters['idMateria'];
 
         //si no existe el directorio lo creo
         // if(!FacedeFile::exists($path)){
@@ -46,7 +46,7 @@ class FileController extends Controller
         $parameters['user_id']=$user->id;
         
         //ruta del archivo a partir de public
-        $pathFile = '/public/'.$parameters['idMateria'];
+        $pathFile = '/public/files/'.$parameters['idMateria'];
         
         // AL FACADE SE LE PASE /PUBLIC PARA QUE LO GUARDE EN STORAGE/'PUBLIC'
         // PERO A LA BASE SE LE PASA STORAGE PORQUE CUANDO SE LE VA A BUSCAR SE VA A BUSCAR A LA CARPETA LOCALHOST/STORAGE 
@@ -57,7 +57,7 @@ class FileController extends Controller
         $fileName=$file->getClientOriginalName(); 
         Storage::disk('local')->putFileAs($pathFile,$file,$fileName);  
 
-        $parameters['path'] = 'storage/'.$parameters['idMateria'].'/'.$file->getClientOriginalName();
+        $parameters['path'] = 'storage/files/'.$parameters['idMateria'].'/'.$file->getClientOriginalName();
         $parameters['materia_id']=$parameters['idMateria'];
 
         $fileObject = File::create($parameters);

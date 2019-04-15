@@ -35,8 +35,12 @@ class MateriasController extends Controller
 
     public function materiasXusuario(){
         $user = Auth::user();
+        
+        
         $data['materias']=$user->materias;
         $data['username']=$user->name;
+        $data['avatar']=$user->getAvatarUrlAttribute();
+        
         return $data;
     }
 }

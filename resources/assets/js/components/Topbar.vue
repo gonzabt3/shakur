@@ -10,8 +10,9 @@
     </b-navbar-nav>
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-      <h4>{{username}}</h4>
-      <font-awesome-icon  icon="user"  class="pointer" size="lg"  />
+      <h4>{{username}} </h4>
+      <!-- <font-awesome-icon  icon="user"  class="pointer" size="lg"  /> -->
+      <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
 </b-navbar>
@@ -23,7 +24,8 @@ export default {
   data(){
     return{
       materias:[],
-      username:''
+      username:'',
+      avatar_url:''
     }
   },
   mounted(){
@@ -36,7 +38,9 @@ export default {
         this.axios
           .get("api/materias2/user")
           .then(response => {
+            // console.log(response.data)
             this.username=response.data.username;
+            this.avatar_url=response.data.avatar;
               response.data.materias.forEach(materia => {
                 let obj={
                   id:materia.id,
