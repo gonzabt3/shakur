@@ -41,13 +41,14 @@ class UserController extends Controller
             "name" => 'required',
             "apellido" => 'required',
             "alias" => 'nullable',
-            "materias" => 'required'
-        ]);
-        
+            "materias" => 'required',
+            "avatar_file" => 'nullable'
+            ]);
+
         $user = Auth::user();
         // $idUsuario=$user->id;
         // dd($data);
-
+        
         $this->userService->update($data);
     }
 

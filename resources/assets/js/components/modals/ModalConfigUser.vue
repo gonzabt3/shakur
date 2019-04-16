@@ -119,13 +119,13 @@ export default {
             croppa: {},
             opcionesMaterias:[],
             idCarrera:null,
+            blobFile:null,
             data: {
                 name: '',
                 apellido: '',
                 alias: '',
                 materias:null,
-                avatar_url:'',
-                avatarFile:null
+                avatar_url:''
             },
             checkedAlias:true
         };
@@ -185,9 +185,23 @@ export default {
                     });
             })
         },
-        submit(){
-            this.data.avatarFile=this.croppa.generateDataUrl()
-            this.axios.post('api/usuario/config',this.data)
+         async submit(){
+
+            let formData = new FormData();
+            
+            //paso del blob generado por el cropper a file jpg
+            this.blobFile = await this.blobToFile()
+            let file = new File([this.blobFile], "name", {type: "image/png", lastModified: Date()});
+
+            formData.append('name',this.data.name);
+            formData.append('apellido',this.data.apellido);
+            formData.append('avatar_file',file);
+            formData.append('alias',this.data.alias);
+            formData.append('materias',this.data.materias);
+            
+            
+
+            this.axios.post('api/usuario/config',formData)
             .then((response) =>{
                 this.$refs.configUser.hide();
                 this.$notify({
@@ -208,11 +222,14 @@ export default {
             * w: croppa width
             * h: croppa height
             */
-            console.log(x, y, w, h)
+            // console.log(x, y, w, h)
             ctx.beginPath()
             ctx.arc(x + w / 2, y + h / 2, w / 2, 0, 2 * Math.PI, true)
             ctx.closePath()
         })
+    },
+     blobToFile(){
+        return this.croppa.promisedBlob('image/png', 0.8);
     }
 
     }

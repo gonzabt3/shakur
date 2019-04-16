@@ -11,8 +11,10 @@ use App\File;
 use App\Comentario;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserService {
@@ -64,8 +66,11 @@ class UserService {
         $user = Auth::user();
 
         // $user->toArray($parameters);
-         $this->userResource->update($user->id,$parameters);
-         $this->storeMaterias($parameters);
+        $this->userResource->update($user->id,$parameters);
+        $this->updateAvatar($parameters['avatar_file']);
+
+
+        //  $this->storeMaterias($parameters);
     }
 
     public function storeMaterias($parameters){
@@ -81,5 +86,15 @@ class UserService {
             }
 
         }
+    }
+
+    public function updateAvatar($file){
+
+        $user = Auth::user();
+
+        $path ='public/avatars/'.$user->id;
+
+        Storage::disk('local')->putFileAs($path,$file,'avatar.png');  
+
     }
 }
