@@ -48,7 +48,8 @@
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
                 ></post-new>
-                <post-user  
+                <post-user 
+                @showModalLikes="showModalLikes" 
                 @getPosts="getPosts"
                 v-for="item in arrayPosts"
                 :postData="item"
@@ -67,6 +68,7 @@
             </b-col>
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
+        <modal-likes lazy :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
     </b-container>
 </template>
 
@@ -79,15 +81,18 @@ import SettingsWall from '../components/SettingsWall';
 import PostNew from '../components/PostNew';
 import Topbar from '../components/Topbar';
 import ModalComunication from '../components/modals/ModalComunication'
+import ModalLikes from '../components/modals/ModalLikes'
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes},
   data(){
       return{
           arrayPosts:[],
           idMateria:null, //se cambia en el metodo update  walls,
           celular:false,
+          idPostLikeModal:'',
+          typeLikeModal:'',
           modalComunication:{
             mailNewUser:'',
             p1:'',
@@ -110,6 +115,13 @@ export default {
         this.getPosts();
   },
   methods:{
+    showModalLikes(idPost,type){
+     
+      this.typeLikeModal=type
+      this.idPostLikeModal=idPost
+      // this.$root.$emit('modalLikes',idPost,type);
+      this.$root.$emit('bv::show::modal','modalLikes')
+     },
     setHeader(){
         this.axios.defaults.headers.common['Accept'] = 'application/json'; 
         this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 

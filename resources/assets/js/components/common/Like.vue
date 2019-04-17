@@ -1,8 +1,12 @@
 <template>
+<div class="btn-group" role="group" aria-label="Basic example">
     <b-button size="sm" @click="btnLike">
         <label class="no-margin-bottom">{{cantidadLikes}}</label>
-        <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
+        {{stringBtnLike}}
+        <b-img :src="beerIcon" fluid alt="beerLike" /> 
     </b-button>
+      <button @click="showModalLike"  type="button" class="btn btn-secondary">Ver likes</button>
+</div>
 </template>
 <script>
 export default {
@@ -20,6 +24,9 @@ export default {
             this.estadoBtnLike();
         },
         methods:{
+            showModalLike(){
+                this.$emit("showModal",this.idPost,this.tipo);
+            },
             btnLike() {
                     if (!this.btnLikeEstado) {
                 

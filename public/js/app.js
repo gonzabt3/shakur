@@ -73286,6 +73286,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Topbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modals_ModalLikes__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modals_ModalLikes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_modals_ModalLikes__);
 //
 //
 //
@@ -73358,6 +73360,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -73370,12 +73375,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Main',
-  components: { Topbar: __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_0__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_1__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_2__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_3__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_4__components_PostNew___default.a, ModalComunication: __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication___default.a },
+  components: { Topbar: __WEBPACK_IMPORTED_MODULE_5__components_Topbar___default.a, PostUser: __WEBPACK_IMPORTED_MODULE_0__components_PostUser___default.a, EventsWall: __WEBPACK_IMPORTED_MODULE_1__components_EventsWall___default.a, DocWall: __WEBPACK_IMPORTED_MODULE_2__components_DocWall___default.a, SettingsWall: __WEBPACK_IMPORTED_MODULE_3__components_SettingsWall___default.a, PostNew: __WEBPACK_IMPORTED_MODULE_4__components_PostNew___default.a, ModalComunication: __WEBPACK_IMPORTED_MODULE_6__components_modals_ModalComunication___default.a, ModalLikes: __WEBPACK_IMPORTED_MODULE_7__components_modals_ModalLikes___default.a },
   data: function data() {
     return {
       arrayPosts: [],
       idMateria: null, //se cambia en el metodo update  walls,
       celular: false,
+      idPostLikeModal: '',
+      typeLikeModal: '',
       modalComunication: {
         mailNewUser: '',
         p1: '',
@@ -73399,6 +73406,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    showModalLikes: function showModalLikes(idPost, type) {
+
+      this.typeLikeModal = type;
+      this.idPostLikeModal = idPost;
+      // this.$root.$emit('modalLikes',idPost,type);
+      this.$root.$emit('bv::show::modal', 'modalLikes');
+    },
     setHeader: function setHeader() {
       this.axios.defaults.headers.common['Accept'] = 'application/json';
       this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
@@ -73635,6 +73649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -73679,6 +73694,9 @@ var dateFormat = "DD-MM-YYYY HH:mm";
         }
     },
     methods: {
+        showModalLikes: function showModalLikes(idPost, type) {
+            this.$emit("showModalLikes", idPost, type);
+        },
         submitComentario: function submitComentario() {
             var _this = this;
 
@@ -73921,7 +73939,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73932,6 +73950,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -73955,6 +73977,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        showModalLike: function showModalLike() {
+            this.$emit("showModal", this.idPost, this.tipo);
+        },
         btnLike: function btnLike() {
             var _this = this;
 
@@ -74008,15 +74033,36 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-button",
-    { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
+    "div",
+    {
+      staticClass: "btn-group",
+      attrs: { role: "group", "aria-label": "Basic example" }
+    },
     [
-      _c("label", { staticClass: "no-margin-bottom" }, [
-        _vm._v(_vm._s(_vm.cantidadLikes))
-      ]),
+      _c(
+        "b-button",
+        { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
+        [
+          _c("label", { staticClass: "no-margin-bottom" }, [
+            _vm._v(_vm._s(_vm.cantidadLikes))
+          ]),
+          _vm._v("\n        " + _vm._s(_vm.stringBtnLike) + "\n        "),
+          _c("b-img", {
+            attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("b-img", { attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" } }),
-      _vm._v(" " + _vm._s(_vm.stringBtnLike) + "\n")
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: { click: _vm.showModalLike }
+        },
+        [_vm._v("Ver likes")]
+      )
     ],
     1
   )
@@ -74651,7 +74697,8 @@ var render = function() {
                               "id-post": _vm.postData.id,
                               "url-like": "api/like",
                               tipo: "mg"
-                            }
+                            },
+                            on: { showModal: _vm.showModalLikes }
                           }),
                           _vm._v(" "),
                           _c(
@@ -80019,7 +80066,10 @@ var render = function() {
                     return _c("post-user", {
                       key: item.id,
                       attrs: { postData: item },
-                      on: { getPosts: _vm.getPosts }
+                      on: {
+                        showModalLikes: _vm.showModalLikes,
+                        getPosts: _vm.getPosts
+                      }
                     })
                   })
                 ],
@@ -80059,6 +80109,10 @@ var render = function() {
           "close-out-side": false
         },
         on: { openMiPerfil: _vm.openMiPerfil }
+      }),
+      _vm._v(" "),
+      _c("modal-likes", {
+        attrs: { lazy: "", id: _vm.idPostLikeModal, type: _vm.typeLikeModal }
       })
     ],
     1
@@ -101905,6 +101959,161 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 460 */,
+/* 461 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(462)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(464)
+/* template */
+var __vue_template__ = __webpack_require__(465)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-33cf131e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/modals/ModalLikes.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33cf131e", Component.options)
+  } else {
+    hotAPI.reload("data-v-33cf131e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 462 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(463);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("317ba6ce", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33cf131e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalLikes.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33cf131e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalLikes.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 463 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 464 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['id', 'type'],
+    watch: {
+        id: function id(val) {
+            console.log("id".val);
+        }
+    },
+    mounted: function mounted() {
+        console.log(this.id);
+        console.log(this.type);
+    },
+
+    methods: {}
+});
+
+/***/ }),
+/* 465 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-modal",
+        { ref: "modalLikes", attrs: { id: "modalLikes", "hide-footer": true } },
+        [_c("b-row")],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-33cf131e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

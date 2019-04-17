@@ -40,6 +40,7 @@
                     <b-form-group>
                     <b-col  class="">
                         <like
+                        @showModal="showModalLikes"
                         :likes-data="postData.likes"
                         :flag-like="postData.flagLike"
                         :id-post="postData.id"
@@ -125,6 +126,9 @@ export default {
         }
     },
 methods: {
+    showModalLikes(idPost,type){
+        this.$emit("showModalLikes",idPost,type);
+    },
     submitComentario(){
         // console.log(this.objectComentario);
         this.axios.post('api/comentario',this.objectComentario)
