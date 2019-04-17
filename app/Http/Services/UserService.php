@@ -70,14 +70,15 @@ class UserService {
         $this->updateAvatar($parameters['avatar_file']);
 
 
-        //  $this->storeMaterias($parameters);
+         $this->storeMaterias($parameters);
     }
 
     public function storeMaterias($parameters){
         $user = Auth::user();
 
-        // dd($parameters);
-        $materias=$parameters['materias'];
+
+        $materias=json_decode($parameters['materias'],true);
+
         //circo para guardar las materias x usuario
         foreach ($materias as $materia) {
                 

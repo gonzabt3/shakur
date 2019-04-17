@@ -197,8 +197,10 @@ export default {
             formData.append('apellido',this.data.apellido);
             formData.append('avatar_file',file);
             formData.append('alias',this.data.alias);
-            formData.append('materias',this.data.materias);
+            formData.append('materias',JSON.stringify(this.data.materias));
             
+            console.log(formData.get('materias'));
+            // console.log(formData.get(name));
             
 
             this.axios.post('api/usuario/config',formData)
