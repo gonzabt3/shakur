@@ -81,6 +81,12 @@ class FileController extends Controller
         public function delete(Request $request,Response $response,Int $id){
             //corroboro que sea el autor el que lo esta borrando
             if(Auth::user()->id==File::find($id)->user_id){
+                $path_file= File::find($id)->path;
+
+                $path_final=str_replace('storage/','public/',$path_file);
+
+                Storage::disk('local')->delete($path_final);
+
                 File::destroy($id);
             }
         }
