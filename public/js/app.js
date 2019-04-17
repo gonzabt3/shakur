@@ -77690,8 +77690,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$root.$emit('bv::show::modal', 'configUser');
         },
         logout: function logout() {
-            this.axios.get('api/logout2').then(function (response) {
-                console.log(response);
+            this.axios.get('api/auth/logout').then(function (response) {
+                window.location.replace("/");
             });
         }
     }

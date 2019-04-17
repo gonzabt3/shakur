@@ -25,7 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('signup/activate/{token}', 'Api\AuthController@signupActivate');    
 
     Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('logout', 'AuthController@logout');
+        Route::get('logout', 'Api\AuthController@logout');
         // Route::get('user', 'AuthController@user');
 
         //traer publicaciones

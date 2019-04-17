@@ -19,9 +19,9 @@ export default {
           this.$root.$emit('bv::show::modal','configUser')
       },
       logout(){
-          this.axios.get('api/logout2')
+          this.axios.get('api/auth/logout')
           .then((response)=>{
-              console.log(response)
+                window.location.replace("/");
           })
     }
   }
