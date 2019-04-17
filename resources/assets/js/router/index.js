@@ -6,6 +6,8 @@ import Main from '../components/Main';
 Vue.use(Router);
 
 export default new Router({
+  // PONE EL # EN LA URL
+  mode: 'history',
   routes: [
     {
       path: '/',
