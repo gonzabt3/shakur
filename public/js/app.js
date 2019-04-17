@@ -78033,7 +78033,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         title: 'Configuracion guardada',
                                         type: 'success'
                                     });
-                                    window.location.reload();
+                                    //  window.location.reload()       
                                 });
 
                             case 12:

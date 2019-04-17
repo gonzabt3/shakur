@@ -77,16 +77,31 @@ class UserService {
         $user = Auth::user();
 
 
-        $materias=json_decode($parameters['materias'],true);
+        $materiasNuevas=json_decode($parameters['materias'],true);
+        $materiasViejas=$user->materias()->get();
+
+        foreach ($materiasViejas as $vieja) {
+            if(!in_array($vieja,$materiasNuevas)){
+                $user->materias()->detach($vieja->id);
+                // dd("borrar");
+            }
+        }
+
+        foreach ($materiasNuevas as $nueva) {
+            if(!in_array($nueva,$materiasViejas)){
+                $user->materias()->saveMany([Materia::find($nueva['value'])]);
+                // dd("agregar");
+            }
+        }
 
         //circo para guardar las materias x usuario
-        foreach ($materias as $materia) {
+        // foreach ($materias as $materia) {
                 
-            if(!$this->checkMateria($materia['value'])){
-                $user->materias()->saveMany([Materia::find($materia['value'])]);
-            }
+        //     if(!$this->checkMateria($materia['value'])){
+        //         $user->materias()->saveMany([Materia::find($materia['value'])]);
+        //     }
 
-        }
+        // }
     }
 
     public function updateAvatar($file){
