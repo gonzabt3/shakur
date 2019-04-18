@@ -14,4 +14,8 @@ class Like extends Model
     public function publicaciones(){
         return $this->belongsTo(Publicacion::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

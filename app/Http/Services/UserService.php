@@ -80,13 +80,22 @@ class UserService {
         $materiasNuevas=json_decode($parameters['materias'],true);
         $materiasViejas=$user->materias()->get();
 
+        if($materiasViejas->isEmpty()){
+            $materiasViejas=[];
+        }else{
+            $materiasViejas=$materiasViejas->toArray();
+        }
+
+
+        //borra
         foreach ($materiasViejas as $vieja) {
             if(!in_array($vieja,$materiasNuevas)){
-                $user->materias()->detach($vieja->id);
+                $user->materias()->detach($vieja['id']);
                 // dd("borrar");
             }
         }
 
+        // agrega
         foreach ($materiasNuevas as $nueva) {
             if(!in_array($nueva,$materiasViejas)){
                 $user->materias()->saveMany([Materia::find($nueva['value'])]);

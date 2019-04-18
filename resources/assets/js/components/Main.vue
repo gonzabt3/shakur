@@ -68,7 +68,7 @@
             </b-col>
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
-        <modal-likes lazy :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
+        <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
     </b-container>
 </template>
 
@@ -119,7 +119,8 @@ export default {
      
       this.typeLikeModal=type
       this.idPostLikeModal=idPost
-      // this.$root.$emit('modalLikes',idPost,type);
+      // console.log(idPost)
+
       this.$root.$emit('bv::show::modal','modalLikes')
      },
     setHeader(){

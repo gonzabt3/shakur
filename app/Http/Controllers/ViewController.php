@@ -18,10 +18,9 @@ class ViewController extends Controller
     public function view(){
         return view('index');
     }
-
+    
     public function main(){
-        dd("ASD");
-        // return view('index');
+        return view('index');
     }
 
 }

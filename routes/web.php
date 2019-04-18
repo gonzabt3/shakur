@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth:api')->get('/main','ViewController@main');
+Route::get('/main','ViewController@main');
 
 // Route::middleware('auth:api')->get('/logout','Api\AuthController@logout');
 // Route::get('/logout','Api\AuthController@logout2');

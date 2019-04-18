@@ -108,3 +108,6 @@ Route::middleware('auth:api')->delete('/comment/{id}','Api\ComentariosController
 
 //delete post
 Route::middleware('auth:api')->delete('/post/{id}','Api\PublicacionesController@delete');
+
+//traigo los user que le dieron like a una publicacion
+Route::middleware('auth:api')->get('/likes/post/{idPost}/{type}','Api\LikeController@userLikesXpost');
