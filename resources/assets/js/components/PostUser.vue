@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container class="padding-lateral-7" fluid>
         <b-form-group>
             <b-card class="shadow">
                 <b-row>
@@ -9,7 +9,7 @@
                     <b-col>
                         <b-row>
                             <b-col id="nombreUser" class="no-padding" >
-                                <h3  class="text-left">{{nameAlias}}</h3>
+                                <h4  class="text-left">{{nameAlias}}</h4>
                             </b-col>
                             <!-- <b-col cols="5" md="4" class="no-padding">
                             </b-col> -->
@@ -30,15 +30,14 @@
                         </b-row>
                     </b-col>
                 </b-row>
-                <br>
                 <b-form-group class="text-center">
                     <p class="card-text text-justify">
                         {{postData.texto}}
                     </p>
                 </b-form-group>
                 <b-row>
-                    <b-form-group>
-                    <b-col  class="">
+                    <!-- <b-form-group> -->
+                    <b-col cols="8">
                         <like
                         @showModal="showModalLikes"
                         :likes-data="postData.likes"
@@ -47,12 +46,17 @@
                         url-like="api/like"
                         tipo="mg"
                         ></like>
-                        <b-button size="sm" @click="comentarios">
-                            <label class="no-margin-bottom">{{cantComentarios}}</label>
-                            <b-img :src="commentIcon" fluid alt="comments" /> Comentar
+                        
+                        </b-col>
+                        <b-col>
+                            <b-button  block size="sm" @click="comentarios">
+                           {{cantComentarios}}
+                            <b-img :src="commentIcon" fluid alt="comments" />
                         </b-button>
-                    </b-col>
-                    </b-form-group>
+                        </b-col>
+                        
+                    
+                    <!-- </b-form-group> -->
                 </b-row>
                 <div v-if="showComentarios">
                     <comentario v-for="item in arrayComentarios"
@@ -223,5 +227,22 @@ methods: {
 .strike > span:after {
     left: 100%;
     margin-left: 15px;
+}
+
+/* twitter style */
+
+.padding-lateral-7{
+
+    padding-left: 7px;
+    padding-right: 7px;
+
+}
+
+/* piso el estilo de card-body generado por el b-card */
+.card-body {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important; 
 }
 </style>

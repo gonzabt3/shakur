@@ -11,7 +11,7 @@
                   <b-tab title="Mi perfil">
                     <settings-wall ref="settings"></settings-wall>
                   </b-tab>
-                  <b-tab class="scroll" title="Muro">
+                  <b-tab class="scroll no-padding" title="Muro">
                     <post-new 
                     @responseGetPosts="getPosts"
                     :id-materia="idMateria"
@@ -181,5 +181,8 @@ export default {
     /*  ARREGLAR ESTA NEGRDADA */
   height: 100vh;
 }
+
+/* twiter style */
+
 
 </style>

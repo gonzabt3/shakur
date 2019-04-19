@@ -1,12 +1,18 @@
 <template>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <b-button size="sm" @click="btnLike">
-        <label class="no-margin-bottom">{{cantidadLikes}}</label>
-        {{stringBtnLike}}
-        <b-img :src="beerIcon" fluid alt="beerLike" /> 
-    </b-button>
-      <button @click="showModalLike"  type="button" class="btn btn-secondary">Ver likes</button>
-</div>
+    <b-row>
+        <b-col>
+            <b-button block size="sm" @click="btnLike">
+                {{cantidadLikes}}  
+                {{stringBtnLike}}
+                <b-img :src="beerIcon" fluid alt="beerLike" /> 
+            </b-button>
+        </b-col>
+        <b-col class="no-padding-lateral">
+      <b-button block @click="showModalLike" class="alto " size="sm">Ver likes</b-button>
+
+        </b-col>
+    </b-row>
+
 </template>
 <script>
 export default {
@@ -65,12 +71,20 @@ export default {
         watch:{
              btnLikeEstado(value) {
                 this.beerIcon = (value == true ? '../images/beerVacia.png' : '../images/beer.png');
-                this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
+                this.stringBtnLike = (value == true ? '' : '');
             }
         }
     
 }
 </script>
 <style scoped>
+.alto{
+    height: 34px;
+}
+
+.no-padding-lateral{
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
 </style>

@@ -73261,7 +73261,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.no-padding[data-v-2e13bc20]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.scroll[data-v-2e13bc20] {\n    overflow-y: scroll;\n    /*  ARREGLAR ESTA NEGRDADA */\n  height: 100vh;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-padding[data-v-2e13bc20]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.scroll[data-v-2e13bc20] {\n    overflow-y: scroll;\n    /*  ARREGLAR ESTA NEGRDADA */\n  height: 100vh;\n}\n\n/* twiter style */\n\n\n", ""]);
 
 // exports
 
@@ -73548,7 +73548,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n", ""]);
 
 // exports
 
@@ -73567,6 +73567,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_common_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_common_Delete__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+//
+//
+//
+//
 //
 //
 //
@@ -73941,7 +73945,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.alto[data-v-50405b94]{\n    height: 34px;\n}\n.no-padding-lateral[data-v-50405b94]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -73952,6 +73956,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -74020,7 +74030,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         btnLikeEstado: function btnLikeEstado(value) {
             this.beerIcon = value == true ? '../images/beerVacia.png' : '../images/beer.png';
-            this.stringBtnLike = value == true ? 'Dislike' : 'Like';
+            this.stringBtnLike = value == true ? '' : '';
         }
     }
 
@@ -74035,35 +74045,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    {
-      staticClass: "btn-group",
-      attrs: { role: "group", "aria-label": "Basic example" }
-    },
+    "b-row",
     [
       _c(
-        "b-button",
-        { attrs: { size: "sm" }, on: { click: _vm.btnLike } },
+        "b-col",
         [
-          _c("label", { staticClass: "no-margin-bottom" }, [
-            _vm._v(_vm._s(_vm.cantidadLikes))
-          ]),
-          _vm._v("\n        " + _vm._s(_vm.stringBtnLike) + "\n        "),
-          _c("b-img", {
-            attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
-          })
+          _c(
+            "b-button",
+            { attrs: { block: "", size: "sm" }, on: { click: _vm.btnLike } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.cantidadLikes) +
+                  "  \n            " +
+                  _vm._s(_vm.stringBtnLike) +
+                  "\n            "
+              ),
+              _c("b-img", {
+                attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button" },
-          on: { click: _vm.showModalLike }
-        },
-        [_vm._v("Ver likes")]
+        "b-col",
+        { staticClass: "no-padding-lateral" },
+        [
+          _c(
+            "b-button",
+            {
+              staticClass: "alto ",
+              attrs: { block: "", size: "sm" },
+              on: { click: _vm.showModalLike }
+            },
+            [_vm._v("Ver likes")]
+          )
+        ],
+        1
       )
     ],
     1
@@ -74567,7 +74589,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "padding-lateral-7", attrs: { fluid: "" } },
     [
       _c(
         "b-form-group",
@@ -74614,7 +74636,7 @@ var render = function() {
                               attrs: { id: "nombreUser" }
                             },
                             [
-                              _c("h3", { staticClass: "text-left" }, [
+                              _c("h4", { staticClass: "text-left" }, [
                                 _vm._v(_vm._s(_vm.nameAlias))
                               ])
                             ]
@@ -74670,8 +74692,6 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
               _c("b-form-group", { staticClass: "text-center" }, [
                 _c("p", { staticClass: "card-text text-justify" }, [
                   _vm._v(
@@ -74686,45 +74706,45 @@ var render = function() {
                 "b-row",
                 [
                   _c(
-                    "b-form-group",
+                    "b-col",
+                    { attrs: { cols: "8" } },
+                    [
+                      _c("like", {
+                        attrs: {
+                          "likes-data": _vm.postData.likes,
+                          "flag-like": _vm.postData.flagLike,
+                          "id-post": _vm.postData.id,
+                          "url-like": "api/like",
+                          tipo: "mg"
+                        },
+                        on: { showModal: _vm.showModalLikes }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
                     [
                       _c(
-                        "b-col",
-                        {},
+                        "b-button",
+                        {
+                          attrs: { block: "", size: "sm" },
+                          on: { click: _vm.comentarios }
+                        },
                         [
-                          _c("like", {
+                          _vm._v(
+                            "\n                       " +
+                              _vm._s(_vm.cantComentarios) +
+                              "\n                        "
+                          ),
+                          _c("b-img", {
                             attrs: {
-                              "likes-data": _vm.postData.likes,
-                              "flag-like": _vm.postData.flagLike,
-                              "id-post": _vm.postData.id,
-                              "url-like": "api/like",
-                              tipo: "mg"
-                            },
-                            on: { showModal: _vm.showModalLikes }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { size: "sm" },
-                              on: { click: _vm.comentarios }
-                            },
-                            [
-                              _c("label", { staticClass: "no-margin-bottom" }, [
-                                _vm._v(_vm._s(_vm.cantComentarios))
-                              ]),
-                              _vm._v(" "),
-                              _c("b-img", {
-                                attrs: {
-                                  src: _vm.commentIcon,
-                                  fluid: "",
-                                  alt: "comments"
-                                }
-                              }),
-                              _vm._v(" Comentar\n                    ")
-                            ],
-                            1
-                          )
+                              src: _vm.commentIcon,
+                              fluid: "",
+                              alt: "comments"
+                            }
+                          })
                         ],
                         1
                       )
@@ -80229,7 +80249,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-tab",
-                        { staticClass: "scroll", attrs: { title: "Muro" } },
+                        {
+                          staticClass: "scroll no-padding",
+                          attrs: { title: "Muro" }
+                        },
                         [
                           _c("post-new", {
                             attrs: { "id-materia": _vm.idMateria },
