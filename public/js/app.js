@@ -73362,6 +73362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -78081,7 +78082,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         title: 'Configuracion guardada',
                                         type: 'success'
                                     });
-                                    //  window.location.reload()       
+                                    window.location.reload();
                                 });
 
                             case 12:
@@ -80239,7 +80240,10 @@ var render = function() {
                             return _c("post-user", {
                               key: item.id,
                               attrs: { postData: item },
-                              on: { getPosts: _vm.getPosts }
+                              on: {
+                                showModalLikes: _vm.showModalLikes,
+                                getPosts: _vm.getPosts
+                              }
                             })
                           })
                         ],

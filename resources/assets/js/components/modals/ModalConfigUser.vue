@@ -211,7 +211,7 @@ export default {
                     title: 'Configuracion guardada',
                     type:'success',
                 });    
-                //  window.location.reload()       
+                 window.location.reload()       
         })  
         },
         // ----------------AVATARRRR--------------

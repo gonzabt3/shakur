@@ -17,6 +17,7 @@
                     :id-materia="idMateria"
                     ></post-new>
                     <post-user  
+                    @showModalLikes="showModalLikes" 
                     @getPosts="getPosts"
                     v-for="item in arrayPosts"
                     :postData="item"
