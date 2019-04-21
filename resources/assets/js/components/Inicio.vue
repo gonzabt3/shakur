@@ -51,7 +51,7 @@
                       </b-col>
                     </b-row>
                     <b-form-group>
-                      <b-link href="#/" disabled>Olvide mi contraseña</b-link>
+                      <b-link @click="openModalResetPassword">Olvide mi contraseña</b-link>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -63,6 +63,7 @@
           </b-card>
           </b-col>
         </b-row>
+        <modal-reset-password></modal-reset-password>
       <new-user @success="openModalSuccess"></new-user>
       <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser" :flag-button="false" :close-out-side="true"></modal-comunication>
       </b-container>
@@ -71,12 +72,13 @@
 <script>
 
 import newUser from '../components/NewUser';
+import ModalResetPassword from '../components/modals/ModalResetPassword';
 import ModalComunication from '../components/modals/ModalComunication';
 
 export default {
 
   name: 'Inicio',
-  components: { newUser,ModalComunication },
+  components: { newUser,ModalComunication,ModalResetPassword },
   $_veeValidate: {
     validator: "new"
   },
@@ -118,6 +120,9 @@ export default {
   },
   //LOGIN
   methods: {
+    openModalResetPassword(){
+      this.$root.$emit('bv::show::modal','modalResetPassword')
+    },
     openModalSuccess(mail){
       this.modalComunication.mailNewUser=mail
       this.modalComunication.p1='Gracias por registrarte en Shakur'
