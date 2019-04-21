@@ -72964,7 +72964,12 @@ var render = function() {
                     [
                       _c(
                         "b-form-group",
-                        { attrs: { id: "userLabel", label: "Usuario:" } },
+                        {
+                          attrs: {
+                            id: "userLabel",
+                            label: "Correo electronico:"
+                          }
+                        },
                         [
                           _c("b-form-input", {
                             directives: [
@@ -72979,7 +72984,7 @@ var render = function() {
                             attrs: {
                               id: "user",
                               name: "user",
-                              placeholder: "Ingresa Usuario"
+                              placeholder: "Ingresa e-mail"
                             },
                             model: {
                               value: _vm.form.email,

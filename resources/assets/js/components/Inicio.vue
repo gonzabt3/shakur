@@ -10,14 +10,14 @@
           <b-card>
             <h1>Inicio</h1>
             <b-form >
-                <b-form-group id="userLabel" label="Usuario:">
+                <b-form-group id="userLabel" label="Correo electronico:">
                   <b-form-input id="user"
                             name="user"
                             :class="{'is-invalid':errors.has('user')}"
                             v-validate="'required'"
                             v-model="form.email"
                             
-                            placeholder="Ingresa Usuario">
+                            placeholder="Ingresa e-mail">
                   </b-form-input>
                   <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
