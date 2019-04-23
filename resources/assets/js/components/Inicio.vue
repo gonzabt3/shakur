@@ -27,7 +27,6 @@
                             :class="{'is-invalid':errors.has('pass')}"
                             v-validate="'required'"
                             v-model="form.password"
-                            
                             :type="typePassword"
                             placeholder="Ingresa Contraseña">
                   </b-form-input>

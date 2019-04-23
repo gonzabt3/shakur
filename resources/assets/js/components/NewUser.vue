@@ -40,6 +40,7 @@
                     <b-form-input id="password"
                                 name="password"
                                 ref="password"
+                                :type="typePassword"
                                 :class="{'is-invalid':errors.has('password')}"
                                 v-validate="'required'"
                                 v-model="usuario.password"
@@ -51,6 +52,7 @@
                 <b-form-group label="Confirmar contraseña:" label-for="password_confirmation">
                     <b-form-input id="password_confirmation"
                                 name="password_confirmation"
+                                :type="typePassword"
                                 :class="{'is-invalid':errors.has('password_confirmation')}"
                                 v-validate="'required|confirmed:password'"
                                 v-model="usuario.password_confirmation"
@@ -58,6 +60,13 @@
                                 placeholder="Confirma tu Contraseña">
                     </b-form-input>
                         <b-form-invalid-feedback>Las contraseñas no coinciden</b-form-invalid-feedback>
+                        <b-form-checkbox
+                                id="checkboxPasswordNewUserNewUser"
+                                v-model="checkboxPasswordNewUser"
+                                name="checkboxPasswordNewUser"
+                                >
+                                Mostrar Contraseña
+                                </b-form-checkbox>
                 </b-form-group>
                 
                 <!-- SELECT UNIVERSIDADES -->
@@ -127,6 +136,7 @@ export default {
   },
   data() {
     return {
+        checkboxPasswordNewUser:false,
       universidades: [
         'Seleccionar', 'UBA', 'UTN', 'UNLa',
       ],
@@ -160,6 +170,9 @@ export default {
     computed: {
         hasErrors() {
             return this.error != "";
+        },
+        typePassword() {
+            return this.checkboxPasswordNewUser ? "text" : "password";
         }
     },
   methods :{
