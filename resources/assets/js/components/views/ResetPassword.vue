@@ -7,28 +7,28 @@
                     <b-card class="shadow">
                     <label>Ingresa tu nueva contraseña</label>
                     <b-form >
-                        <b-form-group  label="Contrseña:" label-for="password1"  >
-                            <b-form-input id="password1"
-                                        name="password1"
-                                        ref="password1"
-                                        v-model="data.password1"
+                        <b-form-group  label="Contrseña:" label-for="password"  >
+                            <b-form-input id="password"
+                                        name="password"
+                                        ref="password"
+                                        v-model="data.password"
                                         :type="typePassword"
                                         required
                                         placeholder="Ingresa la nueva contraseña"
-                                        :class="{'is-invalid':errors.has('password1')}"
+                                        :class="{'is-invalid':errors.has('password')}"
                                         v-validate="'required'"
                                         >
                             </b-form-input>
                             <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                         </b-form-group>
-                        <b-form-group  label="Confirmar contrseña:" label-for="password2"  >
-                            <b-form-input id="password2"
-                                        name="password2"
+                        <b-form-group  label="Confirmar contrseña:" label-for="password_confirmation"  >
+                            <b-form-input id="password_confirmation"
+                                        name="password_confirmation"
                                         :type="typePassword"
-                                        v-model="data.password2"
+                                        v-model="data.password_confirmation"
                                         required
-                                        :class="{'is-invalid':errors.has('password2')}"
-                                        v-validate="'required|confirmed:password1'"
+                                        :class="{'is-invalid':errors.has('password_confirmation')}"
+                                        v-validate="'required|confirmed:password'"
                                         placeholder="Confirma la nueva contraseña"
                                         >
                             </b-form-input>
@@ -67,8 +67,10 @@ export default {
             error:'',
             checkboxPassword: false,
             data:{
-                password1:'',
-                password2:''
+                password:'',
+                password_confirmation:'',
+                token:'',
+                email:''
             }
         }
     },
@@ -78,11 +80,14 @@ export default {
     },
     hasErrors() {
       return this.error != "";
-    }
+    },
+    // mounted() {
+    //     this.data.token = this.$route.params.token;
+    // },
   },
     methods:{
         submit(){
-            // console.log(this.usuario);
+            console.log(this.usuario);
             this.$validator.validateAll().then(result => {
                 if(result){
                     console.log("Asd");

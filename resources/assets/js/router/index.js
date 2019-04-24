@@ -22,9 +22,11 @@ export default new Router({
       component: Main,
     },
     {
-      path:'/resetPassword',
+      //el probblema son los child de los path
+      path:'/resetPassword/token',
       name:'ResetPassword',
-      component:ResetPassword
+      component:ResetPassword,
+      props: true
     }
   ],
 });

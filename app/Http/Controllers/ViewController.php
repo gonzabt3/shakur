@@ -20,6 +20,7 @@ class ViewController extends Controller
     }
     
     public function main(){
+        // echo($token);
         return view('index');
     }
 

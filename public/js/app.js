@@ -69021,9 +69021,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     name: 'Main',
     component: __WEBPACK_IMPORTED_MODULE_3__components_Main___default.a
   }, {
-    path: '/resetPassword',
+    //el probblema son los child de los path
+    path: '/resetPassword/token',
     name: 'ResetPassword',
-    component: __WEBPACK_IMPORTED_MODULE_4__components_views_ResetPassword___default.a
+    component: __WEBPACK_IMPORTED_MODULE_4__components_views_ResetPassword___default.a,
+    props: true
   }]
 }));
 
@@ -80808,7 +80810,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -80890,8 +80892,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             error: '',
             checkboxPassword: false,
             data: {
-                password1: '',
-                password2: ''
+                password: '',
+                password_confirmation: '',
+                token: '',
+                email: ''
             }
         };
     },
@@ -80908,7 +80912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         submit: function submit() {
             var _this = this;
 
-            // console.log(this.usuario);
+            console.log(this.usuario);
             this.$validator.validateAll().then(function (result) {
                 if (result) {
                     console.log("Asd");
@@ -80960,7 +80964,7 @@ var render = function() {
                             {
                               attrs: {
                                 label: "Contrseña:",
-                                "label-for": "password1"
+                                "label-for": "password"
                               }
                             },
                             [
@@ -80973,23 +80977,23 @@ var render = function() {
                                     expression: "'required'"
                                   }
                                 ],
-                                ref: "password1",
+                                ref: "password",
                                 class: {
-                                  "is-invalid": _vm.errors.has("password1")
+                                  "is-invalid": _vm.errors.has("password")
                                 },
                                 attrs: {
-                                  id: "password1",
-                                  name: "password1",
+                                  id: "password",
+                                  name: "password",
                                   type: _vm.typePassword,
                                   required: "",
                                   placeholder: "Ingresa la nueva contraseña"
                                 },
                                 model: {
-                                  value: _vm.data.password1,
+                                  value: _vm.data.password,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.data, "password1", $$v)
+                                    _vm.$set(_vm.data, "password", $$v)
                                   },
-                                  expression: "data.password1"
+                                  expression: "data.password"
                                 }
                               }),
                               _vm._v(" "),
@@ -81005,7 +81009,7 @@ var render = function() {
                             {
                               attrs: {
                                 label: "Confirmar contrseña:",
-                                "label-for": "password2"
+                                "label-for": "password_confirmation"
                               }
                             },
                             [
@@ -81014,26 +81018,32 @@ var render = function() {
                                   {
                                     name: "validate",
                                     rawName: "v-validate",
-                                    value: "required|confirmed:password1",
-                                    expression: "'required|confirmed:password1'"
+                                    value: "required|confirmed:password",
+                                    expression: "'required|confirmed:password'"
                                   }
                                 ],
                                 class: {
-                                  "is-invalid": _vm.errors.has("password2")
+                                  "is-invalid": _vm.errors.has(
+                                    "password_confirmation"
+                                  )
                                 },
                                 attrs: {
-                                  id: "password2",
-                                  name: "password2",
+                                  id: "password_confirmation",
+                                  name: "password_confirmation",
                                   type: _vm.typePassword,
                                   required: "",
                                   placeholder: "Confirma la nueva contraseña"
                                 },
                                 model: {
-                                  value: _vm.data.password2,
+                                  value: _vm.data.password_confirmation,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.data, "password2", $$v)
+                                    _vm.$set(
+                                      _vm.data,
+                                      "password_confirmation",
+                                      $$v
+                                    )
                                   },
-                                  expression: "data.password2"
+                                  expression: "data.password_confirmation"
                                 }
                               }),
                               _vm._v(" "),
