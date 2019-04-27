@@ -23,10 +23,13 @@ export default new Router({
     },
     {
       //el probblema son los child de los path
-      path:'/resetPassword/token',
+      path:'/resetPassword/:token/:email',
       name:'ResetPassword',
       component:ResetPassword,
-      props: true
+      props:true,
+      meta: { 
+        auth:false 
+      } 
     }
   ],
 });

@@ -69,8 +69,8 @@ export default {
             data:{
                 password:'',
                 password_confirmation:'',
-                token:'',
-                email:''
+                token:this.$route.params.token,
+                email:this.$route.params.email
             }
         }
     },
@@ -81,17 +81,18 @@ export default {
     hasErrors() {
       return this.error != "";
     },
-    // mounted() {
-    //     this.data.token = this.$route.params.token;
-    // },
+    mounted() {
+        this.data.token = this.$route.params.token;
+    },
   },
     methods:{
         submit(){
-            console.log(this.usuario);
             this.$validator.validateAll().then(result => {
                 if(result){
-                    console.log("Asd");
-               
+                    this.axios.post('../../api/password/reset',this.data)
+                    .then((response) =>{
+                        console.log(response);
+                })  
                 }else {
                     this.error = "Por favor, corrija los campos en rojo";
                 }

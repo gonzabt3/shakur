@@ -69022,10 +69022,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     component: __WEBPACK_IMPORTED_MODULE_3__components_Main___default.a
   }, {
     //el probblema son los child de los path
-    path: '/resetPassword/token',
+    path: '/resetPassword/:token/:email',
     name: 'ResetPassword',
     component: __WEBPACK_IMPORTED_MODULE_4__components_views_ResetPassword___default.a,
-    props: true
+    props: true,
+    meta: {
+      auth: false
+    }
   }]
 }));
 
@@ -80810,7 +80813,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -80894,8 +80897,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             data: {
                 password: '',
                 password_confirmation: '',
-                token: '',
-                email: ''
+                token: this.$route.params.token,
+                email: this.$route.params.email
             }
         };
     },
@@ -80906,16 +80909,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         hasErrors: function hasErrors() {
             return this.error != "";
+        },
+        mounted: function mounted() {
+            this.data.token = this.$route.params.token;
         }
     },
     methods: {
         submit: function submit() {
             var _this = this;
 
-            console.log(this.usuario);
             this.$validator.validateAll().then(function (result) {
                 if (result) {
-                    console.log("Asd");
+                    _this.axios.post('../../api/password/reset', _this.data).then(function (response) {
+                        console.log(response);
+                    });
                 } else {
                     _this.error = "Por favor, corrija los campos en rojo";
                 }

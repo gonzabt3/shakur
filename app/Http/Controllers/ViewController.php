@@ -19,7 +19,7 @@ class ViewController extends Controller
         return view('index');
     }
     
-    public function main(){
+    public function resetPassword(){
         // echo($token);
         return view('index');
     }
