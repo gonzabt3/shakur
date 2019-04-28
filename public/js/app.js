@@ -72044,7 +72044,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.sizeLoading[data-v-7c4c9824]{\n        width: 30px;\n}\n", ""]);
 
 // exports
 
@@ -72057,6 +72057,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__ = __webpack_require__(372);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_common_MpSelect__);
+//
+//
+//
 //
 //
 //
@@ -72216,7 +72219,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 disabled: true
             }],
             urlCarrera: '',
-            error: ""
+            error: "",
+            loading: false,
+            disabledButton: false,
+            textButton: 'Registrarse',
+            iconLoading: false
         };
     },
 
@@ -72232,12 +72239,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         crearUsuario: function crearUsuario() {
             var _this = this;
 
-            // console.log(this.usuario);
+            console.log(this.usuario);
             this.$validator.validateAll().then(function (result) {
                 if (result) {
+                    _this.loading = true;
                     _this.axios.post('api/auth/signup/', _this.usuario).then(function (response) {
                         _this.$emit("success", _this.usuario.email);
                         _this.$refs.newUser.hide();
+                        _this.loading = true;
                     });
                 } else {
                     _this.error = "Por favor, corrija los campos en rojo";
@@ -72304,6 +72313,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         "usuario.universidad": function usuarioUniversidad(value) {
             this.urlCarrera = "api/carreras/" + value;
             this.getValuesSelectCarrera();
+        },
+        loading: function loading(value) {
+            if (value) {
+                this.disabledButton = true;
+                this.textButton = '';
+                this.iconLoading = true;
+            } else {
+                this.disabledButton = false;
+                this.textButton = 'Resgistrarse';
+                this.iconLoading = false;
+            }
         }
     }
 
@@ -72876,10 +72896,24 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-success btn-block",
-                attrs: { type: "submit" },
+                attrs: { type: "submit", disabled: _vm.disabledButton },
                 on: { click: _vm.crearUsuario }
               },
-              [_vm._v("Registrarse")]
+              [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.iconLoading,
+                      expression: "iconLoading"
+                    }
+                  ],
+                  staticClass: "sizeLoading",
+                  attrs: { src: __webpack_require__(477) }
+                }),
+                _vm._v("\n\n      " + _vm._s(_vm.textButton))
+              ]
             )
           ])
         ],
@@ -77670,7 +77704,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.sizeLoading[data-v-7d4ebb93]{\n        width: 30px;\n}\n\n", ""]);
 
 // exports
 
@@ -77681,6 +77715,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -77737,14 +77773,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         file: null,
         idMateria: this.idMateria
       },
-      error: ''
-
+      error: '',
+      loading: false,
+      disabledButton: false,
+      textButton: 'Subir',
+      iconLoading: false
     };
   },
 
   watch: {
     idMateria: function idMateria(val) {
       return val;
+    },
+    loading: function loading(value) {
+      if (value) {
+        this.disabledButton = true;
+        this.textButton = '';
+        this.iconLoading = true;
+      } else {
+        this.disabledButton = false;
+        this.textButton = 'Resgistrarse';
+        this.iconLoading = false;
+      }
     }
   },
   computed: {
@@ -77756,6 +77806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     submit: function submit() {
       var _this = this;
 
+      this.loading = true;
       this.$validator.validateAll().then(function (result) {
         if (result) {
           var formData = new FormData();
@@ -77765,11 +77816,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           formData.append('file', _this.data.file);
 
           _this.axios.post('api/file', formData).then(function (response) {
+            _this.loading = false;
             _this.cleanModal();
             _this.$refs.newDoc.hide();
             _this.$emit("responseGetDocs");
           });
         } else {
+          _this.loading = false;
           _this.error = "Por favor, corrija los campos en rojo";
         }
       });
@@ -77895,10 +77948,24 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-success btn-block",
-            attrs: { type: "submit" },
+            attrs: { type: "submit", disabled: _vm.disabledButton },
             on: { click: _vm.submit }
           },
-          [_vm._v("Subir")]
+          [
+            _c("img", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.iconLoading,
+                  expression: "iconLoading"
+                }
+              ],
+              staticClass: "sizeLoading",
+              attrs: { src: __webpack_require__(477) }
+            }),
+            _vm._v("\n    " + _vm._s(_vm.textButton))
+          ]
         )
       ])
     ],
@@ -78236,7 +78303,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.border-right-20[data-v-48bcd248]{\n    border-right-width: 20px;\n}\n\n", ""]);
+exports.push([module.i, "\n.border-right-20[data-v-48bcd248]{\n    border-right-width: 20px;\n}\n.sizeLoading[data-v-48bcd248]{\n        width: 30px;\n}\n\n", ""]);
 
 // exports
 
@@ -78367,6 +78434,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -78386,7 +78455,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 materias: null,
                 avatar_url: ''
             },
-            checkedAlias: true
+            checkedAlias: true,
+            loading: false,
+            disabledButton: false,
+            textButton: 'Registrarse',
+            iconLoading: false
         };
     },
     beforeMount: function beforeMount() {
@@ -78400,6 +78473,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         checkedAlias: function checkedAlias(val) {
             if (!val) {
                 this.data.alias = "";
+            }
+        },
+
+        loading: function loading(value) {
+            if (value) {
+                this.disabledButton = true;
+                this.textButton = '';
+                this.iconLoading = true;
+            } else {
+                this.disabledButton = false;
+                this.textButton = 'Resgistrarse';
+                this.iconLoading = false;
             }
         }
     },
@@ -78455,14 +78540,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.loading = true;
                                 formData = new FormData();
 
                                 //paso del blob generado por el cropper a file jpg
 
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.blobToFile();
 
-                            case 3:
+                            case 4:
                                 this.blobFile = _context.sent;
                                 file = new File([this.blobFile], "name", { type: "image/png", lastModified: Date() });
 
@@ -78478,6 +78564,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
                                 this.axios.post('api/usuario/config', formData).then(function (response) {
+                                    _this3.loading = false;
                                     _this3.$refs.configUser.hide();
                                     _this3.$notify({
                                         group: 'foo',
@@ -78486,8 +78573,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     });
                                     window.location.reload();
                                 });
+                                this.loading = false;
 
-                            case 12:
+                            case 14:
                             case 'end':
                                 return _context.stop();
                         }
@@ -79816,10 +79904,24 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-success btn-block",
-                attrs: { type: "submit" },
+                attrs: { disabled: _vm.disabledButton, type: "submit" },
                 on: { click: _vm.submit }
               },
-              [_vm._v("Guardar")]
+              [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.iconLoading,
+                      expression: "iconLoading"
+                    }
+                  ],
+                  staticClass: "sizeLoading",
+                  attrs: { src: __webpack_require__(477) }
+                }),
+                _vm._v("\n                    " + _vm._s(_vm.textButton))
+              ]
             )
           ])
         ],
@@ -102960,6 +103062,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 475 */,
+/* 476 */,
+/* 477 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/loadingWhite.svg?bf114a48be96b3b634b75a06b0a58af9";
 
 /***/ })
 /******/ ]);

@@ -36,7 +36,9 @@
             class="text-center">{{ error }}</b-alert>
         </b-container>
         <template slot="modal-footer">
-      <button class="btn btn-success btn-block" @click="submit" type="submit">Subir</button>
+      <button class="btn btn-success btn-block" @click="submit" type="submit" :disabled="disabledButton">
+        <img v-show="iconLoading" class="sizeLoading" src="../loadingWhite.svg">
+        {{textButton}}</button>
     </template>
     </b-modal>
 </template>
@@ -54,14 +56,28 @@ export default {
         file:null,
         idMateria:this.idMateria
       },
-              error:'',
-
+      error:'',
+      loading:false,
+      disabledButton:false,
+      textButton:'Subir',
+      iconLoading:false
     };
   },
   watch:{
     idMateria:function(val){
       return val;
-    }
+    },
+      loading: function(value){
+      if(value){
+          this.disabledButton=true;
+          this.textButton=''
+          this.iconLoading=true
+      }else{
+          this.disabledButton=false;
+          this.textButton='Resgistrarse'
+          this.iconLoading=false
+      }
+     }  
   },
   computed: {
     hasErrors() {
@@ -70,6 +86,7 @@ export default {
   },
   methods: {
     submit() {
+      this.loading=true;
       this.$validator.validateAll().then(result=>{
         if(result){
           let formData = new FormData();
@@ -80,11 +97,13 @@ export default {
 
           this.axios.post('api/file',formData)
         .then((response)=>{
+          this.loading=false;
           this.cleanModal();
           this.$refs.newDoc.hide();
           this.$emit("responseGetDocs")  
         })
         }else{
+          this.loading=false;
           this.error = "Por favor, corrija los campos en rojo";      
         }
       })
@@ -99,6 +118,9 @@ export default {
 };
 </script>
 <style scoped>
+.sizeLoading{
+        width: 30px;
+}
 
 </style>
 

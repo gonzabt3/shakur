@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/main','ViewController@main');
+Route::get('/main','ViewController@view');
 Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');
 
 // Route::middleware('auth:api')->get('/logout','Api\AuthController@logout');

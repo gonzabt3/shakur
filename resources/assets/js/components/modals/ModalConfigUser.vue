@@ -102,7 +102,9 @@
                     </b-col>
                 </b-row>
                <template slot="modal-footer">
-                    <button class="btn btn-success btn-block" @click="submit" type="submit">Guardar</button>
+                    <button class="btn btn-success btn-block" :disabled="disabledButton" @click="submit" type="submit">
+                         <img v-show="iconLoading" class="sizeLoading" src="../loadingWhite.svg">
+                        {{textButton}}</button>
                 </template>
         </b-modal>
         <modal-avatar></modal-avatar>
@@ -127,7 +129,11 @@ export default {
                 materias:null,
                 avatar_url:''
             },
-            checkedAlias:true
+            checkedAlias:true,
+            loading:false,
+            disabledButton:false,
+            textButton:'Registrarse',
+            iconLoading:false
         };
     },
     beforeMount() {
@@ -141,7 +147,18 @@ export default {
             if(!val){
                 this.data.alias=""
             }
-        }
+        },
+        loading: function(value){
+         if(value){
+             this.disabledButton=true;
+             this.textButton=''
+             this.iconLoading=true
+         }else{
+             this.disabledButton=false;
+             this.textButton='Resgistrarse'
+             this.iconLoading=false
+         }
+     }  
     },
     methods:{
         avatarModal(){
@@ -186,7 +203,7 @@ export default {
             })
         },
          async submit(){
-
+            this.loading=true
             let formData = new FormData();
             
             //paso del blob generado por el cropper a file jpg
@@ -205,6 +222,7 @@ export default {
 
             this.axios.post('api/usuario/config',formData)
             .then((response) =>{
+                this.loading=false
                 this.$refs.configUser.hide();
                 this.$notify({
                     group: 'foo',
@@ -213,6 +231,7 @@ export default {
                 });    
                  window.location.reload()       
         })  
+        this.loading=false
         },
         // ----------------AVATARRRR--------------
          onInit() {
@@ -241,6 +260,10 @@ export default {
 <style scoped>
 .border-right-20{
     border-right-width: 20px;
+}
+
+.sizeLoading{
+        width: 30px;
 }
 
 </style>

@@ -119,7 +119,10 @@
             variant="danger" 
             class="text-center">{{ error }}</b-alert>
         <template slot="modal-footer">
-      <button class="btn btn-success btn-block" type="submit"  @click="crearUsuario">Registrarse</button>
+      <button class="btn btn-success btn-block" type="submit" :disabled="disabledButton" @click="crearUsuario">
+    <img v-show="iconLoading" class="sizeLoading" src="../components/loadingWhite.svg">
+
+          {{textButton}}</button>
     </template>
     </b-modal>
     </b-container>
@@ -165,6 +168,10 @@ export default {
         ],
         urlCarrera:'',
         error: "",
+        loading:false,
+        disabledButton:false,
+        textButton:'Registrarse',
+        iconLoading:false
     };
   },
     computed: {
@@ -177,14 +184,15 @@ export default {
     },
   methods :{
         crearUsuario(){
-            // console.log(this.usuario);
+            console.log(this.usuario);
             this.$validator.validateAll().then(result => {
                 if(result){
+                this.loading=true;
                 this.axios.post('api/auth/signup/',this.usuario)
                 .then((response) => {
                     this.$emit("success",this.usuario.email)     
                     this.$refs.newUser.hide();
-                    
+                    this.loading=true
                     })
                 }else {
                     this.error = "Por favor, corrija los campos en rojo";
@@ -259,11 +267,24 @@ export default {
      "usuario.universidad": function(value){
         this.urlCarrera="api/carreras/"+value
         this.getValuesSelectCarrera()
+     },
+     loading: function(value){
+         if(value){
+             this.disabledButton=true;
+             this.textButton=''
+             this.iconLoading=true
+         }else{
+             this.disabledButton=false;
+             this.textButton='Resgistrarse'
+             this.iconLoading=false
+         }
      }  
   }
   
 };
 </script>
 <style scoped>
-
+.sizeLoading{
+        width: 30px;
+}
 </style>
