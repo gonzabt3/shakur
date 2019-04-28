@@ -27555,28 +27555,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-module.exports = function escape(url) {
-    if (typeof url !== 'string') {
-        return url
-    }
-    // If url is already wrapped in quotes, remove them
-    if (/^['"].*['"]$/.test(url)) {
-        url = url.slice(1, -1);
-    }
-    // Should url be wrapped?
-    // See https://drafts.csswg.org/css-values-3/#urls
-    if (/["'() \t\n]/.test(url)) {
-        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
-    }
-
-    return url
-}
-
-
-/***/ }),
+/* 78 */,
 /* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -68878,24 +68857,18 @@ if(false) {
 /* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(78);
 exports = module.exports = __webpack_require__(4)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* es el alto de el background */\n.height{\n  height: 100vh;\n      overflow-x: hidden;\n}\nbody{\n  /* height: 100vh; */\n    overflow-x: hidden;\n\n    /* ------------background--------   */\n    background-image:url(" + escape(__webpack_require__(357)) + ");\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* es el alto de el background */\n.height{\n  height: 100vh;\n      overflow-x: hidden;\n}\nbody{\n  /* height: 100vh; */\n    overflow-x: hidden;\n\n    /* ------------background--------   */\n    /* background-image:url('../../../public/images/fadu.jpg'); */\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.no-padding-main{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 357 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/fadu.jpg?c6d1efce0226fe42657157c9b829b976";
-
-/***/ }),
+/* 357 */,
 /* 358 */
 /***/ (function(module, exports) {
 
@@ -71743,24 +71716,18 @@ if(false) {
 /* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(78);
 exports = module.exports = __webpack_require__(4)(false);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico);", ""]);
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* @font-face {\n  font-family: 'valentine';\n  src:  url('myfont.woff2') format('woff2'),\n        url('myfont.woff') format('woff');\n} */\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(366)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine,Pacifico !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* @font-face {\n  font-family: 'valentine';\n  src:  url('myfont.woff2') format('woff2'),\n        url('myfont.woff') format('woff');\n} */\n.fondo[data-v-589008dc]{\n    /* background-image:url('fadu.jpg'); */\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine,Pacifico !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 366 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/fadu.jpg?c6d1efce0226fe42657157c9b829b976";
-
-/***/ }),
+/* 366 */,
 /* 367 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80074,7 +80041,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.shadow[data-v-61b1fe0e]{\n    -webkit-box-shadow: 10px 10px grey;\n            box-shadow: 10px 10px grey;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n    padding-top: 7px;\n    padding-left: 7px;\n    padding-bottom: 7px;\n    padding-right: 7px;\n}\n\n/* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n    margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n    padding-left: 7px;\n    padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n    -webkit-box-shadow: 10px 10px grey;\n            box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n    padding-left: 0px;\n}\n", ""]);
 
 // exports
 
@@ -80085,6 +80052,10 @@ exports.push([module.i, "\n.shadow[data-v-61b1fe0e]{\n    -webkit-box-shadow: 10
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -80143,6 +80114,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { staticClass: "padding-lateral-7" },
     [
       _c(
         "b-form-group",
@@ -80176,20 +80148,34 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "b-form-group",
-                    { staticClass: "text-right" },
+                    "b-row",
                     [
-                      _c("b-button", { attrs: { variant: "secondary" } }, [
-                        _vm._v("Adjuntar")
-                      ]),
+                      _c(
+                        "b-col",
+                        [
+                          _c(
+                            "b-button",
+                            { attrs: { variant: "secondary", block: "" } },
+                            [_vm._v("Adjuntar")]
+                          )
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "primary" },
-                          on: { click: _vm.hacerPost }
-                        },
-                        [_vm._v("Publicar")]
+                        "b-col",
+                        { staticClass: "left-padding" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { variant: "primary", block: "" },
+                              on: { click: _vm.hacerPost }
+                            },
+                            [_vm._v("Publicar")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1

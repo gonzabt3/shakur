@@ -196,7 +196,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 .fondo{
-    background-image:url('fadu.jpg');
+    /* background-image:url('fadu.jpg'); */
     height: 100%;
     /* background-position: center; */
     background-repeat: no-repeat;

@@ -1,5 +1,5 @@
 <template>
-    <b-container>
+    <b-container class="padding-lateral-7">
         <b-form-group>
             <b-card class="shadow" title="Nueva Publicacion">
                 <b-form>
@@ -10,10 +10,14 @@
                         placeholder="Publica algo!!">
                         </b-form-input>
                     </b-form-group>
-                    <b-form-group class="text-right">
-                        <b-button variant="secondary">Adjuntar</b-button>
-                        <b-button  variant="primary" @click="hacerPost">Publicar</b-button>
-                    </b-form-group>
+                    <b-row>
+                        <b-col>
+                            <b-button variant="secondary" block >Adjuntar</b-button>
+                        </b-col>
+                        <b-col class="left-padding">
+                            <b-button  variant="primary" block  @click="hacerPost">Publicar</b-button>
+                        </b-col>
+                    </b-row>
                 </b-form>
             </b-card>
         </b-form-group>
@@ -46,7 +50,30 @@ export default {
 };
 </script>
 <style scoped>
+
+    /* override a la clase de bootsrap */
+    .card-body{
+        padding-top: 7px;
+        padding-left: 7px;
+        padding-bottom: 7px;
+        padding-right: 7px;
+    }
+
+    /* override a la clase de bootsrap */
+    .card-title{
+        margin-bottom: 7px;
+    }
+
+    .padding-lateral-7{
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
     .shadow{
         box-shadow: 10px 10px grey;
+    }
+
+    .left-padding{
+        padding-left: 0px;
     }
 </style>

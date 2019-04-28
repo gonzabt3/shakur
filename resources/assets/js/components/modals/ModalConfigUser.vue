@@ -132,7 +132,7 @@ export default {
             checkedAlias:true,
             loading:false,
             disabledButton:false,
-            textButton:'Registrarse',
+            textButton:'Guardar',
             iconLoading:false
         };
     },
