@@ -45,7 +45,9 @@
                             :show="hasErrors" 
                             variant="danger" 
                             class="text-center">{{ error }}</b-alert>
-                        <b-btn @click="submit" block variant="primary">Restablecer</b-btn>
+                        <b-btn @click="submit" :disabled="disabledButton" block variant="primary">
+                                <img v-show="iconLoading" class="sizeLoading" src="../components/loadingWhite.svg">
+                            {{textButton}}</b-btn>
                     </b-form>
                     </b-card>
                 </b-col>
@@ -71,7 +73,11 @@ export default {
                 password_confirmation:'',
                 token:this.$route.params.token,
                 email:this.$route.params.email
-            }
+            },
+            loading:false,
+            disabledButton:false,
+            textButton:'Registrarse',
+            iconLoading:false
         }
     },
     computed:{
@@ -87,17 +93,33 @@ export default {
   },
     methods:{
         submit(){
+            this.loading=true
             this.$validator.validateAll().then(result => {
                 if(result){
                     this.axios.post('../../api/password/reset',this.data)
                     .then((response) =>{
+                        this.loading=false
                         console.log(response);
                 })  
                 }else {
+                    this.loading=false
                     this.error = "Por favor, corrija los campos en rojo";
                 }
             })        
         }
+    },
+    watch:{
+        loading: function(value){
+         if(value){
+             this.disabledButton=true;
+             this.textButton=''
+             this.iconLoading=true
+         }else{
+             this.disabledButton=false;
+             this.textButton='Resgistrarse'
+             this.iconLoading=false
+         }
+     }  
     }
     
 }

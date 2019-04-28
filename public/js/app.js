@@ -71746,10 +71746,10 @@ if(false) {
 var escape = __webpack_require__(78);
 exports = module.exports = __webpack_require__(4)(false);
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico);", ""]);
 
 // module
-exports.push([module.i, "\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(366)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* @font-face {\n  font-family: 'valentine';\n  src:  url('myfont.woff2') format('woff2'),\n        url('myfont.woff') format('woff');\n} */\n.fondo[data-v-589008dc]{\n    background-image:url(" + escape(__webpack_require__(366)) + ");\n    height: 100%;\n    /* background-position: center; */\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n.valentine[data-v-589008dc]{\n  font-family:valentine,Pacifico !important;\n  /* font-size: 900%; */\n  color:white;\n}\n@media screen and (min-width: 322px) {\n.valentine[data-v-589008dc] {\n      font-size: 900%;\n}\n}\n@media screen and (max-width: 320px) {\n.valentine[data-v-589008dc] {\n      font-size: 600%;\n}\n}\n.roboto[data-v-589008dc]{\n    font-family:'Roboto:900i', sans-serif;\n    font-size: 400%;\n    color:white;\n}\n.no-padding-right[data-v-589008dc]{\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -80915,7 +80915,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -80928,6 +80928,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Topbar__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Topbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Topbar__);
+//
+//
 //
 //
 //
@@ -81001,7 +81003,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 password_confirmation: '',
                 token: this.$route.params.token,
                 email: this.$route.params.email
-            }
+            },
+            loading: false,
+            disabledButton: false,
+            textButton: 'Registrarse',
+            iconLoading: false
         };
     },
 
@@ -81020,15 +81026,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         submit: function submit() {
             var _this = this;
 
+            this.loading = true;
             this.$validator.validateAll().then(function (result) {
                 if (result) {
                     _this.axios.post('../../api/password/reset', _this.data).then(function (response) {
+                        _this.loading = false;
                         console.log(response);
                     });
                 } else {
+                    _this.loading = false;
                     _this.error = "Por favor, corrija los campos en rojo";
                 }
             });
+        }
+    },
+    watch: {
+        loading: function loading(value) {
+            if (value) {
+                this.disabledButton = true;
+                this.textButton = '';
+                this.iconLoading = true;
+            } else {
+                this.disabledButton = false;
+                this.textButton = 'Resgistrarse';
+                this.iconLoading = false;
+            }
         }
     }
 
@@ -81197,10 +81219,33 @@ var render = function() {
                           _c(
                             "b-btn",
                             {
-                              attrs: { block: "", variant: "primary" },
+                              attrs: {
+                                disabled: _vm.disabledButton,
+                                block: "",
+                                variant: "primary"
+                              },
                               on: { click: _vm.submit }
                             },
-                            [_vm._v("Restablecer")]
+                            [
+                              _c("img", {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.iconLoading,
+                                    expression: "iconLoading"
+                                  }
+                                ],
+                                staticClass: "sizeLoading",
+                                attrs: {
+                                  src: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../components/loadingWhite.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.textButton)
+                              )
+                            ]
                           )
                         ],
                         1

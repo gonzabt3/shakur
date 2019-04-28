@@ -187,6 +187,14 @@ export default {
 </script>
 
 <style scoped>
+
+/* @font-face {
+  font-family: 'valentine';
+  src:  url('myfont.woff2') format('woff2'),
+        url('myfont.woff') format('woff');
+} */
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 .fondo{
     background-image:url('fadu.jpg');
     height: 100%;
@@ -196,7 +204,7 @@ export default {
     }
 
   .valentine{
-  font-family:valentine !important;
+  font-family:valentine,Pacifico !important;
   /* font-size: 900%; */
   color:white;
   }
