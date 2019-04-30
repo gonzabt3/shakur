@@ -134,6 +134,9 @@ class AuthController extends Controller
     $user->active = true;
     $user->activation_token = '';
     $user->save();
+
+    return redirect('userActivate');
+
     return $user;
 }
 }

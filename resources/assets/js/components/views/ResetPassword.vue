@@ -46,7 +46,7 @@
                             variant="danger" 
                             class="text-center">{{ error }}</b-alert>
                         <b-btn @click="submit" :disabled="disabledButton" block variant="primary">
-                                <img v-show="iconLoading" class="sizeLoading" src="../components/loadingWhite.svg">
+                                <img v-show="iconLoading" class="sizeLoading" src="loadingWhite.svg">
                             {{textButton}}</b-btn>
                     </b-form>
                     </b-card>

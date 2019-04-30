@@ -28,7 +28,7 @@ body{
     overflow-x: hidden;
 
     /* ------------background--------   */
-    background-image:url('../../../public/images/fadu.jpg');
+    /* background-image:url('../../../public/images/fadu.jpg'); */
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;

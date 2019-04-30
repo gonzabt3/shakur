@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/main','ViewController@view');
 Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');
+Route::get('/userActivate','ViewController@view');
 
 // Route::middleware('auth:api')->get('/logout','Api\AuthController@logout');
 // Route::get('/logout','Api\AuthController@logout2');

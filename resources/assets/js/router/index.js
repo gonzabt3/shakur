@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Inicio from '../components/Inicio';
 import Main from '../components/Main';
 import ResetPassword from '../components/views/ResetPassword';
+import UserActivate from '../components/views/UserActivate.vue';
 
 
 Vue.use(Router);
@@ -22,7 +23,11 @@ export default new Router({
       component: Main,
     },
     {
-      //el probblema son los child de los path
+      path: '/userActivate',
+      name: 'UserActivate',
+      component: UserActivate,
+    },
+    {
       path:'/resetPassword/:token/:email',
       name:'ResetPassword',
       component:ResetPassword,
