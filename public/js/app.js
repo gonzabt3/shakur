@@ -78479,7 +78479,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 apellido: '',
                 alias: '',
                 universidad: null,
-                carrera: null,
+                carrera_id: null,
                 materias: null,
                 avatar_url: ''
             },
@@ -78519,10 +78519,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
         },
         "data.universidad": function dataUniversidad(value) {
+            this.data.materias = null;
             this.urlCarrera = "api/carreras/" + value;
             this.getValuesSelectCarrera();
         },
-        "data.carrera": function dataCarrera(value) {
+        "data.carrera_id": function dataCarrera_id(value) {
+            this.data.materias = null;
             this.urlMaterias = "api/materias/" + value;
             this.getMaterias();
         }
@@ -78535,6 +78537,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _this = this;
 
             this.axios.get("api/usuario").then(function (response) {
+                console.log(response);
                 var user = response.data;
 
                 _this.idCarrera = user.carrera_id;
@@ -78598,7 +78601,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 description: "Seleccionar una opción",
                 disabled: true
             });
-            this.data.carrera = null;
+            this.data.carrera_id = null;
 
             this.axios.get(this.urlCarrera).then(function (response) {
                 var responseOptions = _.map(response.data, function (option) {
@@ -78639,6 +78642,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 formData.append('apellido', this.data.apellido);
                                 formData.append('avatar_file', file);
                                 formData.append('alias', this.data.alias);
+                                formData.append('carrera_id', this.data.carrera_id);
                                 formData.append('materias', JSON.stringify(this.data.materias));
 
                                 console.log(formData.get('materias'));
@@ -78657,7 +78661,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 });
                                 this.loading = false;
 
-                            case 14:
+                            case 15:
                             case "end":
                                 return _context.stop();
                         }
@@ -80014,11 +80018,11 @@ var render = function() {
                               "value-field": "id"
                             },
                             model: {
-                              value: _vm.data.carrera,
+                              value: _vm.data.carrera_id,
                               callback: function($$v) {
-                                _vm.$set(_vm.data, "carrera", $$v)
+                                _vm.$set(_vm.data, "carrera_id", $$v)
                               },
-                              expression: "data.carrera"
+                              expression: "data.carrera_id"
                             }
                           })
                         ],

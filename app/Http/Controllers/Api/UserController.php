@@ -41,6 +41,7 @@ class UserController extends Controller
             "name" => 'required',
             "apellido" => 'required',
             "alias" => 'nullable',
+            "carrera_id" => 'required',
             "materias" => 'required',
             "avatar_file" => 'nullable'
             ]);
@@ -53,6 +54,7 @@ class UserController extends Controller
     }
 
     public function index(Request $request,Response $response){
+        dd(Auth::user()->with('cerrera'));
         return Auth::user()->load('materias');
     }
 }

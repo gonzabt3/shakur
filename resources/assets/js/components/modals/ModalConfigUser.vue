@@ -107,7 +107,7 @@
                             </b-col>
                             <b-col>
                               <b-form-select
-                                v-model="data.carrera" 
+                                v-model="data.carrera_id" 
                                 :class="{'is-invalid':errors.has('carrera')}"
                                 v-validate="'required'"
                                 id="carrera" 
@@ -181,7 +181,7 @@ export default {
                 apellido: '',
                 alias: '',
                 universidad:null,
-                carrera:null,
+                carrera_id:null,
                 materias:null,
                 avatar_url:''
             },
@@ -219,10 +219,12 @@ export default {
          }
      } ,
       "data.universidad": function(value){
+        this.data.materias=null
         this.urlCarrera="api/carreras/"+value
         this.getValuesSelectCarrera()
      },
-      "data.carrera": function(value){
+      "data.carrera_id": function(value){
+        this.data.materias=null
         this.urlMaterias="api/materias/"+value;
         this.getMaterias()
      },
@@ -234,6 +236,7 @@ export default {
         getInfoUser(){
             this.axios.get("api/usuario")
                 .then(response => {
+                    console.log(response);
                     let user=response.data;
 
                     this.idCarrera=user.carrera_id
@@ -297,7 +300,7 @@ export default {
             description: "Seleccionar una opción",
             disabled: true
             })
-            this.data.carrera=null
+            this.data.carrera_id=null
 
              this.axios
                 .get(this.urlCarrera)
@@ -328,6 +331,7 @@ export default {
             formData.append('apellido',this.data.apellido);
             formData.append('avatar_file',file);
             formData.append('alias',this.data.alias);
+            formData.append('carrera_id',this.data.carrera_id);
             formData.append('materias',JSON.stringify(this.data.materias));
             
             console.log(formData.get('materias'));
