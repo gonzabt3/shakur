@@ -4,6 +4,7 @@ import Inicio from '../components/Inicio';
 import Main from '../components/Main';
 import ResetPassword from '../components/views/ResetPassword';
 import UserActivate from '../components/views/UserActivate.vue';
+import NotFound from '../components/views/NotFound.vue';
 
 
 Vue.use(Router);
@@ -26,6 +27,11 @@ export default new Router({
       path: '/userActivate',
       name: 'UserActivate',
       component: UserActivate,
+    },
+    {
+      path: '/notFound',
+      name: 'NotFound',
+      component: NotFound,
     },
     {
       path:'/resetPassword/:token/:email',

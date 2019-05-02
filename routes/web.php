@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 
 Route::get('/main','ViewController@view');
+Route::get('/notFound','ViewController@view');
 Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');
 Route::get('/userActivate','ViewController@view');
 
