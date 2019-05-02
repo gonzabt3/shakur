@@ -22,10 +22,10 @@ class MateriasController extends Controller
     public function materiasXcarrera($id=null){
 
         // if($id==null){
-            $id=Auth::user()->carrera_id;
+            // $id=Auth::user()->carrera_id;
         // }
-        
         return Carrera::find($id)->materias;
+
     }
 
     //correjida pasada al serivce de materia

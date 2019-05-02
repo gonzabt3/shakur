@@ -80,6 +80,46 @@
                     <b-col>
                         <b-row>
                             <b-col cols="2">
+                                <b-form-group id="Universiad"
+                                label="Univeridad:"
+                                label-for="universidad">
+                                </b-form-group>
+                            </b-col>
+                            <b-col>
+                              <b-form-select
+                                v-model="data.universidad" 
+                                :class="{'is-invalid':errors.has('universidad')}"
+                                v-validate="'required'"
+                                id="universidad" 
+                                :options="opcionesUniversidades" 
+                                name="universidad" 
+                                text-field="description" 
+                                value-field="id"
+                                    />
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="2">
+                                <b-form-group id="carrera"
+                                label="Carrera:"
+                                label-for="carreras">
+                                </b-form-group>
+                            </b-col>
+                            <b-col>
+                              <b-form-select
+                                v-model="data.carrera" 
+                                :class="{'is-invalid':errors.has('carrera')}"
+                                v-validate="'required'"
+                                id="carrera" 
+                                :options="opcionesCarreras" 
+                                name="carrera" 
+                                text-field="description" 
+                                value-field="id"
+                                    />
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="2">
                                 <b-form-group id="materias"
                                 label="Materias en curso:"
                                 label-for="materias">
@@ -120,12 +160,28 @@ export default {
         return {
             croppa: {},
             opcionesMaterias:[],
+            opcionesUniversidades: [
+                {
+                    id: null,
+                    description: "Seleccionar una opción",
+                    disabled: true
+                }
+            ],            
+            opcionesCarreras:[
+                {
+                    id: null,
+                    description: "Seleccionar una opción",
+                    disabled: true
+                }
+            ],
             idCarrera:null,
             blobFile:null,
             data: {
                 name: '',
                 apellido: '',
                 alias: '',
+                universidad:null,
+                carrera:null,
                 materias:null,
                 avatar_url:''
             },
@@ -133,11 +189,14 @@ export default {
             loading:false,
             disabledButton:false,
             textButton:'Guardar',
-            iconLoading:false
+            iconLoading:false,
+            urlCarrera:'',
+            urlMaterias:''
         };
     },
     beforeMount() {
-         this.getMaterias();
+        //  this.getMaterias();
+         this.getValuesSelectUniversidad();
     },
     mounted(){
          this.getInfoUser();
@@ -158,7 +217,15 @@ export default {
              this.textButton='Resgistrarse'
              this.iconLoading=false
          }
-     }  
+     } ,
+      "data.universidad": function(value){
+        this.urlCarrera="api/carreras/"+value
+        this.getValuesSelectCarrera()
+     },
+      "data.carrera": function(value){
+        this.urlMaterias="api/materias/"+value;
+        this.getMaterias()
+     },
     },
     methods:{
         avatarModal(){
@@ -191,9 +258,11 @@ export default {
             this.data.materias=materiasSelected
         },
         getMaterias() {
+            this.opcionesMaterias=[]
             this.axios
-                .get("api/materias/"+this.idCarrera)
+                .get(this.urlMaterias)
                 .then(response => {
+                    console.log(response)
                     _.map(response.data, materia => {
                         this.opcionesMaterias.push({
                         label: materia.materia,
@@ -201,6 +270,51 @@ export default {
                         });
                     });
             })
+        },
+        getValuesSelectUniversidad(){
+            this.axios
+                .get("api/universidades")
+                .then((response) => {
+                    let responseOptions = _.map(response.data, option => {
+                        return {
+                            id: option.id,
+                            description: option.nombre
+                        };
+                    });
+                    this.opcionesUniversidades = _.union(this.opcionesUniversidades, responseOptions);
+                    this.error = "";
+                })
+                .catch(error => {
+                    this.error =
+                        "Ocurrió un error al llenar los valores de este selector";
+                });   
+        },
+        getValuesSelectCarrera(){
+            //villereada para limpiar el array 
+            this.opcionesCarreras=[]
+            this.opcionesCarreras.push({
+            id: null,
+            description: "Seleccionar una opción",
+            disabled: true
+            })
+            this.data.carrera=null
+
+             this.axios
+                .get(this.urlCarrera)
+                .then((response) => {
+                    let responseOptions = _.map(response.data, option => {
+                        return {
+                            id: option.id,
+                            description: option.nombre
+                        };
+                    });
+                    this.opcionesCarreras = _.union(this.opcionesCarreras, responseOptions);
+                    this.error = "";
+                })
+                .catch(error => {
+                    this.error =
+                        "Ocurrió un error al llenar los valores de este selector";
+                });  
         },
          async submit(){
             this.loading=true
