@@ -73845,7 +73845,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.axios.get(url).then(function (_ref) {
         var data = _ref.data;
 
-        console.log(data);
+        // console.log(data);
         _this.arrayPosts = _.union(_this.arrayPosts, data);
         _this.idPaginado = data[data.length - 1].id;
       });

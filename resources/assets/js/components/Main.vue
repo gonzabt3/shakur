@@ -149,7 +149,7 @@ export default {
 
         this.axios.get(url)
                     .then(({data}) => {
-                      console.log(data);
+                      // console.log(data);
                         this.arrayPosts=_.union(this.arrayPosts,data);
                         this.idPaginado=data[data.length-1].id
                     });
