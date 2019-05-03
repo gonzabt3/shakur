@@ -23,9 +23,16 @@ class PublicacionService{
         $this->comentarioService = $comentarioService;
     }
 
-    public function getPosts($idMateria){
-        $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes')->get();
+    public function getPosts($idMateria,$idPaginado){
 
+
+        // CON EL PAGINADO LO QUE HACE ES PEDIRLE PUBLICACIONES ANTERIORES AL idPaginado
+        if($idPaginado!=null){
+            $publicaciones=Publicacion::where('materia_id',$idMateria)->where('id', '<',$idPaginado )->orderBy('created_at', 'DESC')->with('user','likes')->take(3)->get();
+        }else{
+            $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes')->take(3)->get();
+        }
+        
         //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
         $publicaciones->map(function ($post) {
             $user = Auth::user();

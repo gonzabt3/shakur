@@ -12,12 +12,13 @@
 */
 
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 
 Route::get('/main','ViewController@view');
+Route::get('/','ViewController@view');
 Route::get('/notFound','ViewController@view');
 Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');
 Route::get('/userActivate','ViewController@view');

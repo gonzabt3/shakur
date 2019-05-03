@@ -23,6 +23,7 @@
                     :postData="item"
                     :key="item.id" 
                     ></post-user>
+                    <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
                   </b-tab>
                   <b-tab title="Eventos">
                     <events-wall class="form-group"
@@ -56,6 +57,7 @@
                 :postData="item"
                 :key="item.id" 
                 ></post-user>
+                <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
             </b-col>
             <b-col v-if="!celular" >
                 <events-wall class="form-group"
@@ -91,6 +93,7 @@ export default {
       return{
           arrayPosts:[],
           idMateria:null, //se cambia en el metodo update  walls,
+          idPaginado:0,//last id para el paginado
           celular:false,
           idPostLikeModal:'',
           typeLikeModal:'',
@@ -113,7 +116,7 @@ export default {
     this.setHeader();
   }, 
   mounted(){
-        this.getPosts();
+        // this.getPosts();
   },
   methods:{
     showModalLikes(idPost,type){
@@ -129,15 +132,26 @@ export default {
         this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
     },
     //   TRAE TODAS LAS PUBLICACIONES
-      getPosts(){
-        //vacio el array para que recarle los post
-        this.arrayPosts=[]
-        // console.log(sessionStorage.getItem('token'));
-        this.axios.get('api/publicacion/'+this.idMateria)
-                    .then(({data}) => {
-                      // console.log(data);
-                        this.arrayPosts=data;
+      getPosts(flagNewPost=false){
+        
+        //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
+        //reseteo el idPaginado para traer todos los post comunmente
+        if(flagNewPost){
+          this.idPaginado=0;
+        }
 
+        //vacio el array para que recarle los post
+        if(this.idPaginado==0){
+          this.arrayPosts=[]
+        }
+
+          let url='api/publicacion/'+this.idMateria+'/'+this.idPaginado;
+
+        this.axios.get(url)
+                    .then(({data}) => {
+                      console.log(data);
+                        this.arrayPosts=_.union(this.arrayPosts,data);
+                        this.idPaginado=data[data.length-1].id
                     });
       },
     //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA

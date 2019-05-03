@@ -35,8 +35,9 @@ class PublicacionesController extends Controller
     }
 
 
-    public function index($idMateria){
-        return $this->publicacionService->getPosts($idMateria);
+    public function index($idMateria,$idPaginado=null){
+        if($idPaginado==0){$idPaginado=NULL;}
+        return $this->publicacionService->getPosts($idMateria,$idPaginado);
     }
 
     public function delete($idPost){

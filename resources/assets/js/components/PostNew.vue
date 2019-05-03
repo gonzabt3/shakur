@@ -43,7 +43,7 @@ export default {
             this.axios.post('api/publicacion',this.object)
             .then((response) =>{
                 this.object.texto='',
-                this.$emit("responseGetPosts")            
+                this.$emit("responseGetPosts",true)            
             })
         }
   }

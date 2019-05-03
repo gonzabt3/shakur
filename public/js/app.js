@@ -73762,6 +73762,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -73780,6 +73782,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       arrayPosts: [],
       idMateria: null, //se cambia en el metodo update  walls,
+      idPaginado: 0, //last id para el paginado
       celular: false,
       idPostLikeModal: '',
       typeLikeModal: '',
@@ -73802,7 +73805,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.setHeader();
   },
   mounted: function mounted() {
-    this.getPosts();
+    // this.getPosts();
   },
 
   methods: {
@@ -73823,14 +73826,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getPosts: function getPosts() {
       var _this = this;
 
+      var flagNewPost = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+
+      //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
+      //reseteo el idPaginado para traer todos los post comunmente
+      if (flagNewPost) {
+        this.idPaginado = 0;
+      }
+
       //vacio el array para que recarle los post
-      this.arrayPosts = [];
-      // console.log(sessionStorage.getItem('token'));
-      this.axios.get('api/publicacion/' + this.idMateria).then(function (_ref) {
+      if (this.idPaginado == 0) {
+        this.arrayPosts = [];
+      }
+
+      var url = 'api/publicacion/' + this.idMateria + '/' + this.idPaginado;
+
+      this.axios.get(url).then(function (_ref) {
         var data = _ref.data;
 
-        // console.log(data);
-        _this.arrayPosts = data;
+        console.log(data);
+        _this.arrayPosts = _.union(_this.arrayPosts, data);
+        _this.idPaginado = data[data.length - 1].id;
       });
     },
 
@@ -78528,7 +78545,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.iconLoading = true;
             } else {
                 this.disabledButton = false;
-                this.textButton = 'Resgistrarse';
+                this.textButton = 'Guardar';
                 this.iconLoading = false;
             }
         },
@@ -80387,7 +80404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.object.materia_id = this.idMateria;
             // console.log(this.object);
             this.axios.post('api/publicacion', this.object).then(function (response) {
-                _this.object.texto = '', _this.$emit("responseGetPosts");
+                _this.object.texto = '', _this.$emit("responseGetPosts", true);
             });
         }
     }
@@ -80976,7 +80993,19 @@ var render = function() {
                                 getPosts: _vm.getPosts
                               }
                             })
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "b-link",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.getPosts(false)
+                                }
+                              }
+                            },
+                            [_vm._v("Ver mas publicaciones")]
+                          )
                         ],
                         2
                       ),
@@ -81047,7 +81076,19 @@ var render = function() {
                         getPosts: _vm.getPosts
                       }
                     })
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "b-link",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.getPosts(false)
+                        }
+                      }
+                    },
+                    [_vm._v("Ver mas publicaciones")]
+                  )
                 ],
                 2
               )
