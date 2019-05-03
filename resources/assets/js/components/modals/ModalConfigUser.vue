@@ -217,7 +217,7 @@ export default {
              this.iconLoading=true
          }else{
              this.disabledButton=false;
-             this.textButton='Resgistrarse'
+             this.textButton='Guardar'
              this.iconLoading=false
          }
      } ,
