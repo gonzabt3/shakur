@@ -54,7 +54,11 @@ class UserController extends Controller
     }
 
     public function index(Request $request,Response $response){
-        dd(Auth::user()->with('cerrera'));
-        return Auth::user()->load('materias');
+        
+        $dataUser =  Auth::user()->load('materias');
+        
+        //agrego la unive
+        $dataUser['universidad']=Auth::user()->carrera->universidad;
+        return $dataUser;
     }
 }

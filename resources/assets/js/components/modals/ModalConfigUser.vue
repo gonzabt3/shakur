@@ -95,7 +95,9 @@
                                 name="universidad" 
                                 text-field="description" 
                                 value-field="id"
-                                    />
+                                    >
+                                <option :value="null" disabled>Selecciona un opcion</option>
+                              </b-form-select>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -115,7 +117,8 @@
                                 name="carrera" 
                                 text-field="description" 
                                 value-field="id"
-                                    />
+                                     ><option :value="null" disabled>Selecciona un opcion</option>
+                              </b-form-select>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -161,18 +164,18 @@ export default {
             croppa: {},
             opcionesMaterias:[],
             opcionesUniversidades: [
-                {
-                    id: null,
-                    description: "Seleccionar una opción",
-                    disabled: true
-                }
+                // {
+                //     id: null,
+                //     description: "Seleccionar una opción",
+                //     disabled: true
+                // }
             ],            
             opcionesCarreras:[
-                {
-                    id: null,
-                    description: "Seleccionar una opción",
-                    disabled: true
-                }
+                // {
+                //     id: null,
+                //     description: "Seleccionar una opción",
+                //     disabled: true
+                // }
             ],
             idCarrera:null,
             blobFile:null,
@@ -196,7 +199,7 @@ export default {
     },
     beforeMount() {
         //  this.getMaterias();
-         this.getValuesSelectUniversidad();
+        //  this.getValuesSelectUniversidad();
     },
     mounted(){
          this.getInfoUser();
@@ -219,14 +222,22 @@ export default {
          }
      } ,
       "data.universidad": function(value){
-        this.data.materias=null
-        this.urlCarrera="api/carreras/"+value
-        this.getValuesSelectCarrera()
+        this.data.carrera_id=null
+        if(value!=null){
+                    this.data.materias=null
+
+            this.urlCarrera="api/carreras/"+value
+            this.getValuesSelectCarrera()
+        }
+       
      },
       "data.carrera_id": function(value){
-        this.data.materias=null
-        this.urlMaterias="api/materias/"+value;
-        this.getMaterias()
+        if(value!=null){
+            this.data.materias=null
+            this.urlMaterias="api/materias/"+value;
+            this.getMaterias()
+        }
+
      },
     },
     methods:{
@@ -236,7 +247,7 @@ export default {
         getInfoUser(){
             this.axios.get("api/usuario")
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     let user=response.data;
 
                     this.idCarrera=user.carrera_id
@@ -249,8 +260,12 @@ export default {
                     if(this.data.alias==null){
                         this.checkedAlias=false
                     }
-                    this.setMaterias(user.materias)
-                    // this.data.materias=[{label:user.materias[0].materia,value:user.materias[0].id}]
+
+                    //selects
+                    this.getValuesSelectUniversidad(user.universidad.id);
+                    this.urlCarrera="api/carreras/"+user.universidad.id;
+                    this.getValuesSelectCarrera(user.carrera_id);
+                    this.getMaterias(user.materias)
                 })
         },
         setMaterias(materias){
@@ -260,48 +275,55 @@ export default {
             })
             this.data.materias=materiasSelected
         },
-        getMaterias() {
+        getMaterias(value=null) {
             this.opcionesMaterias=[]
             this.axios
                 .get(this.urlMaterias)
                 .then(response => {
-                    console.log(response)
+                    // console.log(response)
                     _.map(response.data, materia => {
                         this.opcionesMaterias.push({
                         label: materia.materia,
                         value: materia.id
                         });
                     });
+
+                    if(value!=null){
+                        this.setMaterias(value)
+                    }
             })
+
+
         },
-        getValuesSelectUniversidad(){
+        getValuesSelectUniversidad(value=null){
+            this.opcionesUniversidades=[]
             this.axios
                 .get("api/universidades")
                 .then((response) => {
                     let responseOptions = _.map(response.data, option => {
-                        return {
-                            id: option.id,
-                            description: option.nombre
-                        };
+                        this.opcionesUniversidades.push({
+                            id:option.id,
+                            description:option.nombre
+                        })
+                        // return {
+                        //     id: option.id,
+                        //     description: option.nombre
+                        // };
                     });
-                    this.opcionesUniversidades = _.union(this.opcionesUniversidades, responseOptions);
+                    // this.opcionesUniversidades = _.union(this.opcionesUniversidades, responseOptions);
                     this.error = "";
+                    if(value!=null){
+                        this.data.universidad=value
+                    }
                 })
                 .catch(error => {
                     this.error =
                         "Ocurrió un error al llenar los valores de este selector";
                 });   
         },
-        getValuesSelectCarrera(){
+        getValuesSelectCarrera(value=null){
             //villereada para limpiar el array 
             this.opcionesCarreras=[]
-            this.opcionesCarreras.push({
-            id: null,
-            description: "Seleccionar una opción",
-            disabled: true
-            })
-            this.data.carrera_id=null
-
              this.axios
                 .get(this.urlCarrera)
                 .then((response) => {
@@ -313,6 +335,9 @@ export default {
                     });
                     this.opcionesCarreras = _.union(this.opcionesCarreras, responseOptions);
                     this.error = "";
+                    if(value!=null){
+                        this.data.carrera_id=value
+                    }
                 })
                 .catch(error => {
                     this.error =
@@ -333,10 +358,6 @@ export default {
             formData.append('alias',this.data.alias);
             formData.append('carrera_id',this.data.carrera_id);
             formData.append('materias',JSON.stringify(this.data.materias));
-            
-            console.log(formData.get('materias'));
-            // console.log(formData.get(name));
-            
 
             this.axios.post('api/usuario/config',formData)
             .then((response) =>{

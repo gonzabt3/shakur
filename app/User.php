@@ -44,6 +44,9 @@ class User extends Authenticatable
         return $this->belongsTo(Carrera::class);
     }
 
+    public function universidad(){
+        return $this->belongsTo(Carrera::class)->universidad;
+    } 
     //encripta la pass cuando se crea un usuario
     // public function setPasswordAttribute($password)
     // {
