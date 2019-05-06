@@ -80347,7 +80347,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n    padding-top: 7px;\n    padding-left: 7px;\n    padding-bottom: 7px;\n    padding-right: 7px;\n}\n\n/* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n    margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n    padding-left: 7px;\n    padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n    -webkit-box-shadow: 10px 10px grey;\n            box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n    padding-left: 0px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n", ""]);
 
 // exports
 
@@ -80383,29 +80383,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'PostNew',
     props: ['idMateria'],
+    $_veeValidate: {
+        validator: "new"
+    },
     data: function data() {
         return {
-            object: {
+            data: {
                 texto: null,
                 materia_id: this.idMateria,
-                user_id: null
-            }
+                user_id: null,
+                files: []
+            },
+            urlFiles: []
         };
     },
 
+    //   computed:{
+    //       makeUrl(value){
+    //           return URL.createObjectURL(value);
+    //       }
+    //   },
     methods: {
+        makeUrl: function makeUrl(value) {
+            console.log(value);
+            return URL.createObjectURL(value);
+        },
         hacerPost: function hacerPost() {
             var _this = this;
 
-            this.object.materia_id = this.idMateria;
-            // console.log(this.object);
-            this.axios.post('api/publicacion', this.object).then(function (response) {
-                _this.object.texto = '', _this.$emit("responseGetPosts", true);
+            this.data.materia_id = this.idMateria;
+            // console.log(this.data);
+            this.axios.post('api/publicacion', this.data).then(function (response) {
+                _this.data.texto = '', _this.$emit("responseGetPosts", true);
             });
+        },
+
+        //GUARDA EN LA VARIABLE EL ARCHIVO SELECCIONADO
+        processFile: function processFile(event) {
+            this.data.files = event.target.files;
+            // this.urlFiles = URL.createObjectURL(this.data.files);
         }
     }
 });
@@ -80442,15 +80480,68 @@ var render = function() {
                           placeholder: "Publica algo!!"
                         },
                         model: {
-                          value: _vm.object.texto,
+                          value: _vm.data.texto,
                           callback: function($$v) {
-                            _vm.$set(_vm.object, "texto", $$v)
+                            _vm.$set(_vm.data, "texto", $$v)
                           },
-                          expression: "object.texto"
+                          expression: "data.texto"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              required: false,
+                              size: 10240,
+                              mimes: [
+                                "image/jpg",
+                                "image/jpeg",
+                                "application/pdf",
+                                "application/excel",
+                                "application/vnd.ms-excel",
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                "image/png",
+                                "application/vnd.oasis.opendocument.spreadsheet",
+                                "application/vnd.oasis.opendocument.text",
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                              ]
+                            },
+                            expression:
+                              "{ required: false, size:10240, mimes:['image/jpg','image/jpeg','application/pdf','application/excel','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','image/png','application/vnd.oasis.opendocument.spreadsheet','application/vnd.oasis.opendocument.text','application/vnd.openxmlformats-officedocument.wordprocessingml.document']}"
+                          }
+                        ],
+                        ref: "fileInput",
+                        class: {
+                          "is-invalid": _vm.errors.has(
+                            "formComment.inputFile[]"
+                          )
+                        },
+                        staticStyle: { display: "none" },
+                        attrs: {
+                          id: "inputFile",
+                          type: "file",
+                          multiple: "",
+                          name: "inputFile[]"
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.processFile($event)
+                          }
                         }
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { id: "preview" } },
+                    _vm._l(_vm.data, function(file) {
+                      return _c("img", { attrs: { src: _vm.makeUrl(file) } })
+                    })
                   ),
                   _vm._v(" "),
                   _c(
@@ -80461,7 +80552,14 @@ var render = function() {
                         [
                           _c(
                             "b-button",
-                            { attrs: { variant: "secondary", block: "" } },
+                            {
+                              attrs: { variant: "secondary", block: "" },
+                              on: {
+                                click: function($event) {
+                                  _vm.$refs.fileInput.click()
+                                }
+                              }
+                            },
                             [_vm._v("Adjuntar")]
                           )
                         ],
