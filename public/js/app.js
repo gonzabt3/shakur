@@ -80347,7 +80347,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n.img_wrp[data-v-61b1fe0e] {\n   display: inline-block;\n   position: relative;\n}\n.close[data-v-61b1fe0e] {\n    position: absolute;\n    top: 0; \n    right: 0;\n    width: 30px;\n}\n", ""]);
 
 // exports
 
@@ -80358,6 +80358,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -80427,15 +80430,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //   },
     methods: {
         makeUrl: function makeUrl(value) {
-            console.log(value);
             return URL.createObjectURL(value);
         },
         hacerPost: function hacerPost() {
             var _this = this;
 
             this.data.materia_id = this.idMateria;
-            // console.log(this.data);
-            this.axios.post('api/publicacion', this.data).then(function (response) {
+
+            var formData = new FormData();
+
+            formData.append('texto', this.data.texto);
+            formData.append('materia_id', this.data.materia_id);
+            formData.append('user_id', this.data.user_id);
+            formData.append('files', this.data.files);
+
+            _.each(this.data.files, function (file, key) {
+                formData.append('files[' + key + ']', file);
+            });
+
+            // formData.forEach(entries => console.log(entries));
+
+            this.axios.post('api/publicacion', formData).then(function (response) {
                 _this.data.texto = '', _this.$emit("responseGetPosts", true);
             });
         },
@@ -80443,7 +80458,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //GUARDA EN LA VARIABLE EL ARCHIVO SELECCIONADO
         processFile: function processFile(event) {
             this.data.files = event.target.files;
-            // this.urlFiles = URL.createObjectURL(this.data.files);
+        },
+        deleteImage: function deleteImage(item) {
+            var r = [];
+            r = Array.from(this.data.files);
+            r.splice(r.indexOf(item), 1);
+            this.data.files = r;
         }
     }
 });
@@ -80539,8 +80559,22 @@ var render = function() {
                   _c(
                     "b-form-group",
                     { attrs: { id: "preview" } },
-                    _vm._l(_vm.data, function(file) {
-                      return _c("img", { attrs: { src: _vm.makeUrl(file) } })
+                    _vm._l(_vm.data.files, function(file) {
+                      return _c("div", { staticClass: "img_wrp" }, [
+                        _c("img", { attrs: { src: _vm.makeUrl(file) } }),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "close",
+                          attrs: {
+                            src: __webpack_require__(484)
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteImage(file)
+                            }
+                          }
+                        })
+                      ])
                     })
                   ),
                   _vm._v(" "),
@@ -103938,6 +103972,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 483 */,
+/* 484 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/closeIcon.png?73368be852b85675d36764bbb04e1e7a";
 
 /***/ })
 /******/ ]);

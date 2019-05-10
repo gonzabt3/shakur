@@ -23,8 +23,11 @@
                         @change="processFile($event)"
                         >
                     </b-form-group>
-                    <b-form-group id="preview">
-                            <img v-for="file in data"   :src="makeUrl(file)" />
+                    <b-form-group id="preview" >
+                        <div v-for="file in data.files" class="img_wrp" >
+                            <img :src="makeUrl(file)" />
+                            <img @click="deleteImage(file)" class="close" src="../components/closeIcon.png" />
+                        </div>
                     </b-form-group>
                     <b-row>
                         <b-col>
@@ -66,13 +69,25 @@ export default {
 //   },
     methods :{
      makeUrl(value){
-         console.log(value);
           return URL.createObjectURL(value);
       },
       hacerPost(){
             this.data.materia_id=this.idMateria
-            // console.log(this.data);
-            this.axios.post('api/publicacion',this.data)
+
+            let formData = new FormData();
+
+            formData.append('texto',this.data.texto);
+            formData.append('materia_id',this.data.materia_id);
+            formData.append('user_id',this.data.user_id);
+            formData.append('files',this.data.files);
+            
+            _.each(this.data.files, (file, key) => {
+                    formData.append(`files[${key}]`, file);
+            });
+
+            // formData.forEach(entries => console.log(entries));
+
+            this.axios.post('api/publicacion',formData)
             .then((response) =>{
                 this.data.texto='',
                 this.$emit("responseGetPosts",true)            
@@ -81,8 +96,13 @@ export default {
         //GUARDA EN LA VARIABLE EL ARCHIVO SELECCIONADO
         processFile(event) {
             this.data.files = event.target.files;
-            // this.urlFiles = URL.createObjectURL(this.data.files);
         },
+        deleteImage(item){
+            let r = [];
+            r = Array.from(this.data.files);
+            r.splice(r.indexOf(item), 1);
+            this.data.files = r;
+        }
   }
 };
 </script>
@@ -123,5 +143,17 @@ export default {
 #preview img {
   max-width: 100%;
   max-height: 150px;
+}
+
+.img_wrp {
+   display: inline-block;
+   position: relative; 
+}
+
+.close {
+    position: absolute;
+    top: 0; 
+    right: 0;
+    width: 30px;
 }
 </style>

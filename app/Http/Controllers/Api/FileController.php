@@ -25,6 +25,10 @@ class FileController extends Controller
         $this->userService = $userService;
     }
 
+    //TODOS ESTOS METODOS HAY QUE PASARLOS AL SERVICE
+
+
+    //FUNCION PARA AGREGAR DOCUMENTACION
     public function store(Request $request){
 
         $parameters = $this->validate($request,[
