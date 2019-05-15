@@ -23,10 +23,13 @@
                       v-model="data.file" 
                       :state="Boolean(data.file)" 
                       placeholder="Elije un archivo"
-                      name="file"
+                      name="inputFile[]"
                       v-validate="'required'"
+                      multiple
                       :class="{'is-invalid':errors.has('file')}">
                       ></b-form-file>
+
+
                   <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
@@ -93,7 +96,11 @@ export default {
 
           formData.append('nombre',this.data.nombre);
           formData.append('idMateria',this.idMateria);
-          formData.append('file',this.data.file);
+          formData.append('files',this.data.file);
+
+          _.each(this.data.file, (file, key) => {
+                  formData.append(`files[${key}]`, file);
+          });
 
           this.axios.post('api/file',formData)
         .then((response)=>{

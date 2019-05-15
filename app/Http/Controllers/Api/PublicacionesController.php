@@ -10,6 +10,7 @@ use App\Http\Services\PublicacionService;
 use App\Http\Services\FileService;
 use App\Http\Resources\PublicacionResource;
 use Illuminate\Support\Facades\Auth;
+use DB;
 use Session;
 
 class PublicacionesController extends Controller
@@ -33,20 +34,25 @@ class PublicacionesController extends Controller
 
         $adjuntos = $data['files'];
 
-        //pregunto si hay adjuntos
-        if(count($adjuntos)>0){
-
-            $publicacion['flag_adjuntos']=1;
-
-            $this->fileService->storeAdjuntos($adjuntos);
-        }
-
         $user = Auth::user();
-
         $publicacion['user_id']=$user->id;
-        $publicacion = Publicacion::create($publicacion);
 
-        return new PublicacionResource($publicacion);
+        DB::beginTransaction();
+        try {
+            
+            $publicacionId = Publicacion::create($publicacion)->id;
+            
+            //pregunto si hay adjuntos
+            if(count($adjuntos)>0){
+                foreach ($adjuntos as $adjunto) {
+                    $this->fileService->store($adjunto,$publicacionId,'post');   
+                }
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        } 
     }
 
 

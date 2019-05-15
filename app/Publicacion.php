@@ -14,6 +14,10 @@ class Publicacion extends Model
         return $this->hasMany(Comentario::class);
     }
 
+    public function files(){
+        return $this->hasMany(File::class);
+    }
+
     public function likes(){
         return $this->hasMany(Like::class);
     }

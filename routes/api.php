@@ -103,7 +103,7 @@ Route::middleware('auth:api')->post('/evento','Api\EventoController@store');
 Route::middleware('auth:api')->get('/eventos/{idMateria}','Api\EventoController@index');
 
 //creo adjunto
-Route::middleware('auth:api')->post('/file','Api\FileController@store');
+Route::middleware('auth:api')->post('/file','Api\DocumentoController@store');
 
 //traigo adjuntos
 Route::middleware('auth:api')->get('/file/{idMateria}','Api\FileController@index');
