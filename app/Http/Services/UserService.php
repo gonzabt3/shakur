@@ -8,6 +8,7 @@ use App\Materia;
 use App\Evento;
 use App\Publicacion;
 use App\File;
+use App\Documento;
 use App\Comentario;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -36,7 +37,7 @@ class UserService {
             $object=Publicacion::find($id);
         }
         if($tipo=="file"){
-            $object=File::find($id);
+            $object=Documento::find($id);
         }
         if($tipo=='comment'){
             $object=Comentario::find($id);

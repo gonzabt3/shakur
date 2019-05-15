@@ -34,22 +34,51 @@ class FileService {
         DB::beginTransaction();
         try {
 
-            $this->toDisk($file,$id);
-
             $fileObject['publicacion_id']=$idPost;  
             $fileObject['documento_id']=$idDocumento;
-            $fileObject['path']='storage/files/'.$id.'/'.$file->getClientOriginalName();
-
-            File::create($fileObject);
+            $fileObject['path']='';
             
+            $idFile = File::create($fileObject);
 
+            $currentFile=File::find($idFile->id);
+            $currentFile->path='storage/files/'.$idFile->id.'/'.$file->getClientOriginalName();
+            $currentFile->save();
+           
+            $this->toDisk($file,$idFile->id);
+        
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
         }
+    }   
 
+
+    public function delete($id){
+        $file=File::find($id);
+        //me fijo si no tiene una publicacion asociado y lo borro SINO lo des asocio
+        if($file->publicacion_id==null){
+
+            $path_final=str_replace('storage/','public/',$file->path);
+
+            Storage::disk('local')->delete($path_final);
+
+            return File::destroy($id);
+        }else{
+            return File::where('id', $id)->update(array('documento_id' => null));
+        }
+
+        //me fijo si no tiene un doc asociado y lo borro SINO lo des asocio
+        if($file->documento_id==null){
+
+            $path_final=str_replace('storage/','public/',$file->path);
+
+            Storage::disk('local')->delete($path_final);
+
+            return File::destroy($id);
+        }else{
+            return File::where('id', $id)->update(array('publicacion_id' => null));
+        }
     }
-
 
     public function toDisk($file,$idFolder){
             

@@ -57,7 +57,7 @@ export default {
         nombre: '',
         // temas: '',
         file:null,
-        idMateria:this.idMateria
+        materia_id:this.idMateria
       },
       error:'',
       loading:false,
@@ -95,7 +95,7 @@ export default {
           let formData = new FormData();
 
           formData.append('nombre',this.data.nombre);
-          formData.append('idMateria',this.idMateria);
+          formData.append('materia_id',this.idMateria);
           formData.append('files',this.data.file);
 
           _.each(this.data.file, (file, key) => {

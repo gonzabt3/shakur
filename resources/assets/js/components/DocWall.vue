@@ -14,7 +14,7 @@
                     <p
                         v-for="item in arrayDocs"
                         :key="item.id">
-                        <a :href="item.path" download >
+                        <a @click="downloadFiles(item.files)" >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
                             {{item.nombre}}</a> subido por {{nameAlias(item.user)}} <delete
                             @actualizar="getDocs"
@@ -65,8 +65,20 @@ export default {
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
+              console.log(data);
               this.arrayDocs=data
           })
+      },
+      downloadFiles(files){
+            _.each(files, (file, key) => {
+                var url = file.path
+                //saco el nombre de la url
+                var filename = url.substring(url.lastIndexOf('/')+1);
+                var link = document.createElement("a");
+                link.download = filename;
+                link.href = url;
+                link.click();          
+            });
       }
     }
 };

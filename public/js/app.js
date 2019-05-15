@@ -77612,7 +77612,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.axios.get('api/file/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
+                console.log(data);
                 _this.arrayDocs = data;
+            });
+        },
+        downloadFiles: function downloadFiles(files) {
+            _.each(files, function (file, key) {
+                var url = file.path;
+                //saco el nombre de la url
+                var filename = url.substring(url.lastIndexOf('/') + 1);
+                var link = document.createElement("a");
+                link.download = filename;
+                link.href = url;
+                link.click();
             });
         }
     }
@@ -77774,7 +77786,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         nombre: '',
         // temas: '',
         file: null,
-        idMateria: this.idMateria
+        materia_id: this.idMateria
       },
       error: '',
       loading: false,
@@ -77815,7 +77827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           var formData = new FormData();
 
           formData.append('nombre', _this.data.nombre);
-          formData.append('idMateria', _this.idMateria);
+          formData.append('materia_id', _this.idMateria);
           formData.append('files', _this.data.file);
 
           _.each(_this.data.file, function (file, key) {
@@ -78045,7 +78057,13 @@ var render = function() {
                     [
                       _c(
                         "a",
-                        { attrs: { href: item.path, download: "" } },
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.downloadFiles(item.files)
+                            }
+                          }
+                        },
                         [
                           _c("font-awesome-icon", {
                             staticClass: " pointer",

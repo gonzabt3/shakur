@@ -106,11 +106,11 @@ Route::middleware('auth:api')->get('/eventos/{idMateria}','Api\EventoController@
 Route::middleware('auth:api')->post('/file','Api\DocumentoController@store');
 
 //traigo adjuntos
-Route::middleware('auth:api')->get('/file/{idMateria}','Api\FileController@index');
+Route::middleware('auth:api')->get('/file/{idMateria}','Api\DocumentoController@index');
 
 // DELETE COSAS
 //delete files
-Route::middleware('auth:api')->delete('/doc/{id}','Api\FileController@delete');
+Route::middleware('auth:api')->delete('/doc/{id}','Api\DocumentoController@delete');
 
 //delete evento
 Route::middleware('auth:api')->delete('/event/{id}','Api\EventoController@delete');

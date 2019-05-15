@@ -28,59 +28,6 @@ class FileController extends Controller
     //TODOS ESTOS METODOS HAY QUE PASARLOS AL SERVICE
 
 
-    //FUNCION PARA AGREGAR DOCUMENTACION
-    public function store(Request $request){
-
-        $parameters = $this->validate($request,[
-            'nombre' => 'required',
-            'idMateria' => 'required',
-        ]);
-
-        $file =$request->file('file');
-
-        $path =public_path().'/storage/app/public/files/'.$parameters['idMateria'];
-
-        //si no existe el directorio lo creo
-        // if(!FacedeFile::exists($path)){
-        //     FacedeFile::makeDirectory($path,$mode = 0777, true, true);
-        // }
-            
-        //agrego user
-        $user = Auth::user();
-        $parameters['user_id']=$user->id;
-        
-        //ruta del archivo a partir de public
-        $pathFile = '/public/files/'.$parameters['idMateria'];
-        
-        // AL FACADE SE LE PASE /PUBLIC PARA QUE LO GUARDE EN STORAGE/'PUBLIC'
-        // PERO A LA BASE SE LE PASA STORAGE PORQUE CUANDO SE LE VA A BUSCAR SE VA A BUSCAR A LA CARPETA LOCALHOST/STORAGE 
-        // QUE ESTA LINKEADA CON PUBLIC MENCIONADA ANTERIORMENTE
-
-
-        //guardo
-        $fileName=$file->getClientOriginalName(); 
-        Storage::disk('local')->putFileAs($pathFile,$file,$fileName);  
-
-        $parameters['path'] = 'storage/files/'.$parameters['idMateria'].'/'.$file->getClientOriginalName();
-        $parameters['materia_id']=$parameters['idMateria'];
-
-        $fileObject = File::create($parameters);
-        $fileObject->save();
-        }
-
-
-        public function index(Request $request,Response $response,Int $idMateria){
-            
-            $files=File::where('materia_id',$idMateria)->with('user')->get(); 
-            
-            $files->map(function ($file) {                  
-                $file['flagAutor'] = $this->userService->checkAutor('file',$file->id);
-            });
-            
-            return $files;
-        }
-
-
 
         public function delete(Request $request,Response $response,Int $id){
             //corroboro que sea el autor el que lo esta borrando
@@ -94,4 +41,44 @@ class FileController extends Controller
                 File::destroy($id);
             }
         }
+
+    //FUNCION PARA AGREGAR DOCUMENTACION
+    // public function store(Request $request){
+
+    //     $parameters = $this->validate($request,[
+    //         'nombre' => 'required',
+    //         'idMateria' => 'required',
+    //     ]);
+
+    //     $file =$request->file('file');
+
+    //     $path =public_path().'/storage/app/public/files/'.$parameters['idMateria'];
+
+    //     //si no existe el directorio lo creo
+    //     // if(!FacedeFile::exists($path)){
+    //     //     FacedeFile::makeDirectory($path,$mode = 0777, true, true);
+    //     // }
+            
+    //     //agrego user
+    //     $user = Auth::user();
+    //     $parameters['user_id']=$user->id;
+        
+    //     //ruta del archivo a partir de public
+    //     $pathFile = '/public/files/'.$parameters['idMateria'];
+        
+    //     // AL FACADE SE LE PASE /PUBLIC PARA QUE LO GUARDE EN STORAGE/'PUBLIC'
+    //     // PERO A LA BASE SE LE PASA STORAGE PORQUE CUANDO SE LE VA A BUSCAR SE VA A BUSCAR A LA CARPETA LOCALHOST/STORAGE 
+    //     // QUE ESTA LINKEADA CON PUBLIC MENCIONADA ANTERIORMENTE
+
+
+    //     //guardo
+    //     $fileName=$file->getClientOriginalName(); 
+    //     Storage::disk('local')->putFileAs($pathFile,$file,$fileName);  
+
+    //     $parameters['path'] = 'storage/files/'.$parameters['idMateria'].'/'.$file->getClientOriginalName();
+    //     $parameters['materia_id']=$parameters['idMateria'];
+
+    //     $fileObject = File::create($parameters);
+    //     $fileObject->save();
+    //     }
 }
