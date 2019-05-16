@@ -34,21 +34,22 @@ class PublicacionesController extends Controller
 
         $adjuntos = $data['files'];
 
+        // dd($adjuCntos);
+
         $user = Auth::user();
         $publicacion['user_id']=$user->id;
 
         DB::beginTransaction();
         try {
-            
             $publicacionId = Publicacion::create($publicacion)->id;
-            
-            //pregunto si hay adjuntos
-            if(count($adjuntos)>0){
-                foreach ($adjuntos as $adjunto) {
-                    $this->fileService->store($adjunto,$publicacionId,'post');   
+            if($adjuntos!=null){
+                //pregunto si hay adjuntos
+                if(count($adjuntos)>0){
+                    foreach ($adjuntos as $adjunto) {
+                        $this->fileService->store($adjunto,$publicacionId,'post');   
+                    }
                 }
             }
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

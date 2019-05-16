@@ -28,9 +28,9 @@ class PublicacionService{
 
         // CON EL PAGINADO LO QUE HACE ES PEDIRLE PUBLICACIONES ANTERIORES AL idPaginado
         if($idPaginado!=null){
-            $publicaciones=Publicacion::where('materia_id',$idMateria)->where('id', '<',$idPaginado )->orderBy('created_at', 'DESC')->with('user','likes')->take(15)->get();
+            $publicaciones=Publicacion::where('materia_id',$idMateria)->where('id', '<',$idPaginado )->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
         }else{
-            $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes')->take(15)->get();
+            $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
         }
         
         //magia para meter el id del user loageado aca post para poner el on/off de l boton de like

@@ -122,6 +122,7 @@ export default {
     },
     computed:{
         nameAlias: function(){
+            console.log(this.postData)
             if(this.postData.user.alias==null){
                 return this.postData.user.name+' '+this.postData.user.apellido;
             }else{
