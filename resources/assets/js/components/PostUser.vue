@@ -34,6 +34,10 @@
                     <p class="card-text text-justify">
                         {{postData.texto}}
                     </p>
+                    <div id="app">
+                    <img class="image" v-for="(image, i) in postData.files" :src="image.path" @click="onClick(i)">
+                    <vue-gallery-slideshow :images="postData.files" :index="index" @close="index=null"></vue-gallery-slideshow>
+                    </div>
                 </b-form-group>
                 <b-row>
                     <!-- <b-form-group> -->
@@ -92,12 +96,13 @@ import Comentario from '../components/common/Comentario';
 import Like from '../components/common/Like';
 import Delete from '../components/common/Delete';
 import moment from "moment";
+import VueGallerySlideshow from 'vue-gallery-slideshow'
 
 const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
-  components: { Comentario,Like,Delete },
+  components: { Comentario,Like,Delete,VueGallerySlideshow},
   props:['postData'],//data entrante
   data() {
     return {
@@ -111,7 +116,9 @@ export default {
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
-        }
+        },
+        urlImages:[],
+        index:null
     };
   },
     filters:{
@@ -128,9 +135,19 @@ export default {
             }else{
                 return this.postData.user.alias
             }
+        },
+    },
+    created:{
+        urlImages: function(){
+             _.each(this.postData.files, (file, key) => {
+                  this.urlImages.push(file.path)
+          });
         }
     },
 methods: {
+    onClick(i) {
+      this.index = i;
+    },
     showModalLikes(idPost,type){
         this.$emit("showModalLikes",idPost,type);
     },
