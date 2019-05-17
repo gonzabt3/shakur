@@ -184,7 +184,7 @@ export default {
     },
   methods :{
         crearUsuario(){
-            console.log(this.usuario);
+            // console.log(this.usuario);
             this.$validator.validateAll().then(result => {
                 if(result){
                 this.loading=true;

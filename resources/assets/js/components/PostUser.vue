@@ -34,10 +34,8 @@
                     <p class="card-text text-justify">
                         {{postData.texto}}
                     </p>
-                    <div id="app">
-                    <img class="image" v-for="(image, i) in postData.files" :src="image.path" @click="onClick(i)">
-                    <vue-gallery-slideshow :images="postData.files" :index="index" @close="index=null"></vue-gallery-slideshow>
-                    </div>
+                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in postData.files" :src="image.path" @click="onClick(i)">
+                    <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
                 </b-form-group>
                 <b-row>
                     <!-- <b-form-group> -->
@@ -117,8 +115,8 @@ export default {
           texto:'',
           publicacion_id:this.postData.id
         },
-        urlImages:[],
-        index:null
+        // urlImages:[],
+        indexImage:null
     };
   },
     filters:{
@@ -129,24 +127,24 @@ export default {
     },
     computed:{
         nameAlias: function(){
-            console.log(this.postData)
+            // console.log(this.postData)
             if(this.postData.user.alias==null){
                 return this.postData.user.name+' '+this.postData.user.apellido;
             }else{
                 return this.postData.user.alias
             }
         },
-    },
-    created:{
         urlImages: function(){
-             _.each(this.postData.files, (file, key) => {
-                  this.urlImages.push(file.path)
-          });
+            let array=[]
+            _.each(this.postData.files, (file, key) => {
+                  array.push(file.path)
+            });
+            return array;
         }
     },
 methods: {
     onClick(i) {
-      this.index = i;
+      this.indexImage = i;
     },
     showModalLikes(idPost,type){
         this.$emit("showModalLikes",idPost,type);
@@ -262,5 +260,11 @@ methods: {
     padding-bottom: 7px !important;
     padding-left: 7px !important;
     padding-right: 7px !important; 
+}
+
+/* cuadrado de 100px en las thumbnail */
+.cuadrado100px{
+    width: 100px;
+    height: 100px;
 }
 </style>

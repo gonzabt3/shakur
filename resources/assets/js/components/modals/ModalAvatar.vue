@@ -33,7 +33,7 @@ export default {
          * w: croppa width
          * h: croppa height
         */
-        console.log(x, y, w, h)
+        // console.log(x, y, w, h)
         ctx.beginPath()
         ctx.arc(x + w / 2, y + h / 2, w / 2, 0, 2 * Math.PI, true)
         ctx.closePath()

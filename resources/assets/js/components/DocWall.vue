@@ -65,7 +65,7 @@ export default {
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
-              console.log(data);
+            //   console.log(data);
               this.arrayDocs=data
           })
       },

@@ -99,7 +99,7 @@ export default {
                     this.axios.post('../../api/password/reset',this.data)
                     .then((response) =>{
                         this.loading=false
-                        console.log(response);
+                        // console.log(response);
                 })  
                 }else {
                     this.loading=false

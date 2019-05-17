@@ -72222,7 +72222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         crearUsuario: function crearUsuario() {
             var _this = this;
 
-            console.log(this.usuario);
+            // console.log(this.usuario);
             this.$validator.validateAll().then(function (result) {
                 if (result) {
                     _this.loading = true;
@@ -73964,7 +73964,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.shadow[data-v-9342377c]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -73985,8 +73985,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_gallery_slideshow__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_gallery_slideshow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_gallery_slideshow__);
-//
-//
 //
 //
 //
@@ -74104,8 +74102,8 @@ var dateFormat = "DD-MM-YYYY HH:mm";
                 texto: '',
                 publicacion_id: this.postData.id
             },
-            urlImages: [],
-            index: null
+            // urlImages:[],
+            indexImage: null
         };
     },
 
@@ -74117,37 +74115,35 @@ var dateFormat = "DD-MM-YYYY HH:mm";
     },
     computed: {
         nameAlias: function nameAlias() {
-            console.log(this.postData);
+            // console.log(this.postData)
             if (this.postData.user.alias == null) {
                 return this.postData.user.name + ' ' + this.postData.user.apellido;
             } else {
                 return this.postData.user.alias;
             }
-        }
-    },
-    created: {
+        },
         urlImages: function urlImages() {
-            var _this = this;
-
+            var array = [];
             _.each(this.postData.files, function (file, key) {
-                _this.urlImages.push(file.path);
+                array.push(file.path);
             });
+            return array;
         }
     },
     methods: {
         onClick: function onClick(i) {
-            this.index = i;
+            this.indexImage = i;
         },
         showModalLikes: function showModalLikes(idPost, type) {
             this.$emit("showModalLikes", idPost, type);
         },
         submitComentario: function submitComentario() {
-            var _this2 = this;
+            var _this = this;
 
             // console.log(this.objectComentario);
             this.axios.post('api/comentario', this.objectComentario).then(function (response) {
-                _this2.objectComentario.texto = '';
-                _this2.getComentarios();
+                _this.objectComentario.texto = '';
+                _this.getComentarios();
             });
         },
         comentarios: function comentarios() {
@@ -74159,14 +74155,14 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             }
         },
         getComentarios: function getComentarios() {
-            var _this3 = this;
+            var _this2 = this;
 
             this.arrayComentarios = [];
             this.axios.get('api/comentarios/' + this.postData.id).then(function (_ref) {
                 var data = _ref.data;
 
-                _this3.arrayComentarios = data;
-                _this3.cantComentarios = _this3.arrayComentarios.length;
+                _this2.arrayComentarios = data;
+                _this2.cantComentarios = _this2.arrayComentarios.length;
             });
         },
         getPosts: function getPosts() {
@@ -75429,43 +75425,42 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("b-form-group", { staticClass: "text-center" }, [
-                _c("p", { staticClass: "card-text text-justify" }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.postData.texto) +
-                      "\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { attrs: { id: "app" } },
-                  [
-                    _vm._l(_vm.postData.files, function(image, i) {
-                      return _c("img", {
-                        staticClass: "image",
-                        attrs: { src: image.path },
-                        on: {
-                          click: function($event) {
-                            _vm.onClick(i)
-                          }
-                        }
-                      })
-                    }),
-                    _vm._v(" "),
-                    _c("vue-gallery-slideshow", {
-                      attrs: { images: _vm.postData.files, index: _vm.index },
+              _c(
+                "b-form-group",
+                { staticClass: "text-center" },
+                [
+                  _c("p", { staticClass: "card-text text-justify" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.postData.texto) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.postData.files, function(image, i) {
+                    return _c("img", {
+                      key: i,
+                      staticClass: "image cuadrado100px",
+                      attrs: { src: image.path },
                       on: {
-                        close: function($event) {
-                          _vm.index = null
+                        click: function($event) {
+                          _vm.onClick(i)
                         }
                       }
                     })
-                  ],
-                  2
-                )
-              ]),
+                  }),
+                  _vm._v(" "),
+                  _c("vue-gallery-slideshow", {
+                    attrs: { images: _vm.urlImages, index: _vm.indexImage },
+                    on: {
+                      close: function($event) {
+                        _vm.indexImage = null
+                      }
+                    }
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
               _c(
                 "b-row",
@@ -77961,7 +77956,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.axios.get('api/file/' + this.idMateria).then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
+                //   console.log(data);
                 _this.arrayDocs = data;
             });
         },
@@ -80047,7 +80042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * w: croppa width
          * h: croppa height
         */
-        console.log(x, y, w, h);
+        // console.log(x, y, w, h)
         ctx.beginPath();
         ctx.arc(x + w / 2, y + h / 2, w / 2, 0, 2 * Math.PI, true);
         ctx.closePath();
@@ -81860,7 +81855,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (result) {
                     _this.axios.post('../../api/password/reset', _this.data).then(function (response) {
                         _this.loading = false;
-                        console.log(response);
+                        // console.log(response);
                     });
                 } else {
                     _this.loading = false;
