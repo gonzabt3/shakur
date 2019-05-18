@@ -134,6 +134,9 @@ export default {
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(flagNewPost=false){
         
+        // flagNewPOST false es que importa el paginado
+        // flagNewPOST true no importa el paginado
+
         // tambien viene el flag en true cuando se borrar un post
         //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
         //reseteo el idPaginado para traer todos los post comunmente
@@ -150,15 +153,16 @@ export default {
 
         this.axios.get(url)
                     .then(({data}) => {
-                      // console.log(data);
+                      if(data.length>0){
                         this.arrayPosts=_.union(this.arrayPosts,data);
                         this.idPaginado=data[data.length-1].id
+                      }
                     });
       },
     //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
       updateWalls(val){
             this.idMateria=val;
-            this.getPosts();
+            this.getPosts(true);
             this.$refs.eventWall.getEventos(val);
             this.$refs.docWall.getDocs(val);
         },

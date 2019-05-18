@@ -73829,6 +73829,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var flagNewPost = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
 
+      // flagNewPOST false es que importa el paginado
+      // flagNewPOST true no importa el paginado
+
       // tambien viene el flag en true cuando se borrar un post
       //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
       //reseteo el idPaginado para traer todos los post comunmente
@@ -73846,16 +73849,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.axios.get(url).then(function (_ref) {
         var data = _ref.data;
 
-        // console.log(data);
-        _this.arrayPosts = _.union(_this.arrayPosts, data);
-        _this.idPaginado = data[data.length - 1].id;
+        if (data.length > 0) {
+          _this.arrayPosts = _.union(_this.arrayPosts, data);
+          _this.idPaginado = data[data.length - 1].id;
+        }
       });
     },
 
     //   METODO QUE UPDATEA LOS WALLS SEGUN LA MATERIA
     updateWalls: function updateWalls(val) {
       this.idMateria = val;
-      this.getPosts();
+      this.getPosts(true);
       this.$refs.eventWall.getEventos(val);
       this.$refs.docWall.getDocs(val);
     },
