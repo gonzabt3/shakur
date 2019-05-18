@@ -90,6 +90,7 @@ export default {
             this.axios.post('api/publicacion',formData)
             .then((response) =>{
                 this.data.texto='',
+                this.data.files=[],
                 this.$emit("responseGetPosts",true)            
             })
         },
