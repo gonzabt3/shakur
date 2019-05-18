@@ -73829,6 +73829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var flagNewPost = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
 
+      // tambien viene el flag en true cuando se borrar un post
       //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
       //reseteo el idPaginado para traer todos los post comunmente
       if (flagNewPost) {
@@ -74166,7 +74167,9 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             });
         },
         getPosts: function getPosts() {
-            this.$emit("getPosts");
+            var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            this.$emit("getPosts", value);
         }
     },
     watch: {
@@ -74599,7 +74602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.axios.delete('api/' + this.tipo + '/' + this.id).then(function (_ref) {
                 var data = _ref.data;
 
-                _this.$emit("actualizar");
+                _this.$emit("actualizar", true);
             });
         }
     }
@@ -80930,21 +80933,25 @@ var render = function() {
                     "b-form-group",
                     { attrs: { id: "preview" } },
                     _vm._l(_vm.data.files, function(file) {
-                      return _c("div", { staticClass: "img_wrp" }, [
-                        _c("img", { attrs: { src: _vm.makeUrl(file) } }),
-                        _vm._v(" "),
-                        _c("img", {
-                          staticClass: "close",
-                          attrs: {
-                            src: __webpack_require__(456)
-                          },
-                          on: {
-                            click: function($event) {
-                              _vm.deleteImage(file)
+                      return _c(
+                        "div",
+                        { key: file.id, staticClass: "img_wrp" },
+                        [
+                          _c("img", { attrs: { src: _vm.makeUrl(file) } }),
+                          _vm._v(" "),
+                          _c("img", {
+                            staticClass: "close",
+                            attrs: {
+                              src: __webpack_require__(456)
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.deleteImage(file)
+                              }
                             }
-                          }
-                        })
-                      ])
+                          })
+                        ]
+                      )
                     })
                   ),
                   _vm._v(" "),

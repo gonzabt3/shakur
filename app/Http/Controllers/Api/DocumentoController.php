@@ -76,7 +76,7 @@ class DocumentoController extends Controller
             $files = Documento::find($id)->files;
 
             foreach ($files as $file) {
-                $this->fileService->delete($file->id);
+                $this->fileService->delete($file->id,'documento');
             }
 
             Documento::destroy($id);

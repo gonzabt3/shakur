@@ -2,6 +2,7 @@
 namespace App\Http\Services;
 
 use App\Http\Services\UserService;
+use App\Http\Services\FileService;
 use App\Http\Services\LikeService;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,11 @@ class PublicacionService{
     protected $comentarioService;
 
 
-    public function __construct(UserService $userService,LikeService $likeService,ComentarioService $comentarioService){
+    public function __construct(UserService $userService,LikeService $likeService,ComentarioService $comentarioService,FileService $fileService){
         $this->userService = $userService;
         $this->likeService = $likeService;
         $this->comentarioService = $comentarioService;
+        $this->fileService = $fileService;
     }
 
     public function getPosts($idMateria,$idPaginado){
@@ -49,10 +51,14 @@ class PublicacionService{
         if(Auth::user()->id==Publicacion::find($idPost)->user_id){
             $comentariosPublicacion = Publicacion::find($idPost)->comentarios()->get();
 
-            foreach ($comentariosPublicacion as $coment) {
-                $this->comentarioService->delete($coment->id);
+            foreach ($comentariosPublicacion as $comment) {
+                $this->comentarioService->delete($comment->id);
             }
             
+            $filesPublicacion = Publicacion::find($idPost)->files()->get();
+            foreach ($filesPublicacion as $file) {
+                $this->fileService->delete($file->id,'post');
+            }
             Publicacion::find($idPost)->likes()->delete();
             Publicacion::destroy($idPost);
         }    

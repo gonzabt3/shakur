@@ -14,7 +14,7 @@ export default {
         sumbit(){
             this.axios.delete('api/'+this.tipo+'/'+this.id)
             .then(({data}) => {
-                this.$emit("actualizar")  
+                this.$emit("actualizar",true)  
             })
         }
     },

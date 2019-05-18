@@ -24,7 +24,7 @@
                         >
                     </b-form-group>
                     <b-form-group id="preview" >
-                        <div v-for="file in data.files" class="img_wrp" >
+                        <div v-for="file in data.files" :key="file.id" class="img_wrp" >
                             <img :src="makeUrl(file)" />
                             <img @click="deleteImage(file)" class="close" src="../components/closeIcon.png" />
                         </div>

@@ -134,6 +134,7 @@ export default {
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(flagNewPost=false){
         
+        // tambien viene el flag en true cuando se borrar un post
         //el flag en true es cuando hay uno nuevo post,si es falso es que se le esta dando click al "var mas publicaciones"
         //reseteo el idPaginado para traer todos los post comunmente
         if(flagNewPost){
@@ -145,7 +146,7 @@ export default {
           this.arrayPosts=[]
         }
 
-          let url='api/publicacion/'+this.idMateria+'/'+this.idPaginado;
+        let url='api/publicacion/'+this.idMateria+'/'+this.idPaginado;
 
         this.axios.get(url)
                     .then(({data}) => {

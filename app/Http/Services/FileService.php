@@ -53,30 +53,35 @@ class FileService {
     }   
 
 
-    public function delete($id){
+    public function delete($id,$tipo=null){
         $file=File::find($id);
-        //me fijo si no tiene una publicacion asociado y lo borro SINO lo des asocio
-        if($file->publicacion_id==null){
+        
+        // el tipo siver para saber desde donde vine el borrado
+        if($tipo=='documento'){
+            //me fijo si no tiene una publicacion asociado y lo borro SINO lo des asocio
+            if($file->publicacion_id==null){
 
-            $path_final=str_replace('storage/','public/',$file->path);
+                $path_final=str_replace('storage/','public/',$file->path);
 
-            Storage::disk('local')->delete($path_final);
+                Storage::disk('local')->delete($path_final);
 
-            return File::destroy($id);
-        }else{
-            return File::where('id', $id)->update(array('documento_id' => null));
+                 File::destroy($id);
+            }else{
+                 File::where('id', $id)->update(array('documento_id' => null));
+            }
         }
+       
+        if($tipo=='post'){
+            //me fijo si no tiene un doc asociado y lo borro SINO lo des asocio
+            if($file->documento_id==null){
 
-        //me fijo si no tiene un doc asociado y lo borro SINO lo des asocio
-        if($file->documento_id==null){
+                $path_final=str_replace('storage/','public/',$file->path);
 
-            $path_final=str_replace('storage/','public/',$file->path);
-
-            Storage::disk('local')->delete($path_final);
-
-            return File::destroy($id);
-        }else{
-            return File::where('id', $id)->update(array('publicacion_id' => null));
+                Storage::disk('local')->delete($path_final);+
+                File::destroy($id);
+            }else{
+                 File::where('id', $id)->update(array('publicacion_id' => null));
+            }
         }
     }
 

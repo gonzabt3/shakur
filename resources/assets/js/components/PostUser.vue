@@ -173,8 +173,8 @@ methods: {
                         this.cantComentarios=this.arrayComentarios.length
                     });
     },
-    getPosts(){
-        this.$emit("getPosts")  
+    getPosts(value=null){
+        this.$emit("getPosts",value)  
     }
   },
   watch: {
