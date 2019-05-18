@@ -36,7 +36,9 @@
                             >Adjuntar</b-button>
                         </b-col>
                         <b-col class="left-padding">
-                            <b-button  variant="primary" block  @click="hacerPost">Publicar</b-button>
+                            <b-button :disabled="disabledButton" variant="primary" block  @click="hacerPost">
+                                <img v-show="iconLoading" class="sizeLoading" src="../components/loadingWhite.svg">
+                                {{textButton}}</b-button>
                         </b-col>
                     </b-row>
                 </b-form>
@@ -59,6 +61,10 @@ export default {
             user_id:null,
             files:[]
         },
+        textButton:'Publicar',
+        disabledButton:false,
+        loading:false,
+        iconLoading:false,
         urlFiles:[]
     };
   },
@@ -67,11 +73,25 @@ export default {
 //           return URL.createObjectURL(value);
 //       }
 //   },
+    watch:{
+         loading: function(value){
+         if(value){
+             this.disabledButton=true;
+             this.textButton=''
+             this.iconLoading=true
+         }else{
+             this.disabledButton=false;
+             this.textButton='Publicar'
+             this.iconLoading=false
+         }
+     } 
+    },
     methods :{
      makeUrl(value){
           return URL.createObjectURL(value);
       },
       hacerPost(){
+            this.loading=true;
             this.data.materia_id=this.idMateria
 
             let formData = new FormData();
@@ -89,6 +109,7 @@ export default {
 
             this.axios.post('api/publicacion',formData)
             .then((response) =>{
+                this.loading=false
                 this.data.texto='',
                 this.data.files=[],
                 this.$emit("responseGetPosts",true)            
@@ -156,5 +177,9 @@ export default {
     top: 0; 
     right: 0;
     width: 30px;
+}
+
+.sizeLoading{
+        width: 30px;
 }
 </style>

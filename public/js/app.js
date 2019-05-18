@@ -80724,7 +80724,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n.img_wrp[data-v-61b1fe0e] {\n   display: inline-block;\n   position: relative;\n}\n.close[data-v-61b1fe0e] {\n    position: absolute;\n    top: 0; \n    right: 0;\n    width: 30px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        -webkit-box-shadow: 10px 10px grey;\n                box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n.img_wrp[data-v-61b1fe0e] {\n   display: inline-block;\n   position: relative;\n}\n.close[data-v-61b1fe0e] {\n    position: absolute;\n    top: 0; \n    right: 0;\n    width: 30px;\n}\n.sizeLoading[data-v-61b1fe0e]{\n        width: 30px;\n}\n", ""]);
 
 // exports
 
@@ -80735,6 +80735,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -80796,6 +80798,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 user_id: null,
                 files: []
             },
+            textButton: 'Publicar',
+            disabledButton: false,
+            loading: false,
+            iconLoading: false,
             urlFiles: []
         };
     },
@@ -80805,6 +80811,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //           return URL.createObjectURL(value);
     //       }
     //   },
+    watch: {
+        loading: function loading(value) {
+            if (value) {
+                this.disabledButton = true;
+                this.textButton = '';
+                this.iconLoading = true;
+            } else {
+                this.disabledButton = false;
+                this.textButton = 'Publicar';
+                this.iconLoading = false;
+            }
+        }
+    },
     methods: {
         makeUrl: function makeUrl(value) {
             return URL.createObjectURL(value);
@@ -80812,6 +80831,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hacerPost: function hacerPost() {
             var _this = this;
 
+            this.loading = true;
             this.data.materia_id = this.idMateria;
 
             var formData = new FormData();
@@ -80828,6 +80848,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // formData.forEach(entries => console.log(entries));
 
             this.axios.post('api/publicacion', formData).then(function (response) {
+                _this.loading = false;
                 _this.data.texto = '', _this.data.files = [], _this.$emit("responseGetPosts", true);
             });
         },
@@ -80988,10 +81009,33 @@ var render = function() {
                           _c(
                             "b-button",
                             {
-                              attrs: { variant: "primary", block: "" },
+                              attrs: {
+                                disabled: _vm.disabledButton,
+                                variant: "primary",
+                                block: ""
+                              },
                               on: { click: _vm.hacerPost }
                             },
-                            [_vm._v("Publicar")]
+                            [
+                              _c("img", {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.iconLoading,
+                                    expression: "iconLoading"
+                                  }
+                                ],
+                                staticClass: "sizeLoading",
+                                attrs: {
+                                  src: __webpack_require__(41)
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.textButton)
+                              )
+                            ]
                           )
                         ],
                         1
