@@ -36,17 +36,20 @@ export default {
   filters:{
     //corta el nombre de la materia seleccionda porqe sino no entra
     formatMateriaSelected(val){
-      if(val.length>=25){
-        let resto = val.length-25
-        val = val.slice(0,-resto);
-        console.log(val+'...');
-        return (val+'...');
+      let ancho = window.innerWidth;
+      if(ancho<=576){  
+        if(val.length>=25){
+          let resto = val.length-25
+          val = val.slice(0,-resto);
+          console.log(val+'...');
+          return (val+'...');
+        }else{
+          return val
+        }
+      }else{
+        return val=''
       }
-      return val
     }
-  },
-  watch:{
-    
   },
   methods:{
     getMaterias(){
