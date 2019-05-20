@@ -4,7 +4,7 @@
             <b-col cols="2">
                 <b-img rounded="circle" width="50" height="50" thumbnail fluid :src="comentarioData.user.avatar_url" alt="Thumbnail" />
             </b-col>
-            <b-col>
+            <b-col cols="9">
                 <b-row>
                     <b-col cols="10" class="no-padding-left">
                         <b-form-group>
@@ -20,10 +20,10 @@
                         />
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row >
                     <p class="form-control">{{comentarioData.texto}}</p>
                 </b-row>
-                <b-row>
+                <b-row cols="8">
                     <like
                       :likes-data="comentarioData.likes_comentarios"
                       :flag-like="comentarioData.flagLike"

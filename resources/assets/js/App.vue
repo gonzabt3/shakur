@@ -32,6 +32,7 @@ body{
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #00a0b54f;
     }
 
   .no-padding-main{

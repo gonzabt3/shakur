@@ -56,10 +56,9 @@
                             <b-img :src="commentIcon" fluid alt="comments" />
                         </b-button>
                         </b-col>
-                        
-                    
                     <!-- </b-form-group> -->
                 </b-row>
+                <hr/>
                 <div v-if="showComentarios">
                     <comentario v-for="item in arrayComentarios"
                     :comentario-data="item"

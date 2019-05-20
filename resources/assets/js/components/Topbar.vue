@@ -1,6 +1,7 @@
 <template>
-<b-navbar toggleable="md" type="dark" variant="info">
+<b-navbar  toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+  <label class="text-center white">{{materiaSelected | formatMateriaSelected}}</label>
   <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
@@ -25,11 +26,27 @@ export default {
     return{
       materias:[],
       username:'',
-      avatar_url:''
+      avatar_url:'',
+      materiaSelected:''
     }
   },
   mounted(){
         this.getMaterias();
+  },
+  filters:{
+    //corta el nombre de la materia seleccionda porqe sino no entra
+    formatMateriaSelected(val){
+      if(val.length>=25){
+        let resto = val.length-25
+        val = val.slice(0,-resto);
+        console.log(val+'...');
+        return (val+'...');
+      }
+      return val
+    }
+  },
+  watch:{
+    
   },
   methods:{
     getMaterias(){
@@ -58,7 +75,13 @@ export default {
     },
     //funcion que marca la materia actual
     clickMateria(val){
-        this.$emit("changeMateria",val);      
+
+      _.each(this.materias, (materia, key) => {
+        if(materia.id==val){
+          this.materiaSelected=materia.nombre
+        }
+      });
+      this.$emit("changeMateria",val);      
     }
   }
 
@@ -69,5 +92,9 @@ export default {
 <style scoped>
 .valentine{
   font-family:valentine !important;
+}
+
+.white{
+  color:#ffffff;
 }
 </style>

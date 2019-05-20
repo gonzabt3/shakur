@@ -7,7 +7,7 @@
         <!-- VISTA DE CELULAR -->
         <b-row v-if="celular">
             <b-col >
-                <b-tabs pills card  class="white">
+                <b-tabs pills card >
                   <b-tab title="Mi perfil">
                     <settings-wall ref="settings"></settings-wall>
                   </b-tab>
@@ -188,7 +188,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 
 .no-padding{
     padding-left: 0px;
@@ -199,6 +199,13 @@ export default {
     overflow-y: scroll;
     /*  ARREGLAR ESTA NEGRDADA */
   height: 100vh;
+}
+
+/* .white-background {
+    background-color: #fff;
+} */
+.card-header{
+    background-color: #ffffff !important;
 }
 
 /* twiter style */
