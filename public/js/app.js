@@ -75781,7 +75781,7 @@ var dateFormat = "DD-MM-YYYY HH:mm";
             var _this = this;
 
             //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
-            if (val != null) {
+            if (val != null && val != true) {
                 this.idMateria = val;
             }
             // console.log(this.idMateria);
@@ -78171,7 +78171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.iconLoading = true;
       } else {
         this.disabledButton = false;
-        this.textButton = 'Resgistrarse';
+        this.textButton = 'Subir';
         this.iconLoading = false;
       }
     }

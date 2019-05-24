@@ -51,7 +51,7 @@ export default {
       },
       getEventos(val){
             //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
-            if(val!=null){
+            if(val!=null  && val!=true){
                 this.idMateria=val
             }
             // console.log(this.idMateria);
