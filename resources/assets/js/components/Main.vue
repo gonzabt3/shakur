@@ -11,7 +11,7 @@
                   <b-tab title="Mi perfil">
                     <settings-wall ref="settings"></settings-wall>
                   </b-tab>
-                  <b-tab class="scroll no-padding" title="Muro">
+                  <b-tab class="scroll no-padding" active title="Muro">
                     <post-new 
                     @responseGetPosts="getPosts"
                     :id-materia="idMateria"

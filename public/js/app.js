@@ -81596,7 +81596,7 @@ var render = function() {
                         "b-tab",
                         {
                           staticClass: "scroll no-padding",
-                          attrs: { title: "Muro" }
+                          attrs: { active: "", title: "Muro" }
                         },
                         [
                           _c("post-new", {
