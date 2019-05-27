@@ -25,6 +25,7 @@
                 </b-row>
                 <b-row cols="8">
                     <like
+                      @showModal="showModalLikes"
                       :likes-data="comentarioData.likes_comentarios"
                       :flag-like="comentarioData.flagLike"
                       :id-post="comentarioData.id"
@@ -61,7 +62,11 @@ export default {
   methods:{
       getComentarios(){
         this.$emit("getComentarios")  
-      }
+      },
+    showModalLikes(idPost,type){
+        console.log(idPost);
+        this.$emit("showModalLikes",idPost,type);
+    },
   }
 };
 </script>

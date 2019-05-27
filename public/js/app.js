@@ -74080,6 +74080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -74322,6 +74323,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -74346,6 +74348,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         getComentarios: function getComentarios() {
             this.$emit("getComentarios");
+        },
+        showModalLikes: function showModalLikes(idPost, type) {
+            console.log(idPost);
+            this.$emit("showModalLikes", idPost, type);
         }
     }
 });
@@ -74736,7 +74742,8 @@ var render = function() {
                       "id-post": _vm.comentarioData.id,
                       "url-like": "api/like/comentario",
                       tipo: "cm"
-                    }
+                    },
+                    on: { showModal: _vm.showModalLikes }
                   })
                 ],
                 1
@@ -75543,7 +75550,10 @@ var render = function() {
                         return _c("comentario", {
                           key: item.id,
                           attrs: { "comentario-data": item },
-                          on: { getComentarios: _vm.getComentarios }
+                          on: {
+                            getComentarios: _vm.getComentarios,
+                            showModalLikes: _vm.showModalLikes
+                          }
                         })
                       }),
                       _vm._v(" "),

@@ -63,6 +63,7 @@
                     <comentario v-for="item in arrayComentarios"
                     :comentario-data="item"
                     @getComentarios="getComentarios"
+                    @showModalLikes="showModalLikes"
                     :key="item.id" ></comentario>
                     <hr />
                     <b-row>

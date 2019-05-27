@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Like;
 use App\Publicacion;
+use App\Comentario;
 use App\LikeComentario;
 use App\User;
 use Session;
@@ -34,6 +35,10 @@ class LikeService{
     public function userLikesXpost($idPost,$tipo){
         if($tipo=='mg'){
             $users=Publicacion::find($idPost)->likes()->with('user')->get();
+        }
+
+        if($tipo=='cm'){
+            $users=Comentario::find($idPost)->likesComentarios()->with('user')->get();
         }
         return $users;
     }
