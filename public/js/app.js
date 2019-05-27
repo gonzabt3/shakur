@@ -73085,7 +73085,10 @@ var render = function() {
         "b-modal",
         {
           ref: "modalResetPassword",
-          attrs: { id: "modalResetPassword", title: "Olvidates tu conteseña?" },
+          attrs: {
+            id: "modalResetPassword",
+            title: "Olvidastes tu contraseña?"
+          },
           on: { hide: _vm.cleanModal }
         },
         [

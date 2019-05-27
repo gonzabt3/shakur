@@ -1,6 +1,6 @@
 <template>
     <b-container fluid>
-         <b-modal @hide="cleanModal"  ref="modalResetPassword" id="modalResetPassword" title="Olvidates tu conteseña?">
+         <b-modal @hide="cleanModal"  ref="modalResetPassword" id="modalResetPassword" title="Olvidastes tu contraseña?">
                 <b-row >
                     <b-col>
                         <b-form-group v-if="!flagSuccess" label="Correo electronico:" label-for="emailPassword">

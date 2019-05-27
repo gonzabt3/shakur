@@ -123,4 +123,10 @@ class UserService {
         Storage::disk('local')->putFileAs($path,$file,'avatar.png');  
 
     }
+
+    public function checkUserLog(){
+        $user = Auth::user();
+
+        dd($user);
+    }
 }
