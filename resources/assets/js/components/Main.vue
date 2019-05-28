@@ -77,14 +77,14 @@
 
 <script>
 
-import PostUser from '../components/PostUser';
+const PostUser = () => import('../components/PostUser');
 import EventsWall from '../components/EventsWall';
 import DocWall from '../components/DocWall';
-import SettingsWall from '../components/SettingsWall';
-import PostNew from '../components/PostNew';
-import Topbar from '../components/Topbar';
-import ModalComunication from '../components/modals/ModalComunication'
-import ModalLikes from '../components/modals/ModalLikes'
+const SettingsWall = () => import('../components/SettingsWall');
+const PostNew = () => import('../components/PostNew');
+const Topbar =  () => import('../components/Topbar');
+const ModalComunication = () => import('../components/modals/ModalComunication');
+const ModalLikes = () => import('../components/modals/ModalLikes');
 
 export default {
   name: 'Main',

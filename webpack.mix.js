@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +11,22 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    plugins: [
+        new CompressionPlugin({
+            filename: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$|\.svg$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    ]
+});
+
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        uglify: true
+    }).version();
