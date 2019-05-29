@@ -8,11 +8,14 @@ use App\Materia;
 use App\Evento;
 use App\Publicacion;
 use App\File;
+use App\Documento;
 use App\Comentario;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserService {
@@ -34,7 +37,7 @@ class UserService {
             $object=Publicacion::find($id);
         }
         if($tipo=="file"){
-            $object=File::find($id);
+            $object=Documento::find($id);
         }
         if($tipo=='comment'){
             $object=Comentario::find($id);
@@ -64,22 +67,66 @@ class UserService {
         $user = Auth::user();
 
         // $user->toArray($parameters);
-         $this->userResource->update($user->id,$parameters);
+        $this->userResource->update($user->id,$parameters);
+        $this->updateAvatar($parameters['avatar_file']);
+
+
          $this->storeMaterias($parameters);
     }
 
     public function storeMaterias($parameters){
         $user = Auth::user();
 
-        // dd($parameters);
-        $materias=$parameters['materias'];
-        //circo para guardar las materias x usuario
-        foreach ($materias as $materia) {
-                
-            if(!$this->checkMateria($materia['value'])){
-                $user->materias()->saveMany([Materia::find($materia['value'])]);
-            }
 
+        $materiasNuevas=json_decode($parameters['materias'],true);
+        $materiasViejas=$user->materias()->get();
+
+        if($materiasViejas->isEmpty()){
+            $materiasViejas=[];
+        }else{
+            $materiasViejas=$materiasViejas->toArray();
         }
+
+
+        //borra
+        foreach ($materiasViejas as $vieja) {
+            if(!in_array($vieja,$materiasNuevas)){
+                $user->materias()->detach($vieja['id']);
+                // dd("borrar");
+            }
+        }
+
+        // agrega
+        foreach ($materiasNuevas as $nueva) {
+            if(!in_array($nueva,$materiasViejas)){
+                $user->materias()->saveMany([Materia::find($nueva['value'])]);
+                // dd("agregar");
+            }
+        }
+
+        //circo para guardar las materias x usuario
+        // foreach ($materias as $materia) {
+                
+        //     if(!$this->checkMateria($materia['value'])){
+        //         $user->materias()->saveMany([Materia::find($materia['value'])]);
+        //     }
+
+        // }
+    }
+
+    public function updateAvatar($file){
+
+        $user = Auth::user();
+
+        $path ='public/avatars/'.$user->id;
+
+        Storage::disk('local')->putFileAs($path,$file,'avatar.png');  
+
+    }
+
+    public function checkUserLog(){
+        $user = Auth::user();
+
+        dd($user);
     }
 }

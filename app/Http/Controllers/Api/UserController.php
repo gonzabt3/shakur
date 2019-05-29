@@ -18,22 +18,22 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function store(){
+    // public function store(){
         
-      $user =  $this->validate(request(),[
-            "name" => 'required',
-            "apellido" => 'required',
-            "carrera_id" => 'required',
-            "email" => 'required|email',
-            "password" => 'required',
-        ]);
+    //   $user =  $this->validate(request(),[
+    //         "name" => 'required',
+    //         "apellido" => 'required',
+    //         "carrera_id" => 'required',
+    //         "email" => 'required|email',
+    //         "password" => 'required',
+    //     ]);
         
-        // dd($user);
+    //     // dd($user);
 
-        User::create($user);
+    //     User::create($user);
 
-        // auth()->login($user);
-    }
+    //     // auth()->login($user);
+    // }
 
     public function config(Request $request,Response $response){
 
@@ -41,17 +41,24 @@ class UserController extends Controller
             "name" => 'required',
             "apellido" => 'required',
             "alias" => 'nullable',
-            "materias" => 'required'
-        ]);
-        
+            "carrera_id" => 'required',
+            "materias" => 'required',
+            "avatar_file" => 'nullable'
+            ]);
+
         $user = Auth::user();
         // $idUsuario=$user->id;
         // dd($data);
-
+        
         $this->userService->update($data);
     }
 
     public function index(Request $request,Response $response){
-        return Auth::user()->load('materias');
+        
+        $dataUser =  Auth::user()->load('materias');
+        
+        //agrego la unive
+        $dataUser['universidad']=Auth::user()->carrera->universidad;
+        return $dataUser;
     }
 }

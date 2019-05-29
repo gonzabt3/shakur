@@ -14,4 +14,8 @@ class LikeComentario extends Model
     public function comentario(){
         return $this->belongsTo(Comentario::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

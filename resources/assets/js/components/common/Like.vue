@@ -1,8 +1,18 @@
 <template>
-    <b-button size="sm" @click="btnLike">
-        <label class="no-margin-bottom">{{cantidadLikes}}</label>
-        <b-img :src="beerIcon" fluid alt="beerLike" /> {{stringBtnLike}}
-    </b-button>
+    <b-container fluid>
+        <b-row>
+            <b-col>
+                <b-button block size="sm" @click="btnLike">
+                    {{cantidadLikes}}  
+                    {{stringBtnLike}}
+                    <b-img :src="beerIcon" fluid alt="beerLike" /> 
+                </b-button>
+            </b-col>
+            <b-col class="no-padding-lateral">
+                <b-button block @click="showModalLike" class="alto " size="sm">Ver likes</b-button>
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 <script>
 export default {
@@ -20,6 +30,9 @@ export default {
             this.estadoBtnLike();
         },
         methods:{
+            showModalLike(){
+                this.$emit("showModal",this.idPost,this.tipo);
+            },
             btnLike() {
                     if (!this.btnLikeEstado) {
                 
@@ -58,12 +71,20 @@ export default {
         watch:{
              btnLikeEstado(value) {
                 this.beerIcon = (value == true ? '../images/beerVacia.png' : '../images/beer.png');
-                this.stringBtnLike = (value == true ? 'Dislike' : 'Like');
+                this.stringBtnLike = (value == true ? '' : '');
             }
         }
     
 }
 </script>
 <style scoped>
+.alto{
+    height: 34px;
+}
+
+.no-padding-lateral{
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
 </style>

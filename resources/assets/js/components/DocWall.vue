@@ -14,7 +14,7 @@
                     <p
                         v-for="item in arrayDocs"
                         :key="item.id">
-                        <a :href="item.path" download >
+                        <a @click="downloadFiles(item.files)" >
                             <font-awesome-icon icon="arrow-circle-down" class=" pointer" size="sm" />
                             {{item.nombre}}</a> subido por {{nameAlias(item.user)}} <delete
                             @actualizar="getDocs"
@@ -33,8 +33,11 @@
 </template>
 
 <script>
-import ModalNewDoc from '../components/modals/ModalNewDoc';
-import Delete from '../components/common/Delete';
+const ModalNewDoc = () => import('../components/modals/ModalNewDoc');
+const Delete = () => import('../components/common/Delete');
+
+// import ModalNewDoc from '../components/modals/ModalNewDoc';
+// import Delete from '../components/common/Delete';
 
 export default {
     name: 'DocWall',
@@ -58,15 +61,27 @@ export default {
         },
       getDocs(val){
         //ESTE IF ESTA PARA CUANDO SE TIRA EL GET DESDE LA TOPBAR
-          if(val!=null){
+          if(val!=null && val!=true){
               this.idMateria=val
           }
         //   console.log("GET DOCS");
           this.arrayDocs = []
           this.axios.get('api/file/'+this.idMateria)
           .then(({data}) => {
+            //   console.log(data);
               this.arrayDocs=data
           })
+      },
+      downloadFiles(files){
+            _.each(files, (file, key) => {
+                var url = file.path
+                //saco el nombre de la url
+                var filename = url.substring(url.lastIndexOf('/')+1);
+                var link = document.createElement("a");
+                link.download = filename;
+                link.href = url;
+                link.click();          
+            });
       }
     }
 };

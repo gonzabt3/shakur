@@ -19,8 +19,13 @@ class MateriasController extends Controller
         $this->materiaService = $materiaService;
     }
 
-    public function materiasXcarrera($id){
+    public function materiasXcarrera($id=null){
+
+        // if($id==null){
+            // $id=Auth::user()->carrera_id;
+        // }
         return Carrera::find($id)->materias;
+
     }
 
     //correjida pasada al serivce de materia
@@ -30,8 +35,12 @@ class MateriasController extends Controller
 
     public function materiasXusuario(){
         $user = Auth::user();
+        
+        
         $data['materias']=$user->materias;
         $data['username']=$user->name;
+        $data['avatar']=$user->getAvatarUrlAttribute();
+        
         return $data;
     }
 }

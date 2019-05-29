@@ -1,6 +1,7 @@
 <template>
-<b-navbar toggleable="md" type="dark" variant="info">
+<b-navbar  toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+  <label class="text-center white">{{materiaSelected | formatMateriaSelected}}</label>
   <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
@@ -10,8 +11,9 @@
     </b-navbar-nav>
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-      <h4>{{username}}</h4>
-      <font-awesome-icon  icon="user"  class="pointer" size="lg"  />
+      <h4>{{username}} </h4>
+      <!-- <font-awesome-icon  icon="user"  class="pointer" size="lg"  /> -->
+      <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
 </b-navbar>
@@ -23,20 +25,42 @@ export default {
   data(){
     return{
       materias:[],
-      username:''
+      username:'',
+      avatar_url:'',
+      materiaSelected:''
     }
   },
   mounted(){
         this.getMaterias();
   },
+  filters:{
+    //corta el nombre de la materia seleccionda porqe sino no entra
+    formatMateriaSelected(val){
+      let ancho = window.innerWidth;
+      if(ancho<=576){  
+        if(val.length>=25){
+          let resto = val.length-25
+          val = val.slice(0,-resto);
+          console.log(val+'...');
+          return (val+'...');
+        }else{
+          return val
+        }
+      }else{
+        return val=''
+      }
+    }
+  },
   methods:{
     getMaterias(){
-        this.axios.defaults.headers.common['Accept'] = 'application/json'; 
-        this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
-        this.$http
+        // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+        // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
+        this.axios
           .get("api/materias2/user")
           .then(response => {
+            // console.log(response.data)
             this.username=response.data.username;
+            this.avatar_url=response.data.avatar;
               response.data.materias.forEach(materia => {
                 let obj={
                   id:materia.id,
@@ -54,7 +78,13 @@ export default {
     },
     //funcion que marca la materia actual
     clickMateria(val){
-        this.$emit("changeMateria",val);      
+
+      _.each(this.materias, (materia, key) => {
+        if(materia.id==val){
+          this.materiaSelected=materia.nombre
+        }
+      });
+      this.$emit("changeMateria",val);      
     }
   }
 
@@ -65,5 +95,9 @@ export default {
 <style scoped>
 .valentine{
   font-family:valentine !important;
+}
+
+.white{
+  color:#ffffff;
 }
 </style>

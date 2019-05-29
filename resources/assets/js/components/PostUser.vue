@@ -1,15 +1,15 @@
 <template>
-    <b-container fluid>
+    <b-container class="padding-lateral-7" fluid>
         <b-form-group>
             <b-card class="shadow">
                 <b-row>
                     <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.imagen" alt="Thumbnail" />
+                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
                     </b-col>
                     <b-col>
                         <b-row>
                             <b-col id="nombreUser" class="no-padding" >
-                                <h3  class="text-left">{{nameAlias}}</h3>
+                                <h4  class="text-left">{{nameAlias}}</h4>
                             </b-col>
                             <!-- <b-col cols="5" md="4" class="no-padding">
                             </b-col> -->
@@ -30,33 +30,40 @@
                         </b-row>
                     </b-col>
                 </b-row>
-                <br>
                 <b-form-group class="text-center">
                     <p class="card-text text-justify">
                         {{postData.texto}}
                     </p>
+                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in postData.files" :src="image.path" @click="onClick(i)">
+                    <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
                 </b-form-group>
                 <b-row>
-                    <b-form-group>
-                    <b-col  class="">
+                    <!-- <b-form-group> -->
+                    <b-col cols="8">
                         <like
+                        @showModal="showModalLikes"
                         :likes-data="postData.likes"
                         :flag-like="postData.flagLike"
                         :id-post="postData.id"
                         url-like="api/like"
                         tipo="mg"
                         ></like>
-                        <b-button size="sm" @click="comentarios">
-                            <label class="no-margin-bottom">{{cantComentarios}}</label>
-                            <b-img :src="commentIcon" fluid alt="comments" /> Comentar
+                        
+                        </b-col>
+                        <b-col>
+                            <b-button  block size="sm" @click="comentarios">
+                           {{cantComentarios}}
+                            <b-img :src="commentIcon" fluid alt="comments" />
                         </b-button>
-                    </b-col>
-                    </b-form-group>
+                        </b-col>
+                    <!-- </b-form-group> -->
                 </b-row>
+                <hr/>
                 <div v-if="showComentarios">
                     <comentario v-for="item in arrayComentarios"
                     :comentario-data="item"
                     @getComentarios="getComentarios"
+                    @showModalLikes="showModalLikes"
                     :key="item.id" ></comentario>
                     <hr />
                     <b-row>
@@ -83,16 +90,24 @@
 </template>
 
 <script>
-import Comentario from '../components/common/Comentario';
+const Comentario = () => import('../components/common/Comentario');
+// const Like = () => import('./components/common/Like');
+const Delete = () => import('../components/common/Delete');
+// const moment = () => import('moment');
+const VueGallerySlideshow = () => import('vue-gallery-slideshow');
+
+
+// import Comentario from '../components/common/Comentario';
 import Like from '../components/common/Like';
-import Delete from '../components/common/Delete';
+// import Delete from '../components/common/Delete';
 import moment from "moment";
+// import VueGallerySlideshow from 'vue-gallery-slideshow'
 
 const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
-  components: { Comentario,Like,Delete },
+  components: { Comentario,Like,Delete,VueGallerySlideshow},
   props:['postData'],//data entrante
   data() {
     return {
@@ -106,7 +121,9 @@ export default {
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
-        }
+        },
+        // urlImages:[],
+        indexImage:null
     };
   },
     filters:{
@@ -117,14 +134,28 @@ export default {
     },
     computed:{
         nameAlias: function(){
+            // console.log(this.postData)
             if(this.postData.user.alias==null){
                 return this.postData.user.name+' '+this.postData.user.apellido;
             }else{
                 return this.postData.user.alias
             }
+        },
+        urlImages: function(){
+            let array=[]
+            _.each(this.postData.files, (file, key) => {
+                  array.push(file.path)
+            });
+            return array;
         }
     },
 methods: {
+    onClick(i) {
+      this.indexImage = i;
+    },
+    showModalLikes(idPost,type){
+        this.$emit("showModalLikes",idPost,type);
+    },
     submitComentario(){
         // console.log(this.objectComentario);
         this.axios.post('api/comentario',this.objectComentario)
@@ -149,8 +180,8 @@ methods: {
                         this.cantComentarios=this.arrayComentarios.length
                     });
     },
-    getPosts(){
-        this.$emit("getPosts")  
+    getPosts(value=null){
+        this.$emit("getPosts",value)  
     }
   },
   watch: {
@@ -219,5 +250,28 @@ methods: {
 .strike > span:after {
     left: 100%;
     margin-left: 15px;
+}
+
+/* twitter style */
+
+.padding-lateral-7{
+
+    padding-left: 7px;
+    padding-right: 7px;
+
+}
+
+/* piso el estilo de card-body generado por el b-card */
+.card-body {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important; 
+}
+
+/* cuadrado de 100px en las thumbnail */
+.cuadrado100px{
+    width: 100px;
+    height: 100px;
 }
 </style>

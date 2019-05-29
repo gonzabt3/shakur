@@ -7,6 +7,7 @@ use App\LikeComentario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
+use App\Http\Services\LikeService;
 use App\Http\Resources\LikeComentarioResource;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -14,6 +15,12 @@ use Session;
 
 class LikeController extends Controller
 {
+    protected $likeService;
+
+    public function __construct(LikeService $likeService){
+        $this->likeService = $likeService;
+    }
+
     public function index($idPost){
         $count = Like::where('publicacions_id','=',$idPost)->count();
         return $count;
@@ -49,6 +56,10 @@ class LikeController extends Controller
             ]);
 
      return $like->delete();
+    }
+
+    public function userLikesXpost(Request $request,int $idPost,String $tipo){
+        return $this->likeService->userLikesXpost($idPost,$tipo);
     }
 
     // --------------------------------------------COMENTARIOS--------------------------------------------

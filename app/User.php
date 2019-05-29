@@ -2,24 +2,28 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Storage;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,Notifiable;
+    use HasApiTokens,Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected $appends = ['avatar_url'];
+    protected $dates = ['deleted_at'];
 
     // protected $table = 'users';
 
     protected $fillable = [
-        'name','apellido','alias','carrera_id', 'email', 'password',
+        'name','apellido','alias','carrera_id', 'email', 'password','active', 'activation_token','avatar',
     ];
 
     /**
@@ -28,13 +32,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','activation_token',
     ];
+
+    public function getAvatarUrlAttribute()
+    {
+        return Storage::url('public/avatars/'.$this->id.'/'.$this->avatar);
+    }
 
     public function carrera(){
         return $this->belongsTo(Carrera::class);
     }
 
+    public function universidad(){
+        return $this->belongsTo(Carrera::class)->universidad;
+    } 
     //encripta la pass cuando se crea un usuario
     // public function setPasswordAttribute($password)
     // {

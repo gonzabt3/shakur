@@ -12,9 +12,17 @@
 */
 
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-// Route::get('logout','Api\AuthController@logout');
+
+// Route::middleware('auth:web')->get('/main','ViewController@view');
+Route::get('/main','ViewController@view');
+Route::get('/','ViewController@view')->name('login');
+Route::get('/notFound','ViewController@view');
+Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');
+Route::get('/userActivate','ViewController@view');
+
+// Route::middleware('auth:api')->get('/logout','Api\AuthController@logout');
 // Route::get('/logout','Api\AuthController@logout2');

@@ -23,10 +23,13 @@
                       v-model="data.file" 
                       :state="Boolean(data.file)" 
                       placeholder="Elije un archivo"
-                      name="file"
+                      name="inputFile[]"
                       v-validate="'required'"
+                      multiple
                       :class="{'is-invalid':errors.has('file')}">
                       ></b-form-file>
+
+
                   <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
@@ -36,7 +39,9 @@
             class="text-center">{{ error }}</b-alert>
         </b-container>
         <template slot="modal-footer">
-      <button class="btn btn-success btn-block" @click="submit" type="submit">Subir</button>
+      <button class="btn btn-success btn-block" @click="submit" type="submit" :disabled="disabledButton">
+        <img v-show="iconLoading" class="sizeLoading" src="../loadingWhite.svg">
+        {{textButton}}</button>
     </template>
     </b-modal>
 </template>
@@ -52,16 +57,30 @@ export default {
         nombre: '',
         // temas: '',
         file:null,
-        idMateria:this.idMateria
+        materia_id:this.idMateria
       },
-              error:'',
-
+      error:'',
+      loading:false,
+      disabledButton:false,
+      textButton:'Subir',
+      iconLoading:false
     };
   },
   watch:{
     idMateria:function(val){
       return val;
-    }
+    },
+      loading: function(value){
+      if(value){
+          this.disabledButton=true;
+          this.textButton=''
+          this.iconLoading=true
+      }else{
+          this.disabledButton=false;
+          this.textButton='Subir'
+          this.iconLoading=false
+      }
+     }  
   },
   computed: {
     hasErrors() {
@@ -70,21 +89,28 @@ export default {
   },
   methods: {
     submit() {
+      this.loading=true;
       this.$validator.validateAll().then(result=>{
         if(result){
           let formData = new FormData();
 
           formData.append('nombre',this.data.nombre);
-          formData.append('idMateria',this.idMateria);
-          formData.append('file',this.data.file);
+          formData.append('materia_id',this.idMateria);
+          formData.append('files',this.data.file);
+
+          _.each(this.data.file, (file, key) => {
+                  formData.append(`files[${key}]`, file);
+          });
 
           this.axios.post('api/file',formData)
         .then((response)=>{
+          this.loading=false;
           this.cleanModal();
           this.$refs.newDoc.hide();
           this.$emit("responseGetDocs")  
         })
         }else{
+          this.loading=false;
           this.error = "Por favor, corrija los campos en rojo";      
         }
       })
@@ -99,6 +125,9 @@ export default {
 };
 </script>
 <style scoped>
+.sizeLoading{
+        width: 30px;
+}
 
 </style>
 

@@ -10,14 +10,14 @@
           <b-card>
             <h1>Inicio</h1>
             <b-form >
-                <b-form-group id="userLabel" label="Usuario:">
+                <b-form-group id="userLabel" label="Correo electronico:">
                   <b-form-input id="user"
                             name="user"
                             :class="{'is-invalid':errors.has('user')}"
                             v-validate="'required'"
                             v-model="form.email"
                             
-                            placeholder="Ingresa Usuario">
+                            placeholder="Ingresa e-mail">
                   </b-form-input>
                   <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
@@ -27,7 +27,6 @@
                             :class="{'is-invalid':errors.has('pass')}"
                             v-validate="'required'"
                             v-model="form.password"
-                            
                             :type="typePassword"
                             placeholder="Ingresa Contraseña">
                   </b-form-input>
@@ -51,7 +50,7 @@
                       </b-col>
                     </b-row>
                     <b-form-group>
-                      <b-link href="#/" disabled>Olvide mi contraseña</b-link>
+                      <b-link @click="openModalResetPassword">Olvide mi contraseña</b-link>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -63,20 +62,25 @@
           </b-card>
           </b-col>
         </b-row>
+        <modal-reset-password></modal-reset-password>
       <new-user @success="openModalSuccess"></new-user>
-      <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser"></modal-comunication>
+      <modal-comunication :title="modalComunication.title" :p1="modalComunication.p1" :p2="modalComunication.p2" :mail-user="modalComunication.mailNewUser" :flag-button="false" :close-out-side="true"></modal-comunication>
       </b-container>
 </template>
 
 <script>
+const newUser = () => import('../components/NewUser');
+const ModalResetPassword = () => import('../components/modals/ModalResetPassword');
+const ModalComunication = () => import('../components/modals/ModalComunication');
 
-import newUser from '../components/NewUser';
-import ModalComunication from '../components/modals/ModalComunication';
+// import newUser from '../components/NewUser';
+// import ModalResetPassword from '../components/modals/ModalResetPassword';
+// import ModalComunication from '../components/modals/ModalComunication';
 
 export default {
 
   name: 'Inicio',
-  components: { newUser,ModalComunication },
+  components: { newUser,ModalComunication,ModalResetPassword },
   $_veeValidate: {
     validator: "new"
   },
@@ -118,6 +122,9 @@ export default {
   },
   //LOGIN
   methods: {
+    openModalResetPassword(){
+      this.$root.$emit('bv::show::modal','modalResetPassword')
+    },
     openModalSuccess(mail){
       this.modalComunication.mailNewUser=mail
       this.modalComunication.p1='Gracias por registrarte en Shakur'
@@ -131,9 +138,17 @@ export default {
           evt.preventDefault();
           this.axios.post('api/auth/login/',this.form)
             .then((response) =>{
-              console.log(response);
+              // console.log(response);
+
+              this.axios.defaults.headers.common['Accept'] = 'application/json'; 
+              this.axios.defaults.headers.common['Content-Type'] = 'application/json'; 
+              this.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
+
               sessionStorage.SessionName = "token"
               sessionStorage.setItem("token",response.data.access_token);
+
+              this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem("token"); 
+             
               this.$router.push("/main");
         })
         .catch(error => {
@@ -175,8 +190,16 @@ export default {
 </script>
 
 <style scoped>
+
+/* @font-face {
+  font-family: 'valentine';
+  src:  url('myfont.woff2') format('woff2'),
+        url('myfont.woff') format('woff');
+} */
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 .fondo{
-    background-image:url('fadu.jpg');
+    /* background-image:url('fadu.jpg'); */
     height: 100%;
     /* background-position: center; */
     background-repeat: no-repeat;
@@ -184,7 +207,7 @@ export default {
     }
 
   .valentine{
-  font-family:valentine !important;
+  font-family:valentine,Pacifico !important;
   /* font-size: 900%; */
   color:white;
   }

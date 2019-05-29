@@ -17,18 +17,31 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+// RESET PASSWORD
+Route::group([    
+    'namespace' => 'Auth',    
+    'middleware' => 'api',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
+});
+
+
 Route::group(['prefix' => 'auth'], function () {
 
     //login ,send data
     Route::post('/login','Api\AuthController@login');
     Route::post('/signup', 'Api\AuthController@signup');
-  
-    Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('logout', 'AuthController@logout');
-    // Route::get('user', 'AuthController@user');
+    Route::get('signup/activate/{token}', 'Api\AuthController@signupActivate');    
 
-    //traer publicaciones
-    Route::get('/publicacion/{idMateria}','Api\PublicacionesController@index');
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('logout', 'Api\AuthController@logout');
+        // Route::get('user', 'AuthController@user');
+
+        //traer publicaciones
+        Route::get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
     });
 });
 
@@ -36,7 +49,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@store');
 
 //traer publicaciones
-Route::middleware('auth:api')->get('/publicacion/{idMateria}','Api\PublicacionesController@index');
+Route::middleware('auth:api')->get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
 
 //traer todas las universidades
 Route::get('/universidades','Api\UniversidadesController@index');
@@ -51,7 +64,7 @@ Route::middleware('auth:api')->post('/comentario','Api\ComentariosController@sto
 Route::middleware('auth:api')->get('/comentarios/{idPost}','Api\ComentariosController@getComentarios');
 
 //crea usuario
-Route::post('/usuario','Api\UserController@store');
+// Route::post('/usuario','Api\UserController@store');
 
 //get usuario
 Route::middleware('auth:api')->get('/usuario','Api\UserController@index');
@@ -78,7 +91,7 @@ Route::middleware('auth:api')->post('/like/comentario','Api\LikeController@store
 Route::middleware('auth:api')->delete('/like/comentario/{idPost}','Api\LikeController@deleteComentario');
 
 //traigo materias por carrera
-Route::get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
+Route::middleware('auth:api')->get('/materias/{idCarrera}','Api\MateriasController@materiasXcarrera');
 
 //traigo materias por usuario
 Route::middleware('auth:api')->get('/materias2/user','Api\MateriasController@materiasXusuario');
@@ -90,14 +103,14 @@ Route::middleware('auth:api')->post('/evento','Api\EventoController@store');
 Route::middleware('auth:api')->get('/eventos/{idMateria}','Api\EventoController@index');
 
 //creo adjunto
-Route::middleware('auth:api')->post('/file','Api\FileController@store');
+Route::middleware('auth:api')->post('/file','Api\DocumentoController@store');
 
 //traigo adjuntos
-Route::middleware('auth:api')->get('/file/{idMateria}','Api\FileController@index');
+Route::middleware('auth:api')->get('/file/{idMateria}','Api\DocumentoController@index');
 
 // DELETE COSAS
 //delete files
-Route::middleware('auth:api')->delete('/doc/{id}','Api\FileController@delete');
+Route::middleware('auth:api')->delete('/doc/{id}','Api\DocumentoController@delete');
 
 //delete evento
 Route::middleware('auth:api')->delete('/event/{id}','Api\EventoController@delete');
@@ -107,3 +120,6 @@ Route::middleware('auth:api')->delete('/comment/{id}','Api\ComentariosController
 
 //delete post
 Route::middleware('auth:api')->delete('/post/{id}','Api\PublicacionesController@delete');
+
+//traigo los user que le dieron like a una publicacion
+Route::middleware('auth:api')->get('/likes/post/{idPost}/{type}','Api\LikeController@userLikesXpost');

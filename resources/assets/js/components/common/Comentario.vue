@@ -2,9 +2,9 @@
       <b-form-group>
         <b-row>
             <b-col cols="2">
-                <!-- <b-img rounded="circle" width="50" height="50" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" /> -->
+                <b-img rounded="circle" width="50" height="50" thumbnail fluid :src="comentarioData.user.avatar_url" alt="Thumbnail" />
             </b-col>
-            <b-col>
+            <b-col cols="9">
                 <b-row>
                     <b-col cols="10" class="no-padding-left">
                         <b-form-group>
@@ -20,11 +20,12 @@
                         />
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row >
                     <p class="form-control">{{comentarioData.texto}}</p>
                 </b-row>
-                <b-row>
+                <b-row cols="8">
                     <like
+                      @showModal="showModalLikes"
                       :likes-data="comentarioData.likes_comentarios"
                       :flag-like="comentarioData.flagLike"
                       :id-post="comentarioData.id"
@@ -37,8 +38,11 @@
         </b-form-group>
 </template>
 <script>
-import Like from '../common/Like';
-import Delete from '../common/Delete';
+const Like = () => import('../common/Like');
+const Delete = () => import('../common/Delete');
+
+// import Like from '../common/Like';
+// import Delete from '../common/Delete';
 
 export default {
     //prueba
@@ -61,7 +65,11 @@ export default {
   methods:{
       getComentarios(){
         this.$emit("getComentarios")  
-      }
+      },
+    showModalLikes(idPost,type){
+        console.log(idPost);
+        this.$emit("showModalLikes",idPost,type);
+    },
   }
 };
 </script>
