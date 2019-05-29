@@ -69,10 +69,13 @@
 </template>
 
 <script>
+const newUser = () => import('../components/NewUser');
+const ModalResetPassword = () => import('../components/modals/ModalResetPassword');
+const ModalComunication = () => import('../components/modals/ModalComunication');
 
-import newUser from '../components/NewUser';
-import ModalResetPassword from '../components/modals/ModalResetPassword';
-import ModalComunication from '../components/modals/ModalComunication';
+// import newUser from '../components/NewUser';
+// import ModalResetPassword from '../components/modals/ModalResetPassword';
+// import ModalComunication from '../components/modals/ModalComunication';
 
 export default {
 

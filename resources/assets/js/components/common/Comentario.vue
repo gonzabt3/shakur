@@ -38,8 +38,11 @@
         </b-form-group>
 </template>
 <script>
-import Like from '../common/Like';
-import Delete from '../common/Delete';
+const Like = () => import('../common/Like');
+const Delete = () => import('../common/Delete');
+
+// import Like from '../common/Like';
+// import Delete from '../common/Delete';
 
 export default {
     //prueba

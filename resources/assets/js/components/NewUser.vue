@@ -128,7 +128,9 @@
     </b-container>
 </template>
 <script>
-import MpSelect from "../components/common/MpSelect";
+const MpSelect = () => import('../components/common/MpSelect');
+
+// import MpSelect from "../components/common/MpSelect";
 
 
 export default {

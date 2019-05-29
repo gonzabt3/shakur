@@ -9,7 +9,9 @@
     </b-container>
 </template>
 <script>
-import ModalConfigUser from '../components/modals/ModalConfigUser';
+const ModalConfigUser = () => import('../components/modals/ModalConfigUser');
+
+// import ModalConfigUser from '../components/modals/ModalConfigUser';
 
 export default {
   name: 'SettingsWall',

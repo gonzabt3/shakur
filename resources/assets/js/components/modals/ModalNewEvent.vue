@@ -50,7 +50,9 @@
     </b-modal>
 </template>
 <script>
-import Datepicker from 'vuejs-datepicker';
+const Datepicker = () => import('vuejs-datepicker');
+
+// import Datepicker from 'vuejs-datepicker';
 import { en, es } from 'vuejs-datepicker/dist/locale';
 
 export default {

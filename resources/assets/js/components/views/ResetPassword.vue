@@ -56,7 +56,8 @@
 </div>
 </template>
 <script>
-import Topbar from '../Topbar';
+const Topbar = () => import('../Topbar');
+// import Topbar from '../Topbar';
 
 export default {
     name:'ResetPassword',

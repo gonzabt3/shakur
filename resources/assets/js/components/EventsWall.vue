@@ -29,8 +29,12 @@
 </template>
 
 <script>
-import ModalNewEvent from '../components/modals/ModalNewEvent';
-import Delete from '../components/common/Delete'
+const ModalNewEvent = () => import('../components/modals/ModalNewEvent');
+const Delete = () => import('../components/common/Delete');
+// const moment = () => import('moment');
+
+// import ModalNewEvent from '../components/modals/ModalNewEvent';
+// import Delete from '../components/common/Delete'
 import moment from "moment";
 
 

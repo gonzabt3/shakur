@@ -21,7 +21,8 @@
     </div> 
 </template>
 <script>
-import topbar from '../Topbar';
+const topbar = () => import('../Topbar');
+// import topbar from '../Topbar';
 export default {
     components:{topbar},
     methods:{

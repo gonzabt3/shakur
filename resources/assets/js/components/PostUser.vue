@@ -90,11 +90,18 @@
 </template>
 
 <script>
-import Comentario from '../components/common/Comentario';
+const Comentario = () => import('../components/common/Comentario');
+// const Like = () => import('./components/common/Like');
+const Delete = () => import('../components/common/Delete');
+// const moment = () => import('moment');
+const VueGallerySlideshow = () => import('vue-gallery-slideshow');
+
+
+// import Comentario from '../components/common/Comentario';
 import Like from '../components/common/Like';
-import Delete from '../components/common/Delete';
+// import Delete from '../components/common/Delete';
 import moment from "moment";
-import VueGallerySlideshow from 'vue-gallery-slideshow'
+// import VueGallerySlideshow from 'vue-gallery-slideshow'
 
 const dateFormat ="DD-MM-YYYY HH:mm";
 

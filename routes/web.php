@@ -17,7 +17,8 @@
 // });
 
 
-Route::middleware('auth:web')->get('/main','ViewController@view');
+// Route::middleware('auth:web')->get('/main','ViewController@view');
+Route::get('/main','ViewController@view');
 Route::get('/','ViewController@view')->name('login');
 Route::get('/notFound','ViewController@view');
 Route::get('/resetPassword/{token}/{email}','ViewController@resetPassword');

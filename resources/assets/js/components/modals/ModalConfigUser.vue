@@ -154,8 +154,10 @@
     </b-container>
 </template>
 <script>
-import vSelect from "vue-select";
-import ModalAvatar from '../modals/ModalAvatar';
+const vSelect = () => import('vue-select');
+const ModalAvatar = () => import('../modals/ModalAvatar');
+// import vSelect from "vue-select";
+// import ModalAvatar from '../modals/ModalAvatar';
 
 export default {
     components: { vSelect,ModalAvatar },

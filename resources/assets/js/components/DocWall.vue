@@ -33,8 +33,11 @@
 </template>
 
 <script>
-import ModalNewDoc from '../components/modals/ModalNewDoc';
-import Delete from '../components/common/Delete';
+const ModalNewDoc = () => import('../components/modals/ModalNewDoc');
+const Delete = () => import('../components/common/Delete');
+
+// import ModalNewDoc from '../components/modals/ModalNewDoc';
+// import Delete from '../components/common/Delete';
 
 export default {
     name: 'DocWall',
