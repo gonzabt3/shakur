@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['mailUser', 'p1', 'p2', 'title', 'flagButton', "closeOutSide"],
   computed: {
     p: function () {
-      if (this.mailUser != "") {
+      if (this.mailUser == '') {
         return this.p2;
       } else {
         return this.p2 + " " + this.mailUser;
