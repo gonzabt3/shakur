@@ -51,7 +51,7 @@ class AuthController extends Controller
             'email'    => 'required|string|email|unique:users',
             'apellido'  => 'required',
             'carrera_id'  => 'required',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string|confirmed|min:8',
         ]);
 
         $user = new User([

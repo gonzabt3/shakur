@@ -42,11 +42,12 @@
                                 ref="password"
                                 :type="typePassword"
                                 :class="{'is-invalid':errors.has('password')}"
-                                v-validate="'required'"
+                                v-validate="'required|min:8'"
                                 v-model="usuario.password"
                                 required
                                 placeholder="Ingresa tu Contraseña">
                     </b-form-input>
+                    <p>La contraseña debe debe tenes minimo 8 caracteres</p>
                     <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Confirmar contraseña:" label-for="password_confirmation">
