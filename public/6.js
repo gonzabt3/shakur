@@ -203,6 +203,8 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
         materias: null,
         avatar_url: ''
       },
+      materias2: [],
+      materias2contador: 0,
       checkedAlias: true,
       loading: false,
       disabledButton: false,
@@ -217,10 +219,9 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     //  this.getValuesSelectUniversidad();
   },
 
-  mounted() {
-    this.getInfoUser();
-  },
-
+  // mounted(){
+  //      this.getInfoUser();
+  // },
   watch: {
     checkedAlias(val) {
       if (!val) {
@@ -243,6 +244,7 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
       this.data.carrera_id = null;
 
       if (value != null) {
+        // this.materias2=[]
         this.data.materias = null;
         this.urlCarrera = "api/carreras/" + value;
         this.getValuesSelectCarrera();
@@ -250,6 +252,12 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     },
     "data.carrera_id": function (value) {
       if (value != null) {
+        //esto es una negrada ,la primera vez que pasa no borra  el array de los seleccionados porque es cuando se inicializa todo
+        if (this.materias2contador != 0) {
+          this.materias2 = [];
+        }
+
+        this.materias2contador = 1;
         this.data.materias = null;
         this.urlMaterias = "api/materias/" + value;
         this.getMaterias();
@@ -269,7 +277,8 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
         this.data.name = user.name;
         this.data.apellido = user.apellido;
         this.data.alias = user.alias;
-        this.data.avatar_url = user.avatar_url; //deshabilito el campo de alias
+        this.data.avatar_url = user.avatar_url;
+        this.materias2 = user.materias; //deshabilito el campo de alias
 
         if (this.data.alias == null) {
           this.checkedAlias = false;
@@ -278,8 +287,7 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
 
         this.getValuesSelectUniversidad(user.universidad.id);
         this.urlCarrera = "api/carreras/" + user.universidad.id;
-        this.getValuesSelectCarrera(user.carrera_id);
-        this.getMaterias(user.materias);
+        this.getValuesSelectCarrera(user.carrera_id); // this.getMaterias(user.materias)
       });
     },
 
@@ -297,17 +305,23 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     },
 
     getMaterias(value = null) {
+      console.log("getmaterias= " + value);
       this.opcionesMaterias = [];
       this.axios.get(this.urlMaterias).then(response => {
         // console.log(response)
         _.map(response.data, materia => {
-          this.opcionesMaterias.push({
+          console.log(materia.materia), this.opcionesMaterias.push({
             label: materia.materia,
             value: materia.id
           });
         });
 
-        if (value != null) {
+        if (value != null || this.materias2 != []) {
+          if (this.materias2 != []) {
+            value = this.materias2;
+          }
+
+          console.log(value);
           this.setMaterias(value);
         }
       });
@@ -453,7 +467,12 @@ var render = function() {
         "b-modal",
         {
           ref: "configUser",
-          attrs: { id: "configUser", title: "Configuracion usuario" }
+          attrs: { id: "configUser", title: "Configuracion usuario" },
+          on: {
+            show: function($event) {
+              return _vm.getInfoUser()
+            }
+          }
         },
         [
           _c(

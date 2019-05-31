@@ -1,6 +1,6 @@
 <template>
         <b-container   fluid>
-         <b-modal   ref="configUser" id="configUser" title="Configuracion usuario">
+         <b-modal  @show="getInfoUser()"  ref="configUser" id="configUser" title="Configuracion usuario">
                 <b-row >
                     <b-col  cols="12">
                         <b-row >
@@ -190,6 +190,8 @@ export default {
                 materias:null,
                 avatar_url:''
             },
+            materias2:[],
+            materias2contador:0,
             checkedAlias:true,
             loading:false,
             disabledButton:false,
@@ -203,9 +205,9 @@ export default {
         //  this.getMaterias();
         //  this.getValuesSelectUniversidad();
     },
-    mounted(){
-         this.getInfoUser();
-    },
+    // mounted(){
+    //      this.getInfoUser();
+    // },
     watch:{
         checkedAlias(val){
             if(!val){
@@ -225,16 +227,24 @@ export default {
      } ,
       "data.universidad": function(value){
         this.data.carrera_id=null
-        if(value!=null){
-                    this.data.materias=null
 
+        if(value!=null){
+                            // this.materias2=[]
+
+            this.data.materias=null
             this.urlCarrera="api/carreras/"+value
             this.getValuesSelectCarrera()
         }
        
      },
       "data.carrera_id": function(value){
+
         if(value!=null){
+            //esto es una negrada ,la primera vez que pasa no borra  el array de los seleccionados porque es cuando se inicializa todo
+            if(this.materias2contador!=0){
+                this.materias2=[]
+            }
+            this.materias2contador=1
             this.data.materias=null
             this.urlMaterias="api/materias/"+value;
             this.getMaterias()
@@ -257,6 +267,7 @@ export default {
                     this.data.apellido=user.apellido
                     this.data.alias=user.alias
                     this.data.avatar_url=user.avatar_url
+                    this.materias2=user.materias
 
                     //deshabilito el campo de alias
                     if(this.data.alias==null){
@@ -267,7 +278,7 @@ export default {
                     this.getValuesSelectUniversidad(user.universidad.id);
                     this.urlCarrera="api/carreras/"+user.universidad.id;
                     this.getValuesSelectCarrera(user.carrera_id);
-                    this.getMaterias(user.materias)
+                    // this.getMaterias(user.materias)
                 })
         },
         setMaterias(materias){
@@ -278,19 +289,26 @@ export default {
             this.data.materias=materiasSelected
         },
         getMaterias(value=null) {
+            console.log("getmaterias= "+value );
             this.opcionesMaterias=[]
             this.axios
                 .get(this.urlMaterias)
                 .then(response => {
                     // console.log(response)
                     _.map(response.data, materia => {
+                        console.log(materia.materia),
                         this.opcionesMaterias.push({
                         label: materia.materia,
                         value: materia.id
                         });
                     });
 
-                    if(value!=null){
+
+                    if(value!=null || this.materias2!=[]){
+                        if(this.materias2!=[]){
+                            value=this.materias2
+                        }
+                        console.log(value);
                         this.setMaterias(value)
                     }
             })
