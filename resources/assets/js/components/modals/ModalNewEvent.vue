@@ -12,7 +12,7 @@
                       :class="{'is-invalid':errors.has('nombre')}"
                       >
                     </b-form-input>
-                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Temas:" label-for="temas">
                     <b-form-input 
@@ -24,7 +24,7 @@
                       :class="{'is-invalid':errors.has('temas')}"
                       >
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Seleccionar Fecha">
                     <datepicker  
@@ -36,7 +36,7 @@
                       v-validate="'required'"
                       :class="{'is-invalid':errors.has('fecha')}"
                       ></datepicker>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
             <b-alert 

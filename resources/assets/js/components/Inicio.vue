@@ -19,7 +19,7 @@
                             
                             placeholder="Ingresa e-mail">
                   </b-form-input>
-                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group for="pass" label="Contraseña:">
                   <b-form-input id="pass"
@@ -30,7 +30,7 @@
                             :type="typePassword"
                             placeholder="Ingresa Contraseña">
                   </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                      <b-form-checkbox
                       id="checkboxPassword"
                       v-model="checkboxPassword"

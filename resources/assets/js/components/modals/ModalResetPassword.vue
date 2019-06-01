@@ -10,7 +10,7 @@
                             placeholder="Ingresa tu correo electronico"
                             name="emailPassword">
                             </b-form-input>
-                            <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                            <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                         </b-form-group>
                         <label v-if="flagSuccess">Le hemos enviado un email para que puede restablecer su contraseña</label>
                     </b-col>

@@ -19,7 +19,7 @@
                                         v-validate="'required'"
                                         >
                             </b-form-input>
-                            <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                            <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                         </b-form-group>
                         <b-form-group  label="Confirmar contrseña:" label-for="password_confirmation"  >
                             <b-form-input id="password_confirmation"

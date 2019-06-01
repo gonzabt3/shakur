@@ -12,7 +12,7 @@
                                 v-validate="'required'"
                                 >
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Apellido:" label-for="apellido">
                     <b-form-input id="apellido"
@@ -23,7 +23,7 @@
                                 required
                                 placeholder="Ingresa tu apellido">
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="E-mail:" label-for="email">
                     <b-form-input id="email"
@@ -34,7 +34,7 @@
                                 required
                                 placeholder="Ingresa tu E-mail">
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Contraseña:" label-for="password">
                     <b-form-input id="password"
@@ -48,7 +48,7 @@
                                 placeholder="Ingresa tu Contraseña">
                     </b-form-input>
                     <p>La contraseña debe debe tenes minimo 8 caracteres</p>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Confirmar contraseña:" label-for="password_confirmation">
                     <b-form-input id="password_confirmation"
@@ -84,7 +84,7 @@
                     text-field="description" 
                     value-field="id"
                         />
-                        <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                        <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
 
                 <!-- SELECT CARRERAS -->
@@ -101,7 +101,7 @@
                     text-field="description" 
                     value-field="id"
                         />
-                <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group>
                     <b-form-checkbox-group  id="checkCondiciones">
@@ -111,7 +111,7 @@
                                 value="checkCondiciones">
                             Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
                     </b-form-checkbox-group>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
             <!-- ALERTA DE ERRORES -->
