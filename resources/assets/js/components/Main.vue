@@ -70,6 +70,11 @@
                 ></doc-wall>
             </b-col>
         </b-row>
+        <div>
+          <p v-if="isConnected">We're connected to the server!</p>
+          <p>Message from server: "{{socketMessage}}"</p>
+          <button @click="pingServer()">Ping Server</button>
+        </div>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
     </b-container>
@@ -102,7 +107,9 @@ export default {
             p1:'',
             p2:'',
             title:''
-          },   
+          }, 
+           isConnected: false,
+      socketMessage: '' 
         }
   },
    created() {
@@ -183,8 +190,31 @@ export default {
     },
     openMiPerfil(){
         this.$refs.settings.showModal();
+    },
+    pingServer() {
+      // Send the "pingServer" event to the server.
+      console.log("ASD");
+      this.$socket.emit('pingServer', 'PING!')
     }
-  }
+  },
+   sockets: {
+    connect() {
+      // Fired when the socket connects.
+                  console.log('socket connected')
+
+      this.isConnected = true;
+    },
+
+    disconnect() {
+      console.log("no conected");
+      this.isConnected = false;
+    },
+
+    // Fired when the server sends something on the "messageChannel" channel.
+    messageChannel(data) {
+      this.socketMessage = data
+    }
+  },
 };
 </script>
 
