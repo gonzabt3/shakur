@@ -722,6 +722,11 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
+"@types/socket.io-client@1.4.32", "@types/socket.io-client@^1.4.32":
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/@types/socket.io-client/-/socket.io-client-1.4.32.tgz#988a65a0386c274b1c22a55377fab6a30789ac14"
+  integrity sha512-Vs55Kq8F+OWvy1RLA31rT+cAyemzgm0EWNeax6BWF8H7QiiOYMJIdcwSDdm5LVgfEkoepsWkS+40+WNb7BUMbg==
+
 "@vue/component-compiler-utils@^2.5.1":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-2.6.0.tgz#aa46d2a6f7647440b0b8932434d22f12371e543b"
@@ -1631,6 +1636,11 @@ camel-case@3.0.x:
   dependencies:
     no-case "^2.2.0"
     upper-case "^1.1.1"
+
+camelcase@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
+  integrity sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
 
 camelcase@^1.2.1:
   version "1.2.1"
@@ -4688,6 +4698,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+
+laravel-echo@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.5.3.tgz#4a810eff43fb09c9bdba74396ee028c7abd485f9"
+  integrity sha512-CFm0Kruz2zqAwTFSA5X9X5BmIvXYEmrHhcVp5nu4uIdhyObHohWAUBNUD34J4QsIR2J4nGSzB+wi/wsACwlPcg==
 
 laravel-mix@^4.0.15:
   version "4.0.15"
@@ -8394,6 +8409,14 @@ vue-select@^2.5.1:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-2.6.4.tgz#cb82ea3417a4b0f68101f53528ba1c0b04de5308"
   integrity sha512-OZIzzGlYwro2QcgAmcn2c4LQDPrYIT3+iaf4WciKPIeFFjgzRti6FC5Qjr2XEPqd85wqtsifuYyxsyb/JoJ4CQ==
+
+vue-socket.io-extended@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/vue-socket.io-extended/-/vue-socket.io-extended-3.2.1.tgz#a7a74c83fd7e6c0ab41b8a90b09c07c9524b62fc"
+  integrity sha512-6lMLkG0N83zgfLWHRkabiJgwkJrk4Fit7+JyYuzfsR4at03kGDOmidIK6IWX+qml9iddrPThmYzQAOP8xGgq7g==
+  dependencies:
+    "@types/socket.io-client" "1.4.32"
+    camelcase "5.0.0"
 
 vue-socket.io@^3.0.7:
   version "3.0.7"
