@@ -47,7 +47,6 @@ if (token) {
 import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
-<<<<<<< HEAD
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
@@ -57,17 +56,3 @@ window.Echo = new Echo({
     wsHost:'window.location.hostname',
     wsPort:6001
 });
-=======
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true,
-    // sacado de la waeb
-    wsHost:window.location.hostname,
-    wsPort:6001,
-    wssPort: 6001,
-    disableStats:true,
-});
-
->>>>>>> 3f84d982c653f0b78cacb0eabf5bdca74d19f189

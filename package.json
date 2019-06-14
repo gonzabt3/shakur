@@ -23,11 +23,7 @@
         "jquery": "^3.3.1",
         "laravel-echo": "^1.5.3",
         "moment": "^2.24.0",
-<<<<<<< HEAD
         "pusher-js": "^4.4.0",
-=======
-        "socket.io-client": "^2.2.0",
->>>>>>> 3f84d982c653f0b78cacb0eabf5bdca74d19f189
         "vee-validate": "^2.2.0",
         "vue": "^2.5.2",
         "vue-axios": "^2.1.4",
