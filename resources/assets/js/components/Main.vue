@@ -44,6 +44,8 @@
         <b-row >
             <b-col cols="3" v-if="!celular" >
                 <settings-wall ref="settings"></settings-wall>
+                        <notification></notification>
+
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
@@ -70,18 +72,13 @@
                 ></doc-wall>
             </b-col>
         </b-row>
-        <div>
-          <p v-if="isConnected">We're connected to the server!</p>
-          <p>Message from server: "{{socketMessage}}"</p>
-          <button @click="pingServer()">Ping Server</button>
-        </div>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
     </b-container>
 </template>
 
 <script>
-
+import Notification from '../components/common/Notification';
 const PostUser = () => import('../components/PostUser');
 import EventsWall from '../components/EventsWall';
 import DocWall from '../components/DocWall';
@@ -93,7 +90,7 @@ const ModalLikes = () => import('../components/modals/ModalLikes');
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification},
   data(){
       return{
           arrayPosts:[],

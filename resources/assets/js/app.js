@@ -24,6 +24,11 @@ import VeeValidate from 'vee-validate'
 //croppa
 import Croppa from 'vue-croppa';
 
+//laravel-echo
+
+// pusher
+import pusher from 'pusher-js';
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -38,6 +43,9 @@ Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));
 Vue.use(VeeValidate);
 Vue.use(Croppa);
+// Vue.use(pusher);
+// Vue.use(Echo);
+import Echo from 'laravel-echo';
 
 //pongo lodash
 window._ = require('lodash');
