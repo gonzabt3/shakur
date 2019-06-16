@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import Notification from '../components/common/Notification';
+import Notification from '../components/common/NotificationTest';
 const PostUser = () => import('../components/PostUser');
 import EventsWall from '../components/EventsWall';
 import DocWall from '../components/DocWall';

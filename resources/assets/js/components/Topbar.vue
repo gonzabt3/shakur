@@ -5,10 +5,10 @@
   <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
-      <!-- <h5>asd</h5> -->
       <b-nav-item id="materia" v-for="materia in materias"
       :key="materia.id" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
     </b-navbar-nav>
+ 
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
       <h4>{{username}} </h4>
@@ -16,12 +16,17 @@
       <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
+  <b-navbar-brand ><notification>
+    </notification>
+  </b-navbar-brand>
 </b-navbar>
 </template>
 
 <script>
+import notification from '../components/common/Notification';
 export default {
   name: 'Topbar',
+  components:{notification},
   data(){
     return{
       materias:[],

@@ -8,7 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 // font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment} from '@fortawesome/free-solid-svg-icons'; // nose porque pero hay que poner los iconos aca
+import { faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment,faBell} from '@fortawesome/free-solid-svg-icons'; // nose porque pero hay que poner los iconos aca
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // AXIOS
@@ -33,7 +33,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 
-library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment);
+library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment,faBell);
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
