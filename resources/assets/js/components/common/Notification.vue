@@ -43,11 +43,6 @@ export default {
       //Add watchers...
    },
    mounted(){
-
-       window.Echo.channel('home')
-                .listen('NewMessage', (e) => {
-                    console.log(e);
-                });
    },
    methods: {
        connect(){
@@ -75,15 +70,9 @@ export default {
             this.echo.connector.pusher.connect()
         },
         eventMe(){
-            console.log(this.echo);
-
             this.echo.listen('home','NewMessage',function(e){
                 console.log(e)
             });
-            window.Echo.channel('home')
-                .listen('NewMessage', (e) => {
-                    console.log(e);
-                });
     }
     }
 }
