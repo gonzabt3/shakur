@@ -73,6 +73,10 @@ export default {
             this.echo.listen('home','NewMessage',function(e){
                 console.log(e)
             });
+            this.echo.private('App.User.' + 29)
+                .notification((notification) => {
+                    console.log(notification.type);
+                });
     }
     }
 }

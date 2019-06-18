@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Like;
 use App\LikeComentario;
+use App\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,8 @@ use App\Http\Resources\LikeResource;
 use App\Http\Services\LikeService;
 use App\Http\Resources\LikeComentarioResource;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\LikeNotification;
+use Notification;
 use Session;
 
 
@@ -34,6 +37,10 @@ class LikeController extends Controller
         $user = Auth::user();
         $like['user_id']=$user->id;
         $like = Like::create($like);
+
+        //agarra el dueño del post y le manda una notificacion
+        $userANotificar=User::find(29);
+        Notification::send($userANotificar,new LikeNotification($like));
 
         return new LikeResource($like);
     }
