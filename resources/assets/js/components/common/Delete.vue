@@ -1,5 +1,5 @@
 <template>
-        <font-awesome-icon v-if="flagAutor" class="opacidad solido pointer"  icon="times" @click="sumbit"/>
+        <font-awesome-icon class="opacidad solido pointer"  icon="times" @click="sumbit"/>
 </template>
 <script>
 export default {
@@ -12,10 +12,14 @@ export default {
     },
     methods:{
         sumbit(){
-            this.axios.delete('api/'+this.tipo+'/'+this.id)
-            .then(({data}) => {
-                this.$emit("actualizar",true)  
-            })
+            if(this.flagAutor){
+                this.axios.delete('api/'+this.tipo+'/'+this.id)
+                .then(({data}) => {
+                    this.$emit("actualizar",true)  
+                })
+            }else{
+                this.$emit("showModalDenuncias");
+            }
         }
     },
 }

@@ -20,6 +20,11 @@ class CreateNotificationsTable extends Migration
             $table->text('data');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
+
+            //problema pc del ministerio  y comentado el morpsh
+            // $table->unsignedInteger("notifiable_id");
+            // $table->string("notifiable_type");
+            // $table->index('notifiable_id');
         });
     }
 

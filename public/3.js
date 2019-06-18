@@ -103,6 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 const Comentario = () => __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
 
 
@@ -179,6 +180,10 @@ const dateFormat = "DD-MM-YYYY HH:mm";
 
     showModalLikes(idPost, type) {
       this.$emit("showModalLikes", idPost, type);
+    },
+
+    showModalDenuncias() {
+      this.$emit("showModalDenuncias");
     },
 
     submitComentario() {
@@ -515,7 +520,10 @@ var render = function() {
                                   "flag-autor": _vm.postData.flagAutor,
                                   tipo: "post"
                                 },
-                                on: { actualizar: _vm.getPosts }
+                                on: {
+                                  actualizar: _vm.getPosts,
+                                  showModalDenuncias: _vm.showModalDenuncias
+                                }
                               })
                             ],
                             1

@@ -17,7 +17,8 @@
                     :id-materia="idMateria"
                     ></post-new>
                     <post-user  
-                    @showModalLikes="showModalLikes" 
+                    @showModalLikes="showModalLikes"
+                    @showModalDenuncias="showModalDenuncias" 
                     @getPosts="getPosts"
                     v-for="item in arrayPosts"
                     :postData="item"
@@ -53,7 +54,8 @@
                 :id-materia="idMateria"
                 ></post-new>
                 <post-user 
-                @showModalLikes="showModalLikes" 
+                @showModalLikes="showModalLikes"
+                @showModalDenuncias="showModalDenuncias" 
                 @getPosts="getPosts"
                 v-for="item in arrayPosts"
                 :postData="item"
@@ -74,6 +76,7 @@
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
+        <modal-denuncias></modal-denuncias>
     </b-container>
 </template>
 
@@ -87,10 +90,11 @@ const PostNew = () => import('../components/PostNew');
 const Topbar =  () => import('../components/Topbar');
 const ModalComunication = () => import('../components/modals/ModalComunication');
 const ModalLikes = () => import('../components/modals/ModalLikes');
+const ModalDenuncias = () => import('../components/modals/ModalDenuncias');
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification,ModalDenuncias},
   data(){
       return{
           arrayPosts:[],
@@ -130,6 +134,9 @@ export default {
       // console.log(idPost)
 
       this.$root.$emit('bv::show::modal','modalLikes')
+     },
+     showModalDenuncias(){
+        this.$root.$emit('bv::show::modal','modalDenuncias')
      },
     setHeader(){
         this.axios.defaults.headers.common['Accept'] = 'application/json'; 
@@ -187,11 +194,6 @@ export default {
     },
     openMiPerfil(){
         this.$refs.settings.showModal();
-    },
-    pingServer() {
-      // Send the "pingServer" event to the server.
-      console.log("ASD");
-      this.$socket.emit('pingServer', 'PING!')
     }
   },
    sockets: {
