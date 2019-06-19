@@ -65,6 +65,7 @@
                     :comentario-data="item"
                     @getComentarios="getComentarios"
                     @showModalLikes="showModalLikes"
+                    @showModalDenuncias="showModalDenuncias"
                     :key="item.id" ></comentario>
                     <hr />
                     <b-row>

@@ -26,7 +26,7 @@ export default {
     data() {
       return {
         denuncia:{
-            motivo:'',
+            motivo:'No correspone al grupo',
             id_item:this.id,
             tipo:this.type
         }
@@ -38,7 +38,12 @@ export default {
             this.denuncia.tipo=this.type
             this.axios.post("api/denuncias",this.denuncia)
                 .then((response) =>{
-                    
+                    this.$refs.modalDenuncias.hide();
+                    this.$notify({
+                        group: 'foo',
+                        title: 'Denuncia procesada',
+                        type:'success',
+                    }); 
                 })
         }
     }

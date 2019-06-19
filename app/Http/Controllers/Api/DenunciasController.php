@@ -29,7 +29,9 @@ class DenunciasController extends Controller
 
         $user = Auth::user();
         $denuncia['denunciante_id']=$user->id;
-        $this->denunciasService->store($denuncia);       
+        $this->denunciasService->store($denuncia);  
+        $this->denunciasService->verificationAndDelete($denuncia);
+     
     }
 
 }

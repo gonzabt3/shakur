@@ -20,9 +20,9 @@ class EventoService {
         return Evento::where('materia_id',$idMateria)->with('user')->get(); 
     }
 
-    public function delete($id){
+    public function delete($id,$denuncia=0){
         //corroboro que sea el autor el que lo esta borrando
-        if(Auth::user()->id==Evento::find($id)->user_id){
+        if(Auth::user()->id==Evento::find($id)->user_id || $denuncia==1){
             Evento::destroy($id);
         }
     }

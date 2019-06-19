@@ -28,6 +28,7 @@
                   </b-tab>
                   <b-tab title="Eventos">
                     <events-wall class="form-group"
+                    @showModalDenuncias="showModalDenuncias" 
                     :id-materia="idMateria"
                     ref="eventWall"
                     ></events-wall>
@@ -35,6 +36,7 @@
                   <b-tab
                     title="Archivos">
                     <doc-wall 
+                      @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
                       :id-materia="idMateria"></doc-wall>
                     </b-tab>
@@ -65,10 +67,12 @@
             </b-col>
             <b-col v-if="!celular" >
                 <events-wall class="form-group"
+                @showModalDenuncias="showModalDenuncias"
                 :id-materia="idMateria"
                 ref="eventWall"
                 ></events-wall>
-                <doc-wall 
+                <doc-wall
+                @showModalDenuncias="showModalDenuncias" 
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>

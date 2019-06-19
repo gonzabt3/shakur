@@ -47,12 +47,13 @@ class PublicacionService{
         return($publicaciones);
     }
 
-    public function delete($idPost){
-        if(Auth::user()->id==Publicacion::find($idPost)->user_id){
+    public function delete($idPost,$denuncia=0){
+        //pregunto si el que borra es el autor del post o si se borra por denuncia
+        if(Auth::user()->id==Publicacion::find($idPost)->user_id || $denuncia==1){
             $comentariosPublicacion = Publicacion::find($idPost)->comentarios()->get();
 
             foreach ($comentariosPublicacion as $comment) {
-                $this->comentarioService->delete($comment->id);
+                $this->comentarioService->delete($comment->id,$denuncia);
             }
             
             $filesPublicacion = Publicacion::find($idPost)->files()->get();

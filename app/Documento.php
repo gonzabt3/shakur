@@ -17,4 +17,8 @@ class Documento extends Model
         return $this->hasMany(File::class);
     }
 
+    public function materia(){
+        return $this->belongsTo(Materia::class);
+    }
+
 }

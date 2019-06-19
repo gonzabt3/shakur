@@ -17,6 +17,7 @@
                         :id="comentarioData.id"
                         :flag-autor="comentarioData.flagAutor"
                         tipo="comment"
+                        @showModalDenuncias="showModalDenuncias"
                         />
                     </b-col>
                 </b-row>
@@ -70,6 +71,9 @@ export default {
         console.log(idPost);
         this.$emit("showModalLikes",idPost,type);
     },
+    showModalDenuncias(idItem,type){
+        this.$emit("showModalDenuncias",idItem,type);
+    }
   }
 };
 </script>

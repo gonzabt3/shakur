@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
   data() {
     return {
       denuncia: {
-        motivo: '',
+        motivo: 'No correspone al grupo',
         id_item: this.id,
         tipo: this.type
       }
@@ -48,7 +48,14 @@ __webpack_require__.r(__webpack_exports__);
     submit() {
       this.denuncia.id_item = this.id;
       this.denuncia.tipo = this.type;
-      this.axios.post("api/denuncias", this.denuncia).then(response => {});
+      this.axios.post("api/denuncias", this.denuncia).then(response => {
+        this.$refs.modalDenuncias.hide();
+        this.$notify({
+          group: 'foo',
+          title: 'Denuncia procesada',
+          type: 'success'
+        });
+      });
     }
 
   }
@@ -68,7 +75,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

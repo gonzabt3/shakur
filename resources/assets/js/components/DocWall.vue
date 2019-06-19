@@ -21,6 +21,7 @@
                             :id="item.id"
                             tipo="doc"
                             :flag-autor="item.flagAutor"
+                            @showModalDenuncias="showModalDenuncias"
                              /></p>
                 </b-col>
             </b-row>
@@ -49,6 +50,9 @@ export default {
         }
     },
     methods:{
+        showModalDenuncias(idItem,type){
+            this.$emit("showModalDenuncias",idItem,type);
+        },
       showModal(){
           this.$root.$emit('bv::show::modal','newDoc')
       },
