@@ -10,7 +10,7 @@ class Denuncia extends Model
     protected $table = 'denuncias';
 
     protected $fillable = [
-        'tipo','id_item','motivo'
+        'tipo','id_item','motivo','denunciante_id'
     ];
 
 }

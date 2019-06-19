@@ -19,5 +19,17 @@ class DenunciasController extends Controller
         $this->denunciasService = $denunciasService;
     }
 
+    public function store(Request $request){
+        // dd($request->all());
+        $denuncia = $this->validate($request,[
+            'motivo' => 'required',
+            'id_item' => 'required',
+            'tipo' => 'required'
+            ]);
+
+        $user = Auth::user();
+        $denuncia['denunciante_id']=$user->id;
+        $this->denunciasService->store($denuncia);       
+    }
 
 }

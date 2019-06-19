@@ -157,8 +157,8 @@ methods: {
     showModalLikes(idPost,type){
         this.$emit("showModalLikes",idPost,type);
     },
-    showModalDenuncias(){
-        this.$emit("showModalDenuncias");
+    showModalDenuncias(idItem,type){
+        this.$emit("showModalDenuncias",idItem,type);
     },
     submitComentario(){
         // console.log(this.objectComentario);

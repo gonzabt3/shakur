@@ -164,7 +164,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-const vSelect = () => __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.t.bind(null, /*! vue-select */ "./node_modules/vue-select/dist/vue-select.js", 7));
+const vSelect = () => __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.t.bind(null, /*! vue-select */ "./node_modules/vue-select/dist/vue-select.js", 7));
 
 const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../modals/ModalAvatar */ "./resources/assets/js/components/modals/ModalAvatar.vue")); // import vSelect from "vue-select";
 // import ModalAvatar from '../modals/ModalAvatar';

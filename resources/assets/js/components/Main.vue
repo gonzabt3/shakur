@@ -76,7 +76,7 @@
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
-        <modal-denuncias></modal-denuncias>
+        <modal-denuncias :id="idItemDenuncia" :type="typeItemDenuncia"></modal-denuncias>
     </b-container>
 </template>
 
@@ -103,6 +103,8 @@ export default {
           celular:false,
           idPostLikeModal:'',
           typeLikeModal:'',
+          idItemDenuncia:'',
+          typeItemDenuncia:'',
           modalComunication:{
             mailNewUser:'',
             p1:'',
@@ -135,7 +137,9 @@ export default {
 
       this.$root.$emit('bv::show::modal','modalLikes')
      },
-     showModalDenuncias(){
+     showModalDenuncias(idItem,type){
+        this.typeItemDenuncia=type
+        this.idItemDenuncia=idItem
         this.$root.$emit('bv::show::modal','modalDenuncias')
      },
     setHeader(){

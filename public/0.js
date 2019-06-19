@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
           this.$emit("actualizar", true);
         });
       } else {
-        this.$emit("showModalDenuncias");
+        this.$emit("showModalDenuncias", this.id, this.tipo);
       }
     }
 

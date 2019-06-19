@@ -18,7 +18,7 @@ export default {
                     this.$emit("actualizar",true)  
                 })
             }else{
-                this.$emit("showModalDenuncias");
+                this.$emit("showModalDenuncias",this.id,this.tipo);
             }
         }
     },
