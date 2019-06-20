@@ -130,7 +130,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     openNotification() {
-      alert("ASD");
+      let toast = this.$toasted.show("gatooo !!", {
+        theme: "outline",
+        position: "top-right",
+        duration: 5000,
+        action: {
+          text: 'Cancel',
+          onClick: (e, toastObject) => {
+            toastObject.goAway(0);
+          }
+        }
+      });
     }
 
   }

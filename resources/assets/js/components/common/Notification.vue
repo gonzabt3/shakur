@@ -6,7 +6,18 @@
 export default {
     methods:{
         openNotification(){
-            alert("ASD");
+            let toast = this.$toasted.show("gatooo !!", { 
+            theme: "outline", 
+            position: "top-right", 
+            duration : 5000,
+            action : {
+                text : 'Cancel',
+                onClick : (e, toastObject) => {
+                    toastObject.goAway(0);
+                }
+    },
+        });
+   
         }
     }
 }

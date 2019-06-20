@@ -65,4 +65,12 @@ class User extends Authenticatable
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
+
+    public function getUsername(){
+        if($this->alias!=null){
+            return $this->alias;
+        }else{
+            return $this->name.' '.$this->apellido;
+        }
+    }
 }

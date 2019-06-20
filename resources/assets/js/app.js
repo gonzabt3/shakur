@@ -24,7 +24,8 @@ import VeeValidate from 'vee-validate'
 //croppa
 import Croppa from 'vue-croppa';
 
-//laravel-echo
+//vue-toasted
+import Toasted from 'vue-toasted';
 
 // pusher
 import pusher from 'pusher-js';
@@ -43,6 +44,7 @@ Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));
 Vue.use(VeeValidate);
 Vue.use(Croppa);
+Vue.use(Toasted)
 // Vue.use(pusher);
 // Vue.use(Echo);
 import Echo from 'laravel-echo';

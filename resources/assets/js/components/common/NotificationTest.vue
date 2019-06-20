@@ -7,7 +7,6 @@
       <template v-if="isConnected">
           connect
                    <button @click="eventMe">event</button>
-
          <!-- <ul v-for="object in notifications">
             {{ object }}
          </ul> -->
@@ -75,7 +74,7 @@ export default {
             });
             this.echo.private('App.User.' + 29)
                 .notification((notification) => {
-                    console.log(notification.type);
+                    console.log(notification);
                 });
     }
     }

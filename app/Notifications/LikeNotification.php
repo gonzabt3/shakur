@@ -42,10 +42,12 @@ class LikeNotification extends Notification
     }
 
     public function toBroadcast($notifiable)
-{
-    // $this->broadcastOn();
+{   
+    $liker=$this->like->user->getUsername();
+    $post=$this->like->publicacion->texto;
+    $mensaje=$liker.' le ha dado like a tu post:'.$post;
     return new BroadcastMessage([
-        'message'=>'broascast'
+        'message'=>$mensaje
     ]);
 }
 //     public function toDatabase($notifiable)
