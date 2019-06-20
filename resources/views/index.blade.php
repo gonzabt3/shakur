@@ -8,13 +8,13 @@
     <link rel="shortcut icon" type="image/png" href="../images/favIcon.png"/>
 
     <!-- codigo adsense -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
     (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "pub-5339837285608547",
     enable_page_level_ads: true
     });
-    </script>
+    </script> -->
     <title>Shakur</title>
 </head>
 <body>

@@ -47,7 +47,7 @@
         <b-row >
             <b-col cols="3" v-if="!celular" >
                 <settings-wall ref="settings"></settings-wall>
-                        <notification></notification>
+                        <!-- <notification></notification> -->
 
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >

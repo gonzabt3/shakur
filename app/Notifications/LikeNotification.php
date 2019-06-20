@@ -30,13 +30,16 @@ class LikeNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['broadcast','database'];
     }
 
     public function toArray($notifiable)
     {
+        $liker=$this->like->user->getUsername();
+        $post=$this->like->publicacion->texto;
+        $mensaje=$liker.' le ha dado like a tu post:'.$post;
         return [
-            'message' => 'Le dieron like a tu post.',
+            'message' => $mensaje,
             // 'action' => url($this->like)
         ];
     }

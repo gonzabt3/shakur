@@ -126,3 +126,6 @@ Route::middleware('auth:api')->get('/likes/post/{idPost}/{type}','Api\LikeContro
 
 //denuncia
 Route::middleware('auth:api')->post('/denuncias','Api\DenunciasController@store');
+
+// GET NOFICACIONES
+Route::middleware('auth:api')->get('/notifications','Api\NotificationController@index');

@@ -6,7 +6,7 @@
      <div id="laravel-echo">
       <template v-if="isConnected">
           connect
-                   <button @click="eventMe">event</button>
+        <button @click="eventMe">event</button>
          <!-- <ul v-for="object in notifications">
             {{ object }}
          </ul> -->
@@ -76,7 +76,7 @@ export default {
                 .notification((notification) => {
                     console.log(notification);
                 });
-    }
+        }   
     }
 }
 </script>

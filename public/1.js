@@ -123,23 +123,90 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
 //
+
+ // CONFIG PARA LAS NOTIFICACIONES
+
+const config = {
+  theme: "outline",
+  position: "top-right",
+  duration: 5000,
+  action: [{
+    text: 'VER',
+    onClick: (e, toastObject) => {
+      toastObject.goAway(0);
+    }
+  }]
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'laravel-echo',
+  components: {
+    Echo: laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Pusher: (pusher_js__WEBPACK_IMPORTED_MODULE_1___default())
+  },
+
+  data() {
+    return {
+      echo: null
+    };
+  },
+
+  mounted() {
+    this.connect();
+    this.eventMe();
+  },
+
   methods: {
-    openNotification() {
-      let toast = this.$toasted.show("gatooo !!", {
-        theme: "outline",
-        position: "top-right",
-        duration: 5000,
-        action: {
-          text: 'Cancel',
-          onClick: (e, toastObject) => {
-            toastObject.goAway(0);
-          }
-        }
+    liveNotification($message) {
+      this.$toasted.show($message, config);
+    },
+
+    openNotifacation() {
+      this.axios.get("api/notifications").then(response => {
+        let notifications = response.data;
+        console.log(notifications);
+
+        _.each(notifications, (noti, key) => {
+          this.liveNotification(noti.data.message);
+        });
+      });
+    },
+
+    connect() {
+      if (!this.echo) {
+        this.echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+          broadcaster: 'pusher',
+          key: 'b5806fbd6f412d4ca0e2',
+          cluster: 'us2',
+          wsHost: 'localhost',
+          wsPort: 6001,
+          // encrypted: true,
+          // authEndpoint: 'http://localhost/broadcasting/auth',
+          auth: {
+            headers: {
+              Authorization: null
+            }
+          },
+          csrfToken: null //namespace: 'App',
+
+        });
+        this.echo.connector.pusher.connection.bind('connected', event => this.connect(event)); // this.echo.connector.pusher.connection.bind('disconnected', () => this.disconnect())
+      }
+
+      this.echo.connector.pusher.config.auth.headers.Authorization = 'Bearer ' + sessionStorage.getItem("token");
+      this.echo.connector.pusher.connect();
+    },
+
+    eventMe() {
+      this.echo.private('App.User.' + 29).notification(notification => {
+        console.log(notification);
+        this.liveNotification(notification.message);
       });
     }
 
@@ -290,7 +357,7 @@ var render = function() {
       _c("font-awesome-icon", {
         staticClass: "pointer",
         attrs: { icon: "bell" },
-        on: { click: _vm.openNotification }
+        on: { click: _vm.openNotifacation }
       })
     ],
     1
