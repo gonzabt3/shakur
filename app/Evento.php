@@ -11,7 +11,7 @@ class Evento extends Model
         'nombre','temas','fecha','materia_id','user_id'
     ];
 
-    public function materias(){
+    public function materia(){
         return $this->belongsTo(Materia::class);
     }
 

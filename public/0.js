@@ -22,11 +22,17 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     sumbit() {
-      this.axios.delete('api/' + this.tipo + '/' + this.id).then(({
-        data
-      }) => {
-        this.$emit("actualizar", true);
-      });
+      console.log(this.flagAutor);
+
+      if (this.flagAutor) {
+        this.axios.delete('api/' + this.tipo + '/' + this.id).then(({
+          data
+        }) => {
+          this.$emit("actualizar", true);
+        });
+      } else {
+        this.$emit("showModalDenuncias", this.id, this.tipo);
+      }
     }
 
   }
@@ -46,7 +52,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n.pointer[data-v-2c7f6268]{\n    cursor: pointer;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* codigo para hacer solida la X cuando se le esta enzima */\n.opacidad[data-v-2c7f6268]{\n    opacity: 0.5;\n}\n.solido[data-v-2c7f6268]:hover{\n    opacity: 1.0;\n}\n.pointer[data-v-2c7f6268]{\n    cursor: pointer;\n}\n\n", ""]);
 
 // exports
 
@@ -66,13 +72,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.flagAutor
-    ? _c("font-awesome-icon", {
-        staticClass: "opacidad solido pointer",
-        attrs: { icon: "times" },
-        on: { click: _vm.sumbit }
-      })
-    : _vm._e()
+  return _c("font-awesome-icon", {
+    staticClass: "opacidad solido pointer",
+    attrs: { icon: "times" },
+    on: { click: _vm.sumbit }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

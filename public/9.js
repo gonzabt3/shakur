@@ -48,6 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 const Like = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../common/Like */ "./resources/assets/js/components/common/Like.vue"));
 
 const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../common/Delete */ "./resources/assets/js/components/common/Delete.vue")); // import Like from '../common/Like';
@@ -84,6 +85,10 @@ const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_req
     showModalLikes(idPost, type) {
       console.log(idPost);
       this.$emit("showModalLikes", idPost, type);
+    },
+
+    showModalDenuncias(idItem, type) {
+      this.$emit("showModalDenuncias", idItem, type);
     }
 
   }
@@ -178,7 +183,10 @@ var render = function() {
                           "flag-autor": _vm.comentarioData.flagAutor,
                           tipo: "comment"
                         },
-                        on: { actualizar: _vm.getComentarios }
+                        on: {
+                          actualizar: _vm.getComentarios,
+                          showModalDenuncias: _vm.showModalDenuncias
+                        }
                       })
                     ],
                     1

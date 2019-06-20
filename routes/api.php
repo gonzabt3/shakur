@@ -123,3 +123,6 @@ Route::middleware('auth:api')->delete('/post/{id}','Api\PublicacionesController@
 
 //traigo los user que le dieron like a una publicacion
 Route::middleware('auth:api')->get('/likes/post/{idPost}/{type}','Api\LikeController@userLikesXpost');
+
+//denuncia
+Route::middleware('auth:api')->post('/denuncias','Api\DenunciasController@store');

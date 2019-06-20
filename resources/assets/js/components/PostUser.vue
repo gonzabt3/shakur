@@ -19,6 +19,7 @@
                                     :flag-autor="postData.flagAutor"
                                     tipo="post"
                                     @actualizar="getPosts"
+                                    @showModalDenuncias="showModalDenuncias"
                                 />
                             </b-col>
                         </b-row>
@@ -64,6 +65,7 @@
                     :comentario-data="item"
                     @getComentarios="getComentarios"
                     @showModalLikes="showModalLikes"
+                    @showModalDenuncias="showModalDenuncias"
                     :key="item.id" ></comentario>
                     <hr />
                     <b-row>
@@ -155,6 +157,9 @@ methods: {
     },
     showModalLikes(idPost,type){
         this.$emit("showModalLikes",idPost,type);
+    },
+    showModalDenuncias(idItem,type){
+        this.$emit("showModalDenuncias",idItem,type);
     },
     submitComentario(){
         // console.log(this.objectComentario);

@@ -17,7 +17,8 @@
                     :id-materia="idMateria"
                     ></post-new>
                     <post-user  
-                    @showModalLikes="showModalLikes" 
+                    @showModalLikes="showModalLikes"
+                    @showModalDenuncias="showModalDenuncias" 
                     @getPosts="getPosts"
                     v-for="item in arrayPosts"
                     :postData="item"
@@ -27,6 +28,7 @@
                   </b-tab>
                   <b-tab title="Eventos">
                     <events-wall class="form-group"
+                    @showModalDenuncias="showModalDenuncias" 
                     :id-materia="idMateria"
                     ref="eventWall"
                     ></events-wall>
@@ -34,6 +36,7 @@
                   <b-tab
                     title="Archivos">
                     <doc-wall 
+                      @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
                       :id-materia="idMateria"></doc-wall>
                     </b-tab>
@@ -53,7 +56,8 @@
                 :id-materia="idMateria"
                 ></post-new>
                 <post-user 
-                @showModalLikes="showModalLikes" 
+                @showModalLikes="showModalLikes"
+                @showModalDenuncias="showModalDenuncias" 
                 @getPosts="getPosts"
                 v-for="item in arrayPosts"
                 :postData="item"
@@ -63,10 +67,12 @@
             </b-col>
             <b-col v-if="!celular" >
                 <events-wall class="form-group"
+                @showModalDenuncias="showModalDenuncias"
                 :id-materia="idMateria"
                 ref="eventWall"
                 ></events-wall>
-                <doc-wall 
+                <doc-wall
+                @showModalDenuncias="showModalDenuncias" 
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
@@ -74,6 +80,7 @@
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
+        <modal-denuncias :id="idItemDenuncia" :type="typeItemDenuncia"></modal-denuncias>
     </b-container>
 </template>
 
@@ -87,10 +94,11 @@ const PostNew = () => import('../components/PostNew');
 const Topbar =  () => import('../components/Topbar');
 const ModalComunication = () => import('../components/modals/ModalComunication');
 const ModalLikes = () => import('../components/modals/ModalLikes');
+const ModalDenuncias = () => import('../components/modals/ModalDenuncias');
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification,ModalDenuncias},
   data(){
       return{
           arrayPosts:[],
@@ -99,6 +107,8 @@ export default {
           celular:false,
           idPostLikeModal:'',
           typeLikeModal:'',
+          idItemDenuncia:'',
+          typeItemDenuncia:'',
           modalComunication:{
             mailNewUser:'',
             p1:'',
@@ -130,6 +140,11 @@ export default {
       // console.log(idPost)
 
       this.$root.$emit('bv::show::modal','modalLikes')
+     },
+     showModalDenuncias(idItem,type){
+        this.typeItemDenuncia=type
+        this.idItemDenuncia=idItem
+        this.$root.$emit('bv::show::modal','modalDenuncias')
      },
     setHeader(){
         this.axios.defaults.headers.common['Accept'] = 'application/json'; 
@@ -187,11 +202,6 @@ export default {
     },
     openMiPerfil(){
         this.$refs.settings.showModal();
-    },
-    pingServer() {
-      // Send the "pingServer" event to the server.
-      console.log("ASD");
-      this.$socket.emit('pingServer', 'PING!')
     }
   },
    sockets: {
