@@ -18,8 +18,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['mailUser', 'p1', 'p2', 'title', 'flagButton', "closeOutSide"],
+  props: ['mailUser', 'p1', 'p2', 'title', 'flagButton', "closeOutSide", 'noCerrar'],
   computed: {
     p: function () {
       if (this.mailUser == '') {
@@ -27,7 +34,17 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return this.p2 + " " + this.mailUser;
       }
-    }
+    } //funcion para obligar al usuario a no poder cerrar el modal,ya que no tiene materias seleccionadas
+    // modalClose:function(){
+    //     console.log(this.noCerrar);
+    //     if(this.noCerrar==1){
+    //         return true
+    //     }
+    //     if(this.noCerrar==0){
+    //         return false
+    //     }
+    // }
+
   },
   methods: {
     miPerfil() {
@@ -52,7 +69,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -80,7 +97,9 @@ var render = function() {
         {
           ref: "comunicationModal",
           attrs: {
-            "no-close-on-backdrop": true,
+            "no-close-on-backdrop": _vm.noCerrar,
+            "no-close-on-esc": _vm.noCerrar,
+            "hide-header-close": _vm.noCerrar,
             "hide-footer": true,
             id: "comunicationModal",
             title: _vm.title

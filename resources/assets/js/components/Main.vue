@@ -79,7 +79,7 @@
                 ></doc-wall>
             </b-col>
         </b-row>
-        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
+        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :noCerrar="modalComunication.noCerrar" :mailUser="modalComunication.mailNewUser" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
         <modal-denuncias :id="idItemDenuncia" :type="typeItemDenuncia"></modal-denuncias>
     </b-container>
@@ -114,7 +114,8 @@ export default {
             mailNewUser:'',
             p1:'',
             p2:'',
-            title:''
+            title:'',
+            noCerrar:false
           }, 
            isConnected: false,
       socketMessage: '' 
@@ -197,10 +198,13 @@ export default {
               this.celular=false
           }
     },
-    comunication(){
+    comunication(noCerrar=false){
+      console.log(noCerrar);
       this.modalComunication.p1='Por favor selecciona las materias que estas cursando'
       this.modalComunication.p2='shakur.'
+      this.modalComunication.mailNewUser=''
       this.modalComunication.title='Tu perfil'
+      this.modalComunication.noCerrar=noCerrar
       this.$root.$emit('bv::show::modal','comunicationModal')
 
     },

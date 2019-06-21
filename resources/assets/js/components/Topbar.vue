@@ -77,7 +77,7 @@ export default {
               if(this.materias.length>0){
                 this.clickMateria(this.materias[0].id);
               }else{
-                this.$emit("comunication")     
+                this.$emit("comunication",true)     
               }
           })
     },
