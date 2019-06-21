@@ -9,28 +9,30 @@
           <b-col >
           <b-card>
             <h1>Inicio</h1>
-            <b-form >
+            <b-form>
                 <b-form-group id="userLabel" label="Correo electronico:">
                   <b-form-input id="user"
+                            @keyup.enter="onSubmit"
                             name="user"
                             :class="{'is-invalid':errors.has('user')}"
                             v-validate="'required'"
                             v-model="form.email"
                             
-                            placeholder="Ingresa e-mail">
+                            placeholder="Ingresa tu e-mail">
                   </b-form-input>
-                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campo requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group for="pass" label="Contraseña:">
                   <b-form-input id="pass"
+                            @keyup.enter="onSubmit"
                             name="pass"
                             :class="{'is-invalid':errors.has('pass')}"
                             v-validate="'required'"
                             v-model="form.password"
                             :type="typePassword"
-                            placeholder="Ingresa Contraseña">
+                            placeholder="Ingresa tu contraseña">
                   </b-form-input>
-                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campo requerido</b-form-invalid-feedback>
                      <b-form-checkbox
                       id="checkboxPassword"
                       v-model="checkboxPassword"
