@@ -1,5 +1,5 @@
 <template>
-    <b-container>
+    <b-container class="padding-5">
         <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6 @click="showModal"><u class="pointer">Mi perfil</u></h6>
             <h6  ><a @click="logout" class="pointer">Salir</a></h6>
@@ -30,9 +30,9 @@ export default {
 };
 </script>
 <style scoped>
-#settingsCard{
+/* #settingsCard{
     height: 100%;
-}
+} */
 
 .shadow{
         box-shadow: 10px 10px grey;
@@ -40,5 +40,10 @@ export default {
 
 .pointer{
     cursor: pointer;
+}
+
+.padding-5{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 </style>

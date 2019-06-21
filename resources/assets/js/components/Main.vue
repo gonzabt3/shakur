@@ -8,7 +8,7 @@
         <b-row v-if="celular">
             <b-col >
                 <b-tabs pills card >
-                  <b-tab title="Mi perfil">
+                  <b-tab title="Mi perfil" class="no-padding">
                     <settings-wall ref="settings"></settings-wall>
                   </b-tab>
                   <b-tab class="scroll no-padding" active title="Muro">
@@ -26,7 +26,7 @@
                     ></post-user>
                     <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
                   </b-tab>
-                  <b-tab title="Eventos">
+                  <b-tab title="Eventos" class="no-padding">
                     <events-wall class="form-group"
                     @showModalDenuncias="showModalDenuncias" 
                     :id-materia="idMateria"
@@ -34,7 +34,8 @@
                     ></events-wall>
                   </b-tab>
                   <b-tab
-                    title="Archivos">
+                    title="Archivos"
+                    class="no-padding">
                     <doc-wall 
                       @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
@@ -188,10 +189,13 @@ export default {
     handleResize() {
         let ancho = window.innerWidth;
         // this.window.height = window.innerHeight;
-  
+
+        //vista celular de  un iphone 6 para arriba
         if(ancho<=576){              
                 this.celular=true
-            }
+            }else{
+              this.celular=false
+          }
     },
     comunication(){
       this.modalComunication.p1='Por favor selecciona las materias que estas cursando'
@@ -245,7 +249,21 @@ export default {
     background-color: #ffffff !important;
 }
 
-/* twiter style */
+
+/* HARDCODEO EL PADING DE LOS TABS PARA AJUSTAR EN LAS PANTALLAS MENORES A IPHONE 5 */
+@media screen and (max-width: 320px) {
+    .nav-link {
+    padding-left: 10px !important; 
+    padding-right: 10px !important;
+  }
+  }
+
+/* LE SACO LO ANTERIOR EN LA PANTALLAS MAYORES A LAS DE EL IPHONE 5 */
+  @media screen and (min-width: 321px) {
+    .nav-link {
+    
+  }
+  }
 
 
 </style>

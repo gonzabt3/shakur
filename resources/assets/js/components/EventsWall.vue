@@ -1,8 +1,8 @@
 <template>
-    <b-container>
-        <b-card class="shadow" >
+    <b-container class="padding-5">
+        <b-card class="shadow " >
             <b-row>
-                <b-col>
+                <b-col >
                     <b-form inline >
                         <h3><u>Proximos Eventos</u></h3>
                         <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
@@ -90,5 +90,10 @@ export default {
 }
 .pointer{
     cursor: pointer;
+}
+
+.padding-5{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 </style>

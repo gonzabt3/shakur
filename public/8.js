@@ -55,7 +55,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#settingsCard[data-v-577bfbc4]{\n    height: 100%;\n}\n.shadow[data-v-577bfbc4]{\n        box-shadow: 10px 10px grey;\n}\n.pointer[data-v-577bfbc4]{\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* #settingsCard{\n    height: 100%;\n} */\n.shadow[data-v-577bfbc4]{\n        box-shadow: 10px 10px grey;\n}\n.pointer[data-v-577bfbc4]{\n    cursor: pointer;\n}\n.padding-5[data-v-577bfbc4]{\n    padding-left: 5px;\n    padding-right: 5px;\n}\n", ""]);
 
 // exports
 
@@ -77,6 +77,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { staticClass: "padding-5" },
     [
       _c(
         "b-card",

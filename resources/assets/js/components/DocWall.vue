@@ -1,5 +1,5 @@
 <template>
-    <b-container class="form-group">
+    <b-container class="form-group padding-5">
         <b-card class="shadow" >
             <b-row>
                 <b-col>
@@ -102,5 +102,10 @@ export default {
 }
 .pointer{
     cursor: pointer;
+}
+
+.padding-5{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 </style>
