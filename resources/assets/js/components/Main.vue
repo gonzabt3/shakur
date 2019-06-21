@@ -9,7 +9,9 @@
             <b-col >
                 <b-tabs pills card >
                   <b-tab title="Mi perfil" class="no-padding">
-                    <settings-wall ref="settings"></settings-wall>
+                    <settings-wall ref="settings"
+                    :noCerrar="noCerrar"
+                    ></settings-wall>
                   </b-tab>
                   <b-tab class="scroll no-padding" active title="Muro">
                     <post-new 
@@ -47,7 +49,9 @@
         <!-- FIN VISTA DE CELULAR -->
         <b-row >
             <b-col cols="3" v-if="!celular" >
-                <settings-wall ref="settings"></settings-wall>
+                <settings-wall ref="settings"
+                :noCerrar="noCerrar"
+                ></settings-wall>
                         <!-- <notification></notification> -->
 
             </b-col>
@@ -79,7 +83,7 @@
                 ></doc-wall>
             </b-col>
         </b-row>
-        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :noCerrar="modalComunication.noCerrar" :mailUser="modalComunication.mailNewUser" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
+        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :noCerrar="noCerrar" :mailUser="modalComunication.mailNewUser" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
         <modal-denuncias :id="idItemDenuncia" :type="typeItemDenuncia"></modal-denuncias>
     </b-container>
@@ -114,11 +118,11 @@ export default {
             mailNewUser:'',
             p1:'',
             p2:'',
-            title:'',
-            noCerrar:false
-          }, 
+            title:''
+          },
+          noCerrar:false,
            isConnected: false,
-      socketMessage: '' 
+           socketMessage: '' 
         }
   },
    created() {
@@ -199,17 +203,16 @@ export default {
           }
     },
     comunication(noCerrar=false){
-      console.log(noCerrar);
       this.modalComunication.p1='Por favor selecciona las materias que estas cursando'
       this.modalComunication.p2='shakur.'
       this.modalComunication.mailNewUser=''
       this.modalComunication.title='Tu perfil'
-      this.modalComunication.noCerrar=noCerrar
+      this.noCerrar=noCerrar
       this.$root.$emit('bv::show::modal','comunicationModal')
-
     },
-    openMiPerfil(){
-        this.$refs.settings.showModal();
+    openMiPerfil(noCerrar=false){
+      this.noCerrar=noCerrar;
+      this.$refs.settings.showModal();
     }
   },
    sockets: {

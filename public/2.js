@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     miPerfil() {
       this.$refs.comunicationModal.hide();
-      this.$emit("openMiPerfil");
+      this.$emit("openMiPerfil", true);
     }
 
   }

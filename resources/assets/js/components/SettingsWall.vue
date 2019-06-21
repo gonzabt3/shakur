@@ -5,7 +5,7 @@
             <h6  ><a @click="logout" class="pointer">Salir</a></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>
-        <modal-config-user></modal-config-user>
+        <modal-config-user :noCerrar="noCerrar"></modal-config-user>
     </b-container>
 </template>
 <script>
@@ -16,6 +16,7 @@ const ModalConfigUser = () => import('../components/modals/ModalConfigUser');
 export default {
   name: 'SettingsWall',
   components: { ModalConfigUser },
+  props:['noCerrar'],
   methods:{
       showModal(){
           this.$root.$emit('bv::show::modal','configUser')

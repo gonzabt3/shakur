@@ -39,7 +39,7 @@ export default {
     methods:{
         miPerfil(){
             this.$refs.comunicationModal.hide();
-            this.$emit("openMiPerfil");
+            this.$emit("openMiPerfil",true);
         }
     }
 }

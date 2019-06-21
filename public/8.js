@@ -27,6 +27,7 @@ const ModalConfigUser = () => __webpack_require__.e(/*! import() */ 6).then(__we
   components: {
     ModalConfigUser
   },
+  props: ['noCerrar'],
   methods: {
     showModal() {
       this.$root.$emit('bv::show::modal', 'configUser');
@@ -55,7 +56,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* #settingsCard{\n    height: 100%;\n} */\n.shadow[data-v-577bfbc4]{\n        box-shadow: 10px 10px grey;\n}\n.pointer[data-v-577bfbc4]{\n    cursor: pointer;\n}\n.padding-5[data-v-577bfbc4]{\n    padding-left: 5px;\n    padding-right: 5px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* #settingsCard{\n    height: 100%;\n} */\n.shadow[data-v-577bfbc4]{\n        box-shadow: 10px 10px grey;\n}\n.pointer[data-v-577bfbc4]{\n    cursor: pointer;\n}\n.padding-5[data-v-577bfbc4]{\n    padding-left: 5px;\n    padding-right: 5px;\n}\n", ""]);
 
 // exports
 
@@ -98,7 +99,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("modal-config-user")
+      _c("modal-config-user", { attrs: { noCerrar: _vm.noCerrar } })
     ],
     1
   )

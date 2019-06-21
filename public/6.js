@@ -164,6 +164,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 const vSelect = () => __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.t.bind(null, /*! vue-select */ "./node_modules/vue-select/dist/vue-select.js", 7));
 
 const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../modals/ModalAvatar */ "./resources/assets/js/components/modals/ModalAvatar.vue")); // import vSelect from "vue-select";
@@ -175,6 +179,7 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     vSelect,
     ModalAvatar
   },
+  props: ['noCerrar'],
 
   data() {
     return {
@@ -467,7 +472,13 @@ var render = function() {
         "b-modal",
         {
           ref: "configUser",
-          attrs: { id: "configUser", title: "Configuracion usuario" },
+          attrs: {
+            "no-close-on-backdrop": _vm.noCerrar,
+            "no-close-on-esc": _vm.noCerrar,
+            "hide-header-close": _vm.noCerrar,
+            id: "configUser",
+            title: "Configuracion usuario"
+          },
           on: {
             show: function($event) {
               return _vm.getInfoUser()

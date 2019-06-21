@@ -1,6 +1,10 @@
 <template>
         <b-container   fluid>
-         <b-modal  @show="getInfoUser()"  ref="configUser" id="configUser" title="Configuracion usuario">
+         <b-modal  @show="getInfoUser()"
+        :no-close-on-backdrop="noCerrar"
+        :no-close-on-esc="noCerrar"
+        :hide-header-close="noCerrar"
+           ref="configUser" id="configUser" title="Configuracion usuario">
                 <b-row >
                     <b-col  cols="12">
                         <b-row >
@@ -161,6 +165,7 @@ const ModalAvatar = () => import('../modals/ModalAvatar');
 
 export default {
     components: { vSelect,ModalAvatar },
+    props:['noCerrar'],
     data(){
         return {
             croppa: {},
