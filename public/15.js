@@ -33,21 +33,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  $_veeValidate: {
+    validator: "new"
+  },
+
   data() {
     return {
       flagSuccess: false,
+      textButton: 'Recuperar contraseña',
+      disabledButton: false,
+      loading: false,
+      iconLoading: false,
+      error: '',
       data: {
         email: ''
       }
     };
   },
 
+  watch: {
+    loading: function (value) {
+      if (value) {
+        this.disabledButton = true;
+        this.textButton = '';
+        this.iconLoading = true;
+      } else {
+        this.disabledButton = false;
+        this.textButton = 'Recuperar contraseña';
+        this.iconLoading = false;
+      }
+    }
+  },
+  computed: {
+    hasErrors() {
+      return this.error != "";
+    }
+
+  },
   methods: {
     submit() {
-      this.axios.post('api/password/create/', this.data).then(response => {
-        if (response.status == 200) {
-          this.flagSuccess = true;
+      this.loading = true;
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          this.axios.post('api/password/create/', this.data).then(response => {
+            if (response.status == 200) {
+              this.loading = false;
+              this.flagSuccess = true;
+            }
+          }).catch(error => {
+            this.loading = false;
+            this.error = error.response.data.message;
+          });
+        } else {
+          this.loading = false;
+          this.error = 'Por favor corrija los campos en rojo';
         }
       });
     },
@@ -57,6 +105,7 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     cleanModal() {
+      this.error = '';
       this.data.email = '';
       this.flagSuccess = false;
     }
@@ -78,7 +127,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.sizeLoading[data-v-6a29ebbf]{\n        width: 30px;\n}\n", ""]);
 
 // exports
 
@@ -130,6 +179,17 @@ var render = function() {
                         },
                         [
                           _c("b-form-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required|email",
+                                expression: "'required|email'"
+                              }
+                            ],
+                            class: {
+                              "is-invalid": _vm.errors.has("emailPassword")
+                            },
                             attrs: {
                               id: "emailPassword",
                               placeholder: "Ingresa tu correo electronico",
@@ -145,7 +205,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("b-form-invalid-feedback", [
-                            _vm._v("Campor requerido")
+                            _vm._v("E-mail requerido")
                           ])
                         ],
                         1
@@ -172,10 +232,26 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success btn-block",
-                    attrs: { type: "submit" },
+                    attrs: { disabled: _vm.disabledButton, type: "submit" },
                     on: { click: _vm.submit }
                   },
-                  [_vm._v("Recuperar contraseña")]
+                  [
+                    _c("img", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.iconLoading,
+                          expression: "iconLoading"
+                        }
+                      ],
+                      staticClass: "sizeLoading",
+                      attrs: { src: __webpack_require__(/*! ../loadingWhite.svg */ "./resources/assets/js/components/loadingWhite.svg") }
+                    }),
+                    _vm._v(
+                      "\n                            " + _vm._s(_vm.textButton)
+                    )
+                  ]
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -189,7 +265,16 @@ var render = function() {
                   [_vm._v("Volver")]
                 )
               : _vm._e()
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-alert",
+            {
+              staticClass: "text-center",
+              attrs: { show: _vm.hasErrors, variant: "danger" }
+            },
+            [_vm._v(_vm._s(_vm.error))]
+          )
         ],
         2
       )
@@ -222,6 +307,17 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(/*! ../../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js")("65a7242c", content, false, {});
 // Hot Module Replacement
 if(false) {}
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/loadingWhite.svg":
+/*!*********************************************************!*\
+  !*** ./resources/assets/js/components/loadingWhite.svg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/loadingWhite.svg?bf114a48be96b3b634b75a06b0a58af9";
 
 /***/ }),
 
