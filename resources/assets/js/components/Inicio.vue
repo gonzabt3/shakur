@@ -154,7 +154,7 @@ export default {
               this.$router.push("/main");
         })
         .catch(error => {
-          if (error.response.status == 401) {
+          if (error.response.status == 401 || error.response.status == 422) {
               this.error = "Usuario o contreseña incorrecta";
               }
           });
