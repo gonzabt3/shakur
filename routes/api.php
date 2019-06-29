@@ -51,6 +51,9 @@ Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@
 //traer publicaciones
 Route::middleware('auth:api')->get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
 
+//traer publicacion en especifica->por la notificacion
+Route::middleware('auth:api')->get('/publicacion/{idPost}','Api\PublicacionesController@getPost');
+
 //traer todas las universidades
 Route::get('/universidades','Api\UniversidadesController@index');
 

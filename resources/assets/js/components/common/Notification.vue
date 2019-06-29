@@ -5,20 +5,7 @@
 <script>
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
-
-// CONFIG PARA LAS NOTIFICACIONES
-const config = { 
-                theme: "outline", 
-                position: "top-right", 
-                duration : 5000,
-                action : [{
-                    text : 'VER',
-                    onClick : (e, toastObject) => {
-                        toastObject.goAway(0);
-                    }}
-                    ]
-
-                }
+import { createHash } from 'crypto';
                 
 export default {
     name: 'laravel-echo',
@@ -33,16 +20,39 @@ export default {
        this.eventMe();
    },
     methods:{
-        liveNotification($message){
-            this.$toasted.show($message,config) 
+        //METODOS DE LAS NOTIFIACIONES
+        ver(dataNotification){
+            // console.log(dataNotification);
+            this.$emit("openPost",dataNotification.data.publicacion.id)
         },
+        liveNotification(dataNotification){
+            // console.log(dataNotification);
+            let text=dataNotification.data.message;
+            //config para las notificaciones
+           let  config = { 
+                theme: "outline", 
+                position: "top-right", 
+                duration : 5000,
+                action : [{
+                    text : 'VER',
+                    onClick : (e, toastObject) => {
+                        this.ver(dataNotification)
+                        // toastObject.goAway(0);
+                    }}
+                    
+                    ]
+
+                }
+
+            this.$toasted.show(text,config) 
+        },
+        //request a notificaciones
         openNotifacation(){
             this.axios.get("api/notifications")
                 .then(response => {
                     let notifications=response.data
-                    console.log(notifications);
                     _.each(notifications, (noti, key) => {
-                        this.liveNotification(noti.data.message);
+                        this.liveNotification(noti);
                     });    
 
             })
@@ -71,12 +81,25 @@ export default {
             this.echo.connector.pusher.config.auth.headers.Authorization = 'Bearer ' +sessionStorage.getItem("token")
             this.echo.connector.pusher.connect()
         },
-        eventMe(){
-            this.echo.private('App.User.' + 29)
+        //a la escucha de las noti por broadcast
+       async eventMe(){
+            let idUser = await this.getIdUser();
+            this.echo.private('App.User.' + idUser)
                 .notification((notification) => {
-                    console.log(notification);
-                    this.liveNotification(notification.message);
+                    
+                    // METO LA NOTIFICACION EN UN OBJECTO PARA FORMATEARLO ESTRUCTURALMENTE COMO VIENE DESDE EL REQUEST DE LD DB
+                    let object = {data:notification}
+                    this.liveNotification(object);
                 });
+        },
+        getIdUser(){
+            return new Promise(resolve => {
+                    this.axios.get("api/usuario")
+                .then(response => {
+                    resolve(response.data.id)
+                })
+                });
+            
         } 
     }
 }

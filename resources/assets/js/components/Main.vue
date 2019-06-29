@@ -1,6 +1,7 @@
 <template>
     <b-container  fluid class="no-padding">
-        <topbar  
+        <topbar
+        @openPost="openPost" 
         @changeMateria="updateWalls"
         @comunication="comunication"
         ></topbar>
@@ -179,6 +180,8 @@ export default {
         this.axios.get(url)
                     .then(({data}) => {
                       if(data.length>0){
+                        console.log("comuns");
+                        console.log(data)
                         this.arrayPosts=_.union(this.arrayPosts,data);
                         this.idPaginado=data[data.length-1].id
                       }
@@ -213,6 +216,14 @@ export default {
     openMiPerfil(noCerrar=false){
       this.noCerrar=noCerrar;
       this.$refs.settings.showModal();
+    },
+    openPost(idPost){
+       this.axios.get("api/publicacion/"+idPost)
+        .then(({data}) => {
+          this.arrayPosts=[]
+          this.arrayPosts.push(data)
+          console.log(this.arrayPosts)
+        })
     }
   },
    sockets: {

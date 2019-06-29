@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-const Comentario = () => __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
+const Comentario = () => __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
 
 
 const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/common/Delete */ "./resources/assets/js/components/common/Delete.vue")); // const moment = () => import('moment');

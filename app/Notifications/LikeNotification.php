@@ -40,7 +40,7 @@ class LikeNotification extends Notification
         $mensaje=$liker.' le ha dado like a tu post:'.$post;
         return [
             'message' => $mensaje,
-            // 'action' => url($this->like)
+            'publicacion' => $this->like->publicacion
         ];
     }
 
@@ -50,7 +50,9 @@ class LikeNotification extends Notification
     $post=$this->like->publicacion->texto;
     $mensaje=$liker.' le ha dado like a tu post:'.$post;
     return new BroadcastMessage([
-        'message'=>$mensaje
+        'message'=>$mensaje,
+        'publicacion' => $this->like->publicacion
+
     ]);
 }
 //     public function toDatabase($notifiable)

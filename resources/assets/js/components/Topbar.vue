@@ -16,8 +16,8 @@
       <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
-  <b-navbar-brand ><notification>
-    </notification>
+  <b-navbar-brand >
+    <notification @openPost="openPost" ></notification>
   </b-navbar-brand>
 </b-navbar>
 </template>
@@ -90,6 +90,10 @@ export default {
         }
       });
       this.$emit("changeMateria",val);      
+    },
+    //METODO PARA ABRIR UN POST DESDE LAS NOTIFICACIONES
+    openPost(idPost){
+      this.$emit("openPost",idPost)
     }
   }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Like;
 use App\LikeComentario;
 use App\User;
+use App\Publicacion;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,7 +40,7 @@ class LikeController extends Controller
         $like = Like::create($like);
 
         //agarra el dueño del post y le manda una notificacion
-        $userANotificar=User::find(29);
+        $userANotificar=Publicacion::find($like['publicacion_id'])->user;
         Notification::send($userANotificar,new LikeNotification($like));
 
         return new LikeResource($like);
