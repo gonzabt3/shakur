@@ -256,6 +256,9 @@ export default {
         }
 
      },
+      "data.materias": function(value){
+        this.disabledButton = (value.length > 0 ? false : true ) 
+     }
     },
     methods:{
         avatarModal(){
@@ -263,7 +266,7 @@ export default {
         },
         getInfoUser(){
             this.axios.get("api/usuario")
-                .then(response => {
+                .then(async response => {
                     // console.log(response);
                     let user=response.data;
 
@@ -280,7 +283,7 @@ export default {
                     }
 
                     //selects
-                    this.getValuesSelectUniversidad(user.universidad.id);
+                    await this.getValuesSelectUniversidad(user.universidad.id);
                     this.urlCarrera="api/carreras/"+user.universidad.id;
                     this.getValuesSelectCarrera(user.carrera_id);
                     // this.getMaterias(user.materias)
@@ -326,10 +329,18 @@ export default {
                 .get("api/universidades")
                 .then((response) => {
                     let responseOptions = _.map(response.data, option => {
-                        this.opcionesUniversidades.push({
+                        // this.opcionesUniversidades.push({
+                        //     id:option.id,
+                        //     description:option.nombre
+                        // })
+                        return new Promise(resolve => {
+                           
+                            resolve(this.opcionesUniversidades.push({
                             id:option.id,
                             description:option.nombre
-                        })
+                        }))
+                        
+                        });
                         // return {
                         //     id: option.id,
                         //     description: option.nombre
