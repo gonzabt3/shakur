@@ -89,7 +89,7 @@ export default {
                     broadcaster: 'pusher',
                     key: 'b5806fbd6f412d4ca0e2',
                     cluster: 'us2',
-                    wsHost:'localhost',
+                    wsHost:'3.215.144.161',
                     wsPort:6001,
                     // encrypted: true,
                     // authEndpoint: 'http://localhost/broadcasting/auth',
