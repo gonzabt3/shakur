@@ -132,3 +132,6 @@ Route::middleware('auth:api')->post('/denuncias','Api\DenunciasController@store'
 
 // GET NOFICACIONES
 Route::middleware('auth:api')->get('/notifications','Api\NotificationController@index');
+
+//MARCAR COMO LEIDA
+Route::middleware('auth:api')->post('/notification','Api\NotificationController@markAsRead');

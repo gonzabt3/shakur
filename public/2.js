@@ -137,6 +137,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -149,7 +155,9 @@ __webpack_require__.r(__webpack_exports__);
 
   data() {
     return {
-      echo: null
+      echo: null,
+      numberNotifaction: 0,
+      variantButton: "primary"
     };
   },
 
@@ -158,10 +166,21 @@ __webpack_require__.r(__webpack_exports__);
     this.eventMe();
   },
 
+  watch: {
+    numberNotifaction(value) {
+      if (value > 0) {
+        this.variantButton = "danger";
+      } else {
+        this.variantButton = "primary";
+      }
+    }
+
+  },
   methods: {
     //METODOS DE LAS NOTIFIACIONES
     ver(dataNotification) {
       // console.log(dataNotification);
+      this.markAsRead(dataNotification);
       this.$emit("openPost", dataNotification.data.publicacion.id);
     },
 
@@ -174,9 +193,14 @@ __webpack_require__.r(__webpack_exports__);
         position: "top-right",
         duration: 5000,
         action: [{
-          text: 'VER',
+          text: 'IR',
           onClick: (e, toastObject) => {
             this.ver(dataNotification); // toastObject.goAway(0);
+          }
+        }, {
+          text: 'LEIDA',
+          onClick: (e, toastObject) => {
+            this.markAsRead(dataNotification); // toastObject.goAway(0);
           }
         }]
       };
@@ -187,6 +211,7 @@ __webpack_require__.r(__webpack_exports__);
     openNotifacation() {
       this.axios.get("api/notifications").then(response => {
         let notifications = response.data;
+        this.numberNotifaction = notifications.length;
 
         _.each(notifications, (noti, key) => {
           this.liveNotification(noti);
@@ -229,6 +254,11 @@ __webpack_require__.r(__webpack_exports__);
         };
         this.liveNotification(object);
       });
+    },
+
+    markAsRead(notification) {
+      // console.log(notification);
+      this.axios.post('api/notification', notification).then(response => {});
     },
 
     getIdUser() {
@@ -387,11 +417,42 @@ var render = function() {
   return _c(
     "b-container",
     [
-      _c("font-awesome-icon", {
-        staticClass: "pointer",
-        attrs: { icon: "bell" },
-        on: { click: _vm.openNotifacation }
-      })
+      _c(
+        "b-button",
+        {
+          attrs: { variant: _vm.variantButton },
+          on: { click: _vm.openNotifacation }
+        },
+        [
+          _c("font-awesome-icon", {
+            staticClass: "pointer",
+            attrs: { icon: "bell" }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-badge",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.numberNotifaction > 0,
+                  expression: "numberNotifaction>0"
+                }
+              ],
+              attrs: { variant: "light" }
+            },
+            [
+              _vm._v(
+                "\n                 " +
+                  _vm._s(_vm.numberNotifaction) +
+                  "\n             "
+              )
+            ]
+          )
+        ],
+        1
+      )
     ],
     1
   )

@@ -1,6 +1,12 @@
 <template>
 <b-container>
-<font-awesome-icon class="pointer" icon="bell" @click="openNotifacation"/></b-container>    
+      <b-button :variant="variantButton"  @click="openNotifacation">
+          <font-awesome-icon class="pointer" icon="bell"/>
+             <b-badge v-show="numberNotifaction>0" variant="light">
+                 {{numberNotifaction}}
+             </b-badge>
+        </b-button>
+</b-container>
 </template>
 <script>
 import Echo from 'laravel-echo'
@@ -12,17 +18,29 @@ export default {
     components:{Echo,Pusher},
     data() {
       return {
-         echo: null
+         echo: null,
+         numberNotifaction:0,
+         variantButton:"primary"
       }
    },
    mounted(){
        this.connect();
        this.eventMe();
    },
+   watch:{
+       numberNotifaction(value){
+           if(value>0){
+               this.variantButton="danger"
+           }else{
+               this.variantButton="primary"
+           }
+       }
+   },
     methods:{
         //METODOS DE LAS NOTIFIACIONES
         ver(dataNotification){
             // console.log(dataNotification);
+            this.markAsRead(dataNotification);
             this.$emit("openPost",dataNotification.data.publicacion.id)
         },
         liveNotification(dataNotification){
@@ -34,12 +52,19 @@ export default {
                 position: "top-right", 
                 duration : 5000,
                 action : [{
-                    text : 'VER',
+                    text : 'IR',
                     onClick : (e, toastObject) => {
                         this.ver(dataNotification)
                         // toastObject.goAway(0);
-                    }}
-                    
+                        }
+                    },
+                    {
+                    text : 'LEIDA',
+                    onClick : (e, toastObject) => {
+                        this.markAsRead(dataNotification)
+                        // toastObject.goAway(0);
+                        }
+                    }
                     ]
 
                 }
@@ -51,6 +76,7 @@ export default {
             this.axios.get("api/notifications")
                 .then(response => {
                     let notifications=response.data
+                    this.numberNotifaction=notifications.length
                     _.each(notifications, (noti, key) => {
                         this.liveNotification(noti);
                     });    
@@ -92,13 +118,20 @@ export default {
                     this.liveNotification(object);
                 });
         },
+        markAsRead(notification){
+            // console.log(notification);
+            this.axios.post('api/notification',notification)
+                .then((response)=>{
+                
+                })
+        },
         getIdUser(){
             return new Promise(resolve => {
-                    this.axios.get("api/usuario")
+                this.axios.get("api/usuario")
                 .then(response => {
                     resolve(response.data.id)
                 })
-                });
+            });
             
         } 
     }

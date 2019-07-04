@@ -28,4 +28,11 @@ class NotificationController extends Controller
         }
         // return $this->notficationService->index();
     }
+
+    public function markAsRead(Request $request){
+        $data = $request->all();
+        // dd($data); 
+        $user = Auth::user();
+        $user->unreadNotifications->where('id', $data['id'])->markAsRead();
+    }
 }
