@@ -68,7 +68,7 @@ class PublicacionesController extends Controller
 
     //trae un solo post
     public function getPost($idPost){
-        return Publicacion::find($idPost)->with('user','likes','files')->first();
+        return Publicacion::with('user','files','likes')->find($idPost);
     }
 
 }

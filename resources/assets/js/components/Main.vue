@@ -159,7 +159,6 @@ export default {
     },
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(flagNewPost=false){
-        
         // flagNewPOST false es que importa el paginado
         // flagNewPOST true no importa el paginado
 
@@ -174,14 +173,12 @@ export default {
         if(this.idPaginado==0){
           this.arrayPosts=[]
         }
-
+        
         let url='api/publicacion/'+this.idMateria+'/'+this.idPaginado;
 
         this.axios.get(url)
                     .then(({data}) => {
                       if(data.length>0){
-                        console.log("comuns");
-                        console.log(data)
                         this.arrayPosts=_.union(this.arrayPosts,data);
                         this.idPaginado=data[data.length-1].id
                       }
@@ -218,11 +215,10 @@ export default {
       this.$refs.settings.showModal();
     },
     openPost(idPost){
+      this.arrayPosts=[]
        this.axios.get("api/publicacion/"+idPost)
         .then(({data}) => {
-          this.arrayPosts=[]
           this.arrayPosts.push(data)
-          console.log(this.arrayPosts)
         })
     }
   },
