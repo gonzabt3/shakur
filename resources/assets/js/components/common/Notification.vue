@@ -106,6 +106,9 @@ export default {
                 }
             this.echo.connector.pusher.config.auth.headers.Authorization = 'Bearer ' +sessionStorage.getItem("token")
             this.echo.connector.pusher.connect()
+            if(this.echo &&   this.echo.connector.pusher.connection.connection !== null){
+                console.log("CONECTADO")
+            }
         },
         //a la escucha de las noti por broadcast
        async eventMe(){
