@@ -98,13 +98,15 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => '/etc/letsencrypt/live/www.shakur.com.ar/cert.pem',
+        // 'local_cert' => '/etc/letsencrypt/live/www.shakur.com.ar/cert.pem',
+        'local_cert' => null,
 
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
-        'local_pk' => '/etc/letsencrypt/live/www.shakur.com.ar/privkey.pem',
+        // 'local_pk' => '/etc/letsencrypt/live/www.shakur.com.ar/privkey.pem',
+        'local_pk' => null,
 
         /*
          * Passphrase for your local_cert file.

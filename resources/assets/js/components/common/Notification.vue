@@ -89,11 +89,11 @@ export default {
                     broadcaster: 'pusher',
                     key: 'b5806fbd6f412d4ca0e2',
                     cluster: 'us2',
+                    // wsHost:'localhost',
                     wsHost:'3.215.144.161',
                     wsPort:6001,
-                    wssPort: 6001,
+                    // wssPort:6001,
                     disableStats: true,
-                    encrypted: true,
                     // encrypted: true,
                     // authEndpoint: 'http://localhost/broadcasting/auth',
                     auth: {
@@ -109,9 +109,9 @@ export default {
                 }
             this.echo.connector.pusher.config.auth.headers.Authorization = 'Bearer ' +sessionStorage.getItem("token")
             this.echo.connector.pusher.connect()
-            if(this.echo &&   this.echo.connector.pusher.connection.connection !== null){
-                console.log("CONECTADO")
-            }
+            // if(this.echo &&   this.echo.connector.pusher.connection.connection !== null){
+            //     console.log("CONECTADO")
+            // }
         },
         //a la escucha de las noti por broadcast
        async eventMe(){
