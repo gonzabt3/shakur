@@ -53,8 +53,6 @@
                 <settings-wall ref="settings"
                 :noCerrar="noCerrar"
                 ></settings-wall>
-                        <!-- <notification></notification> -->
-
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
@@ -91,7 +89,6 @@
 </template>
 
 <script>
-import Notification from '../components/common/NotificationTest';
 const PostUser = () => import('../components/PostUser');
 import EventsWall from '../components/EventsWall';
 import DocWall from '../components/DocWall';
@@ -104,7 +101,7 @@ const ModalDenuncias = () => import('../components/modals/ModalDenuncias');
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes ,Notification,ModalDenuncias},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes,ModalDenuncias},
   data(){
       return{
           arrayPosts:[],
