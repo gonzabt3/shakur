@@ -228,9 +228,10 @@ __webpack_require__.r(__webpack_exports__);
           // wsHost:'localhost',
           wsHost: '3.215.144.161',
           wsPort: 6001,
-          // wssPort:6001,
+          wssPort: 6001,
           disableStats: true,
-          // encrypted: true,
+          encrypted: false,
+          enabledTransports: ['ws', 'wss'],
           // authEndpoint: 'http://localhost/broadcasting/auth',
           auth: {
             headers: {
