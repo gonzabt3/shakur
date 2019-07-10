@@ -90,12 +90,13 @@ export default {
                     key: 'b5806fbd6f412d4ca0e2',
                     cluster: 'us2',
                     // wsHost:'localhost',
-                    wsHost:'3.215.144.161',
+                    wsHost:'www.shakur.com.ar',
                     wsPort:6001,
                     wssPort:6001,
                     disableStats: true,
-                    encrypted:false,
+                    encrypted:true,
                     enabledTransports:['ws','wss'],
+                    forceTLS:true,
                     // authEndpoint: 'http://localhost/broadcasting/auth',
                     auth: {
                         headers: {
