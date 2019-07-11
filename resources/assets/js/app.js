@@ -30,6 +30,9 @@ import Toasted from 'vue-toasted';
 // pusher
 import pusher from 'pusher-js';
 
+// vue-authenticate
+import VueAuthenticate from 'vue-authenticate'
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -48,6 +51,41 @@ Vue.use(Toasted)
 // Vue.use(pusher);
 // Vue.use(Echo);
 import Echo from 'laravel-echo';
+
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://localhost:8000', // Your API domain
+  
+  providers: {
+    github: {
+      name: 'github',
+      url: '/auth/github',
+      authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+      // redirectUri: getRedirectUri(),
+      // optionalUrlParams: ['scope'],
+      // scope: ['user:email'],
+      // scopeDelimiter: ' ',
+      oauthType: '2.0',
+      popupOptions: { width: 1020, height: 618 },
+      redirectUri:'http:/localhost:8000/main'
+    },
+    google: {
+      name: 'google',
+      url: '/auth/google',
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+      // redirectUri: getRedirectUri(),
+      requiredUrlParams: ['scope'],
+      optionalUrlParams: ['display'],
+      scope: ['profile', 'email'],
+      scopePrefix: 'openid',
+      scopeDelimiter: ' ',
+      display: 'popup',
+      oauthType: '2.0',
+      popupOptions: { width: 452, height: 633 },
+      redirectUri:'http:/localhost:8000/main'
+
+    },
+  }
+})
 
 //pongo lodash
 window._ = require('lodash');

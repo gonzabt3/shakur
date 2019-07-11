@@ -56,6 +56,10 @@
                     </b-form-group>
                   </b-col>
                 </b-row>
+                <button @click="authenticate('github')">auth Github</button>
+              <button @click="authenticate('facebook')">auth Facebook</button>
+              <button @click="authenticate('google')">auth Google</button>
+              <button @click="authenticate('twitter')">auth Twitter</button>
           </b-form>
           <b-alert 
             :show="hasErrors" 
@@ -124,6 +128,11 @@ export default {
   },
   //LOGIN
   methods: {
+    authenticate: function (provider) {
+      this.$auth.authenticate(provider).then(function () {
+        // Execute application logic after successful social authentication
+      })
+    },
     openModalResetPassword(){
       this.$root.$emit('bv::show::modal','modalResetPassword')
     },
