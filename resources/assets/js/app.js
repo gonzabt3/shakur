@@ -76,12 +76,13 @@ Vue.use(VueAuthenticate, {
       requiredUrlParams: ['scope'],
       optionalUrlParams: ['display'],
       scope: ['profile', 'email'],
+      client_id:"asdd",
       scopePrefix: 'openid',
       scopeDelimiter: ' ',
       display: 'popup',
       oauthType: '2.0',
       popupOptions: { width: 452, height: 633 },
-      redirectUri:'http:/localhost:8000/main'
+      redirectUri:window.location.origin
 
     },
   }
