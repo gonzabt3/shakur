@@ -1,5 +1,5 @@
 <template>
-<b-container>
+<b-container class="no-padding">
       <b-button :variant="variantButton"  @click="openNotifacation">
           <font-awesome-icon class="pointer" icon="bell"/>
              <b-badge v-show="numberNotifaction>0" variant="light">
@@ -91,19 +91,20 @@ export default {
                     cluster: 'us2',
                     // wsHost:'localhost',
                     wsHost:'www.shakur.com.ar',
-                    wsPort:6001,
+                    // wsPort:6001,
                     wssPort:6001,
                     disableStats: true,
                     encrypted:true,
-                    enabledTransports:['ws','wss'],
+                    enabledTransports:['ws','wss','flash'],
                     forceTLS:true,
                     // authEndpoint: 'http://localhost/broadcasting/auth',
                     auth: {
                         headers: {
-                        Authorization: null
+                            Upgrade:'websocket',
+                            Authorization: null
                         }
                     },
-                    csrfToken: null,
+                    // csrfToken: null,
                     //namespace: 'App',
                     })
                     this.echo.connector.pusher.connection.bind('connected', (event) => this.connect(event))
@@ -148,5 +149,10 @@ export default {
 <style scoped>
 .pointer{
     cursor: pointer;
+}
+
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 </style>

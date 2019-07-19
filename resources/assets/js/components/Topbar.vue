@@ -1,7 +1,7 @@
 <template>
 <b-navbar  toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-  <label class="text-center white">{{materiaSelected | formatMateriaSelected}}</label>
+  <label class="text-center white no-margin">{{materiaSelected | formatMateriaSelected}}</label>
   <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
@@ -16,7 +16,7 @@
       <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
-  <b-navbar-brand >
+  <b-navbar-brand class="no-padding" >
     <notification @openPost="openPost" ></notification>
   </b-navbar-brand>
 </b-navbar>
@@ -109,4 +109,10 @@ export default {
 .white{
   color:#ffffff;
 }
+
+.no-margin{
+    margin-bottom: 0px;
+}
+
+
 </style>

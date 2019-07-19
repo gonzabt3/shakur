@@ -262,7 +262,7 @@ export default {
 
 
 /* HARDCODEO EL PADING DE LOS TABS PARA AJUSTAR EN LAS PANTALLAS MENORES A IPHONE 5 */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 350px) {
     .nav-link {
     padding-left: 10px !important; 
     padding-right: 10px !important;
@@ -270,7 +270,7 @@ export default {
   }
 
 /* LE SACO LO ANTERIOR EN LA PANTALLAS MAYORES A LAS DE EL IPHONE 5 */
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 351px) {
     .nav-link {
     
   }

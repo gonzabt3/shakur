@@ -293,7 +293,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.valentine[data-v-00c1d495]{\n  font-family:valentine !important;\n}\n.white[data-v-00c1d495]{\n  color:#ffffff;\n}\n", ""]);
+exports.push([module.i, "\n.valentine[data-v-00c1d495]{\n  font-family:valentine !important;\n}\n.white[data-v-00c1d495]{\n  color:#ffffff;\n}\n.no-margin[data-v-00c1d495]{\n    margin-bottom: 0px;\n}\n\n\n", ""]);
 
 // exports
 
@@ -312,7 +312,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.pointer[data-v-65229430]{\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.pointer[data-v-65229430]{\n    cursor: pointer;\n}\n.no-padding[data-v-65229430]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n", ""]);
 
 // exports
 
@@ -338,7 +338,7 @@ var render = function() {
     [
       _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
       _vm._v(" "),
-      _c("label", { staticClass: "text-center white" }, [
+      _c("label", { staticClass: "text-center white no-margin" }, [
         _vm._v(_vm._s(_vm._f("formatMateriaSelected")(_vm.materiaSelected)))
       ]),
       _vm._v(" "),
@@ -393,6 +393,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-navbar-brand",
+        { staticClass: "no-padding" },
         [_c("notification", { on: { openPost: _vm.openPost } })],
         1
       )
@@ -423,6 +424,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { staticClass: "no-padding" },
     [
       _c(
         "b-button",
