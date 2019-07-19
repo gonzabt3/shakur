@@ -33,6 +33,9 @@ import pusher from 'pusher-js';
 // vue-authenticate
 import VueAuthenticate from 'vue-authenticate'
 
+//vue-the-mask
+import VueTheMask from 'vue-the-mask'
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -48,6 +51,7 @@ Vue.use(require('vue-moment'));
 Vue.use(VeeValidate);
 Vue.use(Croppa);
 Vue.use(Toasted)
+Vue.use(VueTheMask)
 // Vue.use(pusher);
 // Vue.use(Echo);
 import Echo from 'laravel-echo';

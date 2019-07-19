@@ -28,7 +28,12 @@ class EventoService {
     }
 
     public function store($evento){
-        
+
+        // $search = "/[^T](.*)[^\:00.000Z]/";
+        // $evento['fecha']=preg_replace($search,$evento['hora'],$evento['fecha']);
+        $evento['fecha']=substr_replace($evento['fecha'],$evento['hora'],11,5);
+        // var_dump($evento['fecha']);
+        // exit();
         $evento = Evento::create($evento);
 
         return new EventoResource($evento);

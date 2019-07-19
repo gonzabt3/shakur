@@ -1,8 +1,8 @@
 <template>
       <b-container fluid>
-        <b-row >
+        <b-row class="margin-20">
           <b-col>
-            <h1 class="valentine">Shakur</h1>
+            <h1 class="valentine text-center ">Shakur</h1>
             <h1 v-if="!celular" class="roboto">Tu lugar para</h1>
             <h1 v-if="!celular" class="roboto">{{palabra}}</h1>
           </b-col>
@@ -216,17 +216,31 @@ export default {
   color:white;
   }
 
-  @media screen and (min-width: 322px) {
+  .margin-20{
+    margin-top: 20px;
+  }
+
+  /* PANTALASS GRANDES COMPU */
+  @media screen and (min-width: 401px) {
     .valentine {
       font-size: 900%;
     }
   }
 
-@media screen and (max-width: 320px) {
+/* PANTALLAS MEDIANAS IPHONE X */
+@media screen and (min-width: 321px) and (max-width: 400px) {
     .valentine {
-      font-size: 600%;
-    }
-  }
+      font-size: 650%;
+    } 
+   }
+
+  /* PANTALLAS MUY CHICAS  IPHONE 5S */
+  @media screen and (max-width: 320px) {
+    .valentine {
+      font-size: 500%;
+    } 
+   }
+
   .roboto{
     font-family:'Roboto:900i', sans-serif;
     font-size: 400%;

@@ -92,7 +92,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("h6", [
-            _c("a", { staticClass: "pointer", on: { click: _vm.logout } }, [
+            _c("u", { staticClass: "pointer", on: { click: _vm.logout } }, [
               _vm._v("Salir")
             ])
           ])

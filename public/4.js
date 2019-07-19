@@ -111,7 +111,7 @@ const Comentario = () => __webpack_require__.e(/*! import() */ 11).then(__webpac
 const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/common/Delete */ "./resources/assets/js/components/common/Delete.vue")); // const moment = () => import('moment');
 
 
-const VueGallerySlideshow = () => __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.t.bind(null, /*! vue-gallery-slideshow */ "./node_modules/vue-gallery-slideshow/dist/js/vue-gallery-slideshow.js", 7)); // import Comentario from '../components/common/Comentario';
+const VueGallerySlideshow = () => __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.t.bind(null, /*! vue-gallery-slideshow */ "./node_modules/vue-gallery-slideshow/dist/js/vue-gallery-slideshow.js", 7)); // import Comentario from '../components/common/Comentario';
 
 
  // import Delete from '../components/common/Delete';
