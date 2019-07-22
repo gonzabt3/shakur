@@ -91,16 +91,16 @@ export default {
                     cluster: 'us2',
                     // wsHost:'localhost',
                     wsHost:'www.shakur.com.ar',
-                    // wsPort:6001,
+                    wsPort:6001,
                     wssPort:6001,
                     disableStats: true,
-                    encrypted:true,
-                    enabledTransports:['ws','wss','flash'],
-                    forceTLS:true,
+                    // encrypted:true,
+                    enabledTransports:['ws','wss'],
+                    // forceTLS:true,
                     // authEndpoint: 'http://localhost/broadcasting/auth',
                     auth: {
                         headers: {
-                            Upgrade:'websocket',
+                            // Upgrade:'websocket',
                             Authorization: null
                         }
                     },
