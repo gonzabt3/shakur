@@ -12,6 +12,7 @@
                   <b-tab title="Mi perfil" class="no-padding">
                     <settings-wall ref="settings"
                     :noCerrar="noCerrar"
+                    :idMateria="idMateria"
                     ></settings-wall>
                   </b-tab>
                   <b-tab class="scroll no-padding" active title="Muro">
@@ -52,6 +53,7 @@
             <b-col cols="3" v-if="!celular" >
                 <settings-wall ref="settings"
                 :noCerrar="noCerrar"
+                :idMateria="idMateria"
                 ></settings-wall>
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
