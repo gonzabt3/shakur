@@ -56,7 +56,7 @@
                     </b-form-group>
                   </b-col>
                 </b-row>
-              <multi-login/>
+              <!-- <multi-login/> -->
           </b-form>
           <b-alert 
             :show="hasErrors" 
