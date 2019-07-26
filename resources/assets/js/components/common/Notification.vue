@@ -20,12 +20,14 @@ export default {
       return {
          echo: null,
          numberNotifaction:0,
+         arrayNotification:[],
          variantButton:"primary"
       }
    },
    mounted(){
        this.connect();
        this.eventMe();
+       this.requestNotification();
    },
    watch:{
        numberNotifaction(value){
@@ -46,22 +48,17 @@ export default {
         liveNotification(dataNotification){
             // console.log(dataNotification);
             let text=dataNotification.data.message;
+            let tema=''
+           
             //config para las notificaciones
            let  config = { 
-                theme: "outline", 
+                theme:tema, 
                 position: "top-right", 
-                duration : 5000,
+                duration : 3000,
                 action : [{
                     text : 'IR',
                     onClick : (e, toastObject) => {
                         this.ver(dataNotification)
-                        // toastObject.goAway(0);
-                        }
-                    },
-                    {
-                    text : 'LEIDA',
-                    onClick : (e, toastObject) => {
-                        this.markAsRead(dataNotification)
                         // toastObject.goAway(0);
                         }
                     }
@@ -69,19 +66,36 @@ export default {
 
                 }
 
+             if(dataNotification.read_at==null){
+                 config.theme = 'bubble'
+                 config.action.push(
+                     {
+                    text : 'LEIDA',
+                    onClick : (e, toastObject) => {
+                        this.markAsRead(dataNotification)
+                        toastObject.goAway(0);
+                        }
+                    }
+                 )
+            }else{
+                 config.theme = 'outline'
+            }
+
             this.$toasted.show(text,config) 
         },
-        //request a notificaciones
-        openNotifacation(){
+        requestNotification(){
             this.axios.get("api/notifications")
                 .then(response => {
-                    let notifications=response.data
-                    this.numberNotifaction=notifications.length
-                    _.each(notifications, (noti, key) => {
-                        this.liveNotification(noti);
-                    });    
-
+                    this.arrayNotification=response.data
+                    console.log(this.arrayNotification)
+                    let notifacionesNoLeida =this.arrayNotification.filter(noti => noti.read_at==null);
+                    this.numberNotifaction=notifacionesNoLeida.length
             })
+        },
+        openNotifacation(){
+            _.each(this.arrayNotification, (noti, key) => {
+                this.liveNotification(noti);
+            });    
         },
         connect(){
             if(!this.echo){
@@ -131,7 +145,7 @@ export default {
             // console.log(notification);
             this.axios.post('api/notification',notification)
                 .then((response)=>{
-                
+                    this.numberNotifaction=this.numberNotifaction-1
                 })
         },
         getIdUser(){

@@ -22,7 +22,7 @@ class NotificationController extends Controller
 
     public function index(){
         $user = Auth::user();
-        return $user->notifications;
+        return $user->notifications->take(10);
         foreach ($user->notifications as $notification) {
             dd($notification);
         }
