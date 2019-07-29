@@ -84,10 +84,11 @@ export default {
             this.$toasted.show(text,config) 
         },
         requestNotification(){
+            this.arrayNotification=[]
             this.axios.get("api/notifications")
                 .then(response => {
                     this.arrayNotification=response.data
-                    console.log(this.arrayNotification)
+                    // console.log(this.arrayNotification)
                     let notifacionesNoLeida =this.arrayNotification.filter(noti => noti.read_at==null);
                     this.numberNotifaction=notifacionesNoLeida.length
             })
@@ -138,6 +139,7 @@ export default {
                     
                     // METO LA NOTIFICACION EN UN OBJECTO PARA FORMATEARLO ESTRUCTURALMENTE COMO VIENE DESDE EL REQUEST DE LD DB
                     let object = {data:notification}
+                    this.requestNotification();
                     this.liveNotification(object);
                 });
         },
@@ -145,7 +147,8 @@ export default {
             // console.log(notification);
             this.axios.post('api/notification',notification)
                 .then((response)=>{
-                    this.numberNotifaction=this.numberNotifaction-1
+                    // this.numberNotifaction=this.numberNotifaction-1
+                    this.requestNotification();
                 })
         },
         getIdUser(){
