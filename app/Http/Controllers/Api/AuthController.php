@@ -55,9 +55,9 @@ class AuthController extends Controller
         ]);
 
         $user = new User([
-            'name'     => $request->name,
+            'name'     => ucfirst($request->name),
             'email'    => $request->email,
-            'apellido'  => $request->apellido,
+            'apellido'  => ucfirst($request->apellido),
             'carrera_id'  => $request->carrera_id,
             'password' => bcrypt($request->password),
             'activation_token'  => str_random(60),

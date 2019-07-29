@@ -278,7 +278,7 @@ export default {
                     this.materias2=user.materias
 
                     //deshabilito el campo de alias
-                    if(this.data.alias==null){
+                    if(this.data.alias==null || this.data.alias=='null'){
                         this.checkedAlias=false
                     }
 

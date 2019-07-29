@@ -104,12 +104,12 @@
                 <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group>
-                    <b-form-checkbox-group  id="checkCondiciones">
+                    <b-form-checkbox-group  >
                         <b-form-checkbox 
+                                id="checkCondiciones"
                                 name="checkCondiciones"
-                                required 
-                                value="checkCondiciones">
-                            Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
+                                v-model="usuario.checkCondiciones"><label>
+                            Estoy de acuerdo con los <u @click="showModalTerminos" class="pointer">terminos y condiciones</u></label></b-form-checkbox>
                     </b-form-checkbox-group>
                     <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
@@ -126,17 +126,19 @@
           {{textButton}}</button>
     </template>
     </b-modal>
+    <modal-terminos/>
     </b-container>
 </template>
 <script>
 const MpSelect = () => import('../components/common/MpSelect');
+const ModalTerminos = () => import('../components/modals/MoldalTerminos.vue');
 
 // import MpSelect from "../components/common/MpSelect";
 
 
 export default {
   name: 'NewUser',
-  components: { MpSelect },
+  components: { MpSelect ,ModalTerminos },
     $_veeValidate: {
     validator: "new"
   },
@@ -153,7 +155,8 @@ export default {
           universidad:null,
           carrera_id:null,
           password:null,
-          password_confirmation:null   
+          password_confirmation:null,
+          checkCondiciones:false
       },
       optionsUniversidad: [
                 {
@@ -186,8 +189,12 @@ export default {
         }
     },
   methods :{
+      showModalTerminos(){
+          this.$root.$emit('bv::show::modal','terminosModal')
+      },
         crearUsuario(){
-            // console.log(this.usuario);
+            console.log(this.usuario);
+            if(this.usuario.checkCondiciones[0]==true){
             this.$validator.validateAll().then(result => {
                 if(result){
                 this.loading=true;
@@ -201,6 +208,9 @@ export default {
                     this.error = "Por favor, corrija los campos en rojo";
                 }
             })
+            }else{
+                this.error = "Debe aceptar los terminos y condiciones";
+            }
         },
         setSuccessMessage(){
             this.console("volvio");
@@ -289,5 +299,9 @@ export default {
 <style scoped>
 .sizeLoading{
         width: 30px;
+}
+
+.pointer{
+    cursor: pointer;
 }
 </style>
