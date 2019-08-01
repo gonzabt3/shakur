@@ -36,6 +36,9 @@ import VueAuthenticate from 'vue-authenticate'
 //vue-the-mask
 import VueTheMask from 'vue-the-mask'
 
+//vue-google-adsense
+import Ads from 'vue-google-adsense'
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -52,6 +55,13 @@ Vue.use(VeeValidate);
 Vue.use(Croppa);
 Vue.use(Toasted)
 Vue.use(VueTheMask)
+
+Vue.use(require('vue-script2'))
+
+Vue.use(Ads.Adsense)
+Vue.use(Ads.InArticleAdsense)
+Vue.use(Ads.InFeedAdsense)
+
 // Vue.use(pusher);
 // Vue.use(Echo);
 import Echo from 'laravel-echo';

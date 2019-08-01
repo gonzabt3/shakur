@@ -55,6 +55,10 @@
                 :noCerrar="noCerrar"
                 :idMateria="idMateria"
                 ></settings-wall>
+                <InArticleAdsense
+                data-ad-client="ca-pub-5339837285608547"
+                >
+            </InArticleAdsense>
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
