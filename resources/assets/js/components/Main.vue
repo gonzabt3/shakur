@@ -14,6 +14,11 @@
                     :noCerrar="noCerrar"
                     :idMateria="idMateria"
                     ></settings-wall>
+                     <Adsense
+              data-ad-client="ca-pub-5339837285608547"
+              data-ad-slot="1234567890"
+              >
+            </Adsense>
                   </b-tab>
                   <b-tab class="scroll no-padding" active title="Muro">
                     <post-new 
@@ -36,6 +41,11 @@
                     :id-materia="idMateria"
                     ref="eventWall"
                     ></events-wall>
+                     <Adsense
+              data-ad-client="ca-pub-5339837285608547"
+              data-ad-slot="1234567890"
+              >
+            </Adsense>
                   </b-tab>
                   <b-tab
                     title="Archivos"
@@ -44,6 +54,11 @@
                       @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
                       :id-materia="idMateria"></doc-wall>
+                       <Adsense
+              data-ad-client="ca-pub-5339837285608547"
+              data-ad-slot="1234567890"
+              >
+            </Adsense>
                     </b-tab>
                 </b-tabs>
             </b-col>
@@ -55,10 +70,11 @@
                 :noCerrar="noCerrar"
                 :idMateria="idMateria"
                 ></settings-wall>
-                <InArticleAdsense
-                data-ad-client="ca-pub-5339837285608547"
-                >
-            </InArticleAdsense>
+              <Adsense
+              data-ad-client="ca-pub-5339837285608547"
+              data-ad-slot="1234567890"
+              >
+            </Adsense>
             </b-col>
             <b-col sm="5" class="scroll" v-if="!celular" >
                 <post-new 
@@ -86,6 +102,11 @@
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
+                 <Adsense
+              data-ad-client="ca-pub-5339837285608547"
+              data-ad-slot="1234567890"
+              >
+            </Adsense>
             </b-col>
         </b-row>
         <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :noCerrar="noCerrar" :mailUser="modalComunication.mailNewUser" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
