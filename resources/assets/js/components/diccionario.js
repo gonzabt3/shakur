@@ -1,0 +1,1 @@
+export var blackListWords = ['verga','pija','choto','poronga','porongo','puta','puto','pito']

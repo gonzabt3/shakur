@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _diccionario_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../diccionario.js */ "./resources/assets/js/components/diccionario.js");
 //
 //
 //
@@ -170,9 +171,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 const vSelect = () => __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.t.bind(null, /*! vue-select */ "./node_modules/vue-select/dist/vue-select.js", 7));
 
-const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../modals/ModalAvatar */ "./resources/assets/js/components/modals/ModalAvatar.vue")); // import vSelect from "vue-select";
-// import ModalAvatar from '../modals/ModalAvatar';
+const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../modals/ModalAvatar */ "./resources/assets/js/components/modals/ModalAvatar.vue")); // const {blackListWords} = () => import('../diccionario.js');
 
+
+ // import vSelect from "vue-select";
+// import ModalAvatar from '../modals/ModalAvatar';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -270,9 +273,24 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     },
     "data.materias": function (value) {
       this.disabledButton = value.length > 0 ? false : true;
+    },
+    "data.alias": function (value) {
+      this.scanMalasPalabras(value);
     }
   },
   methods: {
+    scanMalasPalabras(string) {
+      let arrayPalbras = string.trim().split(" ");
+      let resultado = arrayPalbras.filter(element => _diccionario_js__WEBPACK_IMPORTED_MODULE_0__["blackListWords"].includes(element));
+      console.log(resultado);
+
+      if (resultado.length == 0) {
+        console.log("bien");
+      } else {
+        console.log("error");
+      }
+    },
+
     avatarModal() {
       this.$root.$emit('bv::show::modal', 'modalAvatar');
     },
@@ -313,12 +331,13 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
     },
 
     getMaterias(value = null) {
-      console.log("getmaterias= " + value);
+      // console.log("getmaterias= "+value );
       this.opcionesMaterias = [];
       this.axios.get(this.urlMaterias).then(response => {
         // console.log(response)
         _.map(response.data, materia => {
-          console.log(materia.materia), this.opcionesMaterias.push({
+          // console.log(materia.materia),
+          this.opcionesMaterias.push({
             label: materia.materia,
             value: materia.id
           });
@@ -327,9 +346,9 @@ const ModalAvatar = () => __webpack_require__.e(/*! import() */ 11).then(__webpa
         if (value != null || this.materias2 != []) {
           if (this.materias2 != []) {
             value = this.materias2;
-          }
+          } // console.log(value);
 
-          console.log(value);
+
           this.setMaterias(value);
         }
       });
@@ -959,6 +978,20 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(/*! ../../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js")("631afe74", content, false, {});
 // Hot Module Replacement
 if(false) {}
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/diccionario.js":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/diccionario.js ***!
+  \*******************************************************/
+/*! exports provided: blackListWords */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blackListWords", function() { return blackListWords; });
+var blackListWords = ['verga', 'pija', 'choto', 'poronga', 'porongo', 'puta', 'puto', 'pito'];
 
 /***/ }),
 

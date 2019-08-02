@@ -160,6 +160,8 @@
 <script>
 const vSelect = () => import('vue-select');
 const ModalAvatar = () => import('../modals/ModalAvatar');
+// const {blackListWords} = () => import('../diccionario.js');
+import {blackListWords} from "../diccionario.js";
 // import vSelect from "vue-select";
 // import ModalAvatar from '../modals/ModalAvatar';
 
@@ -229,7 +231,7 @@ export default {
              this.textButton='Guardar'
              this.iconLoading=false
          }
-     } ,
+        } ,
       "data.universidad": function(value){
         this.data.carrera_id=null
 
@@ -258,9 +260,23 @@ export default {
      },
       "data.materias": function(value){
         this.disabledButton = (value.length > 0 ? false : true ) 
+     },
+     "data.alias":function(value){
+         this.scanMalasPalabras(value);
      }
     },
     methods:{
+        scanMalasPalabras(string){
+            let arrayPalbras = string.trim().split(" ");
+            let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
+            console.log(resultado);
+
+            if(resultado.length==0){
+                console.log("bien")
+            }else{
+                console.log("error")
+            }
+        },
         avatarModal(){
             this.$root.$emit('bv::show::modal','modalAvatar')
         },
@@ -297,14 +313,14 @@ export default {
             this.data.materias=materiasSelected
         },
         getMaterias(value=null) {
-            console.log("getmaterias= "+value );
+            // console.log("getmaterias= "+value );
             this.opcionesMaterias=[]
             this.axios
                 .get(this.urlMaterias)
                 .then(response => {
                     // console.log(response)
                     _.map(response.data, materia => {
-                        console.log(materia.materia),
+                        // console.log(materia.materia),
                         this.opcionesMaterias.push({
                         label: materia.materia,
                         value: materia.id
@@ -316,7 +332,7 @@ export default {
                         if(this.materias2!=[]){
                             value=this.materias2
                         }
-                        console.log(value);
+                        // console.log(value);
                         this.setMaterias(value)
                     }
             })
