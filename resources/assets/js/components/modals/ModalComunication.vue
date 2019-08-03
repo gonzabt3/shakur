@@ -22,7 +22,7 @@ export default {
             if(this.mailUser==''){
                 return this.p2
             }else{
-                return this.p2+" "+this.mailUser
+                return this.p2+" "+this.mailUser+",recorda revisar tu bandeja de spam. "
             }
         },
         //funcion para obligar al usuario a no poder cerrar el modal,ya que no tiene materias seleccionadas

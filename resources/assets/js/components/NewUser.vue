@@ -106,9 +106,9 @@
                 <b-form-group>
                     <b-form-checkbox-group  >
                         <b-form-checkbox 
-                                id="checkCondiciones"
-                                name="checkCondiciones"
-                                v-model="usuario.checkCondiciones"><label>
+                                id="terminos_y_condiciones"
+                                name="terminos_y_condiciones"
+                                v-model="usuario.terminos_y_condiciones"><label>
                             Estoy de acuerdo con los <u @click="showModalTerminos" class="pointer">terminos y condiciones</u></label></b-form-checkbox>
                     </b-form-checkbox-group>
                     <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
@@ -159,7 +159,7 @@ export default {
           carrera_id:null,
           password:null,
           password_confirmation:null,
-          checkCondiciones:false
+          terminos_y_condiciones:false
       },
       optionsUniversidad: [
                 {
@@ -202,7 +202,7 @@ export default {
       },
         crearUsuario(){
             if(this.badWordNameFlag==false && this.badWordApellidoFlag==false){
-                if(this.usuario.checkCondiciones[0]==true){
+                if(this.usuario.terminos_y_condiciones[0]==true){
                     this.$validator.validateAll().then(result => {
                         if(result){
                         this.loading=true;
