@@ -232,7 +232,7 @@ export default {
    sockets: {
     connect() {
       // Fired when the socket connects.
-                  console.log('socket connected')
+                  // console.log('socket connected')
 
       this.isConnected = true;
     },

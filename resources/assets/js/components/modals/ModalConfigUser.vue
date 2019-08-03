@@ -146,6 +146,10 @@
                                 </v-select>
                             </b-col>
                         </b-row>
+                        <b-alert 
+                            :show="hasErrors" 
+                            variant="danger" 
+                            class="text-center">{{ error }}</b-alert>
                     </b-col>
                 </b-row>
                <template slot="modal-footer">
@@ -170,6 +174,10 @@ export default {
     props:['noCerrar'],
     data(){
         return {
+            badWordApellidoFlag:'false',
+            badWordNameFlag:'false',
+            badWordAliasFlag:'false',
+            error:'',
             croppa: {},
             opcionesMaterias:[],
             opcionesUniversidades: [
@@ -215,6 +223,11 @@ export default {
     // mounted(){
     //      this.getInfoUser();
     // },
+    computed:{
+        hasErrors() {
+            return this.error != "";
+        },
+    },
     watch:{
         checkedAlias(val){
             if(!val){
@@ -261,21 +274,30 @@ export default {
       "data.materias": function(value){
         this.disabledButton = (value.length > 0 ? false : true ) 
      },
-     "data.alias":function(value){
-         this.scanMalasPalabras(value);
-     }
+    "data.name":function(string){
+        this.badWordNameFlag=this.scanMalasPalabras(string);
+        if(this.badWordNameFlag==false){
+                this.error=''
+            }
+    },
+    "data.apellido":function(string){
+        this.badWordApellidoFlag=this.scanMalasPalabras(string);
+        if(this.badWordApellidoFlag==false){
+                this.error=''
+            }
+    },
+    "data.alias":function(string){
+        this.badWordAAliasFlag=this.scanMalasPalabras(string);
+        if(this.badWordAAliasFlag==false){
+                this.error=''
+            }
+    }
     },
     methods:{
         scanMalasPalabras(string){
             let arrayPalbras = string.trim().split(" ");
             let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
-            console.log(resultado);
-
-            if(resultado.length==0){
-                console.log("bien")
-            }else{
-                console.log("error")
-            }
+            return !resultado.length==0 
         },
         avatarModal(){
             this.$root.$emit('bv::show::modal','modalAvatar')
@@ -292,6 +314,10 @@ export default {
                     this.data.alias=user.alias
                     this.data.avatar_url=user.avatar_url
                     this.materias2=user.materias
+
+                    this.badWordApellidoFlag=false
+                    this.badWordNameFlag=false
+                    this.badWordAliasFlag=false
 
                     //deshabilito el campo de alias
                     if(this.data.alias==null || this.data.alias=='null'){
@@ -397,6 +423,8 @@ export default {
                 });  
         },
          async submit(){
+             
+            if(this.badWordApellidoFlag==false && this.badWordNameFlag==false && this.badWordAliasFlag==false){
             this.loading=true
             let formData = new FormData();
             
@@ -421,8 +449,11 @@ export default {
                     type:'success',
                 });    
                  window.location.reload()       
-        })  
-        this.loading=false
+            })  
+            this.loading=false
+            }else{
+                this.error = "Hemos detectado lenguaje ofensivo";
+            }
         },
         // ----------------AVATARRRR--------------
          onInit() {

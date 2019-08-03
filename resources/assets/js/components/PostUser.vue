@@ -137,7 +137,7 @@ export default {
     computed:{
         nameAlias: function(){
             // console.log(this.postData)
-            if(this.postData.user.alias==null){
+            if(this.postData.user.alias==null || this.postData.user.alias=='null'){
                 return this.postData.user.name+' '+this.postData.user.apellido;
             }else{
                 return this.postData.user.alias

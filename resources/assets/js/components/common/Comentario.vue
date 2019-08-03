@@ -68,7 +68,7 @@ export default {
         this.$emit("getComentarios")  
       },
     showModalLikes(idPost,type){
-        console.log(idPost);
+        // console.log(idPost);
         this.$emit("showModalLikes",idPost,type);
     },
     showModalDenuncias(idItem,type){

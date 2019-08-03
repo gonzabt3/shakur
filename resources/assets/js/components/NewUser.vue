@@ -132,6 +132,7 @@
 <script>
 const MpSelect = () => import('../components/common/MpSelect');
 const ModalTerminos = () => import('../components/modals/MoldalTerminos.vue');
+import {blackListWords} from "./diccionario.js";
 
 // import MpSelect from "../components/common/MpSelect";
 
@@ -145,6 +146,8 @@ export default {
   data() {
     return {
         checkboxPasswordNewUser:false,
+        badWordNameFlag:false,
+        badWordApellidoFlag:false,
       universidades: [
         'Seleccionar', 'UBA', 'UTN', 'UNLa',
       ],
@@ -188,32 +191,40 @@ export default {
             return this.checkboxPasswordNewUser ? "text" : "password";
         }
     },
-  methods :{
+    methods :{
+        scanMalasPalabras(string){
+            let arrayPalbras = string.trim().split(" ");
+            let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
+            return !resultado.length==0 
+        },
       showModalTerminos(){
           this.$root.$emit('bv::show::modal','terminosModal')
       },
         crearUsuario(){
-            console.log(this.usuario);
-            if(this.usuario.checkCondiciones[0]==true){
-            this.$validator.validateAll().then(result => {
-                if(result){
-                this.loading=true;
-                this.axios.post('api/auth/signup/',this.usuario)
-                .then((response) => {
-                    this.$emit("success",this.usuario.email)     
-                    this.$refs.newUser.hide();
-                    this.loading=true
+            if(this.badWordNameFlag==false && this.badWordApellidoFlag==false){
+                if(this.usuario.checkCondiciones[0]==true){
+                    this.$validator.validateAll().then(result => {
+                        if(result){
+                        this.loading=true;
+                        this.axios.post('api/auth/signup/',this.usuario)
+                        .then((response) => {
+                            this.$emit("success",this.usuario.email)     
+                            this.$refs.newUser.hide();
+                            this.loading=true
+                            })
+                        }else {
+                            this.error = "Por favor, corrija los campos en rojo";
+                        }
                     })
-                }else {
-                    this.error = "Por favor, corrija los campos en rojo";
+                }else{
+                    this.error = "Debe aceptar los terminos y condiciones";
                 }
-            })
             }else{
-                this.error = "Debe aceptar los terminos y condiciones";
+                this.error = "Hemos detectado lenguaje ofensivo en su nombre o apellido";
             }
         },
         setSuccessMessage(){
-            this.console("volvio");
+            // this.console("volvio");
         },
         // LLENAR SELECT universidades
         getValuesSelectUniversidad(){
@@ -291,7 +302,20 @@ export default {
              this.textButton='Resgistrarse'
              this.iconLoading=false
          }
-     }  
+     },
+    //  INPUTS SCAN MALAS PALABRAS
+    "usuario.name":function(string){
+        this.badWordNameFlag=this.scanMalasPalabras(string);
+        if(this.badWordNameFlag==false){
+                this.error=''
+            }
+    },
+    "usuario.apellido":function(string){
+        this.badWordApellidoFlag=this.scanMalasPalabras(string);
+        if(this.badWordApellidoFlag==false){
+                this.error=''
+            }
+    }
   }
   
 };

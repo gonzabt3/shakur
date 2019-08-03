@@ -46,7 +46,7 @@ export default {
         if(val.length>=25){
           let resto = val.length-25
           val = val.slice(0,-resto);
-          console.log(val+'...');
+          // console.log(val+'...');
           return (val+'...');
         }else{
           return val

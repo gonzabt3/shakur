@@ -5,22 +5,25 @@
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
-                        v-model="data.texto"
-                        required
-                        placeholder="Publica algo!!">
+                            v-model="data.texto"
+                            placeholder="Publica algo!!">
                         </b-form-input>
+                        <b-alert 
+                            :show="hasErrors" 
+                            variant="danger" 
+                            class="text-center">{{ error }}</b-alert>
                         <input
-                        v-validate="{ required: false, size:10240, mimes:['image/jpg','image/jpeg','application/pdf','application/excel','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','image/png','application/vnd.oasis.opendocument.spreadsheet','application/vnd.oasis.opendocument.text','application/vnd.openxmlformats-officedocument.wordprocessingml.document']}"
-                        id="inputFile"
-                        ref="fileInput"
-                        :class="{
-                          'is-invalid': errors.has('formComment.inputFile[]')
-                        }"
-                        type="file"
-                        multiple
-                        name="inputFile[]"
-                        style="display: none"
-                        @change="processFile($event)"
+                            v-validate="{ required: false, size:10240, mimes:['image/jpg','image/jpeg','application/pdf','application/excel','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','image/png','application/vnd.oasis.opendocument.spreadsheet','application/vnd.oasis.opendocument.text','application/vnd.openxmlformats-officedocument.wordprocessingml.document']}"
+                            id="inputFile"
+                            ref="fileInput"
+                            :class="{
+                            'is-invalid': errors.has('formComment.inputFile[]')
+                            }"
+                            type="file"
+                            multiple
+                            name="inputFile[]"
+                            style="display: none"
+                            @change="processFile($event)"
                         >
                     </b-form-group>
                     <b-form-group id="preview" >
@@ -47,6 +50,8 @@
     </b-container>
 </template>
 <script>
+import {blackListWords} from "./diccionario.js";
+
 export default {
   name: 'PostNew',
     props:['idMateria'],
@@ -54,25 +59,30 @@ export default {
         validator: "new"
     },
     data() {
-    return {
-        data:{
-            texto:null,
-            materia_id:this.idMateria,
-            user_id:null,
-            files:[]
-        },
-        textButton:'Publicar',
-        disabledButton:false,
-        loading:false,
-        iconLoading:false,
-        urlFiles:[]
-    };
+        return {
+            data:{
+                texto:null,
+                materia_id:this.idMateria,
+                user_id:null,
+                files:[]
+            },
+            badWordFlag:false,
+            error: "",
+            textButton:'Publicar',
+            disabledButton:false,
+            loading:false,
+            iconLoading:false,
+            urlFiles:[]
+        };
   },
-//   computed:{
+  computed:{
+      hasErrors() {
+            return this.error != "";
+        },
 //       makeUrl(value){
 //           return URL.createObjectURL(value);
 //       }
-//   },
+  },
     watch:{
          loading: function(value){
          if(value){
@@ -84,36 +94,51 @@ export default {
              this.textButton='Publicar'
              this.iconLoading=false
          }
-     } 
+        },
+        "data.texto":function(string){
+            this.badWordFlag=this.scanMalasPalabras(string);
+            if(this.badWordFlag==false){
+                this.error=''
+            }
+        } 
     },
     methods :{
+        scanMalasPalabras(string){
+            let arrayPalbras = string.trim().split(" ");
+            let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
+            return !resultado.length==0 
+        },
      makeUrl(value){
           return URL.createObjectURL(value);
       },
       hacerPost(){
-            this.loading=true;
-            this.data.materia_id=this.idMateria
+            if(!this.badWordFlag){
+                this.loading=true;
+                this.data.materia_id=this.idMateria
 
-            let formData = new FormData();
+                let formData = new FormData();
 
-            formData.append('texto',this.data.texto);
-            formData.append('materia_id',this.data.materia_id);
-            formData.append('user_id',this.data.user_id);
-            formData.append('files',this.data.files);
-            
-            _.each(this.data.files, (file, key) => {
-                    formData.append(`files[${key}]`, file);
-            });
+                formData.append('texto',this.data.texto);
+                formData.append('materia_id',this.data.materia_id);
+                formData.append('user_id',this.data.user_id);
+                formData.append('files',this.data.files);
+                
+                _.each(this.data.files, (file, key) => {
+                        formData.append(`files[${key}]`, file);
+                });
 
-            // formData.forEach(entries => console.log(entries));
+                // formData.forEach(entries => console.log(entries));
 
-            this.axios.post('api/publicacion',formData)
-            .then((response) =>{
-                this.loading=false
-                this.data.texto='',
-                this.data.files=[],
-                this.$emit("responseGetPosts",true)            
-            })
+                this.axios.post('api/publicacion',formData)
+                .then((response) =>{
+                    this.loading=false
+                    this.data.texto='',
+                    this.data.files=[],
+                    this.$emit("responseGetPosts",true)            
+                })
+            }else{
+                this.error = "Hemos detectado lenguaje ofensivo";
+            }
         },
         //GUARDA EN LA VARIABLE EL ARCHIVO SELECCIONADO
         processFile(event) {

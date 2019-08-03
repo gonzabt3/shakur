@@ -12,7 +12,7 @@ export default {
     },
     methods:{
         sumbit(){
-            console.log(this.flagAutor);
+            // console.log(this.flagAutor);
             if(this.flagAutor){
                 this.axios.delete('api/'+this.tipo+'/'+this.id)
                 .then(({data}) => {
