@@ -108,11 +108,10 @@ export default {
 
 .white{
   color:#ffffff;
+  
 }
 
 .no-margin{
     margin-bottom: 0px;
 }
-
-
 </style>

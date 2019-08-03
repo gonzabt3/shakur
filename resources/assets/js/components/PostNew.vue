@@ -1,7 +1,8 @@
 <template>
     <b-container class="padding-lateral-7">
         <b-form-group>
-            <b-card class="shadow" title="Nueva Publicacion">
+            <!-- <h2 class="text-center"><b-badge block>Grupo de Matematica 1</b-badge></h2> -->
+            <b-card  class="shadow" title="Nueva Publicacion">
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
