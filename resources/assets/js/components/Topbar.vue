@@ -2,7 +2,7 @@
 <b-navbar  toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <label class="text-center white no-margin">{{materiaSelected | formatMateriaSelected}}</label>
-  <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
+  <!-- <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand> -->
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item id="materia" v-for="materia in materias"

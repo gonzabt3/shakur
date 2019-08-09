@@ -1,5 +1,6 @@
 <template>
     <b-container class="padding-5">
+        <b-alert show>Los eventos que ingreses serán visto por todos</b-alert>
         <b-card class="shadow " >
             <b-row>
                 <b-col >

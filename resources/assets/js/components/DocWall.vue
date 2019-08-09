@@ -1,5 +1,6 @@
 <template>
     <b-container class="form-group padding-5">
+        <b-alert show>Los archivos que subas serán visto por todos</b-alert>
         <b-card class="shadow" >
             <b-row>
                 <b-col>
