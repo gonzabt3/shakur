@@ -141,12 +141,19 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   beforeMount(){
+    this.checkAuth();
     this.setHeader();
   }, 
   mounted(){
         // this.getPosts();
   },
   methods:{
+    checkAuth(){
+      let token = sessionStorage.getItem('token');
+      if(token==null){
+        this.$router.push("/");
+      }
+    },
     showModalLikes(idPost,type){
      
       this.typeLikeModal=type

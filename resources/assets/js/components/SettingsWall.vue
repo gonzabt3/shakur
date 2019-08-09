@@ -28,10 +28,11 @@ export default {
           this.$root.$emit('bv::show::modal','reportError')
       },
       logout(){
-          this.axios.get('api/auth/logout')
-          .then((response)=>{
-                window.location.replace("/");
-          })
+            sessionStorage.removeItem('token');
+            this.axios.get('api/auth/logout')
+            .then((response)=>{
+                    window.location.replace("/");
+            })
     }
   }
 };
