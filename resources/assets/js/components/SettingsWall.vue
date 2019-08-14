@@ -2,7 +2,7 @@
     <b-container class="padding-5">
         <b-card class="shadow" id="settingsCard" title="Configuracion">
             <h6 @click="showModal"><u class="pointer">Mi perfil</u></h6>
-            <!-- <h6 @click="showModalErrorReport"><u class="pointer">Reportar errores</u></h6> -->
+            <h6 @click="showModalErrorReport"><u class="pointer">Reportar errores</u></h6>
             <h6  ><u @click="logout" class="pointer">Salir</u></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>

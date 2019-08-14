@@ -24,11 +24,19 @@ class FileService {
         if($tipo=='post'){
             $idPost=$id;
             $idDocumento=null;
+            $idReport=null;
         }
 
         if($tipo=='file'){
             $idPost=null;
             $idDocumento=$id;
+            $idReport=null;
+        }
+
+        if($tipo=='report'){
+            $idPost=null;
+            $idDocumento=null;
+            $idReport=$id;
         }
 
         DB::beginTransaction();
@@ -36,6 +44,7 @@ class FileService {
 
             $fileObject['publicacion_id']=$idPost;  
             $fileObject['documento_id']=$idDocumento;
+            $fileObject['reporte_id']=$idReport;
             $fileObject['path']='';
             
             $idFile = File::create($fileObject);

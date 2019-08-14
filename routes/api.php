@@ -135,3 +135,6 @@ Route::middleware('auth:api')->get('/notifications','Api\NotificationController@
 
 //MARCAR COMO LEIDA
 Route::middleware('auth:api')->post('/notification','Api\NotificationController@markAsRead');
+
+//AGREGA REPORTES
+Route::middleware('auth:api')->post('/reportsErrors','Api\ReportErrorController@store');

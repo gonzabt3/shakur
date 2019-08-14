@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReportError extends Model
 {
+    protected $table = 'reportes';
+
     protected $fillable = [
-        'desripcion','materia_id','path_adjunto'
+        'descripcion'
     ];
+
+    public function files(){
+        return $this->hasMany(File::class);
+    }
 }
