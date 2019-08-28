@@ -5,8 +5,8 @@
             <b-row>
                 <b-col >
                     <b-form inline >
-                        <font-awesome-icon id="infoEvent" size="md" class="separacionIcon" icon="info-circle"/>
-                        <b-tooltip target="infoEvent" variant="danger">Lo que agreges en este apartado sera visto por los demas integrantes del grupo</b-tooltip>
+                        <!-- <font-awesome-icon id="infoEvent" size="md" class="separacionIcon" icon="info-circle"/>
+                        <b-tooltip target="infoEvent" variant="danger">Lo que agreges en este apartado sera visto por los demas integrantes del grupo</b-tooltip> -->
                         <h3><u>Proximos Eventos</u></h3>
                         <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
                     </b-form>

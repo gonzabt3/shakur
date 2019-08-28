@@ -46,6 +46,8 @@ class FileService {
             $fileObject['documento_id']=$idDocumento;
             $fileObject['reporte_id']=$idReport;
             $fileObject['path']='';
+            $fileObject['nombre']=$file->getClientOriginalName();
+            $fileObject['extension']=substr($file->getClientOriginalName(), -3);
             
             $idFile = File::create($fileObject);
 

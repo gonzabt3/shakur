@@ -35,7 +35,10 @@
                     <p class="card-text text-justify">
                         {{postData.texto}}
                     </p>
-                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in postData.files" :src="image.path" @click="onClick(i)">
+                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
+                      <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
+                        <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
+                          {{file.nombre}}</b-button>
                     <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
                 </b-form-group>
                 <b-row>
@@ -120,6 +123,8 @@ export default {
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
       user:1,
+      arrayFiles:[],
+      arrayImages:[],
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
@@ -145,49 +150,67 @@ export default {
         },
         urlImages: function(){
             let array=[]
-            _.each(this.postData.files, (file, key) => {
+            _.each(this.arrayImages, (file, key) => {
                   array.push(file.path)
             });
             return array;
         }
     },
-methods: {
-    onClick(i) {
-      this.indexImage = i;
+    mounted(){
+        this.separateFilesAdjuntos();
     },
-    showModalLikes(idPost,type){
-        this.$emit("showModalLikes",idPost,type);
-    },
-    showModalDenuncias(idItem,type){
-        this.$emit("showModalDenuncias",idItem,type);
-    },
-    submitComentario(){
-        // console.log(this.objectComentario);
-        this.axios.post('api/comentario',this.objectComentario)
-        .then((response) =>{
-            this.objectComentario.texto=''
-            this.getComentarios()
-        })        
-    },
-    comentarios(){
-        if(!this.showComentarios){
-            this.getComentarios()
-            this.showComentarios=true
-        }else{
-            this.showComentarios=false
+    methods: {
+        separateFilesAdjuntos(){
+            let arrayTodo = this.postData.files;
+
+            _.each(arrayTodo, (file, key) => {            
+                let extension = file.extension;
+                if(extension == 'png' || extension=='jepg' || extension =="jpg"  || extension =="gif"){
+                    this.arrayImages.push(file);
+                }else{  
+                    this.arrayFiles.push(file);
+                }
+                
+            });
+
+            // console.log(arrayTodo);
+        },
+        onClick(i) {
+        this.indexImage = i;
+        },
+        showModalLikes(idPost,type){
+            this.$emit("showModalLikes",idPost,type);
+        },
+        showModalDenuncias(idItem,type){
+            this.$emit("showModalDenuncias",idItem,type);
+        },
+        submitComentario(){
+            // console.log(this.objectComentario);
+            this.axios.post('api/comentario',this.objectComentario)
+            .then((response) =>{
+                this.objectComentario.texto=''
+                this.getComentarios()
+            })        
+        },
+        comentarios(){
+            if(!this.showComentarios){
+                this.getComentarios()
+                this.showComentarios=true
+            }else{
+                this.showComentarios=false
+            }
+        },
+        getComentarios(){
+            this.arrayComentarios=[]
+            this.axios.get('api/comentarios/'+this.postData.id)
+                        .then(({data}) => {
+                            this.arrayComentarios=data
+                            this.cantComentarios=this.arrayComentarios.length
+                        });
+        },
+        getPosts(value=null){
+            this.$emit("getPosts",value)  
         }
-    },
-    getComentarios(){
-        this.arrayComentarios=[]
-        this.axios.get('api/comentarios/'+this.postData.id)
-                    .then(({data}) => {
-                        this.arrayComentarios=data
-                        this.cantComentarios=this.arrayComentarios.length
-                    });
-    },
-    getPosts(value=null){
-        this.$emit("getPosts",value)  
-    }
   },
   watch: {
     showManyComentarios(value) { // cambia el icon del ojo de los comentarios
@@ -201,6 +224,15 @@ methods: {
 <style scoped>
 #nombreUser{
     padding-left:0;
+}
+
+.separacionIcon{
+    /* villeriada */
+    margin-bottom: 3%;
+    margin-left: 3%;
+}
+.pointer{
+    cursor: pointer;
 }
 
 .shadow{
