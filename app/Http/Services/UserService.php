@@ -104,6 +104,18 @@ class UserService {
             }
         }
 
+        //agrega materia general donde estas agrupados por universidad
+        //LAS MATERIAS GENERALES TIENE ID ALTO 90000000 + EL ID DE LA FACULTAD
+        $materiaGeneralActual = $user->materias->where('general',01)->first();
+        $idMateriaGeneralNuevo=90000000+Materia::find($materiasNuevas[0]['value'])->carrera->universidad['id'];
+
+        if($materiaGeneralActual==null){
+            $user->materias()->saveMany([Materia::find($idMateriaGeneralNuevo)]);
+        }elseif($materiaGeneralActual->id!=$idMateriaGeneralNuevo){
+            $user->materias()->saveMany([Materia::find($idMateriaGeneralNuevo)]);
+        }
+      
+
         //circo para guardar las materias x usuario
         // foreach ($materias as $materia) {
                 
