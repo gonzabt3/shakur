@@ -56,9 +56,9 @@ export default {
         showModalDenuncias(idItem,type){
             this.$emit("showModalDenuncias",idItem,type);
         },
-      showModal(){
-          this.$root.$emit('bv::show::modal','newDoc')
-      },
+        showModal(){
+            this.$root.$emit('bv::show::modal','newDoc')
+        },
        nameAlias(user){
             if(user.alias==null){
                 return user.name+' '+user.apellido;
