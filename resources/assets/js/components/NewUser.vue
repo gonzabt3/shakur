@@ -85,8 +85,8 @@
                     value-field="id"
                         />
                         <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
-                </b-form-group>
-
+                        <faltante tipo="universidad" />
+                    </b-form-group>
                 <!-- SELECT CARRERAS -->
                 <b-form-group 
                 label="Carrera" 
@@ -102,6 +102,7 @@
                     value-field="id"
                         />
                 <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                <faltante tipo="carrera" />
                 </b-form-group>
                 <b-form-group>
                     <b-form-checkbox-group  >
@@ -132,6 +133,7 @@
 <script>
 const MpSelect = () => import('../components/common/MpSelect');
 const ModalTerminos = () => import('../components/modals/MoldalTerminos.vue');
+const Faltante = () => import('../components/common/Faltante.vue');
 import {blackListWords} from "./diccionario.js";
 
 // import MpSelect from "../components/common/MpSelect";
@@ -139,7 +141,7 @@ import {blackListWords} from "./diccionario.js";
 
 export default {
   name: 'NewUser',
-  components: { MpSelect ,ModalTerminos },
+  components: { MpSelect ,ModalTerminos, Faltante },
     $_veeValidate: {
     validator: "new"
   },
