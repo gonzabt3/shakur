@@ -52,7 +52,7 @@ export default {
         send(){
             if(this.faltante != '' || this.faltante!=null){
                 let obj = {
-                    faltante:this.faltante, 
+                    descripcion:this.faltante, 
                     tipo:this.tipo    
                     }
 

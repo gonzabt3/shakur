@@ -138,3 +138,6 @@ Route::middleware('auth:api')->post('/notification','Api\NotificationController@
 
 //AGREGA REPORTES
 Route::middleware('auth:api')->post('/reportsErrors','Api\ReportErrorController@store');
+
+//AGREGAR FALTATES
+Route::post('/faltante','Api\FaltanteController@store');
