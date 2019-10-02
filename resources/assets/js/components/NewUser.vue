@@ -102,7 +102,7 @@
                     value-field="id"
                         />
                 <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
-                <faltante tipo="carrera" />
+                <faltante tipo="carrera" :id-padre="usuario.universidad" />
                 </b-form-group>
                 <b-form-group>
                     <b-form-checkbox-group  >

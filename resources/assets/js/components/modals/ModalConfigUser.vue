@@ -144,6 +144,7 @@
                                     <span>No se encontraron resultados</span>
                                     </template>
                                 </v-select>
+                                <faltante tipo="materia" :id-padre="data.carrera_id" ></faltante>
                             </b-col>
                         </b-row>
                         <b-alert 
@@ -164,13 +165,14 @@
 <script>
 const vSelect = () => import('vue-select');
 const ModalAvatar = () => import('../modals/ModalAvatar');
+const Faltante = () => import('../common/Faltante');
 // const {blackListWords} = () => import('../diccionario.js');
 import {blackListWords} from "../diccionario.js";
 // import vSelect from "vue-select";
 // import ModalAvatar from '../modals/ModalAvatar';
 
 export default {
-    components: { vSelect,ModalAvatar },
+    components: { vSelect,ModalAvatar,Faltante },
     props:['noCerrar'],
     data(){
         return {

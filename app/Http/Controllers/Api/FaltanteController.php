@@ -22,14 +22,16 @@ class FaltanteController extends Controller
     public function store(Request $request){
         $faltante = $this->validate($request,[
             'descripcion' => 'required',
-            'tipo' => 'required'
+            'tipo' => 'required',
+            'padre_id' => 'nullable'
             ]);
 
         //agrego user
         $user = Auth::user();
-        
+        $data = $request->user();
+
+        // dd($data);
         $faltante['user_id'] = ($user!=null) ? $user->id : null;
-        $faltante['padre_id'] = null;
 
         return $this->faltanteService->store($faltante);
     }

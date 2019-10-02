@@ -11,18 +11,32 @@
                 <b-button @click="send" variant="info">Enviar!</b-button>
             </b-input-group-append>
         </b-input-group>
+        <b-alert v-if="success" show variant="success">Enviado!
+        </b-alert>
     </b-col>
 </b-row>
 </template>
 <script>
 export default {
     name:'Faltante',
-    props:['tipo'],
+    props:['tipo','idPadre'],
+    props:{
+        tipo:{
+            type: String,
+            required: true
+        },
+        idPadre:{
+            type: Number,
+            required: false,
+            default:null
+        }
+    },
     data(){
         return{
             pregunta:'',
             faltante:null,
-            booleanInput:false
+            booleanInput:false,
+            success:false
         }
     },mounted(){
         this.config(this.tipo);
@@ -50,16 +64,23 @@ export default {
             this.booleanInput=false
         },
         send(){
-            if(this.faltante != '' || this.faltante!=null){
-                let obj = {
-                    descripcion:this.faltante, 
-                    tipo:this.tipo    
-                    }
 
-                this.axios.post('api/faltante',obj)
+            if((this.faltante!=null && this.tipo!="carrera") || (this.tipo=="carrera" && this.idPadre!=null && this.faltante!=null )){
+                let obj = {
+                        descripcion:this.faltante, 
+                        tipo:this.tipo,
+                        padre_id:this.idPadre  
+                    }
+                
+                let ruta = 'api/faltante/sin/auth'
+                if(this.tipo=='materia'){
+                    ruta = 'api/faltante'
+                } 
+                this.axios.post(ruta,obj)
                 .then((response) =>{
-                    this.btnLikeEstado = true;
-                    this.cantidadLikes += 1;
+                    this.booleanInput = false
+                    this.success = true
+        
                 })     
                
             }
