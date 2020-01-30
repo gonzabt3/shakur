@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="../images/favIcon.png"/>
     <title>Shakur</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 </head>
 <body>
 <div id="mute"></div>
