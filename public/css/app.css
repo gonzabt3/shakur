@@ -1,6 +1,1 @@
-@font-face {
-  font-family: "valentine";
-  src: url("../fonts/valentine-webfont.woff2") format("woff2"), url("../fonts/valentine-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}/* (ignored) *//* (ignored) *//* (ignored) *//* (ignored) */
+@font-face{font-family:valentine;src:url(../fonts/valentine-webfont.woff2) format("woff2"),url(../fonts/valentine-webfont.woff) format("woff");font-weight:400;font-style:normal}
