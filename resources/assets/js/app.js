@@ -5,6 +5,7 @@
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import '../sass/app.scss';
 
 // font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';

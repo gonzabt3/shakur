@@ -16,6 +16,7 @@
     });
     </script>
     <title>Shakur</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 </head>
 <body>
 <div id="mute"></div>
