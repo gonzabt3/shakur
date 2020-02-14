@@ -165,7 +165,7 @@ export default {
 
             _.each(arrayTodo, (file, key) => {            
                 let extension = file.extension;
-                if(extension == 'png' || extension=='jepg' || extension =="jpg"  || extension =="gif"){
+                if(extension == 'png' || extension=='jepg' || extension =="jpg"  || extension =="gif" || extension == 'PNG' || extension=='JEPG' || extension =="JPG"  || extension =="GIF"){
                     this.arrayImages.push(file);
                 }else{  
                     this.arrayFiles.push(file);

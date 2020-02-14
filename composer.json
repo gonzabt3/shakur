@@ -15,7 +15,8 @@
         "laravel/tinker": "^1.0",
         "laravolt/avatar": "^2.2",
         "pusher/pusher-php-server": "~3.0",
-        "rackspace/php-opencloud": "dev-master"
+        "rackspace/php-opencloud": "dev-master",
+        "spatie/laravel-image-optimizer": "^1.5"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
