@@ -1,5 +1,5 @@
 <template>
-    <b-container  id="app" fluid class="height no-padding-main">
+    <b-container  id="app" fluid class=" no-padding-main">
       <link rel="shortcut icon" type="image/png" href="components/favIcon.png"/>
       <!-- <router-link to="/">Inicio</router-link>
       <router-link to="/main">Main</router-link> -->
@@ -30,9 +30,9 @@ body{
     /* ------------background--------   */
     /* background-image:url('../../../public/images/fadu.jpg'); */
     /* background-position: center; */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #00a0b54f;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: #00a0b54f; 
     }
 
   .no-padding-main{

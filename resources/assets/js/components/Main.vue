@@ -9,7 +9,7 @@
         <b-row v-if="celular">
             <b-col >
                 <b-tabs pills card >
-                  <b-tab title="Mi perfil" class="no-padding">
+                  <b-tab title="Mi perfil" class="blanco no-padding">
                     <settings-wall ref="settings"
                     :noCerrar="noCerrar"
                     :idMateria="idMateria"
@@ -22,7 +22,7 @@
                       >
                     </Adsense>
                   </b-tab>
-                  <b-tab class="scroll no-padding" active title="Muro">
+                  <b-tab class="blanco scroll no-padding" active title="Muro">
                     <post-new 
                     @responseGetPosts="getPosts"
                     :id-materia="idMateria"
@@ -37,7 +37,7 @@
                     ></post-user>
                     <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
                   </b-tab>
-                  <b-tab title="Eventos" class="no-padding">
+                  <b-tab title="Eventos" class="blanco no-padding">
                     <events-wall class="form-group"
                     @showModalDenuncias="showModalDenuncias" 
                     :id-materia="idMateria"
@@ -46,7 +46,7 @@
                   </b-tab>
                   <b-tab
                     title="Archivos"
-                    class="no-padding">
+                    class="no-padding blanco">
                     <doc-wall 
                       @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
@@ -57,13 +57,13 @@
         </b-row>
         <!-- FIN VISTA DE CELULAR -->
         <b-row >
-            <b-col cols="3" v-if="!celular" >
+            <b-col cols="3" v-if="!celular" class="blanco" >
                 <settings-wall ref="settings"
                 :noCerrar="noCerrar"
                 :idMateria="idMateria"
                 ></settings-wall>
             </b-col>
-            <b-col sm="5" class="scroll" v-if="!celular" >
+            <b-col sm="5" class="scroll blanco" v-if="!celular" >
                 <post-new 
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
@@ -78,7 +78,7 @@
                 ></post-user>
                 <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
             </b-col>
-            <b-col cols="4" v-if="!celular" >
+            <b-col cols="4" v-if="!celular" class="blanco" >
                 <events-wall class="form-group"
                 @showModalDenuncias="showModalDenuncias"
                 :id-materia="idMateria"
@@ -273,10 +273,13 @@ export default {
 /* .white-background {
     background-color: #fff;
 } */
-.card-header{
+/* .card-header{
     background-color: #ffffff !important;
-}
+} */
 
+.blanco{
+      background-color: #ffffff !important;
+}
 
 /* HARDCODEO EL PADING DE LOS TABS PARA AJUSTAR EN LAS PANTALLAS MENORES A IPHONE 5 */
 @media screen and (max-width: 350px) {

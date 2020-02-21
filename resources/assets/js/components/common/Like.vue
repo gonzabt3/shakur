@@ -1,15 +1,20 @@
 <template>
     <b-container fluid>
         <b-row>
-            <b-col>
-                <b-button block size="sm" @click="btnLike">
-                    {{cantidadLikes}}  
-                    {{stringBtnLike}}
-                    <b-img :src="beerIcon" fluid alt="beerLike" /> 
-                </b-button>
+            <b-col class="no-padding-lateral" >
+                <!-- <b-button block size="sm" @click="btnLike"> -->
+                    <span @click="btnLike">
+                        {{cantidadLikes}}  
+                        <!-- {{stringBtnLike}} -->
+                        <b-img :src="beerIcon" fluid alt="beerLike"  />
+                    </span > 
+                <!-- </b-button> -->
             </b-col>
             <b-col class="no-padding-lateral">
-                <b-button block @click="showModalLike" class="alto " size="sm">Ver likes</b-button>
+                <span @click="showModalLike">
+                    Ver likes
+                </span>
+                <!-- <b-button block @click="showModalLike" class="alto " size="sm">Ver likes</b-button> -->
             </b-col>
         </b-row>
     </b-container>
@@ -34,8 +39,7 @@ export default {
                 this.$emit("showModal",this.idPost,this.tipo);
             },
             btnLike() {
-                    if (!this.btnLikeEstado) {
-                
+                if (!this.btnLikeEstado) {
                 // villeriada para mandarla variable correcta
                 let obj;
                 if(this.tipo=="mg"){

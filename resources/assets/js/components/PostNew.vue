@@ -2,7 +2,7 @@
     <b-container class="padding-lateral-7">
         <b-form-group>
             <!-- <h2 class="text-center"><b-badge block>Grupo de Matematica 1</b-badge></h2> -->
-            <b-card  class="shadow" title="Nueva Publicacion">
+            <!-- <b-card  class="" title="Nueva Publicacion"> -->
                 <b-form>
                     <b-form-group>
                         <b-form-input id="newPost"
@@ -35,18 +35,18 @@
                     </b-form-group>
                     <b-row>
                         <b-col>
-                            <b-button variant="secondary" block 
+                            <b-button size="sm" variant="secondary" block 
                             @click="$refs.fileInput.click()"
                             >Adjuntar</b-button>
                         </b-col>
                         <b-col class="left-padding">
-                            <b-button :disabled="disabledButton" variant="primary" block  @click="hacerPost">
+                            <b-button size="sm" :disabled="disabledButton" variant="primary" block  @click="hacerPost">
                                 <img v-show="iconLoading" class="sizeLoading" src="../components/loadingWhite.svg">
                                 {{textButton}}</b-button>
                         </b-col>
                     </b-row>
                 </b-form>
-            </b-card>
+            <!-- </b-card> -->
         </b-form-group>
     </b-container>
 </template>

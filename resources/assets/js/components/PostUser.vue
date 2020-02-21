@@ -1,19 +1,18 @@
 <template>
     <b-container class="padding-lateral-7" fluid>
         <b-form-group>
-            <b-card class="shadow">
+            <!-- <b-card class=""> -->
                 <b-row>
-                    <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
+                    <b-col  class="" id="imagenUser">
+                        <b-img rounded="circle"  thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
                     </b-col>
-                    <b-col>
-                        <b-row>
-                            <b-col id="nombreUser" class="no-padding" >
-                                <h4  class="text-left">{{nameAlias}}</h4>
+                    <b-col cols="9">
+                        <b-row class="altoDivNombre">
+                            <b-col class="no-padding">
+                                <label  class="text-left"><b>{{nameAlias}}</b></label>
                             </b-col>
-                            <!-- <b-col cols="5" md="4" class="no-padding">
-                            </b-col> -->
-                            <b-col cols="2" class="text-center ">
+                            <b-col class="no-padding">
+                                <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
                                 <delete 
                                     :id="postData.id"
                                     :flag-autor="postData.flagAutor"
@@ -24,7 +23,56 @@
                             </b-col>
                         </b-row>
                         <b-row>
-                            <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
+                            <label>
+                             <!-- <p class="card-text text-justify"> -->
+                                {{postData.texto}}</label>
+                            <!-- </p> -->
+                        </b-row>
+                        <b-row>
+                            <b-col class="no-padding">
+                                <like
+                                @showModal="showModalLikes"
+                                :likes-data="postData.likes"
+                                :flag-like="postData.flagLike"
+                                :id-post="postData.id"
+                                url-like="api/like"
+                                tipo="mg"
+                                ></like>
+                            </b-col>
+                            <b-col>
+                                <span @click="comentarios">
+                                    {{cantComentarios}}
+                                <b-img :src="commentIcon" fluid alt="comments" />
+                                </span>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                </b-row>
+
+                <!-- VIEJO -->
+                <b-row>
+                    <!-- <b-col cols="3"  class="text-center" id="imagenUser">
+                        <b-img rounded="circle" width="50" height="50" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
+                    </b-col> -->
+                    <b-col>
+                        <b-row>
+                            <b-col id="nombreUser" class="no-padding" >
+                                <!-- <h5  class="text-left">{{nameAlias}}</h5> -->
+                            </b-col>
+                            <!-- <b-col cols="5" md="4" class="no-padding">
+                            </b-col> -->
+                            <b-col cols="2" class="text-center ">
+                                <!-- <delete 
+                                    :id="postData.id"
+                                    :flag-autor="postData.flagAutor"
+                                    tipo="post"
+                                    @actualizar="getPosts"
+                                    @showModalDenuncias="showModalDenuncias"
+                                /> -->
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <!-- <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label> -->
                             <!-- <b-col cols="12" class="no-padding-left">
                                 <b-progress  :value="progreso" ></b-progress>
                             </b-col> -->
@@ -32,9 +80,9 @@
                     </b-col>
                 </b-row>
                 <b-form-group class="text-center">
-                    <p class="card-text text-justify">
+                    <!-- <p class="card-text text-justify">
                         {{postData.texto}}
-                    </p>
+                    </p> -->
                     <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
                       <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
                         <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
@@ -44,21 +92,23 @@
                 <b-row>
                     <!-- <b-form-group> -->
                     <b-col cols="8">
-                        <like
+                        <!-- <like
                         @showModal="showModalLikes"
                         :likes-data="postData.likes"
                         :flag-like="postData.flagLike"
                         :id-post="postData.id"
                         url-like="api/like"
                         tipo="mg"
-                        ></like>
+                        ></like> -->
                         
                         </b-col>
                         <b-col>
-                            <b-button  block size="sm" @click="comentarios">
-                           {{cantComentarios}}
-                            <b-img :src="commentIcon" fluid alt="comments" />
-                        </b-button>
+                            <!-- <span @click="comentarios"> -->
+                            <!-- <b-button  block size="sm" @click="comentarios"> -->
+                           <!-- {{cantComentarios}}
+                            <b-img :src="commentIcon" fluid alt="comments" /> -->
+                        <!-- </b-button> -->
+                        <!-- </span> -->
                         </b-col>
                     <!-- </b-form-group> -->
                 </b-row>
@@ -89,7 +139,7 @@
                         </b-col>
                     </b-row>
                 </div>
-            </b-card>
+            <!-- </b-card> -->
         </b-form-group>
     </b-container>
 </template>
@@ -233,6 +283,10 @@ export default {
 }
 .pointer{
     cursor: pointer;
+}
+
+.altoDivNombre{
+        height: 25%;
 }
 
 .shadow{
