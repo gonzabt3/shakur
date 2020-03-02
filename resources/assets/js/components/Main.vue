@@ -266,6 +266,7 @@ export default {
 
 .scroll {
     overflow-y: scroll;
+    overflow-x: hidden;
     /*  ARREGLAR ESTA NEGRDADA */
   height: 100vh;
 }
