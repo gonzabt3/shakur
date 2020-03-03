@@ -1,11 +1,10 @@
 <template>
     <b-container class="padding-lateral-7" fluid>
         <b-form-group>
-            <!-- <b-card class=""> -->
                 <b-row>
-                    <b-col  class="" id="imagenUser">
-                        <b-img rounded="circle"  thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
-                    </b-col>
+                    <!-- <b-col  > -->
+                        <b-img class="thumbnail-custom" rounded="circle" thumbnail  :src="postData.user.avatar_url" alt="Thumbnail" />
+                    <!-- </b-col> -->
                     <b-col cols="9">
                         <b-row class="altoDivNombre">
                             <b-col class="no-padding">
@@ -23,12 +22,14 @@
                             </b-col>
                         </b-row>
                         <b-row>
-                            <label>
-                             <!-- <p class="card-text text-justify"> -->
-                                {{postData.texto}}</label>
-                            <!-- </p> -->
+                            <label>{{postData.texto}}</label>
+                            <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
+                            <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
+                                <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
+                                {{file.nombre}}</b-button>
+                            <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
                         </b-row>
-                        <b-row>
+                        <b-row class="form-group">
                             <b-col class="no-padding">
                                 <like
                                 @showModal="showModalLikes"
@@ -46,100 +47,35 @@
                                 </span>
                             </b-col>
                         </b-row>
-                    </b-col>
-                </b-row>
-
-                <!-- VIEJO -->
-                <b-row>
-                    <!-- <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="50" height="50" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
-                    </b-col> -->
-                    <b-col>
                         <b-row>
-                            <b-col id="nombreUser" class="no-padding" >
-                                <!-- <h5  class="text-left">{{nameAlias}}</h5> -->
-                            </b-col>
-                            <!-- <b-col cols="5" md="4" class="no-padding">
-                            </b-col> -->
-                            <b-col cols="2" class="text-center ">
-                                <!-- <delete 
-                                    :id="postData.id"
-                                    :flag-autor="postData.flagAutor"
-                                    tipo="post"
-                                    @actualizar="getPosts"
-                                    @showModalDenuncias="showModalDenuncias"
-                                /> -->
-                            </b-col>
-                        </b-row>
-                        <b-row>
-                            <!-- <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label> -->
-                            <!-- <b-col cols="12" class="no-padding-left">
-                                <b-progress  :value="progreso" ></b-progress>
-                            </b-col> -->
+                                <b-col v-if="showComentarios">
+                                    <comentario v-for="item in arrayComentarios"
+                                        :comentario-data="item"
+                                        @getComentarios="getComentarios"
+                                        @showModalLikes="showModalLikes"
+                                        @showModalDenuncias="showModalDenuncias"
+                                        :key="item.id" >
+                                    </comentario>
+                                    <hr />
+                                    <b-row>
+                                        <b-col cols="7">
+                                            <b-form-input id="newComent"
+                                            v-model="objectComentario.texto"
+                                            required
+                                            placeholder="Comenta algo">
+                                            </b-form-input>
+                                        </b-col>
+                                        <b-col cols="3">
+                                            <b-button @click="submitComentario" type="submit" variant="primary">
+                                            <font-awesome-icon   icon="comment" />                                
+                                            </b-button>
+                                        </b-col>
+                                    </b-row>
+                                </b-col>
                         </b-row>
                     </b-col>
-                </b-row>
-                <b-form-group class="text-center">
-                    <!-- <p class="card-text text-justify">
-                        {{postData.texto}}
-                    </p> -->
-                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
-                      <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
-                        <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
-                          {{file.nombre}}</b-button>
-                    <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
-                </b-form-group>
-                <b-row>
-                    <!-- <b-form-group> -->
-                    <b-col cols="8">
-                        <!-- <like
-                        @showModal="showModalLikes"
-                        :likes-data="postData.likes"
-                        :flag-like="postData.flagLike"
-                        :id-post="postData.id"
-                        url-like="api/like"
-                        tipo="mg"
-                        ></like> -->
-                        
-                        </b-col>
-                        <b-col>
-                            <!-- <span @click="comentarios"> -->
-                            <!-- <b-button  block size="sm" @click="comentarios"> -->
-                           <!-- {{cantComentarios}}
-                            <b-img :src="commentIcon" fluid alt="comments" /> -->
-                        <!-- </b-button> -->
-                        <!-- </span> -->
-                        </b-col>
-                    <!-- </b-form-group> -->
                 </b-row>
                 <hr/>
-                <div v-if="showComentarios">
-                    <comentario v-for="item in arrayComentarios"
-                    :comentario-data="item"
-                    @getComentarios="getComentarios"
-                    @showModalLikes="showModalLikes"
-                    @showModalDenuncias="showModalDenuncias"
-                    :key="item.id" ></comentario>
-                    <hr />
-                    <b-row>
-                        <b-col cols="2">
-                            <!-- <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" /> -->
-                        </b-col>
-                        <b-col cols="7">
-                            <b-form-input id="newComent"
-                            v-model="objectComentario.texto"
-                            required
-                            placeholder="Comenta algo">
-                            </b-form-input>
-                        </b-col>
-                        <b-col cols="3">
-                            <b-button @click="submitComentario" type="submit" variant="primary">
-                            <font-awesome-icon   icon="comment" />                                
-                            </b-button>
-                        </b-col>
-                    </b-row>
-                </div>
-            <!-- </b-card> -->
         </b-form-group>
     </b-container>
 </template>
@@ -286,7 +222,7 @@ export default {
 }
 
 .altoDivNombre{
-        height: 25%;
+        height: 20px;
 }
 
 .shadow{
@@ -364,5 +300,11 @@ export default {
 .cuadrado100px{
     width: 100px;
     height: 100px;
+}
+
+.thumbnail-custom{
+    border:none !important;
+    width: 48px;
+    height: 48px;
 }
 </style>

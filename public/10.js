@@ -45,10 +45,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 const Like = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../common/Like */ "./resources/assets/js/components/common/Like.vue"));
 
 const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../common/Delete */ "./resources/assets/js/components/common/Delete.vue")); // import Like from '../common/Like';
@@ -108,7 +104,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n.thumbnail-custom[data-v-77605f1e]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n\n", ""]);
 
 // exports
 
@@ -134,24 +130,15 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { attrs: { cols: "2" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  rounded: "circle",
-                  width: "50",
-                  height: "50",
-                  thumbnail: "",
-                  fluid: "",
-                  src: _vm.comentarioData.user.avatar_url,
-                  alt: "Thumbnail"
-                }
-              })
-            ],
-            1
-          ),
+          _c("b-img", {
+            staticClass: "thumbnail-custom",
+            attrs: {
+              rounded: "circle",
+              thumbnail: "",
+              src: _vm.comentarioData.user.avatar_url,
+              alt: "Thumbnail"
+            }
+          }),
           _vm._v(" "),
           _c(
             "b-col",
@@ -164,13 +151,10 @@ var render = function() {
                     "b-col",
                     { staticClass: "no-padding-left", attrs: { cols: "10" } },
                     [
-                      _c("b-form-group", [
-                        _c("h5", { staticClass: "no-margin-bottom" }, [
-                          _vm._v(_vm._s(_vm.nameAlias))
-                        ])
+                      _c("label", { staticClass: "no-margin-bottom" }, [
+                        _c("b", [_vm._v(_vm._s(_vm.nameAlias))])
                       ])
-                    ],
-                    1
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -196,14 +180,11 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("b-row", [
-                _c("p", { staticClass: "form-control" }, [
-                  _vm._v(_vm._s(_vm.comentarioData.texto))
-                ])
+                _c("label", [_vm._v(_vm._s(_vm.comentarioData.texto))])
               ]),
               _vm._v(" "),
               _c(
                 "b-row",
-                { attrs: { cols: "8" } },
                 [
                   _c("like", {
                     attrs: {

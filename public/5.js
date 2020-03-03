@@ -94,70 +94,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 const Comentario = () => __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
 
 
@@ -435,7 +371,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.altoDivNombre[data-v-9342377c]{\n        height: 25%;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.altoDivNombre[data-v-9342377c]{\n        height: 20px;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n.thumbnail-custom[data-v-9342377c]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n", ""]);
 
 // exports
 
@@ -524,22 +460,15 @@ var render = function() {
           _c(
             "b-row",
             [
-              _c(
-                "b-col",
-                { attrs: { id: "imagenUser" } },
-                [
-                  _c("b-img", {
-                    attrs: {
-                      rounded: "circle",
-                      thumbnail: "",
-                      fluid: "",
-                      src: _vm.postData.user.avatar_url,
-                      alt: "Thumbnail"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("b-img", {
+                staticClass: "thumbnail-custom",
+                attrs: {
+                  rounded: "circle",
+                  thumbnail: "",
+                  src: _vm.postData.user.avatar_url,
+                  alt: "Thumbnail"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "b-col",
@@ -597,17 +526,59 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("b-row", [
-                    _c("label", [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(_vm.postData.texto)
-                      )
-                    ])
-                  ]),
+                  _c(
+                    "b-row",
+                    [
+                      _c("label", [_vm._v(_vm._s(_vm.postData.texto))]),
+                      _vm._v(" "),
+                      _vm._l(_vm.arrayImages, function(image, i) {
+                        return _c("img", {
+                          key: i,
+                          staticClass: "image cuadrado100px",
+                          attrs: { src: image.path },
+                          on: {
+                            click: function($event) {
+                              return _vm.onClick(i)
+                            }
+                          }
+                        })
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.arrayFiles, function(file, y) {
+                        return _c(
+                          "b-button",
+                          {
+                            key: y,
+                            attrs: {
+                              variant: "outline-dark",
+                              href: file.path,
+                              download: ""
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(file.nombre)
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("vue-gallery-slideshow", {
+                        attrs: { images: _vm.urlImages, index: _vm.indexImage },
+                        on: {
+                          close: function($event) {
+                            _vm.indexImage = null
+                          }
+                        }
+                      })
+                    ],
+                    2
+                  ),
                   _vm._v(" "),
                   _c(
                     "b-row",
+                    { staticClass: "form-group" },
                     [
                       _c(
                         "b-col",
@@ -650,37 +621,91 @@ var render = function() {
                       ])
                     ],
                     1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            [
-              _c(
-                "b-col",
-                [
-                  _c(
-                    "b-row",
-                    [
-                      _c("b-col", {
-                        staticClass: "no-padding",
-                        attrs: { id: "nombreUser" }
-                      }),
-                      _vm._v(" "),
-                      _c("b-col", {
-                        staticClass: "text-center ",
-                        attrs: { cols: "2" }
-                      })
-                    ],
-                    1
                   ),
                   _vm._v(" "),
-                  _c("b-row")
+                  _c(
+                    "b-row",
+                    [
+                      _vm.showComentarios
+                        ? _c(
+                            "b-col",
+                            [
+                              _vm._l(_vm.arrayComentarios, function(item) {
+                                return _c("comentario", {
+                                  key: item.id,
+                                  attrs: { "comentario-data": item },
+                                  on: {
+                                    getComentarios: _vm.getComentarios,
+                                    showModalLikes: _vm.showModalLikes,
+                                    showModalDenuncias: _vm.showModalDenuncias
+                                  }
+                                })
+                              }),
+                              _vm._v(" "),
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c(
+                                "b-row",
+                                [
+                                  _c(
+                                    "b-col",
+                                    { attrs: { cols: "7" } },
+                                    [
+                                      _c("b-form-input", {
+                                        attrs: {
+                                          id: "newComent",
+                                          required: "",
+                                          placeholder: "Comenta algo"
+                                        },
+                                        model: {
+                                          value: _vm.objectComentario.texto,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.objectComentario,
+                                              "texto",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "objectComentario.texto"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-col",
+                                    { attrs: { cols: "3" } },
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: {
+                                            type: "submit",
+                                            variant: "primary"
+                                          },
+                                          on: { click: _vm.submitComentario }
+                                        },
+                                        [
+                                          _c("font-awesome-icon", {
+                                            attrs: { icon: "comment" }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            2
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -688,130 +713,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "b-form-group",
-            { staticClass: "text-center" },
-            [
-              _vm._l(_vm.arrayImages, function(image, i) {
-                return _c("img", {
-                  key: i,
-                  staticClass: "image cuadrado100px",
-                  attrs: { src: image.path },
-                  on: {
-                    click: function($event) {
-                      return _vm.onClick(i)
-                    }
-                  }
-                })
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.arrayFiles, function(file, y) {
-                return _c(
-                  "b-button",
-                  {
-                    key: y,
-                    attrs: {
-                      variant: "outline-dark",
-                      href: file.path,
-                      download: ""
-                    }
-                  },
-                  [_vm._v("\n                      " + _vm._s(file.nombre))]
-                )
-              }),
-              _vm._v(" "),
-              _c("vue-gallery-slideshow", {
-                attrs: { images: _vm.urlImages, index: _vm.indexImage },
-                on: {
-                  close: function($event) {
-                    _vm.indexImage = null
-                  }
-                }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            [_c("b-col", { attrs: { cols: "8" } }), _vm._v(" "), _c("b-col")],
-            1
-          ),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _vm.showComentarios
-            ? _c(
-                "div",
-                [
-                  _vm._l(_vm.arrayComentarios, function(item) {
-                    return _c("comentario", {
-                      key: item.id,
-                      attrs: { "comentario-data": item },
-                      on: {
-                        getComentarios: _vm.getComentarios,
-                        showModalLikes: _vm.showModalLikes,
-                        showModalDenuncias: _vm.showModalDenuncias
-                      }
-                    })
-                  }),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c(
-                    "b-row",
-                    [
-                      _c("b-col", { attrs: { cols: "2" } }),
-                      _vm._v(" "),
-                      _c(
-                        "b-col",
-                        { attrs: { cols: "7" } },
-                        [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "newComent",
-                              required: "",
-                              placeholder: "Comenta algo"
-                            },
-                            model: {
-                              value: _vm.objectComentario.texto,
-                              callback: function($$v) {
-                                _vm.$set(_vm.objectComentario, "texto", $$v)
-                              },
-                              expression: "objectComentario.texto"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-col",
-                        { attrs: { cols: "3" } },
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { type: "submit", variant: "primary" },
-                              on: { click: _vm.submitComentario }
-                            },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "comment" }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                2
-              )
-            : _vm._e()
+          _c("hr")
         ],
         1
       )

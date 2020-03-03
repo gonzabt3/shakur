@@ -1,15 +1,11 @@
 <template>
       <b-form-group>
         <b-row>
-            <b-col cols="2">
-                <b-img rounded="circle" width="50" height="50" thumbnail fluid :src="comentarioData.user.avatar_url" alt="Thumbnail" />
-            </b-col>
+                <b-img class="thumbnail-custom"  rounded="circle"  thumbnail :src="comentarioData.user.avatar_url" alt="Thumbnail" />
             <b-col cols="9">
                 <b-row>
                     <b-col cols="10" class="no-padding-left">
-                        <b-form-group>
-                            <h5 class="no-margin-bottom">{{nameAlias}}</h5>
-                        </b-form-group>
+                            <label class="no-margin-bottom"><b>{{nameAlias}}</b></label>
                     </b-col>
                     <b-col cols="1">
                         <delete
@@ -22,9 +18,9 @@
                     </b-col>
                 </b-row>
                 <b-row >
-                    <p class="form-control">{{comentarioData.texto}}</p>
+                    <label>{{comentarioData.texto}}</label>
                 </b-row>
-                <b-row cols="8">
+                <b-row>
                     <like
                       @showModal="showModalLikes"
                       :likes-data="comentarioData.likes_comentarios"
@@ -84,6 +80,12 @@ export default {
 
 .no-padding-left{
     padding-left: 0px;
+}
+
+.thumbnail-custom{
+    border:none !important;
+    width: 48px;
+    height: 48px;
 }
 
 </style>
