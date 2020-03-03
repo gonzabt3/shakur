@@ -10,8 +10,8 @@
                             <b-col class="no-padding">
                                 <label  class="text-left"><b>{{nameAlias}}</b></label>
                             </b-col>
-                            <b-col class="no-padding">
-                                <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
+                            <b-col class="no-padding text-center">
+                                <label class="text-center"><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
                                 <delete 
                                     :id="postData.id"
                                     :flag-autor="postData.flagAutor"

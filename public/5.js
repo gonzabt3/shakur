@@ -486,10 +486,11 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
-                        { staticClass: "no-padding" },
+                        { staticClass: "no-padding text-center" },
                         [
                           _c(
                             "label",
+                            { staticClass: "text-center" },
                             [
                               _c(
                                 "b-badge",
