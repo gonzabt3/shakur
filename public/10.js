@@ -55,8 +55,10 @@ const Like = () => Promise.resolve(/*! import() */).then(__webpack_require__.bin
 
 const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../common/Delete */ "./resources/assets/js/components/common/Delete.vue"));
 
+ // const dateFormat ="DD-MM-YYYY HH:mm";
 
-const dateFormat = "DD-MM-YYYY HH:mm"; // import Like from '../common/Like';
+moment__WEBPACK_IMPORTED_MODULE_0___default.a.locale('es-es');
+const dateFormat = "D MMM YYYY"; // import Like from '../common/Like';
 // import Delete from '../common/Delete';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -176,7 +178,7 @@ var render = function() {
                       _c("label", { staticClass: "no-margin-bottom" }, [
                         _c("b", [_vm._v(_vm._s(_vm.nameAlias))]),
                         _vm._v(
-                          "• " +
+                          " • " +
                             _vm._s(
                               _vm._f("formatDate")(
                                 _vm.comentarioData.created_at

@@ -7,7 +7,7 @@
             <b-col cols="10">
                 <b-row>
                     <b-col cols="10" class="no-padding-left">
-                            <label class="no-margin-bottom"><b>{{nameAlias}}</b>&#8226; {{comentarioData.created_at | formatDate}}</label>
+                            <label class="no-margin-bottom"><b>{{nameAlias}}</b> &#8226; {{comentarioData.created_at | formatDate}}</label>
                     </b-col>
                     <b-col cols="1">
                         <delete
@@ -44,7 +44,10 @@ const Delete = () => import('../common/Delete');
 
 import moment from "moment";
 
-const dateFormat ="DD-MM-YYYY HH:mm";
+// const dateFormat ="DD-MM-YYYY HH:mm";
+moment.locale('es-es');
+const dateFormat ="D MMM YYYY";
+
 
 // import Like from '../common/Like';
 // import Delete from '../common/Delete';

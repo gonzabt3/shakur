@@ -1,6 +1,6 @@
 <template>
     <b-container fluid class="padding-lateral-7" >
-        <b-form-group>
+        <!-- <b-form-group> -->
                 <b-row>
                     <b-col class="padding-right-7" cols="2">
                         <b-img class="thumbnail-custom" rounded="circle" thumbnail  :src="postData.user.avatar_url" alt="Thumbnail" />
@@ -60,7 +60,7 @@
                                         @showModalDenuncias="showModalDenuncias"
                                         :key="item.id" >
                                     </comentario>
-                                    <hr />
+                                    <hr class="hr-custom" />
                                     <b-row>
                                         <b-col>
                                             <b-form-input id="newComent"
@@ -79,8 +79,8 @@
                         </b-row>
                     </b-col>
                 </b-row>
-                <hr/>
-            </b-form-group>
+                <hr class="hr-custom "/>
+            <!-- </b-form-group> -->
     </b-container>
 </template>
 
@@ -97,8 +97,9 @@ import Like from '../components/common/Like';
 // import Delete from '../components/common/Delete';
 import moment from "moment";
 // import VueGallerySlideshow from 'vue-gallery-slideshow'
-
-const dateFormat ="DD-MM-YYYY HH:mm";
+moment.locale('es-es');
+const dateFormat ="D MMM YYYY HH:mm";
+// const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
@@ -239,7 +240,7 @@ export default {
 
 .no-padding{
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 15px;
 }
 
 .no-padding-left{
@@ -313,6 +314,11 @@ export default {
 }
 
 .padding-right-7{
-    padding-right: 7px;
+    padding-right: 0px;
+}
+
+.hr-custom{
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 </style>
