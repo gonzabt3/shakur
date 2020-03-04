@@ -6,6 +6,9 @@
             <h1 v-if="!celular" class="roboto">Tu lugar para</h1>
             <h1 v-if="!celular" class="roboto">{{palabra}}</h1>
           </b-col>
+          <b-col v-if="celular" class="text-center">
+              <b-link href="https://www.youtube.com/watch?v=ttBAlc0ey8I"><h2><b-badge  variant="primary">¿Que es Shakur?</b-badge></h2></b-link>
+          </b-col>
           <b-col >
           <b-card>
             <h1>Inicio</h1>
