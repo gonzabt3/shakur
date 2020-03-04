@@ -1,11 +1,13 @@
 <template>
       <b-form-group>
         <b-row>
+            <b-col cols="2" class="no-padding">
                 <b-img class="thumbnail-custom"  rounded="circle"  thumbnail :src="comentarioData.user.avatar_url" alt="Thumbnail" />
-            <b-col cols="9">
+            </b-col>
+            <b-col cols="10">
                 <b-row>
                     <b-col cols="10" class="no-padding-left">
-                            <label class="no-margin-bottom"><b>{{nameAlias}}</b></label>
+                            <label class="no-margin-bottom"><b>{{nameAlias}}</b>&#8226; {{comentarioData.created_at | formatDate}}</label>
                     </b-col>
                     <b-col cols="1">
                         <delete
@@ -18,7 +20,9 @@
                     </b-col>
                 </b-row>
                 <b-row >
-                    <label>{{comentarioData.texto}}</label>
+                    <b-col class="no-padding-left">
+                        <label class="text-break">{{comentarioData.texto}}</label>
+                    </b-col>
                 </b-row>
                 <b-row>
                     <like
@@ -38,6 +42,10 @@
 const Like = () => import('../common/Like');
 const Delete = () => import('../common/Delete');
 
+import moment from "moment";
+
+const dateFormat ="DD-MM-YYYY HH:mm";
+
 // import Like from '../common/Like';
 // import Delete from '../common/Delete';
 
@@ -50,6 +58,12 @@ export default {
 
     };
   },
+   filters:{
+        formatDate(value) {
+            if (!value) return "-";
+            return moment(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
+        },
+    },
     computed:{
         nameAlias: function(){
             if(this.comentarioData.user.alias==null){
@@ -79,6 +93,11 @@ export default {
 }
 
 .no-padding-left{
+    padding-left: 0px;
+}
+
+.no-padding{
+    padding-right: 0px;
     padding-left: 0px;
 }
 

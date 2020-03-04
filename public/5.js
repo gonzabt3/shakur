@@ -94,6 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 const Comentario = () => __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
 
 
@@ -123,7 +127,7 @@ const dateFormat = "DD-MM-YYYY HH:mm";
     return {
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantComentarios: null,
+      cantComentarios: this.postData.cantidadComentarios,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
@@ -220,8 +224,7 @@ const dateFormat = "DD-MM-YYYY HH:mm";
       this.axios.get('api/comentarios/' + this.postData.id).then(({
         data
       }) => {
-        this.arrayComentarios = data;
-        this.cantComentarios = this.arrayComentarios.length;
+        this.arrayComentarios = data; // this.cantComentarios=this.arrayComentarios.length
       });
     },
 
@@ -371,7 +374,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.altoDivNombre[data-v-9342377c]{\n        height: 20px;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n.thumbnail-custom[data-v-9342377c]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.altoDivNombre[data-v-9342377c]{\n        height: 20px;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n.thumbnail-custom[data-v-9342377c]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n.padding-right-7[data-v-9342377c]{\n    padding-right: 7px;\n}\n", ""]);
 
 // exports
 
@@ -460,19 +463,26 @@ var render = function() {
           _c(
             "b-row",
             [
-              _c("b-img", {
-                staticClass: "thumbnail-custom",
-                attrs: {
-                  rounded: "circle",
-                  thumbnail: "",
-                  src: _vm.postData.user.avatar_url,
-                  alt: "Thumbnail"
-                }
-              }),
+              _c(
+                "b-col",
+                { staticClass: "padding-right-7", attrs: { cols: "2" } },
+                [
+                  _c("b-img", {
+                    staticClass: "thumbnail-custom",
+                    attrs: {
+                      rounded: "circle",
+                      thumbnail: "",
+                      src: _vm.postData.user.avatar_url,
+                      alt: "Thumbnail"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "b-col",
-                { attrs: { cols: "9" } },
+                { attrs: { cols: "10" } },
                 [
                   _c(
                     "b-row",
@@ -480,35 +490,24 @@ var render = function() {
                     [
                       _c("b-col", { staticClass: "no-padding" }, [
                         _c("label", { staticClass: "text-left" }, [
-                          _c("b", [_vm._v(_vm._s(_vm.nameAlias))])
+                          _c("b", [_vm._v(_vm._s(_vm.nameAlias))]),
+                          _vm._v(
+                            " • " +
+                              _vm._s(
+                                _vm._f("formatDate")(_vm.postData.created_at)
+                              ) +
+                              " "
+                          )
                         ])
                       ]),
                       _vm._v(" "),
                       _c(
                         "b-col",
-                        { staticClass: "no-padding text-center" },
+                        {
+                          staticClass: "no-padding text-center",
+                          attrs: { cols: "1" }
+                        },
                         [
-                          _c(
-                            "label",
-                            { staticClass: "text-center" },
-                            [
-                              _c(
-                                "b-badge",
-                                { attrs: { pill: "", variant: "secondary" } },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("formatDate")(
-                                        _vm.postData.created_at
-                                      )
-                                    )
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
                           _c("delete", {
                             attrs: {
                               id: _vm.postData.id,
@@ -530,8 +529,24 @@ var render = function() {
                   _c(
                     "b-row",
                     [
-                      _c("label", [_vm._v(_vm._s(_vm.postData.texto))]),
-                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        { staticClass: "text-break no-padding-left" },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.postData.texto) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-row",
+                    [
                       _vm._l(_vm.arrayImages, function(image, i) {
                         return _c("img", {
                           key: i,
@@ -650,7 +665,6 @@ var render = function() {
                                 [
                                   _c(
                                     "b-col",
-                                    { attrs: { cols: "7" } },
                                     [
                                       _c("b-form-input", {
                                         attrs: {

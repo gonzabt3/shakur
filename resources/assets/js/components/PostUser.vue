@@ -1,17 +1,17 @@
 <template>
-    <b-container class="padding-lateral-7" fluid>
+    <b-container fluid class="padding-lateral-7" >
         <b-form-group>
                 <b-row>
-                    <!-- <b-col  > -->
+                    <b-col class="padding-right-7" cols="2">
                         <b-img class="thumbnail-custom" rounded="circle" thumbnail  :src="postData.user.avatar_url" alt="Thumbnail" />
-                    <!-- </b-col> -->
-                    <b-col cols="9">
+                    </b-col>
+                    <b-col cols="10">
                         <b-row class="altoDivNombre">
                             <b-col class="no-padding">
-                                <label  class="text-left"><b>{{nameAlias}}</b></label>
+                                <label  class="text-left"><b>{{nameAlias}}</b> &#8226; {{postData.created_at | formatDate}} </label>
                             </b-col>
-                            <b-col class="no-padding text-center">
-                                <label class="text-center"><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
+                            <b-col cols="1" class="no-padding text-center">
+                                <!-- <label class="text-center"><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label> -->
                                 <delete 
                                     :id="postData.id"
                                     :flag-autor="postData.flagAutor"
@@ -21,8 +21,12 @@
                                 />
                             </b-col>
                         </b-row>
-                        <b-row>
-                            <label>{{postData.texto}}</label>
+                        <b-row  >
+                            <b-col class="text-break no-padding-left">
+                            {{postData.texto}}
+                            </b-col>
+                        </b-row>
+                        <b-row >
                             <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
                             <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
                                 <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
@@ -58,7 +62,7 @@
                                     </comentario>
                                     <hr />
                                     <b-row>
-                                        <b-col cols="7">
+                                        <b-col>
                                             <b-form-input id="newComent"
                                             v-model="objectComentario.texto"
                                             required
@@ -76,7 +80,7 @@
                     </b-col>
                 </b-row>
                 <hr/>
-        </b-form-group>
+            </b-form-group>
     </b-container>
 </template>
 
@@ -104,7 +108,7 @@ export default {
     return {
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantComentarios: null,
+      cantComentarios: this.postData.cantidadComentarios,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
@@ -191,7 +195,7 @@ export default {
             this.axios.get('api/comentarios/'+this.postData.id)
                         .then(({data}) => {
                             this.arrayComentarios=data
-                            this.cantComentarios=this.arrayComentarios.length
+                            // this.cantComentarios=this.arrayComentarios.length
                         });
         },
         getPosts(value=null){
@@ -306,5 +310,9 @@ export default {
     border:none !important;
     width: 48px;
     height: 48px;
+}
+
+.padding-right-7{
+    padding-right: 7px;
 }
 </style>

@@ -38,6 +38,8 @@ class PublicacionService{
         //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
         $publicaciones->map(function ($post) {
             $user = Auth::user();
+
+            $post['cantidadComentarios'] = $post->comentarios->count();
             $post['flagAutor'] = $this->userService->checkAutor('post',$post->id);
             $post['flagLike'] = $this->likeService->checkLike('post',$post->id);
 

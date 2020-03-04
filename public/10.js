@@ -9,6 +9,12 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -47,9 +53,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 const Like = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../common/Like */ "./resources/assets/js/components/common/Like.vue"));
 
-const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../common/Delete */ "./resources/assets/js/components/common/Delete.vue")); // import Like from '../common/Like';
-// import Delete from '../common/Delete';
+const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../common/Delete */ "./resources/assets/js/components/common/Delete.vue"));
 
+
+const dateFormat = "DD-MM-YYYY HH:mm"; // import Like from '../common/Like';
+// import Delete from '../common/Delete';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   //prueba
@@ -64,6 +72,13 @@ const Delete = () => __webpack_require__.e(/*! import() */ 0).then(__webpack_req
     return {};
   },
 
+  filters: {
+    formatDate(value) {
+      if (!value) return "-";
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(value, "YYYY-MM-DD HH:mm:ss").format(dateFormat);
+    }
+
+  },
   computed: {
     nameAlias: function () {
       if (this.comentarioData.user.alias == null) {
@@ -104,7 +119,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n.thumbnail-custom[data-v-77605f1e]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n\n", ""]);
+exports.push([module.i, "\n.no-margin-bottom[data-v-77605f1e]{\n    margin-bottom: 0px;\n}\n.no-padding-left[data-v-77605f1e]{\n    padding-left: 0px;\n}\n.no-padding[data-v-77605f1e]{\n    padding-right: 0px;\n    padding-left: 0px;\n}\n.thumbnail-custom[data-v-77605f1e]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n\n", ""]);
 
 // exports
 
@@ -130,19 +145,26 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-img", {
-            staticClass: "thumbnail-custom",
-            attrs: {
-              rounded: "circle",
-              thumbnail: "",
-              src: _vm.comentarioData.user.avatar_url,
-              alt: "Thumbnail"
-            }
-          }),
+          _c(
+            "b-col",
+            { staticClass: "no-padding", attrs: { cols: "2" } },
+            [
+              _c("b-img", {
+                staticClass: "thumbnail-custom",
+                attrs: {
+                  rounded: "circle",
+                  thumbnail: "",
+                  src: _vm.comentarioData.user.avatar_url,
+                  alt: "Thumbnail"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "b-col",
-            { attrs: { cols: "9" } },
+            { attrs: { cols: "10" } },
             [
               _c(
                 "b-row",
@@ -152,7 +174,15 @@ var render = function() {
                     { staticClass: "no-padding-left", attrs: { cols: "10" } },
                     [
                       _c("label", { staticClass: "no-margin-bottom" }, [
-                        _c("b", [_vm._v(_vm._s(_vm.nameAlias))])
+                        _c("b", [_vm._v(_vm._s(_vm.nameAlias))]),
+                        _vm._v(
+                          "• " +
+                            _vm._s(
+                              _vm._f("formatDate")(
+                                _vm.comentarioData.created_at
+                              )
+                            )
+                        )
                       ])
                     ]
                   ),
@@ -179,9 +209,17 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("b-row", [
-                _c("label", [_vm._v(_vm._s(_vm.comentarioData.texto))])
-              ]),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { staticClass: "no-padding-left" }, [
+                    _c("label", { staticClass: "text-break" }, [
+                      _vm._v(_vm._s(_vm.comentarioData.texto))
+                    ])
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "b-row",
