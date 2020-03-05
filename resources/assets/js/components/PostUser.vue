@@ -116,6 +116,7 @@ export default {
       user:1,
       arrayFiles:[],
       arrayImages:[],
+      arrayComentarios:[],
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
@@ -186,18 +187,18 @@ export default {
         comentarios(){
             if(!this.showComentarios){
                 this.getComentarios()
-                this.showComentarios=true
             }else{
                 this.showComentarios=false
             }
         },
         getComentarios(){
-            this.arrayComentarios=[]
-            this.axios.get('api/comentarios/'+this.postData.id)
+            if(this.arrayComentarios.length==0){
+                this.axios.get('api/comentarios/'+this.postData.id)
                         .then(({data}) => {
                             this.arrayComentarios=data
-                            // this.cantComentarios=this.arrayComentarios.length
                         });
+            }
+            this.showComentarios=true
         },
         getPosts(value=null){
             this.$emit("getPosts",value)  

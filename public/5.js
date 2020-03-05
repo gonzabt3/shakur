@@ -136,6 +136,7 @@ const dateFormat = "D MMM YYYY HH:mm"; // const dateFormat ="DD-MM-YYYY HH:mm";
       user: 1,
       arrayFiles: [],
       arrayImages: [],
+      arrayComentarios: [],
       objectComentario: {
         texto: '',
         publicacion_id: this.postData.id
@@ -215,19 +216,21 @@ const dateFormat = "D MMM YYYY HH:mm"; // const dateFormat ="DD-MM-YYYY HH:mm";
     comentarios() {
       if (!this.showComentarios) {
         this.getComentarios();
-        this.showComentarios = true;
       } else {
         this.showComentarios = false;
       }
     },
 
     getComentarios() {
-      this.arrayComentarios = [];
-      this.axios.get('api/comentarios/' + this.postData.id).then(({
-        data
-      }) => {
-        this.arrayComentarios = data; // this.cantComentarios=this.arrayComentarios.length
-      });
+      if (this.arrayComentarios.length == 0) {
+        this.axios.get('api/comentarios/' + this.postData.id).then(({
+          data
+        }) => {
+          this.arrayComentarios = data;
+        });
+      }
+
+      this.showComentarios = true;
     },
 
     getPosts(value = null) {
