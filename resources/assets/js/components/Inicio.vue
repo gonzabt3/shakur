@@ -3,8 +3,12 @@
         <b-row class="margin-20">
           <b-col>
             <h1 class="valentine text-center ">Shakur</h1>
-            <h1 v-if="!celular" class="roboto">Tu lugar para</h1>
-            <h1 v-if="!celular" class="roboto">{{palabra}}</h1>
+            <h1 v-if="!celular" class="roboto text-center">Tu lugar para</h1>
+            <h1 v-if="!celular" class="roboto text-center">{{palabra}}</h1>
+            <b-link v-if="!celular" href="https://www.youtube.com/watch?v=ttBAlc0ey8I"><h2 class="text-center"><b-badge  variant="primary">¿Que es Shakur?</b-badge></h2></b-link>
+          </b-col>
+          <b-col v-if="celular" class="text-center">
+              <b-link href="https://www.youtube.com/watch?v=ttBAlc0ey8I"><h2><b-badge  variant="primary">¿Que es Shakur?</b-badge></h2></b-link>
           </b-col>
           <b-col >
           <b-card>
@@ -169,7 +173,7 @@ export default {
     cambiarPalabra(){
           let array=this.arrayPalabras;
           var i=0
-          this.palabra=setInterval(function(array){
+          setInterval(function(array){
               if(i>array.length-1){
                 i=0
               }
@@ -202,13 +206,6 @@ export default {
 } */
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-.fondo{
-    /* background-image:url('fadu.jpg'); */
-    height: 100%;
-    /* background-position: center; */
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
 
   .valentine{
   font-family:valentine,Pacifico !important;

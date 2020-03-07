@@ -1,19 +1,17 @@
 <template>
-    <b-container class="padding-lateral-7" fluid>
-        <b-form-group>
-            <b-card class="shadow">
+    <b-container fluid class="padding-lateral-7" >
+        <!-- <b-form-group> -->
                 <b-row>
-                    <b-col cols="3"  class="text-center" id="imagenUser">
-                        <b-img rounded="circle" width="75" height="75" thumbnail fluid :src="postData.user.avatar_url" alt="Thumbnail" />
+                    <b-col class="padding-right-7" cols="2">
+                        <b-img class="thumbnail-custom" rounded="circle" thumbnail  :src="postData.user.avatar_url" alt="Thumbnail" />
                     </b-col>
-                    <b-col>
-                        <b-row>
-                            <b-col id="nombreUser" class="no-padding" >
-                                <h4  class="text-left">{{nameAlias}}</h4>
+                    <b-col cols="10">
+                        <b-row class="altoDivNombre">
+                            <b-col class="no-padding">
+                                <label  class="text-left"><b>{{nameAlias}}</b> &#8226; {{postData.created_at | formatDate}} </label>
                             </b-col>
-                            <!-- <b-col cols="5" md="4" class="no-padding">
-                            </b-col> -->
-                            <b-col cols="2" class="text-center ">
+                            <b-col cols="1" class="no-padding text-center">
+                                <!-- <label class="text-center"><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label> -->
                                 <delete 
                                     :id="postData.id"
                                     :flag-autor="postData.flagAutor"
@@ -23,74 +21,66 @@
                                 />
                             </b-col>
                         </b-row>
+                        <b-row  >
+                            <b-col class="text-break no-padding-left">
+                            {{postData.texto}}
+                            </b-col>
+                        </b-row>
+                        <b-row >
+                            <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
+                            <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
+                                <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
+                                {{file.nombre}}</b-button>
+                            <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
+                        </b-row>
+                        <b-row class="form-group">
+                            <b-col class="no-padding">
+                                <like
+                                @showModal="showModalLikes"
+                                :likes-data="postData.likes"
+                                :flag-like="postData.flagLike"
+                                :id-post="postData.id"
+                                url-like="api/like"
+                                tipo="mg"
+                                ></like>
+                            </b-col>
+                            <b-col>
+                                <span @click="comentarios">
+                                    {{cantComentarios}}
+                                <b-img :src="commentIcon" fluid alt="comments" />
+                                </span>
+                            </b-col>
+                        </b-row>
                         <b-row>
-                            <label><b-badge pill variant="secondary">{{postData.created_at | formatDate}}</b-badge></label>
-                            <!-- <b-col cols="12" class="no-padding-left">
-                                <b-progress  :value="progreso" ></b-progress>
-                            </b-col> -->
+                                <b-col v-if="showComentarios">
+                                    <comentario v-for="item in arrayComentarios"
+                                        :comentario-data="item"
+                                        @getComentarios="getComentarios"
+                                        @showModalLikes="showModalLikes"
+                                        @showModalDenuncias="showModalDenuncias"
+                                        :key="item.id" >
+                                    </comentario>
+                                    <hr class="hr-custom" />
+                                    <b-row>
+                                        <b-col>
+                                            <b-form-input id="newComent"
+                                            v-model="objectComentario.texto"
+                                            required
+                                            placeholder="Comenta algo">
+                                            </b-form-input>
+                                        </b-col>
+                                        <b-col cols="3">
+                                            <b-button @click="submitComentario" type="submit" variant="primary">
+                                            <font-awesome-icon   icon="comment" />                                
+                                            </b-button>
+                                        </b-col>
+                                    </b-row>
+                                </b-col>
                         </b-row>
                     </b-col>
                 </b-row>
-                <b-form-group class="text-center">
-                    <p class="card-text text-justify">
-                        {{postData.texto}}
-                    </p>
-                    <img class="image cuadrado100px" :key="i" v-for="(image, i) in arrayImages" :src="image.path" @click="onClick(i)">
-                      <b-button  :key="y" v-for="(file, y) in arrayFiles" variant="outline-dark" :href="file.path" download>
-                        <!-- <font-awesome-icon  icon="plus-circle"  class=" pointer"  /> -->
-                          {{file.nombre}}</b-button>
-                    <vue-gallery-slideshow :images="urlImages" :index="indexImage" @close="indexImage=null"></vue-gallery-slideshow>
-                </b-form-group>
-                <b-row>
-                    <!-- <b-form-group> -->
-                    <b-col cols="8">
-                        <like
-                        @showModal="showModalLikes"
-                        :likes-data="postData.likes"
-                        :flag-like="postData.flagLike"
-                        :id-post="postData.id"
-                        url-like="api/like"
-                        tipo="mg"
-                        ></like>
-                        
-                        </b-col>
-                        <b-col>
-                            <b-button  block size="sm" @click="comentarios">
-                           {{cantComentarios}}
-                            <b-img :src="commentIcon" fluid alt="comments" />
-                        </b-button>
-                        </b-col>
-                    <!-- </b-form-group> -->
-                </b-row>
-                <hr/>
-                <div v-if="showComentarios">
-                    <comentario v-for="item in arrayComentarios"
-                    :comentario-data="item"
-                    @getComentarios="getComentarios"
-                    @showModalLikes="showModalLikes"
-                    @showModalDenuncias="showModalDenuncias"
-                    :key="item.id" ></comentario>
-                    <hr />
-                    <b-row>
-                        <b-col cols="2">
-                            <!-- <b-img rounded="circle" width="35" height="35" thumbnail fluid src="http://comomurio.info/wp-content/uploads/2015/03/Pancho-Villa.jpg" alt="Thumbnail" /> -->
-                        </b-col>
-                        <b-col cols="7">
-                            <b-form-input id="newComent"
-                            v-model="objectComentario.texto"
-                            required
-                            placeholder="Comenta algo">
-                            </b-form-input>
-                        </b-col>
-                        <b-col cols="3">
-                            <b-button @click="submitComentario" type="submit" variant="primary">
-                            <font-awesome-icon   icon="comment" />                                
-                            </b-button>
-                        </b-col>
-                    </b-row>
-                </div>
-            </b-card>
-        </b-form-group>
+                <hr class="hr-custom "/>
+            <!-- </b-form-group> -->
     </b-container>
 </template>
 
@@ -107,8 +97,9 @@ import Like from '../components/common/Like';
 // import Delete from '../components/common/Delete';
 import moment from "moment";
 // import VueGallerySlideshow from 'vue-gallery-slideshow'
-
-const dateFormat ="DD-MM-YYYY HH:mm";
+moment.locale('es-es');
+const dateFormat ="D MMM YYYY HH:mm";
+// const dateFormat ="DD-MM-YYYY HH:mm";
 
 export default {
   name: 'PostUser',
@@ -118,13 +109,14 @@ export default {
     return {
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantComentarios: null,
+      cantComentarios: this.postData.cantidadComentarios,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
       user:1,
       arrayFiles:[],
       arrayImages:[],
+      arrayComentarios:[],
       objectComentario:{
           texto:'',
           publicacion_id:this.postData.id
@@ -195,18 +187,18 @@ export default {
         comentarios(){
             if(!this.showComentarios){
                 this.getComentarios()
-                this.showComentarios=true
             }else{
                 this.showComentarios=false
             }
         },
         getComentarios(){
-            this.arrayComentarios=[]
-            this.axios.get('api/comentarios/'+this.postData.id)
+            if(this.arrayComentarios.length==0){
+                this.axios.get('api/comentarios/'+this.postData.id)
                         .then(({data}) => {
                             this.arrayComentarios=data
-                            this.cantComentarios=this.arrayComentarios.length
                         });
+            }
+            this.showComentarios=true
         },
         getPosts(value=null){
             this.$emit("getPosts",value)  
@@ -235,6 +227,10 @@ export default {
     cursor: pointer;
 }
 
+.altoDivNombre{
+        height: 20px;
+}
+
 .shadow{
         box-shadow: 10px 10px grey;
     }
@@ -245,7 +241,7 @@ export default {
 
 .no-padding{
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 15px;
 }
 
 .no-padding-left{
@@ -310,5 +306,20 @@ export default {
 .cuadrado100px{
     width: 100px;
     height: 100px;
+}
+
+.thumbnail-custom{
+    border:none !important;
+    width: 48px;
+    height: 48px;
+}
+
+.padding-right-7{
+    padding-right: 0px;
+}
+
+.hr-custom{
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 </style>

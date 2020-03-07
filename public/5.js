@@ -98,16 +98,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 const Comentario = () => __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/common/Comentario */ "./resources/assets/js/components/common/Comentario.vue")); // const Like = () => import('./components/common/Like');
 
 
@@ -121,7 +111,9 @@ const VueGallerySlideshow = () => __webpack_require__.e(/*! import() */ 22).then
 
  // import VueGallerySlideshow from 'vue-gallery-slideshow'
 
-const dateFormat = "DD-MM-YYYY HH:mm";
+moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('es-es');
+const dateFormat = "D MMM YYYY HH:mm"; // const dateFormat ="DD-MM-YYYY HH:mm";
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostUser',
   components: {
@@ -137,13 +129,14 @@ const dateFormat = "DD-MM-YYYY HH:mm";
     return {
       commentIcon: '../images/comment.png',
       progreso: 55,
-      cantComentarios: null,
+      cantComentarios: this.postData.cantidadComentarios,
       showComentarios: false,
       showManyComentarios: false,
       iconEyeComentarios: 'eye',
       user: 1,
       arrayFiles: [],
       arrayImages: [],
+      arrayComentarios: [],
       objectComentario: {
         texto: '',
         publicacion_id: this.postData.id
@@ -223,20 +216,21 @@ const dateFormat = "DD-MM-YYYY HH:mm";
     comentarios() {
       if (!this.showComentarios) {
         this.getComentarios();
-        this.showComentarios = true;
       } else {
         this.showComentarios = false;
       }
     },
 
     getComentarios() {
-      this.arrayComentarios = [];
-      this.axios.get('api/comentarios/' + this.postData.id).then(({
-        data
-      }) => {
-        this.arrayComentarios = data;
-        this.cantComentarios = this.arrayComentarios.length;
-      });
+      if (this.arrayComentarios.length == 0) {
+        this.axios.get('api/comentarios/' + this.postData.id).then(({
+          data
+        }) => {
+          this.arrayComentarios = data;
+        });
+      }
+
+      this.showComentarios = true;
     },
 
     getPosts(value = null) {
@@ -264,6 +258,11 @@ const dateFormat = "DD-MM-YYYY HH:mm";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -380,7 +379,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 0px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n", ""]);
+exports.push([module.i, "\n#nombreUser[data-v-9342377c]{\n    padding-left:0;\n}\n.separacionIcon[data-v-9342377c]{\n    /* villeriada */\n    margin-bottom: 3%;\n    margin-left: 3%;\n}\n.pointer[data-v-9342377c]{\n    cursor: pointer;\n}\n.altoDivNombre[data-v-9342377c]{\n        height: 20px;\n}\n.shadow[data-v-9342377c]{\n        box-shadow: 10px 10px grey;\n}\n.no-margin-bottom[data-v-9342377c]{\n    margin-bottom: 0px;\n}\n.no-padding[data-v-9342377c]{\n    padding-left: 0px;\n    padding-right: 15px;\n}\n.no-padding-left[data-v-9342377c]{\n    padding-left: 0px;\n}\n.left-padding-20[data-v-9342377c]{\n    padding-left:20px;\n}\n\n/* CODIGO PARA PONER LA BARRA SEPARADORA CON EL OJO */\n.strike[data-v-9342377c] {\n    display: block;\n    text-align: center;\n    overflow: hidden;\n    white-space: nowrap;\n}\n.strike > span[data-v-9342377c] {\n    position: relative;\n    display: inline-block;\n}\n.strike > span[data-v-9342377c]:before,\n.strike > span[data-v-9342377c]:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    width: 9999px;\n    height: 1px;\n    background: grey;\n}\n.strike > span[data-v-9342377c]:before {\n    right: 100%;\n    margin-right: 15px;\n}\n.strike > span[data-v-9342377c]:after {\n    left: 100%;\n    margin-left: 15px;\n}\n\n/* twitter style */\n.padding-lateral-7[data-v-9342377c]{\n\n    padding-left: 7px;\n    padding-right: 7px;\n}\n\n/* piso el estilo de card-body generado por el b-card */\n.card-body[data-v-9342377c] {\n    padding-top: 7px !important;\n    padding-bottom: 7px !important;\n    padding-left: 7px !important;\n    padding-right: 7px !important;\n}\n\n/* cuadrado de 100px en las thumbnail */\n.cuadrado100px[data-v-9342377c]{\n    width: 100px;\n    height: 100px;\n}\n.thumbnail-custom[data-v-9342377c]{\n    border:none !important;\n    width: 48px;\n    height: 48px;\n}\n.padding-right-7[data-v-9342377c]{\n    padding-right: 0px;\n}\n.hr-custom[data-v-9342377c]{\n    margin-top: 8px;\n    margin-bottom: 8px;\n}\n", ""]);
 
 // exports
 
@@ -407,49 +406,30 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            [
-              _c(
-                "b-button",
-                {
-                  attrs: { block: "", size: "sm" },
-                  on: { click: _vm.btnLike }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.cantidadLikes) +
-                      "  \n                " +
-                      _vm._s(_vm.stringBtnLike) +
-                      "\n                "
-                  ),
-                  _c("b-img", {
-                    attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
+          _c("b-col", { staticClass: "no-padding-lateral" }, [
+            _c(
+              "span",
+              { on: { click: _vm.btnLike } },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.cantidadLikes) +
+                    "  \n                    "
+                ),
+                _vm._v(" "),
+                _c("b-img", {
+                  attrs: { src: _vm.beerIcon, fluid: "", alt: "beerLike" }
+                })
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "no-padding-lateral" },
-            [
-              _c(
-                "b-button",
-                {
-                  staticClass: "alto ",
-                  attrs: { block: "", size: "sm" },
-                  on: { click: _vm.showModalLike }
-                },
-                [_vm._v("Ver likes")]
-              )
-            ],
-            1
-          )
+          _c("b-col", { staticClass: "no-padding-lateral" }, [
+            _c("span", { on: { click: _vm.showModalLike } }, [
+              _vm._v("\n                Ver likes\n            ")
+            ])
+          ])
         ],
         1
       )
@@ -483,102 +463,64 @@ var render = function() {
     { staticClass: "padding-lateral-7", attrs: { fluid: "" } },
     [
       _c(
-        "b-form-group",
+        "b-row",
         [
           _c(
-            "b-card",
-            { staticClass: "shadow" },
+            "b-col",
+            { staticClass: "padding-right-7", attrs: { cols: "2" } },
+            [
+              _c("b-img", {
+                staticClass: "thumbnail-custom",
+                attrs: {
+                  rounded: "circle",
+                  thumbnail: "",
+                  src: _vm.postData.user.avatar_url,
+                  alt: "Thumbnail"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { cols: "10" } },
             [
               _c(
                 "b-row",
+                { staticClass: "altoDivNombre" },
                 [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "3", id: "imagenUser" }
-                    },
-                    [
-                      _c("b-img", {
-                        attrs: {
-                          rounded: "circle",
-                          width: "75",
-                          height: "75",
-                          thumbnail: "",
-                          fluid: "",
-                          src: _vm.postData.user.avatar_url,
-                          alt: "Thumbnail"
-                        }
-                      })
-                    ],
-                    1
-                  ),
+                  _c("b-col", { staticClass: "no-padding" }, [
+                    _c("label", { staticClass: "text-left" }, [
+                      _c("b", [_vm._v(_vm._s(_vm.nameAlias))]),
+                      _vm._v(
+                        " • " +
+                          _vm._s(
+                            _vm._f("formatDate")(_vm.postData.created_at)
+                          ) +
+                          " "
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "b-col",
+                    {
+                      staticClass: "no-padding text-center",
+                      attrs: { cols: "1" }
+                    },
                     [
-                      _c(
-                        "b-row",
-                        [
-                          _c(
-                            "b-col",
-                            {
-                              staticClass: "no-padding",
-                              attrs: { id: "nombreUser" }
-                            },
-                            [
-                              _c("h4", { staticClass: "text-left" }, [
-                                _vm._v(_vm._s(_vm.nameAlias))
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            {
-                              staticClass: "text-center ",
-                              attrs: { cols: "2" }
-                            },
-                            [
-                              _c("delete", {
-                                attrs: {
-                                  id: _vm.postData.id,
-                                  "flag-autor": _vm.postData.flagAutor,
-                                  tipo: "post"
-                                },
-                                on: {
-                                  actualizar: _vm.getPosts,
-                                  showModalDenuncias: _vm.showModalDenuncias
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("b-row", [
-                        _c(
-                          "label",
-                          [
-                            _c(
-                              "b-badge",
-                              { attrs: { pill: "", variant: "secondary" } },
-                              [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("formatDate")(
-                                      _vm.postData.created_at
-                                    )
-                                  )
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
+                      _c("delete", {
+                        attrs: {
+                          id: _vm.postData.id,
+                          "flag-autor": _vm.postData.flagAutor,
+                          tipo: "post"
+                        },
+                        on: {
+                          actualizar: _vm.getPosts,
+                          showModalDenuncias: _vm.showModalDenuncias
+                        }
+                      })
                     ],
                     1
                   )
@@ -587,17 +529,22 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "b-form-group",
-                { staticClass: "text-center" },
+                "b-row",
                 [
-                  _c("p", { staticClass: "card-text text-justify" }, [
+                  _c("b-col", { staticClass: "text-break no-padding-left" }, [
                     _vm._v(
-                      "\n                    " +
+                      "\n                        " +
                         _vm._s(_vm.postData.texto) +
-                        "\n                "
+                        "\n                        "
                     )
-                  ]),
-                  _vm._v(" "),
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
                   _vm._l(_vm.arrayImages, function(image, i) {
                     return _c("img", {
                       key: i,
@@ -622,7 +569,11 @@ var render = function() {
                           download: ""
                         }
                       },
-                      [_vm._v("\n                      " + _vm._s(file.nombre))]
+                      [
+                        _vm._v(
+                          "\n                            " + _vm._s(file.nombre)
+                        )
+                      ]
                     )
                   }),
                   _vm._v(" "),
@@ -640,10 +591,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-row",
+                { staticClass: "form-group" },
                 [
                   _c(
                     "b-col",
-                    { attrs: { cols: "8" } },
+                    { staticClass: "no-padding" },
                     [
                       _c("like", {
                         attrs: {
@@ -659,99 +611,100 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    [
-                      _c(
-                        "b-button",
-                        {
-                          attrs: { block: "", size: "sm" },
-                          on: { click: _vm.comentarios }
-                        },
-                        [
-                          _vm._v(
-                            "\n                       " +
-                              _vm._s(_vm.cantComentarios) +
-                              "\n                        "
-                          ),
-                          _c("b-img", {
-                            attrs: {
-                              src: _vm.commentIcon,
-                              fluid: "",
-                              alt: "comments"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _c("b-col", [
+                    _c(
+                      "span",
+                      { on: { click: _vm.comentarios } },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(_vm.cantComentarios) +
+                            "\n                            "
+                        ),
+                        _c("b-img", {
+                          attrs: {
+                            src: _vm.commentIcon,
+                            fluid: "",
+                            alt: "comments"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               ),
               _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _vm.showComentarios
-                ? _c(
-                    "div",
-                    [
-                      _vm._l(_vm.arrayComentarios, function(item) {
-                        return _c("comentario", {
-                          key: item.id,
-                          attrs: { "comentario-data": item },
-                          on: {
-                            getComentarios: _vm.getComentarios,
-                            showModalLikes: _vm.showModalLikes,
-                            showModalDenuncias: _vm.showModalDenuncias
-                          }
-                        })
-                      }),
-                      _vm._v(" "),
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c(
-                        "b-row",
+              _c(
+                "b-row",
+                [
+                  _vm.showComentarios
+                    ? _c(
+                        "b-col",
                         [
-                          _c("b-col", { attrs: { cols: "2" } }),
+                          _vm._l(_vm.arrayComentarios, function(item) {
+                            return _c("comentario", {
+                              key: item.id,
+                              attrs: { "comentario-data": item },
+                              on: {
+                                getComentarios: _vm.getComentarios,
+                                showModalLikes: _vm.showModalLikes,
+                                showModalDenuncias: _vm.showModalDenuncias
+                              }
+                            })
+                          }),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "hr-custom" }),
                           _vm._v(" "),
                           _c(
-                            "b-col",
-                            { attrs: { cols: "7" } },
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  id: "newComent",
-                                  required: "",
-                                  placeholder: "Comenta algo"
-                                },
-                                model: {
-                                  value: _vm.objectComentario.texto,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.objectComentario, "texto", $$v)
-                                  },
-                                  expression: "objectComentario.texto"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { cols: "3" } },
+                            "b-row",
                             [
                               _c(
-                                "b-button",
-                                {
-                                  attrs: { type: "submit", variant: "primary" },
-                                  on: { click: _vm.submitComentario }
-                                },
+                                "b-col",
                                 [
-                                  _c("font-awesome-icon", {
-                                    attrs: { icon: "comment" }
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      id: "newComent",
+                                      required: "",
+                                      placeholder: "Comenta algo"
+                                    },
+                                    model: {
+                                      value: _vm.objectComentario.texto,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.objectComentario,
+                                          "texto",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "objectComentario.texto"
+                                    }
                                   })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-col",
+                                { attrs: { cols: "3" } },
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      attrs: {
+                                        type: "submit",
+                                        variant: "primary"
+                                      },
+                                      on: { click: _vm.submitComentario }
+                                    },
+                                    [
+                                      _c("font-awesome-icon", {
+                                        attrs: { icon: "comment" }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -759,18 +712,20 @@ var render = function() {
                             1
                           )
                         ],
-                        1
+                        2
                       )
-                    ],
-                    2
-                  )
-                : _vm._e()
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("hr", { staticClass: "hr-custom " })
     ],
     1
   )
