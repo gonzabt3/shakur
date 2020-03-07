@@ -113,6 +113,7 @@ export default {
           return URL.createObjectURL(value);
       },
       hacerPost(){
+          if(this.data.texto!="" && this.data.texto!=null){
             if(!this.badWordFlag){
                 this.loading=true;
                 this.data.materia_id=this.idMateria
@@ -140,6 +141,7 @@ export default {
             }else{
                 this.error = "Hemos detectado lenguaje ofensivo";
             }
+          }
         },
         //GUARDA EN LA VARIABLE EL ARCHIVO SELECCIONADO
         processFile(event) {

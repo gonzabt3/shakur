@@ -126,26 +126,28 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     hacerPost() {
-      if (!this.badWordFlag) {
-        this.loading = true;
-        this.data.materia_id = this.idMateria;
-        let formData = new FormData();
-        formData.append('texto', this.data.texto);
-        formData.append('materia_id', this.data.materia_id);
-        formData.append('user_id', this.data.user_id);
-        formData.append('files', this.data.files);
+      if (this.data.texto != "" && this.data.texto != null) {
+        if (!this.badWordFlag) {
+          this.loading = true;
+          this.data.materia_id = this.idMateria;
+          let formData = new FormData();
+          formData.append('texto', this.data.texto);
+          formData.append('materia_id', this.data.materia_id);
+          formData.append('user_id', this.data.user_id);
+          formData.append('files', this.data.files);
 
-        _.each(this.data.files, (file, key) => {
-          formData.append(`files[${key}]`, file);
-        }); // formData.forEach(entries => console.log(entries));
+          _.each(this.data.files, (file, key) => {
+            formData.append(`files[${key}]`, file);
+          }); // formData.forEach(entries => console.log(entries));
 
 
-        this.axios.post('api/publicacion', formData).then(response => {
-          this.loading = false;
-          this.data.texto = '', this.data.files = [], this.$emit("responseGetPosts", true);
-        });
-      } else {
-        this.error = "Hemos detectado lenguaje ofensivo";
+          this.axios.post('api/publicacion', formData).then(response => {
+            this.loading = false;
+            this.data.texto = '', this.data.files = [], this.$emit("responseGetPosts", true);
+          });
+        } else {
+          this.error = "Hemos detectado lenguaje ofensivo";
+        }
       }
     },
 
@@ -178,7 +180,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n.img_wrp[data-v-61b1fe0e] {\n   display: inline-block;\n   position: relative;\n}\n.close[data-v-61b1fe0e] {\n    position: absolute;\n    top: 0; \n    right: 0;\n    width: 30px;\n}\n.sizeLoading[data-v-61b1fe0e]{\n        width: 30px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /* override a la clase de bootsrap */\n.card-body[data-v-61b1fe0e]{\n        padding-top: 7px;\n        padding-left: 7px;\n        padding-bottom: 7px;\n        padding-right: 7px;\n}\n\n    /* override a la clase de bootsrap */\n.card-title[data-v-61b1fe0e]{\n        margin-bottom: 7px;\n}\n.padding-lateral-7[data-v-61b1fe0e]{\n        padding-left: 7px;\n        padding-right: 7px;\n}\n.shadow[data-v-61b1fe0e]{\n        box-shadow: 10px 10px grey;\n}\n.left-padding[data-v-61b1fe0e]{\n        padding-left: 0px;\n}\n#preview[data-v-61b1fe0e] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#preview img[data-v-61b1fe0e] {\n  max-width: 100%;\n  max-height: 150px;\n}\n.img_wrp[data-v-61b1fe0e] {\n   display: inline-block;\n   position: relative;\n}\n.close[data-v-61b1fe0e] {\n    position: absolute;\n    top: 0; \n    right: 0;\n    width: 30px;\n}\n.sizeLoading[data-v-61b1fe0e]{\n        width: 30px;\n}\n", ""]);
 
 // exports
 
