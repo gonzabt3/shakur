@@ -75,7 +75,7 @@ export default {
               });
               //hago que se setean los walls y el muro con la primera materia que tiene el user
               if(this.materias.length>0){
-                this.clickMateria(this.materias[0].id);
+                this.clickMateria(this.materias[this.materias.length-1].id);
               }else{
                 this.$emit("comunication",true)     
               }
