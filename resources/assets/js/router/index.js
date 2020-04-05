@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Inicio from '../components/Inicio';
+import InicioCelular from '../components/InicioCelular';
 import Main from '../components/Main';
 import ResetPassword from '../components/views/ResetPassword';
 import UserActivate from '../components/views/UserActivate.vue';
@@ -16,7 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'Inicio',
-      component: Inicio,
+      component: InicioCelular,
     },
     {
       path: '/main',
