@@ -10,15 +10,19 @@
                 </b-row>
                 <b-row >
                     <b-col>
-                     <b-embed
-                        type="iframe"
-                        aspect="16by9"
-                        src="https://www.youtube.com/embed/ttBAlc0ey8I"
-                        allowfullscreen
-                    ></b-embed>
+                        <b-embed
+                            type="iframe"
+                            aspect="16by9"
+                            src="https://www.youtube.com/embed/ttBAlc0ey8I"
+                            allowfullscreen
+                        ></b-embed>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
                         <b-tabs  v-model="tabIndex" fill
                         >
-                            <b-tab  active class="scroll"
+                            <b-tab  active class="scroll altoScroll"
                             :title-link-class="linkClass(0)"
                             >
                                 <template v-slot:title>
@@ -44,7 +48,7 @@
                         </b-tabs>
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row align-v="end" class="padding-botones">
                     <b-col>
                         <b-btn block variant="outline-info">Iniciar sesion</b-btn>
                     </b-col>
@@ -106,6 +110,44 @@ export default {
     overflow-y: scroll !important;
     overflow-x: hidden;
     /*  ARREGLAR ESTA NEGRDADA */
-  height: 50vh !important;
+  /* height: 50vh !important; */
 }
+
+.padding-botones{
+    padding-top: 7px;
+
+}
+
+/* HARDCODEO EL PADING DE LOS TABS PARA AJUSTAR EN LAS PANTALLAS MENORES A IPHONE 5 */
+ @media screen and (max-height: 640px) {
+    .altoScroll {
+      height: 40vh !important;
+
+  }
+  }
+
+ @media screen and (min-height: 667px) and (max-height:735px)   {
+    .altoScroll {
+      height: 42vh !important;
+
+  }
+  }
+
+ @media screen and (min-height: 736px) and (max-height:811px)   {
+    .altoScroll {
+      height: 45vh !important;
+
+  }
+  }
+
+
+/* LE SACO LO ANTERIOR EN LA PANTALLAS MAYORES A LAS DE EL IPHONE 5 */
+  @media screen and (min-height: 812px) and (max-height:1023px) {
+    .altoScroll {
+      height: 50vh !important;
+
+  }
+  } 
+
+
 </style>
