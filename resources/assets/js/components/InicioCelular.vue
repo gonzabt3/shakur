@@ -100,31 +100,39 @@
                 </b-row>
                 <b-row align-v="end" class="padding-botones">
                     <b-col>
-                        <b-btn block variant="outline-info">Iniciar sesion</b-btn>
+                        <b-btn block v-b-modal.login variant="outline-info">Iniciar sesion</b-btn>
                     </b-col>
                     <b-col>
-                        <b-button block variant="info">Registrarse</b-button>
+                        <b-button block  v-b-modal.newUser variant="info">Registrarse</b-button>
                     </b-col>
                 </b-row>
                 <!-- CONTENEDRO -->
             </b-col>
         </b-row>
+        <b-modal :hide-footer="true" id="login" ref="login">
+            <login/>
+        </b-modal>
     </b-container>
 </template>
 <script>
 // const noticia = () => import('../components/common/Noticias');
+const login = () => import('../components/common/Login');
 import Noticia from '../components/common/Noticias';
 
 
 export default {
     name:'InicioCelular',
-    components:{Noticia},
+    components:{login,Noticia},
     data(){
         return{
             tabIndex:0
         }
     },
     methods:{
+
+        openModalLogin(){
+            this.$root.$emit('bv::show::modal','modalResetPassword')
+        },
         linkClass(index){
         if (this.tabIndex === index) {
             return ['text-info']
