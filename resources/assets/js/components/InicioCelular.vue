@@ -29,12 +29,34 @@
                                     <b>UNLa</b>
                                 </template>
                                 <b-card-text >
-                                    <noticia></noticia>
-                                    <noticia></noticia>
-                                    <noticia></noticia>
-                                    <noticia></noticia>
-                                    <noticia></noticia>
-                                    <noticia></noticia>
+                                    <noticia 
+                                    titular="Inscripción a becas para apuntes y materiales de estudio"
+                                    fecha="20-4"
+                                    urlImagen="http://www.unla.edu.ar/media/k2/items/cache/1e92e29468d367fc231b76a078b7faaa_XL.jpg"
+                                    enlaze="http://www.unla.edu.ar/novedades/inscripcion-a-becas-para-apuntes-y-materiales-de-estudio"
+                                    entidad="Universidad Nacional de Lanus"
+                                    ></noticia>
+                                    <noticia 
+                                    titular="Inscripción a las Becas Progresar 2020"
+                                    fecha="6-4"
+                                    urlImagen="http://www.unla.edu.ar/media/k2/items/cache/9489e6c11889fcb275044d14dda99d24_XL.jpg"
+                                    enlaze="http://www.unla.edu.ar/novedades/inscripcion-a-las-becas-progresar-2020"
+                                    entidad="Universidad Nacional de Lanus"
+                                    ></noticia>
+                                    <noticia 
+                                    titular="Campaña nacional solidaria para la producción de elementos de protección personal"
+                                    fecha="6-4"
+                                    urlImagen="http://www.unla.edu.ar/media/k2/items/cache/a7f29fa843c0bce11d4005210b603e61_XL.jpg"
+                                    enlaze="Campaña nacional solidaria para la producción de elementos de protección personal"
+                                    entidad="Universidad Nacional de Lanus"
+                                    ></noticia>
+                                    <noticia 
+                                    titular="RESOLUCIÓN. Suspensión por 14 días. Especificaciones para estudiantes, docentes y nodocentes"
+                                    fecha="16-3"
+                                    urlImagen="http://www.unla.edu.ar/media/k2/items/cache/9115b227894bd1b2e159759f182b113a_XL.jpg"
+                                    enlaze="http://www.unla.edu.ar/novedades/coronavirus-sin-clases-presenciales-hasta-el-30-de-marzo"
+                                    entidad="Universidad Nacional de Lanus"
+                                    ></noticia>
                                 </b-card-text>
                             </b-tab>
                             <b-tab 
@@ -44,6 +66,34 @@
                                 <b>UNF</b>
                             </template>
                             <b-card-text>
+                                <noticia 
+                                    titular="Almirante Brown"
+                                    fecha="mayo 2019"
+                                    urlImagen="http://www.escuelafluvial.edu.ar/images/sssss.png"
+                                    enlaze="http://www.escuelafluvial.edu.ar/"
+                                    entidad="Escuela Nacional Fluvial"
+                                    ></noticia>
+                                <noticia 
+                                    titular="Fragata ARA Libertad"
+                                    fecha="agosto 2019"
+                                    urlImagen="http://www.escuelafluvial.edu.ar/images/WhatsApp-Image-2019-08-20-at-10.16.27.jpg"
+                                    enlaze="http://www.escuelafluvial.edu.ar/"
+                                    entidad="Escuela Nacional Fluvial"
+                                    ></noticia>
+                                <noticia 
+                                    titular="Cambio de autoridades"
+                                    fecha="febrero 2020"
+                                    urlImagen="http://www.escuelafluvial.edu.ar/images/WhatsApp-Image-2020-02-10-at-11.30.14.jpg"
+                                    enlaze="http://www.escuelafluvial.edu.ar/"
+                                    entidad="Escuela Nacional Fluvial"
+                                    ></noticia>
+                                <noticia 
+                                    titular="Ingresos"
+                                    fecha="mayo 2019"
+                                    urlImagen="http://www.escuelafluvial.edu.ar/images/formulario.png"
+                                    enlaze="http://www.escuelafluvial.edu.ar/novedades.html"
+                                    entidad="Escuela Nacional Fluvial"
+                                    ></noticia>
                             </b-card-text></b-tab>
                         </b-tabs>
                     </b-col>
