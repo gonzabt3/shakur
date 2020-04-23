@@ -40,6 +40,10 @@ import VueTheMask from 'vue-the-mask'
 //vue-google-adsense
 import Ads from 'vue-google-adsense'
 
+//vue-simple-alerts
+import VueSimpleAlert from "vue-simple-alert";
+
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -62,6 +66,8 @@ Vue.use(require('vue-script2'))
 Vue.use(Ads.Adsense)
 Vue.use(Ads.InArticleAdsense)
 Vue.use(Ads.InFeedAdsense)
+Vue.use(VueSimpleAlert);
+
 
 // Vue.use(pusher);
 // Vue.use(Echo);

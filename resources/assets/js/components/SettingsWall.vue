@@ -4,6 +4,7 @@
             <h6 @click="showModal"><u class="pointer">Mi perfil</u></h6>
             <h6 @click="showModalErrorReport"><u class="pointer">Reportar errores</u></h6>
             <h6  ><u @click="logout" class="pointer">Salir</u></h6>
+            <h6  ><u @click="deleteAccount" class="pointer">Eliminar cuenta</u></h6>
             <!-- <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" /> -->
         </b-card>
         <modal-config-user :noCerrar="noCerrar"></modal-config-user>
@@ -33,7 +34,18 @@ export default {
             .then((response)=>{
                     window.location.replace("/");
             })
-    }
+        },
+        deleteAccount(){
+            this.$confirm("¿Estas seguro que quieres borrar tu cuenta?").then(() => {
+                this.axios.delete('api/auth/delete')
+                .then((response)=>{
+                    if(response.status==200){
+                        alert("Tu usuario ha sido eliminado con exito. :(");
+                        window.location.replace("/");
+                    }
+                })
+            });    
+        }
   }
 };
 </script>

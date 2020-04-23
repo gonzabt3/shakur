@@ -42,6 +42,8 @@ Route::group(['prefix' => 'auth'], function () {
 
         //traer publicaciones
         Route::get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
+        
+        Route::delete('delete','Api\UserController@delete');
     });
 });
 
