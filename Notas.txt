@@ -1,0 +1,4 @@
+ultimo tendria que ir el scrip de la app
+ya que primero hay que crear la base de datos
+
+ademas por ahora hay que configuarar el storage
