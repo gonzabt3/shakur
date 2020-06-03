@@ -9,7 +9,7 @@ WORKDIR /var/www/html
 
 # Install Additional dependencies
 RUN apk update && apk add --no-cache \
-    build-base shadow vim curl \
+    build-base shadow vim curl npm\
     php7 \
     php7-fpm \
     php7-common \
@@ -32,9 +32,14 @@ RUN apk update && apk add --no-cache \
 RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-enable pdo_mysql
 
+
+
 # Install PHP Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+#install yarn
+RUN apk update
+RUN apk add yarn 
 # Remove Cache
 RUN rm -rf /var/cache/apk/*
 
@@ -50,6 +55,8 @@ USER www-data
 RUN composer install
 RUN php artisan key:generate
 RUN php artisan config:cache
+RUN yarn
+
 #RUN php artisan migrate
 
 # Expose port 9000 and start php-fpm server

@@ -1,4 +1,24 @@
-ultimo tendria que ir el scrip de la app
-ya que primero hay que crear la base de datos
+2 6 2020
+    docker-compose dont execute compose and artisan commands into the container
+        hay que meterlos a mano en el container
+            composer install
+            php artisan key:generate
+    
+    docker-compose dont copy .env file
+        cp .env.example .env
 
-ademas por ahora hay que configuarar el storage
+    docker-compose do not execute yarn install
+    
+    if a few component of vue dont apear run
+        yarn dev
+    
+    the container do not work with the db
+        the db must be created
+        the .env must be configurated defore migrate
+
+
+cheatshit
+    acces to app container console
+        sudo  docker exec -it app /bin/sh
+    view logs
+        run docker up without -d
