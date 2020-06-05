@@ -2,7 +2,7 @@
 FROM php:7.2-fpm-alpine
 
 # Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/html/
+COPY . /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html
@@ -45,17 +45,22 @@ RUN rm -rf /var/cache/apk/*
 
 # Add UID '1000' to www-data
 RUN usermod -u 1000 www-data
+COPY .env.example .env
 
-# Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www/html
 
 # Change current user to www
 USER www-data
+#copy .env
 
-RUN composer install
+RUN npm install
+RUN composer update --no-scripts
+RUN composer dump-autoload
 RUN php artisan key:generate
 RUN php artisan config:cache
-RUN yarn
+
+RUN composer install
+#RUN composer update
 
 #RUN php artisan migrate
 
