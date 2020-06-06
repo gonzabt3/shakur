@@ -13,9 +13,9 @@ services:
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
+    working_dir: /var/www/html/
+    #volumes:
+      #- ./:/var/www/html
     networks:
       - mynet
   
@@ -35,8 +35,10 @@ services:
     ports:
       - "85:80"
       - "443:443"
+    depends_on:
+      - app
     volumes:
-      - ./:/var/www/html
+     # - ./:/var/www/html
       - ./nginx/conf.d/:/etc/nginx/conf.d/
       - ./nginx/ssl/:/etc/nginx/ssl/
     networks:

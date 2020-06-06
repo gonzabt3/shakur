@@ -45,7 +45,7 @@ RUN rm -rf /var/cache/apk/*
 
 # Add UID '1000' to www-data
 RUN usermod -u 1000 www-data
-COPY .env.example .env
+#COPY .env.example .env
 
 COPY --chown=www-data:www-data . /var/www/html
 
@@ -53,7 +53,8 @@ COPY --chown=www-data:www-data . /var/www/html
 USER www-data
 #copy .env
 
-RUN npm install
+RUN yarn
+RUN npm run dev
 RUN composer update --no-scripts
 RUN composer dump-autoload
 RUN php artisan key:generate
