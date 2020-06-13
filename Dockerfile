@@ -39,7 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 #install yarn
 RUN apk update
-RUN apk add yarn 
+RUN apk add yarn
 # Remove Cache
 RUN rm -rf /var/cache/apk/*
 
@@ -53,14 +53,15 @@ COPY --chown=www-data:www-data . /var/www/html
 USER www-data
 #copy .env
 
-RUN yarn
-RUN npm run dev
+
 RUN composer update --no-scripts
 RUN composer dump-autoload
+RUN composer install
 RUN php artisan key:generate
 RUN php artisan config:cache
 
-RUN composer install
+RUN npm install && npm run dev
+
 #RUN composer update
 
 #RUN php artisan migrate
