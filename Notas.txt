@@ -36,7 +36,10 @@
             for the avatars works the file avatar.png need to be executable
                 chmod +x avatar.png
 
-
+    minikube
+        view symbolics links
+            ls -laR . | grep -B 5 " -> "
+        delete folder with symbolics links like vendor or node_modules
 
 
 cheatshit
