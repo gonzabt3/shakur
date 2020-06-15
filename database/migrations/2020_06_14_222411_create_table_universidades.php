@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExtencionYNombreTablaFiles extends Migration
+class CreateTableUniversidades extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddExtencionYNombreTablaFiles extends Migration
      */
     public function up()
     {
-        Schema::table('files', function (Blueprint $table) {
-           //$table->string('nombre')->after('id');
-            $table->string('extension')->after('nombre');
+        Schema::create('universidades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('abreviacion')->nullable(false);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,8 +29,6 @@ class AddExtencionYNombreTablaFiles extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('universidades');
     }
 }

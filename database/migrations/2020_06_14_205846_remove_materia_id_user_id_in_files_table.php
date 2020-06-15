@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExtencionYNombreTablaFiles extends Migration
+class RemoveMateriaIdUserIdInFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,9 @@ class AddExtencionYNombreTablaFiles extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-           //$table->string('nombre')->after('id');
-            $table->string('extension')->after('nombre');
+            $table->dropForeign('files_materia_id_foreign');
+            $table->dropForeign('files_user_id_foreign');
+            $table->dropColumn(['materia_id', 'user_id']);
         });
     }
 

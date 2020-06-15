@@ -16,9 +16,34 @@
         the db must be created
         the .env must be configurated defore migrate
 
+14 6 2020 
+    comands tu run after the docker-compose up
+        docker-compose exec app php artisan key:generate
+        docker-compose exec app php artisan config:cache
+            in prod enviroment we need to create a another user to db instance root (proccess to revision)
+                docker-compose exec db bash
+                mysql -u root -p
+                show databases;
+                GRANT ALL ON shakur.* TO 'shakuruser'@'%' IDENTIFIED BY 'shakuruser';
+                FLUSH PRIVILEGES;
+        docker-compose exec app php artisan migrate
+        yarn
+        yarn dev
 
 cheatshit
     acces to app container console
         sudo  docker exec -it app /bin/sh
     view logs
         run docker up without -d
+
+
+diff db prod vs migrates
+
+modifications
+	table oauth_acces_tokens
+		user_id(bigint) to user_id(int)
+	table oauth_acces_codes
+		user_id(bigint) to user_id(int)
+	table oauth_clients
+		user_id(bigint) to user_id(int)
+	
