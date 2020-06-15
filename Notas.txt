@@ -27,8 +27,17 @@
                 GRANT ALL ON shakur.* TO 'shakuruser'@'%' IDENTIFIED BY 'shakuruser';
                 FLUSH PRIVILEGES;
         docker-compose exec app php artisan migrate
-        yarn
-        yarn dev
+        docker-compose exec app php artisan db:seed
+        docker-compose exec app yarn
+        docker-compose exec app yarn dev
+        docker-compose exec app php artisan passport:install
+        docker-compose exec app php artisan storage:link
+            if the storage commands its broken remove de storage folder in public
+            for the avatars works the file avatar.png need to be executable
+                chmod +x avatar.png
+
+
+
 
 cheatshit
     acces to app container console
@@ -38,12 +47,11 @@ cheatshit
 
 
 diff db prod vs migrates
-
-modifications
-	table oauth_acces_tokens
-		user_id(bigint) to user_id(int)
-	table oauth_acces_codes
-		user_id(bigint) to user_id(int)
-	table oauth_clients
-		user_id(bigint) to user_id(int)
-	
+    modifications
+        table oauth_acces_tokens
+            user_id(bigint) to user_id(int)
+        table oauth_acces_codes
+            user_id(bigint) to user_id(int)
+        table oauth_clients
+            user_id(bigint) to user_id(int)
+        
