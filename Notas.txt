@@ -41,6 +41,10 @@
             ls -laR . | grep -B 5 " -> "
         delete folder with symbolics links like vendor or node_modules
 
+        for this error
+            FATA Error while deploying application: Get https://127.0.0.1:6443/api: dial tcp 127.0.0.1:6443: connect: connection refused 
+
+
 
 cheatshit
     acces to app container console
