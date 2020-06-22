@@ -43,14 +43,34 @@
 
         for this error
             FATA Error while deploying application: Get https://127.0.0.1:6443/api: dial tcp 127.0.0.1:6443: connect: connection refused 
+            create proxy 
+                kubectl proxy  --port=6443
+        run kompose 
+            kompose up --server http://127.0.0.1:6443
+        
+    kubernetes
+        create deployments
+            kubectl apply -f app-deployment.yaml
+            kubectl apply -f webserver-deployment.yaml
+            kubectl apply -f db-deployment.yaml
 
+        create services
+            kubectl apply -f db-service.yaml
+            kubectl apply -f webserver-service.yaml
+            kubectl apply -f app-service.yaml
+        
+        forward port
+            the ports of cluster need to was up of 1024
+            kubectl port-forward webserver-544597f54c-rg98c 8888:80
 
+no anda el minikube, no tiene puertos
 
 cheatshit
     acces to app container console
         sudo  docker exec -it app /bin/sh
     view logs
         run docker up without -d
+    kubernetes
 
 
 diff db prod vs migrates
