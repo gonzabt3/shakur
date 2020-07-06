@@ -18,7 +18,7 @@ class ChangeManyThingsInUsersTable extends Migration
             $table->string('apellido', 191)->change();
             $table->string('email', 191)->change();
             $table->string('password', 191)->change();
-            $table->string('api_token')->nullable()->change();
+            //$table->string('api_token')->nullable()->change();
         });
     }
 
