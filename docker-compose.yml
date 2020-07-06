@@ -3,10 +3,11 @@ services:
 
   #PHP Service
   app:
-    #build:
-    #  context: .
-    #  dockerfile: Dockerfile
-    image: gonzabt3/shakur_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shakur_app
+    #image:gonzabt3/shakur_app
     container_name: app
     restart: unless-stopped
     tty: true
