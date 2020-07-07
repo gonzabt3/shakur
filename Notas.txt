@@ -70,6 +70,11 @@
 
 no anda el minikube, no tiene puertos
 
+06-07-2020
+    docker swarm
+        docker swarm init --advertise-addr 192.168.0.38
+            the ip is the public ip of the default ethernet interfaces
+
 cheatshit
     laravel console
         docker-compose exec app php artisan tinker
@@ -88,3 +93,25 @@ diff db prod vs migrates
             user_id(bigint) to user_id(int)
         table oauth_clients
             user_id(bigint) to user_id(int)
+
+
+magia de un tipo en github para
+Create a network
+
+docker network create -d overlay testservice
+Change your test.yml file as
+
+version: "3.3"
+
+services:
+  test:
+    image: busybox
+    command: top
+    networks:
+      - testservice
+
+networks:
+  testservice:
+    external:
+      name: testservice
+docker stack deploy -c test.yml teststack

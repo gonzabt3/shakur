@@ -21,7 +21,7 @@ services:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - app-network
+      - testservice
 
   #Nginx Service
   webserver:
@@ -36,7 +36,7 @@ services:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - app-network
+      - testservice
 
   #MySQL Service
   db:
@@ -55,13 +55,16 @@ services:
         - dbdata:/var/lib/mysql
         - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - app-network
+      - testservice
 
 #Docker Networks
+#networks:
+#  app-network:
+#    driver: bridge
 networks:
-  app-network:
-    driver: bridge
-
+  testservice:
+    external:
+      name: testservice
 #Volumes
 volumes:
   dbdata:
