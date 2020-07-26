@@ -44,14 +44,9 @@
     minikube
         view symbolics links
             ls -laR . | grep -B 5 " -> "
-        delete folder with symbolics links like vendor or node_modules
-
-        for this error
-            FATA Error while deploying application: Get https://127.0.0.1:6443/api: dial tcp 127.0.0.1:6443: connect: connection refused
-            create proxy
-                kubectl proxy  --port=6443
-        run kompose
-            kompose up --server http://127.0.0.1:6443
+            delete folder with symbolics links like vendor or node_modules
+        acces to load balancer in the cluster
+            minikube tunnel
 
     kubernetes
         create deployments
@@ -67,8 +62,19 @@
         forward port
             the ports of cluster need to was up of 1024
             kubectl port-forward webserver-544597f54c-rg98c 8888:80
+        
+        run kompose
+            kompose up --server http://127.0.0.1:6443
 
-no anda el minikube, no tiene puertos
+        for this errors
+            FATA Error while deploying application: Get https://127.0.0.1:6443/api: dial tcp 127.0.0.1:6443: connect: connection refused
+            create proxy
+                kubectl proxy  --port=6443
+            FATA Error while deploying application: k.Transform failed: Unable to build Docker image for service app: Unable to create a tarball: archive/tar: write too long 
+                remove node_modues and vendor folders
+                    rm -rf vendor
+                    rm -rf node_modules
+
 
 06-07-2020
     docker swarm
@@ -84,6 +90,11 @@ cheatshit
         run docker up without -d
     kubernetes
 
+12-07-2020
+    to kubernetes
+        1   create a good docker image of shakur
+        2   push this images to docker hub
+            
 
 diff db prod vs migrates
     modifications
@@ -114,4 +125,4 @@ networks:
   testservice:
     external:
       name: testservice
-docker stack deploy -c test.yml teststack
+docker stack deploy -c docker-compose.yml teststack
