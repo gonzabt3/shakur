@@ -20,8 +20,8 @@ spec:
         env:
         - name: DATABASE_URL
           value: mysql2://root:root@mysqldb-service:3306/shakur
-        image: gonzabt3/shakur_app
+        image: gonzabt3/shakur
         #args: ['web']
         ports:
-        - containerPort: 8080
+        - containerPort: 9000
       restartPolicy: Always

@@ -126,3 +126,7 @@ networks:
     external:
       name: testservice
 docker stack deploy -c docker-compose.yml teststack
+
+problems
+    playbook dont work fine
+    for copy code the ports in the scripts are wrong,the laravel app expose port 9000 not 8080
