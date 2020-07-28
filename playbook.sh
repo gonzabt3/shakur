@@ -11,16 +11,13 @@ echo STEP 6 PHP ARTISAN MIGRATE
 php artisan migrate 
 echo STEP 8 PHP ARTISAN DB:SEED
 php artisan db:seed 
-echo STEP 9 INSTALL YARN
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
-echo 'deb https://dl.yarnpkg.com/debian/ stable main' | sudo tee /etc/apt/sources.list.d/yarn.list 
-echo STEP 10 NPM INSTALL
+echo STEP 10 YARN
 npm install
-echo STEP 11 RUN DEV
-npm run dev 
+echo STEP 11 RUN YARN dev
+yarn dev
 echo STEP 12 PHP ARTISAN PASSAPORT:INSTALL
 php artisan passport:install 
 echo STEP 13 PHP ARTISAN STORAGE
-php artisan storage
+php artisan storage:link
 echo STEP 1 PHP-FPM
 php-fpm

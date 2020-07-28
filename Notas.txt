@@ -47,6 +47,8 @@
             delete folder with symbolics links like vendor or node_modules
         acces to load balancer in the cluster
             minikube tunnel
+        expose ip of load balancer
+            minikube service ingress-nginx  
 
     kubernetes
         create deployments
@@ -74,7 +76,13 @@
                 remove node_modues and vendor folders
                     rm -rf vendor
                     rm -rf node_modules
+        
+        get shell in kubernetes coteiner
+                        kubectl exec --stdin --tty pod_name!! -- /bin/bash
 
+
+
+        to connect laravel with the db,in .env DBHOST is the name of the service that contain the db
 
 06-07-2020
     docker swarm
@@ -128,5 +136,5 @@ networks:
 docker stack deploy -c docker-compose.yml teststack
 
 problems
-    .env db config is wrong
+    playbook dont have permision to run yarn and yarn dev,thay cant touch package-lock.json
     for copy code the ports in the scripts are wrong,the laravel app expose port 9000 not 8080

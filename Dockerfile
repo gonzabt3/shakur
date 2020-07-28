@@ -19,10 +19,16 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    npm
+    npm \
+    gnupg2
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/sources.list.d/yarn.list
+RUN  apt update &&  apt install yarn
+
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
