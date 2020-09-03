@@ -9,7 +9,7 @@ class Carrera extends Model
     protected $table = 'carreras';
 
     public function universidad(){
-        return $this->belongsTo(Carrera::class);
+        return $this->belongsTo(Universidad::class);
     }
 
     public function materias(){

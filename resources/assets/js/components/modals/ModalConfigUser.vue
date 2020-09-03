@@ -1,6 +1,10 @@
 <template>
         <b-container   fluid>
-         <b-modal   ref="configUser" id="configUser" title="Configuracion usuario">
+         <b-modal  @show="getInfoUser()"
+        :no-close-on-backdrop="noCerrar"
+        :no-close-on-esc="noCerrar"
+        :hide-header-close="noCerrar"
+           ref="configUser" id="configUser" title="Configuracion usuario">
                 <b-row >
                     <b-col  cols="12">
                         <b-row >
@@ -140,8 +144,13 @@
                                     <span>No se encontraron resultados</span>
                                     </template>
                                 </v-select>
+                                <faltante tipo="materia" :id-padre="data.carrera_id" ></faltante>
                             </b-col>
                         </b-row>
+                        <b-alert 
+                            :show="hasErrors" 
+                            variant="danger" 
+                            class="text-center">{{ error }}</b-alert>
                     </b-col>
                 </b-row>
                <template slot="modal-footer">
@@ -156,13 +165,21 @@
 <script>
 const vSelect = () => import('vue-select');
 const ModalAvatar = () => import('../modals/ModalAvatar');
+const Faltante = () => import('../common/Faltante');
+// const {blackListWords} = () => import('../diccionario.js');
+import {blackListWords} from "../diccionario.js";
 // import vSelect from "vue-select";
 // import ModalAvatar from '../modals/ModalAvatar';
 
 export default {
-    components: { vSelect,ModalAvatar },
+    components: { vSelect,ModalAvatar,Faltante },
+    props:['noCerrar'],
     data(){
         return {
+            badWordApellidoFlag:'false',
+            badWordNameFlag:'false',
+            badWordAliasFlag:'false',
+            error:'',
             croppa: {},
             opcionesMaterias:[],
             opcionesUniversidades: [
@@ -190,6 +207,8 @@ export default {
                 materias:null,
                 avatar_url:''
             },
+            materias2:[],
+            materias2contador:0,
             checkedAlias:true,
             loading:false,
             disabledButton:false,
@@ -203,8 +222,13 @@ export default {
         //  this.getMaterias();
         //  this.getValuesSelectUniversidad();
     },
-    mounted(){
-         this.getInfoUser();
+    // mounted(){
+    //      this.getInfoUser();
+    // },
+    computed:{
+        hasErrors() {
+            return this.error != "";
+        },
     },
     watch:{
         checkedAlias(val){
@@ -222,33 +246,67 @@ export default {
              this.textButton='Guardar'
              this.iconLoading=false
          }
-     } ,
+        } ,
       "data.universidad": function(value){
         this.data.carrera_id=null
-        if(value!=null){
-                    this.data.materias=null
 
+        if(value!=null){
+                            // this.materias2=[]
+
+            this.data.materias=null
             this.urlCarrera="api/carreras/"+value
             this.getValuesSelectCarrera()
         }
        
      },
       "data.carrera_id": function(value){
+
         if(value!=null){
+            //esto es una negrada ,la primera vez que pasa no borra  el array de los seleccionados porque es cuando se inicializa todo
+            if(this.materias2contador!=0){
+                this.materias2=[]
+            }
+            this.materias2contador=1
             this.data.materias=null
             this.urlMaterias="api/materias/"+value;
             this.getMaterias()
         }
 
      },
+      "data.materias": function(value){
+        this.disabledButton = (value.length > 0 ? false : true ) 
+     },
+    "data.name":function(string){
+        this.badWordNameFlag=this.scanMalasPalabras(string);
+        if(this.badWordNameFlag==false){
+                this.error=''
+            }
+    },
+    "data.apellido":function(string){
+        this.badWordApellidoFlag=this.scanMalasPalabras(string);
+        if(this.badWordApellidoFlag==false){
+                this.error=''
+            }
+    },
+    "data.alias":function(string){
+        this.badWordAAliasFlag=this.scanMalasPalabras(string);
+        if(this.badWordAAliasFlag==false){
+                this.error=''
+            }
+    }
     },
     methods:{
+        scanMalasPalabras(string){
+            let arrayPalbras = string.trim().split(" ");
+            let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
+            return !resultado.length==0 
+        },
         avatarModal(){
             this.$root.$emit('bv::show::modal','modalAvatar')
         },
         getInfoUser(){
             this.axios.get("api/usuario")
-                .then(response => {
+                .then(async response => {
                     // console.log(response);
                     let user=response.data;
 
@@ -257,17 +315,22 @@ export default {
                     this.data.apellido=user.apellido
                     this.data.alias=user.alias
                     this.data.avatar_url=user.avatar_url
+                    this.materias2=user.materias
+
+                    this.badWordApellidoFlag=false
+                    this.badWordNameFlag=false
+                    this.badWordAliasFlag=false
 
                     //deshabilito el campo de alias
-                    if(this.data.alias==null){
+                    if(this.data.alias==null || this.data.alias=='null'){
                         this.checkedAlias=false
                     }
 
                     //selects
-                    this.getValuesSelectUniversidad(user.universidad.id);
+                    await this.getValuesSelectUniversidad(user.universidad.id);
                     this.urlCarrera="api/carreras/"+user.universidad.id;
                     this.getValuesSelectCarrera(user.carrera_id);
-                    this.getMaterias(user.materias)
+                    // this.getMaterias(user.materias)
                 })
         },
         setMaterias(materias){
@@ -278,19 +341,26 @@ export default {
             this.data.materias=materiasSelected
         },
         getMaterias(value=null) {
+            // console.log("getmaterias= "+value );
             this.opcionesMaterias=[]
             this.axios
                 .get(this.urlMaterias)
                 .then(response => {
                     // console.log(response)
                     _.map(response.data, materia => {
+                        // console.log(materia.materia),
                         this.opcionesMaterias.push({
                         label: materia.materia,
                         value: materia.id
                         });
                     });
 
-                    if(value!=null){
+
+                    if(value!=null || this.materias2!=[]){
+                        if(this.materias2!=[]){
+                            value=this.materias2
+                        }
+                        // console.log(value);
                         this.setMaterias(value)
                     }
             })
@@ -303,10 +373,18 @@ export default {
                 .get("api/universidades")
                 .then((response) => {
                     let responseOptions = _.map(response.data, option => {
-                        this.opcionesUniversidades.push({
+                        // this.opcionesUniversidades.push({
+                        //     id:option.id,
+                        //     description:option.nombre
+                        // })
+                        return new Promise(resolve => {
+                           
+                            resolve(this.opcionesUniversidades.push({
                             id:option.id,
                             description:option.nombre
-                        })
+                        }))
+                        
+                        });
                         // return {
                         //     id: option.id,
                         //     description: option.nombre
@@ -347,6 +425,8 @@ export default {
                 });  
         },
          async submit(){
+             
+            if(this.badWordApellidoFlag==false && this.badWordNameFlag==false && this.badWordAliasFlag==false){
             this.loading=true
             let formData = new FormData();
             
@@ -371,8 +451,11 @@ export default {
                     type:'success',
                 });    
                  window.location.reload()       
-        })  
-        this.loading=false
+            })  
+            this.loading=false
+            }else{
+                this.error = "Hemos detectado lenguaje ofensivo";
+            }
         },
         // ----------------AVATARRRR--------------
          onInit() {

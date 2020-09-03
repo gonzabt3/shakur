@@ -42,6 +42,8 @@ Route::group(['prefix' => 'auth'], function () {
 
         //traer publicaciones
         Route::get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
+        
+        Route::delete('delete','Api\UserController@delete');
     });
 });
 
@@ -50,6 +52,9 @@ Route::middleware('auth:api')->post('/publicacion','Api\PublicacionesController@
 
 //traer publicaciones
 Route::middleware('auth:api')->get('/publicacion/{idMateria}/{idPaginado}','Api\PublicacionesController@index');
+
+//traer publicacion en especifica->por la notificacion
+Route::middleware('auth:api')->get('/publicacion/{idPost}','Api\PublicacionesController@getPost');
 
 //traer todas las universidades
 Route::get('/universidades','Api\UniversidadesController@index');
@@ -123,3 +128,21 @@ Route::middleware('auth:api')->delete('/post/{id}','Api\PublicacionesController@
 
 //traigo los user que le dieron like a una publicacion
 Route::middleware('auth:api')->get('/likes/post/{idPost}/{type}','Api\LikeController@userLikesXpost');
+
+//denuncia
+Route::middleware('auth:api')->post('/denuncias','Api\DenunciasController@store');
+
+// GET NOFICACIONES
+Route::middleware('auth:api')->get('/notifications','Api\NotificationController@index');
+
+//MARCAR COMO LEIDA
+Route::middleware('auth:api')->post('/notification','Api\NotificationController@markAsRead');
+
+//AGREGA REPORTES
+Route::middleware('auth:api')->post('/reportsErrors','Api\ReportErrorController@store');
+
+//AGREGAR FALTATES
+Route::post('/faltante/sin/auth','Api\FaltanteController@store');
+
+// //AGREGAR FALTATES
+Route::middleware('auth:api')->post('/faltante','Api\FaltanteController@store');

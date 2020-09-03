@@ -66,4 +66,9 @@ class PublicacionesController extends Controller
         return $this->publicacionService->delete($idPost);
     }
 
+    //trae un solo post
+    public function getPost($idPost){
+        return Publicacion::with('user','files','likes')->find($idPost);
+    }
+
 }

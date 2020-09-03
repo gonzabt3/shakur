@@ -26,5 +26,7 @@ class Publicacion extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    public function materia(){
+        return $this->belongsTo(Materia::class);
+    }
 }

@@ -23,7 +23,7 @@ class User extends Authenticatable
     // protected $table = 'users';
 
     protected $fillable = [
-        'name','apellido','alias','carrera_id', 'email', 'password','active', 'activation_token','avatar',
+        'name','apellido','alias','carrera_id', 'email', 'password','terminos_y_condiciones','active', 'activation_token','avatar',
     ];
 
     /**
@@ -64,5 +64,13 @@ class User extends Authenticatable
 
     public function comentarios(){
         return $this->hasMany(Comentario::class);
+    }
+
+    public function getUsername(){
+        if($this->alias!=null){
+            return $this->alias;
+        }else{
+            return $this->name.' '.$this->apellido;
+        }
     }
 }

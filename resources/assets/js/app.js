@@ -5,10 +5,11 @@
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import '../sass/app.scss';
 
 // font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment} from '@fortawesome/free-solid-svg-icons'; // nose porque pero hay que poner los iconos aca
+import { faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment,faBell,faFilePdf,faFileWord,faFileExcel,faFilePowerpoint} from '@fortawesome/free-solid-svg-icons'; // nose porque pero hay que poner los iconos aca
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // AXIOS
@@ -24,13 +25,30 @@ import VeeValidate from 'vee-validate'
 //croppa
 import Croppa from 'vue-croppa';
 
+//vue-toasted
+import Toasted from 'vue-toasted';
+
+// pusher
+import pusher from 'pusher-js';
+
+// vue-authenticate
+import VueAuthenticate from 'vue-authenticate'
+
+//vue-the-mask
+import VueTheMask from 'vue-the-mask'
+
+//vue-google-adsense
+import Ads from 'vue-google-adsense'
+
+//vue-simple-alerts
+import VueSimpleAlert from "vue-simple-alert";
+
 
 import Vue from 'vue';
 import App from './App';
 import router from './router';
 
-
-library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment);
+library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment,faBell,faFilePdf,faFileWord,faFileExcel,faFilePowerpoint);
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -40,7 +58,56 @@ Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'));
 Vue.use(VeeValidate);
 Vue.use(Croppa);
+Vue.use(Toasted)
+Vue.use(VueTheMask)
 
+Vue.use(require('vue-script2'))
+
+Vue.use(Ads.Adsense)
+Vue.use(Ads.InArticleAdsense)
+Vue.use(Ads.InFeedAdsense)
+Vue.use(VueSimpleAlert);
+
+
+// Vue.use(pusher);
+// Vue.use(Echo);
+import Echo from 'laravel-echo';
+
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://localhost:8000', // Your API domain
+  
+  providers: {
+    github: {
+      name: 'github',
+      url: '/auth/github',
+      authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+      // redirectUri: getRedirectUri(),
+      // optionalUrlParams: ['scope'],
+      // scope: ['user:email'],
+      // scopeDelimiter: ' ',
+      oauthType: '2.0',
+      popupOptions: { width: 1020, height: 618 },
+      redirectUri:'http:/localhost:8000/main'
+    },
+    google: {
+      name: 'google',
+      url: '/auth/google',
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+      // redirectUri: getRedirectUri(),
+      requiredUrlParams: ['scope'],
+      optionalUrlParams: ['display'],
+      scope: ['profile', 'email'],
+      client_id:"asdd",
+      scopePrefix: 'openid',
+      scopeDelimiter: ' ',
+      display: 'popup',
+      oauthType: '2.0',
+      popupOptions: { width: 452, height: 633 },
+      redirectUri:window.location.origin
+
+    },
+  }
+})
 
 //pongo lodash
 window._ = require('lodash');

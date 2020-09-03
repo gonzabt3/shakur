@@ -35,8 +35,8 @@ class EventoController extends Controller
             'temas' => 'required',
             'fecha' => 'required',
             'materia_id' => 'required',
-            'user_id' => 'required'
-        ]);
+            'hora' => 'required'
+            ]);
 
         //agrego user
         $user = Auth::user();

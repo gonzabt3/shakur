@@ -17,4 +17,8 @@ class Comentario extends Model
     public function likesComentarios(){
         return $this->hasMany(LikeComentario::class);
     }
+
+    public function publicacion(){
+        return $this->belongsTo(Publicacion::class);
+    }
 }

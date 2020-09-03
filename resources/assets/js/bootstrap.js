@@ -50,7 +50,10 @@ if (token) {
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//     key:'b5806fbd6f412d4ca0e2',
+//     cluster:'us2',
+//     encrypted: true,
+//     wsHost:'window.location.hostname',
+//     wsPort:6001,
+//     disableStats:true
 // });

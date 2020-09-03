@@ -38,6 +38,8 @@ class PublicacionService{
         //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
         $publicaciones->map(function ($post) {
             $user = Auth::user();
+
+            $post['cantidadComentarios'] = $post->comentarios->count();
             $post['flagAutor'] = $this->userService->checkAutor('post',$post->id);
             $post['flagLike'] = $this->likeService->checkLike('post',$post->id);
 
@@ -47,12 +49,13 @@ class PublicacionService{
         return($publicaciones);
     }
 
-    public function delete($idPost){
-        if(Auth::user()->id==Publicacion::find($idPost)->user_id){
+    public function delete($idPost,$denuncia=0){
+        //pregunto si el que borra es el autor del post o si se borra por denuncia
+        if(Auth::user()->id==Publicacion::find($idPost)->user_id || $denuncia==1){
             $comentariosPublicacion = Publicacion::find($idPost)->comentarios()->get();
 
             foreach ($comentariosPublicacion as $comment) {
-                $this->comentarioService->delete($comment->id);
+                $this->comentarioService->delete($comment->id,$denuncia);
             }
             
             $filesPublicacion = Publicacion::find($idPost)->files()->get();

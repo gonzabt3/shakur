@@ -12,7 +12,7 @@
                                 v-validate="'required'"
                                 >
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Apellido:" label-for="apellido">
                     <b-form-input id="apellido"
@@ -23,7 +23,7 @@
                                 required
                                 placeholder="Ingresa tu apellido">
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="E-mail:" label-for="email">
                     <b-form-input id="email"
@@ -34,7 +34,7 @@
                                 required
                                 placeholder="Ingresa tu E-mail">
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Contraseña:" label-for="password">
                     <b-form-input id="password"
@@ -42,12 +42,13 @@
                                 ref="password"
                                 :type="typePassword"
                                 :class="{'is-invalid':errors.has('password')}"
-                                v-validate="'required'"
+                                v-validate="'required|min:8'"
                                 v-model="usuario.password"
                                 required
                                 placeholder="Ingresa tu Contraseña">
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <p>La contraseña debe debe tenes minimo 8 caracteres</p>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Confirmar contraseña:" label-for="password_confirmation">
                     <b-form-input id="password_confirmation"
@@ -83,9 +84,9 @@
                     text-field="description" 
                     value-field="id"
                         />
-                        <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
-                </b-form-group>
-
+                        <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                        <faltante tipo="universidad" />
+                    </b-form-group>
                 <!-- SELECT CARRERAS -->
                 <b-form-group 
                 label="Carrera" 
@@ -100,17 +101,18 @@
                     text-field="description" 
                     value-field="id"
                         />
-                <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                <faltante tipo="carrera" :id-padre="usuario.universidad" />
                 </b-form-group>
                 <b-form-group>
-                    <b-form-checkbox-group  id="checkCondiciones">
+                    <b-form-checkbox-group  >
                         <b-form-checkbox 
-                                name="checkCondiciones"
-                                required 
-                                value="checkCondiciones">
-                            Estoy de acuerdo con los <a>terminos y condiciones</a></b-form-checkbox>
+                                id="terminos_y_condiciones"
+                                name="terminos_y_condiciones"
+                                v-model="usuario.terminos_y_condiciones"><label>
+                            Estoy de acuerdo con los <u @click="showModalTerminos" class="pointer">terminos y condiciones</u></label></b-form-checkbox>
                     </b-form-checkbox-group>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
             <!-- ALERTA DE ERRORES -->
@@ -125,23 +127,29 @@
           {{textButton}}</button>
     </template>
     </b-modal>
+    <modal-terminos/>
     </b-container>
 </template>
 <script>
 const MpSelect = () => import('../components/common/MpSelect');
+const ModalTerminos = () => import('../components/modals/MoldalTerminos.vue');
+const Faltante = () => import('../components/common/Faltante.vue');
+import {blackListWords} from "./diccionario.js";
 
 // import MpSelect from "../components/common/MpSelect";
 
 
 export default {
   name: 'NewUser',
-  components: { MpSelect },
+  components: { MpSelect ,ModalTerminos, Faltante },
     $_veeValidate: {
     validator: "new"
   },
   data() {
     return {
         checkboxPasswordNewUser:false,
+        badWordNameFlag:false,
+        badWordApellidoFlag:false,
       universidades: [
         'Seleccionar', 'UBA', 'UTN', 'UNLa',
       ],
@@ -152,7 +160,8 @@ export default {
           universidad:null,
           carrera_id:null,
           password:null,
-          password_confirmation:null   
+          password_confirmation:null,
+          terminos_y_condiciones:false
       },
       optionsUniversidad: [
                 {
@@ -184,25 +193,40 @@ export default {
             return this.checkboxPasswordNewUser ? "text" : "password";
         }
     },
-  methods :{
+    methods :{
+        scanMalasPalabras(string){
+            let arrayPalbras = string.trim().split(" ");
+            let resultado = arrayPalbras.filter(element => blackListWords.includes(element));
+            return !resultado.length==0 
+        },
+      showModalTerminos(){
+          this.$root.$emit('bv::show::modal','terminosModal')
+      },
         crearUsuario(){
-            // console.log(this.usuario);
-            this.$validator.validateAll().then(result => {
-                if(result){
-                this.loading=true;
-                this.axios.post('api/auth/signup/',this.usuario)
-                .then((response) => {
-                    this.$emit("success",this.usuario.email)     
-                    this.$refs.newUser.hide();
-                    this.loading=true
+            if(this.badWordNameFlag==false && this.badWordApellidoFlag==false){
+                if(this.usuario.terminos_y_condiciones[0]==true){
+                    this.$validator.validateAll().then(result => {
+                        if(result){
+                        this.loading=true;
+                        this.axios.post('api/auth/signup/',this.usuario)
+                        .then((response) => {
+                            this.$emit("success",this.usuario.email)     
+                            this.$refs.newUser.hide();
+                            this.loading=true
+                            })
+                        }else {
+                            this.error = "Por favor, corrija los campos en rojo";
+                        }
                     })
-                }else {
-                    this.error = "Por favor, corrija los campos en rojo";
+                }else{
+                    this.error = "Debe aceptar los terminos y condiciones";
                 }
-            })
+            }else{
+                this.error = "Hemos detectado lenguaje ofensivo en su nombre o apellido";
+            }
         },
         setSuccessMessage(){
-            this.console("volvio");
+            // this.console("volvio");
         },
         // LLENAR SELECT universidades
         getValuesSelectUniversidad(){
@@ -280,7 +304,20 @@ export default {
              this.textButton='Resgistrarse'
              this.iconLoading=false
          }
-     }  
+     },
+    //  INPUTS SCAN MALAS PALABRAS
+    "usuario.name":function(string){
+        this.badWordNameFlag=this.scanMalasPalabras(string);
+        if(this.badWordNameFlag==false){
+                this.error=''
+            }
+    },
+    "usuario.apellido":function(string){
+        this.badWordApellidoFlag=this.scanMalasPalabras(string);
+        if(this.badWordApellidoFlag==false){
+                this.error=''
+            }
+    }
   }
   
 };
@@ -288,5 +325,9 @@ export default {
 <style scoped>
 .sizeLoading{
         width: 30px;
+}
+
+.pointer{
+    cursor: pointer;
 }
 </style>

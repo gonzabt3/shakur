@@ -1,6 +1,7 @@
 <template>
     <b-container  fluid class="no-padding">
-        <topbar  
+        <topbar
+        @openPost="openPost" 
         @changeMateria="updateWalls"
         @comunication="comunication"
         ></topbar>
@@ -8,16 +9,27 @@
         <b-row v-if="celular">
             <b-col >
                 <b-tabs pills card >
-                  <b-tab title="Mi perfil">
-                    <settings-wall ref="settings"></settings-wall>
+                  <b-tab title="Mi perfil" class="blanco no-padding">
+                    <settings-wall ref="settings"
+                    :noCerrar="noCerrar"
+                    :idMateria="idMateria"
+                    ></settings-wall>
+                    
+                     <Adsense
+                      data-ad-client="ca-pub-5339837285608547"
+                      data-ad-slot="4830487876"
+                      data-ad-format="auto"
+                      >
+                    </Adsense>
                   </b-tab>
-                  <b-tab class="scroll no-padding" active title="Muro">
+                  <b-tab class="blanco scroll no-padding" active title="Muro">
                     <post-new 
                     @responseGetPosts="getPosts"
                     :id-materia="idMateria"
                     ></post-new>
                     <post-user  
-                    @showModalLikes="showModalLikes" 
+                    @showModalLikes="showModalLikes"
+                    @showModalDenuncias="showModalDenuncias" 
                     @getPosts="getPosts"
                     v-for="item in arrayPosts"
                     :postData="item"
@@ -25,15 +37,18 @@
                     ></post-user>
                     <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
                   </b-tab>
-                  <b-tab title="Eventos">
+                  <b-tab title="Eventos" class="blanco no-padding">
                     <events-wall class="form-group"
+                    @showModalDenuncias="showModalDenuncias" 
                     :id-materia="idMateria"
                     ref="eventWall"
                     ></events-wall>
                   </b-tab>
                   <b-tab
-                    title="Archivos">
+                    title="Archivos"
+                    class="no-padding blanco">
                     <doc-wall 
+                      @showModalDenuncias="showModalDenuncias" 
                       ref="docWall"
                       :id-materia="idMateria"></doc-wall>
                     </b-tab>
@@ -42,16 +57,20 @@
         </b-row>
         <!-- FIN VISTA DE CELULAR -->
         <b-row >
-            <b-col cols="3" v-if="!celular" >
-                <settings-wall ref="settings"></settings-wall>
+            <b-col cols="3" v-if="!celular" class="blanco" >
+                <settings-wall ref="settings"
+                :noCerrar="noCerrar"
+                :idMateria="idMateria"
+                ></settings-wall>
             </b-col>
-            <b-col sm="5" class="scroll" v-if="!celular" >
+            <b-col sm="5" class="scroll blanco" v-if="!celular" >
                 <post-new 
                 @responseGetPosts="getPosts"
                 :id-materia="idMateria"
                 ></post-new>
                 <post-user 
-                @showModalLikes="showModalLikes" 
+                @showModalLikes="showModalLikes"
+                @showModalDenuncias="showModalDenuncias" 
                 @getPosts="getPosts"
                 v-for="item in arrayPosts"
                 :postData="item"
@@ -59,24 +78,27 @@
                 ></post-user>
                 <b-link @click="getPosts(false)">Ver mas publicaciones</b-link>
             </b-col>
-            <b-col v-if="!celular" >
+            <b-col cols="4" v-if="!celular" class="blanco" >
                 <events-wall class="form-group"
+                @showModalDenuncias="showModalDenuncias"
                 :id-materia="idMateria"
                 ref="eventWall"
                 ></events-wall>
-                <doc-wall 
+                <doc-wall
+                @showModalDenuncias="showModalDenuncias" 
                 ref="docWall"
                 :id-materia="idMateria"
                 ></doc-wall>
+               
             </b-col>
         </b-row>
-        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
+        <modal-comunication ref="comunicationModal" @openMiPerfil="openMiPerfil" :noCerrar="noCerrar" :mailUser="modalComunication.mailNewUser" :p1="modalComunication.p1" :p2="modalComunication.p2" :title="modalComunication.title" :flag-button="true" :close-out-side="false" ></modal-comunication>
         <modal-likes  :id="idPostLikeModal" :type="typeLikeModal"></modal-likes>
+        <modal-denuncias :id="idItemDenuncia" :type="typeItemDenuncia"></modal-denuncias>
     </b-container>
 </template>
 
 <script>
-
 const PostUser = () => import('../components/PostUser');
 import EventsWall from '../components/EventsWall';
 import DocWall from '../components/DocWall';
@@ -85,10 +107,11 @@ const PostNew = () => import('../components/PostNew');
 const Topbar =  () => import('../components/Topbar');
 const ModalComunication = () => import('../components/modals/ModalComunication');
 const ModalLikes = () => import('../components/modals/ModalLikes');
+const ModalDenuncias = () => import('../components/modals/ModalDenuncias');
 
 export default {
   name: 'Main',
-  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes},
+  components: { Topbar, PostUser, EventsWall, DocWall, SettingsWall, PostNew ,ModalComunication, ModalLikes,ModalDenuncias},
   data(){
       return{
           arrayPosts:[],
@@ -97,12 +120,17 @@ export default {
           celular:false,
           idPostLikeModal:'',
           typeLikeModal:'',
+          idItemDenuncia:'',
+          typeItemDenuncia:'',
           modalComunication:{
             mailNewUser:'',
             p1:'',
             p2:'',
             title:''
-          },   
+          },
+          noCerrar:false,
+           isConnected: false,
+           socketMessage: '' 
         }
   },
    created() {
@@ -113,12 +141,19 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   beforeMount(){
+    this.checkAuth();
     this.setHeader();
   }, 
   mounted(){
         // this.getPosts();
   },
   methods:{
+    checkAuth(){
+      let token = sessionStorage.getItem('token');
+      if(token==null){
+        this.$router.push("/");
+      }
+    },
     showModalLikes(idPost,type){
      
       this.typeLikeModal=type
@@ -127,13 +162,17 @@ export default {
 
       this.$root.$emit('bv::show::modal','modalLikes')
      },
+     showModalDenuncias(idItem,type){
+        this.typeItemDenuncia=type
+        this.idItemDenuncia=idItem
+        this.$root.$emit('bv::show::modal','modalDenuncias')
+     },
     setHeader(){
         this.axios.defaults.headers.common['Accept'] = 'application/json'; 
         this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
     },
     //   TRAE TODAS LAS PUBLICACIONES
       getPosts(flagNewPost=false){
-        
         // flagNewPOST false es que importa el paginado
         // flagNewPOST true no importa el paginado
 
@@ -148,7 +187,7 @@ export default {
         if(this.idPaginado==0){
           this.arrayPosts=[]
         }
-
+        
         let url='api/publicacion/'+this.idMateria+'/'+this.idPaginado;
 
         this.axios.get(url)
@@ -169,22 +208,52 @@ export default {
     handleResize() {
         let ancho = window.innerWidth;
         // this.window.height = window.innerHeight;
-  
+
+        //vista celular de  un iphone 6 para arriba
         if(ancho<=576){              
                 this.celular=true
-            }
+            }else{
+              this.celular=false
+          }
     },
-    comunication(){
+    comunication(noCerrar=false){
       this.modalComunication.p1='Por favor selecciona las materias que estas cursando'
       this.modalComunication.p2='shakur.'
+      this.modalComunication.mailNewUser=''
       this.modalComunication.title='Tu perfil'
+      this.noCerrar=noCerrar
       this.$root.$emit('bv::show::modal','comunicationModal')
-
     },
-    openMiPerfil(){
-        this.$refs.settings.showModal();
+    openMiPerfil(noCerrar=false){
+      this.noCerrar=noCerrar;
+      this.$refs.settings.showModal();
+    },
+    openPost(idPost){
+      this.arrayPosts=[]
+       this.axios.get("api/publicacion/"+idPost)
+        .then(({data}) => {
+          this.arrayPosts.push(data)
+        })
     }
-  }
+  },
+   sockets: {
+    connect() {
+      // Fired when the socket connects.
+                  // console.log('socket connected')
+
+      this.isConnected = true;
+    },
+
+    disconnect() {
+      console.log("no conected");
+      this.isConnected = false;
+    },
+
+    // Fired when the server sends something on the "messageChannel" channel.
+    messageChannel(data) {
+      this.socketMessage = data
+    }
+  },
 };
 </script>
 
@@ -197,6 +266,7 @@ export default {
 
 .scroll {
     overflow-y: scroll;
+    overflow-x: hidden;
     /*  ARREGLAR ESTA NEGRDADA */
   height: 100vh;
 }
@@ -204,11 +274,28 @@ export default {
 /* .white-background {
     background-color: #fff;
 } */
-.card-header{
+/* .card-header{
     background-color: #ffffff !important;
+} */
+
+.blanco{
+      background-color: #ffffff !important;
 }
 
-/* twiter style */
+/* HARDCODEO EL PADING DE LOS TABS PARA AJUSTAR EN LAS PANTALLAS MENORES A IPHONE 5 */
+@media screen and (max-width: 350px) {
+    .nav-link {
+    padding-left: 10px !important; 
+    padding-right: 10px !important;
+  }
+  }
+
+/* LE SACO LO ANTERIOR EN LA PANTALLAS MAYORES A LAS DE EL IPHONE 5 */
+  @media screen and (min-width: 351px) {
+    .nav-link {
+    
+  }
+  }
 
 
 </style>

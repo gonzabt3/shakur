@@ -1,6 +1,7 @@
 <template>
 <div>
     <topbar></topbar>
+        <br>
         <b-container fluid>
             <b-row align-h="center">
                 <b-col   md="5" >
@@ -19,7 +20,7 @@
                                         v-validate="'required'"
                                         >
                             </b-form-input>
-                            <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                            <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                         </b-form-group>
                         <b-form-group  label="Confirmar contrseña:" label-for="password_confirmation"  >
                             <b-form-input id="password_confirmation"
@@ -46,22 +47,24 @@
                             variant="danger" 
                             class="text-center">{{ error }}</b-alert>
                         <b-btn @click="submit" :disabled="disabledButton" block variant="primary">
-                                <img v-show="iconLoading" class="sizeLoading" src="loadingWhite.svg">
+                                <img v-show="iconLoading" class="" src="../loadingWhite.svg">
                             {{textButton}}</b-btn>
                     </b-form>
                     </b-card>
                 </b-col>
             </b-row>
         </b-container>
+        <modal-succes-reset-pass></modal-succes-reset-pass>
 </div>
 </template>
 <script>
 const Topbar = () => import('../Topbar');
+const ModalSuccesResetPass = () => import('../views/ModalSuccesResetPass');
 // import Topbar from '../Topbar';
 
 export default {
     name:'ResetPassword',
-    components: { Topbar},
+    components: { Topbar,ModalSuccesResetPass},
     $_veeValidate: {
         validator: "new"
     },
@@ -77,7 +80,7 @@ export default {
             },
             loading:false,
             disabledButton:false,
-            textButton:'Registrarse',
+            textButton:'Aceptar',
             iconLoading:false
         }
     },
@@ -100,7 +103,7 @@ export default {
                     this.axios.post('../../api/password/reset',this.data)
                     .then((response) =>{
                         this.loading=false
-                        // console.log(response);
+                        this.$root.$emit('bv::show::modal','modalSuccesResetPass')
                 })  
                 }else {
                     this.loading=false
@@ -126,5 +129,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.sizeLoading{
+        width: 30px;
+}
 </style>

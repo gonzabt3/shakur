@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $fillable = [
-        'path','publicacion_id','documento_id'
+        'nombre','extension','path','publicacion_id','documento_id','reporte_id'
     ];
 
     public function documentacion(){
