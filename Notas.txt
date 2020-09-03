@@ -1,0 +1,140 @@
+2 6 2020
+    docker-compose dont execute compose and artisan commands into the container
+        hay que meterlos a mano en el container
+            composer install
+            php artisan key:generate
+
+    docker-compose dont copy .env file
+        cp .env.example .env
+
+    docker-compose do not execute yarn install
+
+    if a few component of vue dont apear run
+        yarn dev
+
+    the container do not work with the db
+        the db must be created
+        the .env must be configurated defore migrate
+
+14 6 2020
+    comands tu run after the docker-compose up
+        docker-compose exec app composer install
+        docker-compose exec app php artisan key:generate
+        docker-compose exec app php artisan config:cache
+            in prod enviroment we need to create a another user to db instance root (proccess to revision)
+                docker-compose exec db bash
+                mysql -u root -p
+                show databases;
+                GRANT ALL ON shakur.* TO 'shakuruser'@'%' IDENTIFIED BY 'shakuruser';
+                FLUSH PRIVILEGES;
+        docker-compose exec app php artisan migrate
+        docker-compose exec app php artisan db:seed
+            docker-compose exec app curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            docker-compose exec app echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        docker-compose exec app yarn
+            docker-compose exec app npm
+        docker-compose exec app yarn dev
+            docker-compose exec app npm run dev
+        docker-compose exec app php artisan passport:install
+        docker-compose exec app php artisan storage:link
+            if the storage commands its broken remove de storage folder in public
+            for the avatars works the file avatar.png need to be executable
+                chmod +x avatar.png
+
+    minikube
+        view symbolics links
+            ls -laR . | grep -B 5 " -> "
+            delete folder with symbolics links like vendor or node_modules
+        acces to load balancer in the cluster
+            minikube tunnel
+        expose ip of load balancer
+            minikube service ingress-nginx  
+
+    kubernetes
+        create deployments
+            kubectl apply -f app-deployment.yaml
+            kubectl apply -f webserver-deployment.yaml
+            kubectl apply -f db-deployment.yaml
+
+        create services
+            kubectl apply -f db-service.yaml
+            kubectl apply -f webserver-service.yaml
+            kubectl apply -f app-service.yaml
+
+        forward port
+            the ports of cluster need to was up of 1024
+            kubectl port-forward webserver-544597f54c-rg98c 8888:80
+        
+        run kompose
+            kompose up --server http://127.0.0.1:6443
+
+        for this errors
+            FATA Error while deploying application: Get https://127.0.0.1:6443/api: dial tcp 127.0.0.1:6443: connect: connection refused
+            create proxy
+                kubectl proxy  --port=6443
+            FATA Error while deploying application: k.Transform failed: Unable to build Docker image for service app: Unable to create a tarball: archive/tar: write too long 
+                remove node_modues and vendor folders
+                    rm -rf vendor
+                    rm -rf node_modules
+        
+        get shell in kubernetes coteiner
+                        kubectl exec --stdin --tty pod_name!! -- /bin/bash
+
+
+
+        to connect laravel with the db,in .env DBHOST is the name of the service that contain the db
+
+06-07-2020
+    docker swarm
+        docker swarm init --advertise-addr 192.168.0.38
+            the ip is the public ip of the default ethernet interfaces
+
+cheatshit
+    laravel console
+        docker-compose exec app php artisan tinker
+    acces to app container console
+        sudo  docker exec -it app /bin/sh
+    view logs
+        run docker up without -d
+    kubernetes
+
+12-07-2020
+    to kubernetes
+        1   create a good docker image of shakur
+        2   push this images to docker hub
+            
+
+diff db prod vs migrates
+    modifications
+        table oauth_acces_tokens
+            user_id(bigint) to user_id(int)
+        table oauth_acces_codes
+            user_id(bigint) to user_id(int)
+        table oauth_clients
+            user_id(bigint) to user_id(int)
+
+
+magia de un tipo en github para
+Create a network
+
+docker network create -d overlay testservice
+Change your test.yml file as
+
+version: "3.3"
+
+services:
+  test:
+    image: busybox
+    command: top
+    networks:
+      - testservice
+
+networks:
+  testservice:
+    external:
+      name: testservice
+docker stack deploy -c docker-compose.yml teststack
+
+problems
+    playbook dont have permision to run yarn and yarn dev,thay cant touch package-lock.json
+    for copy code the ports in the scripts are wrong,the laravel app expose port 9000 not 8080

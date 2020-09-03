@@ -14,7 +14,7 @@ class AddExtencionYNombreTablaFiles extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->string('nombre')->after('id');
+           //$table->string('nombre')->after('id');
             $table->string('extension')->after('nombre');
         });
     }

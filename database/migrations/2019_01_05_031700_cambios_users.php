@@ -13,9 +13,9 @@ class CambiosUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
-            $table->string('api_token', 60)->after('remember_token');
-        });    
+        //Schema::table('users', function($table) {
+        //    $table->string('api_token', 60)->after('remember_token');
+        //});    
 
     }
 
