@@ -19,5 +19,6 @@ echo STEP 12 PHP ARTISAN PASSAPORT:INSTALL
 php artisan passport:install 
 echo STEP 13 PHP ARTISAN STORAGE
 php artisan storage:link
-echo STEP 1 PHP-FPM
-php-fpm
+#start-apache
+#echo STEP 1 PHP-FPM
+#php-fpm
