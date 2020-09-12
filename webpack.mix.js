@@ -24,6 +24,9 @@ mix.webpackConfig({
 });
 
 
+
+mix.copyDirectory('resources/assets/fonts', 'public/fonts');
+
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .options({

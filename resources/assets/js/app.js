@@ -45,7 +45,7 @@ import VueSimpleAlert from "vue-simple-alert";
 
 
 import Vue from 'vue';
-import App from './App';
+import App from './App.vue';
 import router from './router';
 
 library.add(faPlusCircle, faStore, faEye, faEyeSlash,faUser,faArrowCircleDown,faTimes,faComment,faBell,faFilePdf,faFileWord,faFileExcel,faFilePowerpoint);
