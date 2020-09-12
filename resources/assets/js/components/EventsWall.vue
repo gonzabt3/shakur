@@ -1,9 +1,12 @@
 <template>
-    <b-container>
-        <b-card class="shadow" >
+    <b-container class="padding-5">
+        <b-alert show>Los eventos que ingreses serán visto por todos</b-alert>
+        <b-card class="shadow " >
             <b-row>
-                <b-col>
+                <b-col >
                     <b-form inline >
+                        <!-- <font-awesome-icon id="infoEvent" size="md" class="separacionIcon" icon="info-circle"/>
+                        <b-tooltip target="infoEvent" variant="danger">Lo que agreges en este apartado sera visto por los demas integrantes del grupo</b-tooltip> -->
                         <h3><u>Proximos Eventos</u></h3>
                         <font-awesome-icon  icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
                     </b-form>
@@ -17,6 +20,7 @@
                     :id="item.id"
                     :flag-autor="item.flagAutor"
                     tipo="event"
+                    @showModalDenuncias="showModalDenuncias"
                     /> </p>
                 </b-col>
             </b-row>
@@ -50,6 +54,9 @@ export default {
       }
   },
   methods:{
+      showModalDenuncias(idItem,type){
+        this.$emit("showModalDenuncias",idItem,type);
+        },
       showModal(){
           this.$root.$emit('bv::show::modal','newEvent')
       },
@@ -86,5 +93,10 @@ export default {
 }
 .pointer{
     cursor: pointer;
+}
+
+.padding-5{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
 <b-navbar  toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-  <label class="text-center white">{{materiaSelected | formatMateriaSelected}}</label>
-  <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand>
+  <label class="text-center white no-margin">{{materiaSelected | formatMateriaSelected}}</label>
+  <!-- <b-navbar-brand href="#" class="valentine">Shakur</b-navbar-brand> -->
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
-      <!-- <h5>asd</h5> -->
       <b-nav-item id="materia" v-for="materia in materias"
       :key="materia.id" @click="clickMateria(materia.id)" >{{materia.nombre}}</b-nav-item>
     </b-navbar-nav>
+ 
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
       <h4>{{username}} </h4>
@@ -16,12 +16,17 @@
       <b-img rounded="circle" width="30" height="30"   :src="avatar_url" />
     </b-navbar-nav>
   </b-collapse>
+  <b-navbar-brand class="no-padding" >
+    <notification @openPost="openPost" ></notification>
+  </b-navbar-brand>
 </b-navbar>
 </template>
 
 <script>
+import notification from '../components/common/Notification';
 export default {
   name: 'Topbar',
+  components:{notification},
   data(){
     return{
       materias:[],
@@ -41,7 +46,7 @@ export default {
         if(val.length>=25){
           let resto = val.length-25
           val = val.slice(0,-resto);
-          console.log(val+'...');
+          // console.log(val+'...');
           return (val+'...');
         }else{
           return val
@@ -70,9 +75,9 @@ export default {
               });
               //hago que se setean los walls y el muro con la primera materia que tiene el user
               if(this.materias.length>0){
-                this.clickMateria(this.materias[0].id);
+                this.clickMateria(this.materias[this.materias.length-1].id);
               }else{
-                this.$emit("comunication")
+                this.$emit("comunication",true)     
               }
           })
     },
@@ -84,7 +89,15 @@ export default {
           this.materiaSelected=materia.nombre
         }
       });
+<<<<<<< HEAD
       this.$emit("changeMateria",val);
+=======
+      this.$emit("changeMateria",val);      
+    },
+    //METODO PARA ABRIR UN POST DESDE LAS NOTIFICACIONES
+    openPost(idPost){
+      this.$emit("openPost",idPost)
+>>>>>>> master
     }
   }
 
@@ -99,5 +112,10 @@ export default {
 
 .white{
   color:#ffffff;
+  
+}
+
+.no-margin{
+    margin-bottom: 0px;
 }
 </style>

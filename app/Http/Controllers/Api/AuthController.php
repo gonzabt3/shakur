@@ -46,20 +46,28 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
+        
         $request->validate([
             'name'     => 'required|string',
-            'email'    => 'required|string|email|unique:users',
+            // 'email'    => 'required|string|email|unique:users',
             'apellido'  => 'required',
             'carrera_id'  => 'required',
-            'password' => 'required|string|confirmed',
+            'terminos_y_condiciones'  => 'required',
+            'password' => 'required|string|confirmed|min:8',
         ]);
 
+        if($request->terminos_y_condiciones==false || $request->terminos_y_condiciones[0]!=true){
+            return response()->json([
+                'message' => 'Debe aceptar los terminos y condiciones'], 401);
+        }
+
         $user = new User([
-            'name'     => $request->name,
+            'name'     => ucfirst($request->name),
             'email'    => $request->email,
-            'apellido'  => $request->apellido,
+            'apellido'  => ucfirst($request->apellido),
             'carrera_id'  => $request->carrera_id,
             'password' => bcrypt($request->password),
+            'terminos_y_condiciones' => $request->terminos_y_condiciones[0],
             'activation_token'  => str_random(60),
         ]);
         $user->save();

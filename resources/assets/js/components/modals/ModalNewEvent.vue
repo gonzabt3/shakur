@@ -12,19 +12,19 @@
                       :class="{'is-invalid':errors.has('nombre')}"
                       >
                     </b-form-input>
-                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Temas:" label-for="temas">
                     <b-form-input 
                       id="temas" 
                       v-model="data.temas"
-                      placeholder="Ingresa los temas del parcial"
+                      placeholder="Ingresa los temas"
                       name="temas"
                       v-validate="'required'"
                       :class="{'is-invalid':errors.has('temas')}"
                       >
                     </b-form-input>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group label="Seleccionar Fecha">
                     <datepicker  
@@ -36,7 +36,21 @@
                       v-validate="'required'"
                       :class="{'is-invalid':errors.has('fecha')}"
                       ></datepicker>
-                    <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
+                </b-form-group>
+                <b-form-group label="Hora:" label-for="hora">
+                    <b-form-input 
+                      id="hora" 
+                      v-model="data.hora"
+                      placeholder="Ingresa la hora"
+                      v-mask="'##:##'"
+                      type="time"
+                      name="hora"
+                      v-validate="'required'"
+                      :class="{'is-invalid':errors.has('hora')}"
+                      >
+                    </b-form-input>
+                    <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
             <b-alert 
@@ -67,8 +81,8 @@ export default {
         nombre: '',
         temas: '',
         fecha: '',
-        materia_id:this.idMateria,
-        user_id:1
+        hora:'',
+        materia_id:this.idMateria
       },
       error:'',
       // VARIABLES PARA EL PLUG DEL CALENDARIO
@@ -102,6 +116,7 @@ export default {
       this.data.nombre = '';
       this.data.temas = '';
       this.data.fecha = '';
+      this.data.hora = null;
     },
   },
 

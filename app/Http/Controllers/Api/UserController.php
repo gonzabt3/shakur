@@ -61,4 +61,9 @@ class UserController extends Controller
         $dataUser['universidad']=Auth::user()->carrera->universidad;
         return $dataUser;
     }
+
+    public function delete(Request $request,Response $response){
+        $user = Auth::user();
+        $user->delete();
+    }
 }

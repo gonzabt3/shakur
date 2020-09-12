@@ -1,9 +1,12 @@
 <template>
-    <b-container class="form-group">
+    <b-container class="form-group padding-5">
+        <b-alert show>Los archivos que subas serán visto por todos</b-alert>
         <b-card class="shadow" >
             <b-row>
                 <b-col>
                     <b-form inline >
+                        <!-- <font-awesome-icon id="infoDoc" size="md" class="separacionIcon" icon="info-circle"/>
+                        <b-tooltip target="infoDoc" variant="danger">Lo que subas en este apartado sera visto por los demas integrantes del grupo</b-tooltip> -->
                         <h3><u>Documentación</u></h3>
                         <font-awesome-icon   icon="plus-circle"  class="separacionIcon pointer" size="lg" @click="showModal" />
                     </b-form>
@@ -21,6 +24,7 @@
                             :id="item.id"
                             tipo="doc"
                             :flag-autor="item.flagAutor"
+                            @showModalDenuncias="showModalDenuncias"
                              /></p>
                 </b-col>
             </b-row>
@@ -49,9 +53,12 @@ export default {
         }
     },
     methods:{
-      showModal(){
-          this.$root.$emit('bv::show::modal','newDoc')
-      },
+        showModalDenuncias(idItem,type){
+            this.$emit("showModalDenuncias",idItem,type);
+        },
+        showModal(){
+            this.$root.$emit('bv::show::modal','newDoc')
+        },
        nameAlias(user){
             if(user.alias==null){
                 return user.name+' '+user.apellido;
@@ -98,5 +105,10 @@ export default {
 }
 .pointer{
     cursor: pointer;
+}
+
+.padding-5{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 </style>

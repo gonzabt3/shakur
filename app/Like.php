@@ -11,7 +11,7 @@ class Like extends Model
         'publicacion_id','user_id'
     ];
 
-    public function publicaciones(){
+    public function publicacion(){
         return $this->belongsTo(Publicacion::class);
     }
 

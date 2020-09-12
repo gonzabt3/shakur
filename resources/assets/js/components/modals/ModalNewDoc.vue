@@ -11,7 +11,7 @@
                       v-validate="'required'"
                       :class="{'is-invalid':errors.has('nombre')}">
                     </b-form-input>
-                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
                 <!-- <b-form-group label="Temas:" label-for="temas">
                     <b-form-input id="temas" v-model="data.temas"
@@ -30,7 +30,7 @@
                       ></b-form-file>
 
 
-                  <b-form-invalid-feedback>Campor requerdio</b-form-invalid-feedback>
+                  <b-form-invalid-feedback>Campor requerido</b-form-invalid-feedback>
                 </b-form-group>
             </b-form>
             <b-alert 

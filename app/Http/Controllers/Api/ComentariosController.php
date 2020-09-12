@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Comentario;
+use App\Publicacion;
 use App\Http\Services\ComentarioService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ComentarioResource;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Notifications\ComentarioNotification;
+use Notification;
 
 class ComentariosController extends Controller
 {
@@ -26,6 +29,10 @@ class ComentariosController extends Controller
         $user = Auth::user();
         $comentario['user_id']=$user->id;
         $comentario = Comentario::create($comentario);
+
+        //agarra el dueño del post y le manda una notificacion
+        $userANotificar=Publicacion::find($comentario['publicacion_id'])->user;
+        Notification::send($userANotificar,new ComentarioNotification($comentario));
 
         return new ComentarioResource($comentario);
     }

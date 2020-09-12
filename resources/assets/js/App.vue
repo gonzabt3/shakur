@@ -19,8 +19,8 @@ export default {
 <style >
 /* es el alto de el background */
 .height{
-  height: 100vh;
-      overflow-x: hidden;
+  /* height: 100%; */
+  overflow-x: hidden;
 
 }
 
@@ -31,9 +31,9 @@ body{
     /* ------------background--------   */
     /* background-image:url('../../../public/images/fadu.jpg'); */
     /* background-position: center; */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #00a0b54f;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    /* background-color: #00a0b54f;  */
     }
 
   .no-padding-main{

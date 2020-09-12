@@ -19,8 +19,8 @@ class ComentarioService{
         $this->likeService = $likeService;
     }
 
-    public function delete($id){
-        if(Auth::user()->id==Comentario::find($id)->user_id){
+    public function delete($id,$denuncia=0){
+        if(Auth::user()->id==Comentario::find($id)->user_id || $denuncia==1){
             Comentario::find($id)->likesComentarios()->delete();
             Comentario::destroy($id);
         }    
