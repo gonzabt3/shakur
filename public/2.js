@@ -76,8 +76,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMaterias() {
-      // this.axios.defaults.headers.common['Accept'] = 'application/json'; 
-      // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token'); 
+      // this.axios.defaults.headers.common['Accept'] = 'application/json';
+      // this.axios.defaults.headers.common['Authorization'] = 'Bearer '+sessionStorage.getItem('token');
       this.axios.get("api/materias2/user").then(response => {
         // console.log(response.data)
         this.username = response.data.username;
@@ -314,7 +314,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.valentine[data-v-00c1d495]{\n  font-family:valentine !important;\n}\n.white[data-v-00c1d495]{\n  color:#ffffff;\n}\n.no-margin[data-v-00c1d495]{\n    margin-bottom: 0px;\n}\n", ""]);
+exports.push([module.i, "\n.valentine[data-v-00c1d495] {\n  font-family: valentine !important;\n}\n.white[data-v-00c1d495]{\n  color:#ffffff;\n}\n.no-margin[data-v-00c1d495]{\n    margin-bottom: 0px;\n}\n", ""]);
 
 // exports
 
