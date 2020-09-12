@@ -89,15 +89,11 @@ export default {
           this.materiaSelected=materia.nombre
         }
       });
-<<<<<<< HEAD
-      this.$emit("changeMateria",val);
-=======
       this.$emit("changeMateria",val);      
     },
     //METODO PARA ABRIR UN POST DESDE LAS NOTIFICACIONES
     openPost(idPost){
       this.$emit("openPost",idPost)
->>>>>>> master
     }
   }
 
