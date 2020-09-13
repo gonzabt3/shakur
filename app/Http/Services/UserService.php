@@ -132,7 +132,7 @@ class UserService {
 
         $path ='public/avatars/'.$user->id;
 
-        Storage::disk('local')->putFileAs($path,$file,'avatar.png');  
+        Storage::disk('s3')->putFileAs($path,$file,'avatar.png');  
 
     }
 

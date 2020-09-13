@@ -39,6 +39,7 @@ RUN a2enmod rewrite
 
 # Copy application source
 COPY . /var/www/
+COPY /php/php.ini /usr/local/etc/php/conf.d/
 
 RUN chown -R www-data:www-data /var/www
 RUN chown -R www-data:www-data storage

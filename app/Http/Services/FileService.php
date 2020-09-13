@@ -74,7 +74,7 @@ class FileService {
 
                 $path_final=str_replace('storage/','public/',$file->path);
 
-                Storage::disk('local')->delete($path_final);
+                Storage::disk('s3')->delete($path_final);
 
                  File::destroy($id);
             }else{
@@ -88,7 +88,7 @@ class FileService {
 
                 $path_final=str_replace('storage/','public/',$file->path);
 
-                Storage::disk('local')->delete($path_final);+
+                Storage::disk('s3')->delete($path_final);+
                 File::destroy($id);
             }else{
                  File::where('id', $id)->update(array('publicacion_id' => null));
@@ -108,7 +108,7 @@ class FileService {
         //guardo
         $fileName=$file->getClientOriginalName(); 
         // dd($pathFile);
-        Storage::disk('local')->putFileAs($pathFile,$file,$fileName);  
+        Storage::disk('s3')->putFileAs($pathFile,$file,$fileName);  
 
     }
 }

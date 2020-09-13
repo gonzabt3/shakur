@@ -36,7 +36,7 @@ class FileController extends Controller
 
                 $path_final=str_replace('storage/','public/',$path_file);
 
-                Storage::disk('local')->delete($path_final);
+                Storage::disk('s3')->delete($path_final);
 
                 File::destroy($id);
             }
@@ -73,7 +73,7 @@ class FileController extends Controller
 
     //     //guardo
     //     $fileName=$file->getClientOriginalName(); 
-    //     Storage::disk('local')->putFileAs($pathFile,$file,$fileName);  
+    //     Storage::disk('s3')->putFileAs($pathFile,$file,$fileName);  
 
     //     $parameters['path'] = 'storage/files/'.$parameters['idMateria'].'/'.$file->getClientOriginalName();
     //     $parameters['materia_id']=$parameters['idMateria'];
