@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File as FacedeFile;
 use DB;
 
-
 use App\Evento;
 use App\File;
 use App\User;
