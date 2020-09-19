@@ -25,11 +25,12 @@ class FileServiceTest extends TestCase
       $materia = factory(Materia::class)->create(['carrera_id' => $carrera->id]);
       $publicacion = factory(Publicacion::class)->create(['materia_id' => $materia->id]);
 
-      $file = UploadedFile::fake()->image('image.jpg')->size(100);
+      $file = UploadedFile::fake()->image('fakeImageTest.jpg')->size(100);
       $fileService = new FileService;
-      $fileService->store($file,1,'post');
+      $fileService->store($file,$publicacion->id,'post');
       $this->assertDatabaseHas('files', [
         'id' => '1',
+        'publicacion_id' => $publicacion->id
       ]);
   }
 }
