@@ -8,6 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use App\User;
 use App\Publicacion;
+use App\Universidad;
+use App\Carrera;
+use App\Materia;
 use App\Http\Services\FileService;
 use Storage;
 
@@ -17,11 +20,11 @@ class FileServiceTest extends TestCase
 
     public function testStore()
     {
-      Publicacion::create([
-        'texto' => 'test',
-        'materias_id' => 1,
-        'user_id' => 1
-      ]);
+      $univerisdad = factory(Universidad::class)->create();
+      $carrera = factory(Carrera::class)->create(['universidad_id' => $univerisdad->id]);
+      $materia = factory(Materia::class)->create(['carrera_id' => $carrera->id]);
+      $publicacion = factory(Publicacion::class)->create(['materia_id' => $materia->id]);
+
       $file = UploadedFile::fake()->image('image.jpg')->size(100);
       $fileService = new FileService;
       $fileService->store($file,1,'post');
