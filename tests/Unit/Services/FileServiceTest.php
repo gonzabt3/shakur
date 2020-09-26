@@ -48,7 +48,7 @@ class FileServiceTest extends TestCase
                                           'reporte_id' => null,
                                           ]);
     $fileService = new FileService;
-    Auth::shouldReceive('user')->andReturn($user);
+    Auth::shouldReceive('user')->andReturn($user); 
     $checkAuthorFile = $fileService->checkAuthor($file);
     $this->assertSame(true, $checkAuthorFile);
   }

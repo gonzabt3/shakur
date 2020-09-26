@@ -13,57 +13,59 @@ use Session;
 
 class PublicacionService{
 
-    protected $userService;
-    protected $likeService;
-    protected $comentarioService;
+  protected $userService;
+  protected $likeService;
+  protected $comentarioService;
 
 
-    public function __construct(UserService $userService,LikeService $likeService,ComentarioService $comentarioService,FileService $fileService){
-        $this->userService = $userService;
-        $this->likeService = $likeService;
-        $this->comentarioService = $comentarioService;
-        $this->fileService = $fileService;
+  public function __construct(UserService $userService,LikeService $likeService,ComentarioService $comentarioService,FileService $fileService){
+    $this->userService = $userService;
+    $this->likeService = $likeService;
+    $this->comentarioService = $comentarioService;
+    $this->fileService = $fileService;
+  }
+
+  public function getPosts($idMateria,$idPaginado){
+    // CON EL PAGINADO LO QUE HACE ES PEDIRLE PUBLICACIONES ANTERIORES AL idPaginado
+    if($idPaginado!=null){
+      $publicaciones=Publicacion::where('materia_id',$idMateria)->where('id', '<',$idPaginado )->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
+    }else{
+      $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
     }
+    
+    //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
+    $publicaciones->map(function ($post) {
+      $user = Auth::user();
 
-    public function getPosts($idMateria,$idPaginado){
+      $post->files->map(function ($file) {
+        return $file = $this->fileService->makePathForEnv($file);
+      }); 
 
+      $post['cantidadComentarios'] = $post->comentarios->count();
+      $post['flagAutor'] = $this->userService->checkAutor('post',$post->id);
+      $post['flagLike'] = $this->likeService->checkLike('post',$post->id);
 
-        // CON EL PAGINADO LO QUE HACE ES PEDIRLE PUBLICACIONES ANTERIORES AL idPaginado
-        if($idPaginado!=null){
-            $publicaciones=Publicacion::where('materia_id',$idMateria)->where('id', '<',$idPaginado )->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
-        }else{
-            $publicaciones=Publicacion::where('materia_id',$idMateria)->orderBy('created_at', 'DESC')->with('user','likes','files')->take(15)->get();
-        }
-        
-        //magia para meter el id del user loageado aca post para poner el on/off de l boton de like
-        $publicaciones->map(function ($post) {
-            $user = Auth::user();
+      return $post;
+    });
 
-            $post['cantidadComentarios'] = $post->comentarios->count();
-            $post['flagAutor'] = $this->userService->checkAutor('post',$post->id);
-            $post['flagLike'] = $this->likeService->checkLike('post',$post->id);
+    return($publicaciones);
+  }
 
-            return $post;
-        });
+  public function delete($idPost,$denuncia=0){
+    //pregunto si el que borra es el autor del post o si se borra por denuncia
+    if(Auth::user()->id==Publicacion::find($idPost)->user_id || $denuncia==1){
+      $comentariosPublicacion = Publicacion::find($idPost)->comentarios()->get();
 
-        return($publicaciones);
-    }
-
-    public function delete($idPost,$denuncia=0){
-        //pregunto si el que borra es el autor del post o si se borra por denuncia
-        if(Auth::user()->id==Publicacion::find($idPost)->user_id || $denuncia==1){
-            $comentariosPublicacion = Publicacion::find($idPost)->comentarios()->get();
-
-            foreach ($comentariosPublicacion as $comment) {
-                $this->comentarioService->delete($comment->id,$denuncia);
-            }
-            
-            $filesPublicacion = Publicacion::find($idPost)->files()->get();
-            foreach ($filesPublicacion as $file) {
-                $this->fileService->delete($file->id,'post');
-            }
-            Publicacion::find($idPost)->likes()->delete();
-            Publicacion::destroy($idPost);
-        }    
-    }
+      foreach ($comentariosPublicacion as $comment) {
+        $this->comentarioService->delete($comment->id,$denuncia);
+      }
+      
+      $filesPublicacion = Publicacion::find($idPost)->files()->get();
+      foreach ($filesPublicacion as $file) {
+        $this->fileService->delete($file->id,'post');
+      }
+      Publicacion::find($idPost)->likes()->delete();
+      Publicacion::destroy($idPost);
+    }    
+  }
 }
