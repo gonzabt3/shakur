@@ -102,14 +102,8 @@ class FileService {
   }
 
   private function getIdUserFile(File $file){
-    if($file->publicacion_id != null){
-      return  $file->publicacion->user_id;
-    }
-    if($file->documento_id != null){
-      return  $file->documento->user_id;
-    }
-    if($file->reporte_id != null){
-      return  $file->reportError->user_id;
-    }
+    if($file->publicacion_id != null) return $file->publicacion->user_id;
+    if($file->documento_id != null) return $file->documento->user_id;
+    if($file->reporte_id != null) return $file->reportError->user_id;
   }
 }
