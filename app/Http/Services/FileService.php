@@ -45,11 +45,11 @@ class FileService {
       $fileObject['path']='';
       $fileObject['nombre']=$file->getClientOriginalName();
       $fileObject['extension']=substr($file->getClientOriginalName(), -3);
-      $idFile = File::create($fileObject);
-      $currentFile=File::find($idFile->id);
-      $currentFile->path='storage/files/'.$idFile->id.'/'.$file->getClientOriginalName();
+      $idFile = File::create($fileObject)->id;
+      $currentFile=File::find($idFile);
+      $currentFile->path='public/files/'.$idFile.'/'.$file->getClientOriginalName();
       $currentFile->save();      
-      $this->toDisk($file,$idFile->id);
+      $this->toDisk($file, $idFile);
       DB::commit();
     } catch (\Exception $e) {
       DB::rollback();
@@ -98,7 +98,11 @@ class FileService {
   }
 
   public function checkAuthor(File $file){
-    return Auth::user()->id==$this->getIdUserFile($file);
+    return Auth::user()->id == $this->getIdUserFile($file);
+  }
+
+  public function makePathForEnv(File $file){
+    return $file->path = Storage::url($file->path);
   }
 
   private function getIdUserFile(File $file){
